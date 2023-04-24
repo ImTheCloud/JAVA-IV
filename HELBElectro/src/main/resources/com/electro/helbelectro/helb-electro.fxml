@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+
+<!-- https://docs.oracle.com/javase/8/javafx/api/javafx/scene/layout/GridPane.html-->
+<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.electro.helbelectro.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="place" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3"/>
+
+    <Button fx:id="p1" text="P1" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Button fx:id="p2" text="P2" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Button fx:id="p3" text="P3" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+    <Button fx:id="p4" text="P4" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Button fx:id="p5" text="P5" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <Button fx:id="p6" text="P6" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+
+    <Button fx:id="p7" text="P7" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <Button fx:id="p8" text="P8" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <Button fx:id="p9"  style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+
+    <Button fx:id="p10" text="P10" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <Button fx:id="p11" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" onAction="#onButtonClicked" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+</GridPane>
