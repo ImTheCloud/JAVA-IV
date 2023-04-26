@@ -33,7 +33,6 @@
         </style>
     </Button>
 
-
     <Button fx:id="p4" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P4" GridPane.rowIndex="3" />
     <Button fx:id="p5" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
     <Button fx:id="p6" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P6" GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -91,6 +90,5 @@
         </Button>
         <Button fx:id="button8" text="               " />
     </VBox>
-
 
 </GridPane>
