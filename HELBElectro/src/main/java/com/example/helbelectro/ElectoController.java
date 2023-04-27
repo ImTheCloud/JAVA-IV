@@ -12,20 +12,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class ElectoController {
     @FXML
     private Label place;
+    private Button button,sellButton,closeButton;
 
     @FXML
     protected void onButtonClicked(ActionEvent event) {
-        Button button = (Button) event.getSource();
+        button = (Button) event.getSource();
         int rowIndex = GridPane.getRowIndex(button);
         int columnIndex = GridPane.getColumnIndex(button);
         Stage modal = new Stage();
@@ -35,17 +29,15 @@ public class ElectoController {
 
         Button statsButton = new Button("Voir les statistiques de cet emplacement");
         statsButton.setStyle("-fx-background-color: #00BCD4; -fx-text-fill: white;");
-        statsButton.setOnAction(e -> System.out.println("Affichage des statistiques de l'emplacement " + button.getText()));
 
-        Button sellButton = new Button("Vendre produit");
+        sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
         sellButton.setOnAction(e -> {
-            enregistrerVente(button.getText());
-            System.out.println("Vente du produit de l'emplacement " + button.getText());
+            Ticket.enregistrerVente(button.getText()); //prend la methode de Ticket
+            modal.close();
         });
 
-
-        Button closeButton = new Button("Close");
+        closeButton = new Button("Close");
         closeButton.setOnAction(e -> modal.close());
 
         VBox vbox = new VBox(label, statsButton, sellButton, closeButton);
@@ -61,18 +53,11 @@ public class ElectoController {
         modal.showAndWait();
     }
 
-    private void enregistrerVente(String emplacement) {
-        try {
-            // Emplacement du fichier dans le dossier ticket
-            File fileInTicket = new File("ticket/ventes.txt");
-            FileWriter writer = new FileWriter(fileInTicket, true);
-            writer.write("Vente du produit de l'emplacement " + emplacement + "\n");
-            writer.close();
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+
+
+
+
 
 
 

@@ -1,7 +1,10 @@
 package com.example.helbelectro;
 
 import java.util.Date;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 public class Ticket {
 
     private Date date;
@@ -11,16 +14,22 @@ public class Ticket {
     private int charge;
     private int power;
 
-    // Constructor
-    public Ticket(Date date, String productType, double price, int ecoScore, int charge, int power) {
-        this.date = date;
-        this.productType = productType;
-        this.price = price;
-        this.ecoScore = ecoScore;
-        this.charge = charge;
-        this.power = power;
+        public static void enregistrerVente(String emplacement) {
+            try {
+                SimpleDateFormat sdfFileName = new SimpleDateFormat("HHmmss");
+                SimpleDateFormat sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                String fileName = "ticket/" + sdfFileName.format(new Date()) + ".txt";
+                File fileInTicket = new File(fileName);
+
+                // ecrit dans le fichier
+                FileWriter writer = new FileWriter(fileInTicket, true);
+                writer.write("Date: " + sdfFileContent.format(new Date()) + "\n");
+                writer.write("Vente du produit de l'emplacement " + emplacement + "\n");
+                writer.close();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }
-
-
-
-}
