@@ -11,19 +11,19 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.8.2</junit.version>
+        <junit.version>5.9.1</junit.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>19-ea+7</version>
+            <version>20-ea+4</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>19-ea+7</version>
+            <version>20-ea+4</version>
         </dependency>
 
         <dependency>
@@ -47,8 +47,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
-                    <source>19</source>
-                    <target>19</target>
+                    <source>20</source>
+                    <target>20</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.helbelectro/com.electro.helbelectro.HelloApplication</mainClass>
+                            <mainClass>com.example.helbelectro/com.example.helbelectro.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

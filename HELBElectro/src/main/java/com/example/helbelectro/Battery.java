@@ -1,4 +1,4 @@
-package com.electro.helbelectro.Component;
+package com.example.helbelectro;
 
 public class Battery extends BasicElectronicComponent {
     private int percentage;

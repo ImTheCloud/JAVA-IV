@@ -1,4 +1,4 @@
-package com.electro.helbelectro;
+package com.example.helbelectro;
 
 import java.util.Date;
 
@@ -20,5 +20,7 @@ public class Ticket {
         this.charge = charge;
         this.power = power;
     }
+
+
 
 }
