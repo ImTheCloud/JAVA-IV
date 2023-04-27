@@ -17,7 +17,7 @@ public class Ticket {
             try {
                 sdfFileName = new SimpleDateFormat("HHmmss");
                 sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                fileName = "ticket/" + sdfFileName.format(new Date()) + ".txt";
+                fileName = "ticket/" + "t_"+sdfFileName.format(new Date()) + ".txt";
                 File fileInTicket = new File(fileName);
 
                 // ecrit dans le fichier
