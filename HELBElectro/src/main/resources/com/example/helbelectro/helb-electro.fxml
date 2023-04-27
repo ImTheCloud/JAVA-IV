@@ -6,107 +6,65 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.ElectoController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
+<HBox alignment="CENTER" prefHeight="380.0" prefWidth="776.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.ElectoController">
+   <padding>
+      <Insets bottom="10.0" left="20.0" right="30.0" top="20.0" />
+   </padding>
 
-    <Label fx:id="place" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+   <GridPane hgap="20" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;" vgap="20">
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
 
-    <Button fx:id="p1" onAction="#onButtonClicked" text="P1" GridPane.columnIndex="0"  GridPane.rowIndex="0" >
-        <style>
-            -fx-font-size: 20px; -fx-min-width: 140px;
-            -fx-min-height: 75px;
-            -fx-background-color: #00BCD4;
-        </style>
-    </Button>
-    <Button fx:id="p2" onAction="#onButtonClicked" text="P2" GridPane.columnIndex="1" GridPane.rowIndex="0">
-        <style>
-            -fx-font-size: 20px; -fx-min-width: 140px;
-            -fx-min-height: 75px;
-            -fx-background-color: #4CAF50;
-        </style>
-    </Button>
-    <Button fx:id="p3" onAction="#onButtonClicked" text="P1" GridPane.columnIndex="2" GridPane.rowIndex="0">
-        <style>
-            -fx-font-size: 20px; -fx-min-width: 140px;
-            -fx-min-height: 75px;
-            -fx-background-color: #00BCD4;
-        </style>
-    </Button>
-    <Button fx:id="p4" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P4" GridPane.columnIndex="0"  GridPane.rowIndex="1" />
-    <Button fx:id="p5" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <Button fx:id="p6" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label fx:id="place" GridPane.columnSpan="3" GridPane.rowIndex="1" />
 
-    <Button fx:id="p7" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P7" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <Button fx:id="p8" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <Button fx:id="p9" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Button fx:id="p1" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+      <Button fx:id="p3" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-    <Button fx:id="p10" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" text="P10" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-    <Button fx:id="p11" onAction="#onButtonClicked" style="-fx-font-size: 20px; -fx-min-width: 140px; -fx-min-height: 75px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button fx:id="p4" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+      <Button fx:id="p5" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="p6" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-    <HBox GridPane.columnIndex="3" GridPane.rowIndex="0">
-        <Label text="Opti : " />
-        <ComboBox fx:id="sortComboBox" value="time">
+      <Button fx:id="p7" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="0" GridPane.rowIndex="2" />
+      <Button fx:id="p8" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="p9" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+      <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+      <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button fx:id="p2" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+   </GridPane>
+
+   <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+   <!-- #00BCD4 -->
+   <!-- #4CAF50 -->
+   <!-- #A9287D9A -->
+   <VBox spacing="10" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10px;">
+
+      <HBox style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10px;">
+         <Label text="Opti : " />
+         <ComboBox fx:id="sortComboBox" value="time">
             <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="time" />
-                    <String fx:value="cost" />
-                    <String fx:value="score" />
-                    <String fx:value="diverse" />
-                </FXCollections>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="time" />
+                  <String fx:value="cost" />
+                  <String fx:value="score" />
+                  <String fx:value="diverse" />
+               </FXCollections>
             </items>
-        </ComboBox>
-    </HBox>
+         </ComboBox>
+      </HBox>
+
+      <Button fx:id="component1" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;"/>
+      <Button fx:id="component2" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" />
+      <Button fx:id="component3" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" />
+      <Button fx:id="component4" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" />
+      <Button fx:id="component5" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" />
+      <Button fx:id="component6" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" />
+      <Button fx:id="component7" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" />
+      <Button fx:id="component8" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" />
+
+   </VBox>
 
 
-    <VBox GridPane.columnIndex="3" GridPane.rowIndex="1">
-        <Button fx:id="button1" text="C-Type-1">
-            <style>
-                -fx-background-color: #00BCD4;
-            </style>
-        </Button>
-        <Button fx:id="button2" text="C-Type-1">
-            <style>
-                -fx-background-color: #00BCD4;
-            </style>
-        </Button>
-        <Button fx:id="button3" text="C-Type-3">
-            <style>
-                -fx-background-color: #A9287D9A;
-            </style>
-        </Button>
-    </VBox>
-
-    <VBox GridPane.columnIndex="3" GridPane.rowIndex="2">
-        <Button fx:id="button4" text="C-Type-2">
-            <style>
-                -fx-background-color: #4CAF50;
-            </style>
-        </Button>
-        <Button fx:id="button5" text="C-Type-2">
-            <style>
-                -fx-background-color: #4CAF50;
-            </style>
-        </Button>
-        <Button fx:id="button6" text="C-Type-3">
-            <style>
-                -fx-background-color: #A9287D9A;
-            </style>
-        </Button>
-    </VBox>
-
-    <VBox GridPane.columnIndex="3" GridPane.rowIndex="3">
-        <Button fx:id="button7" text="C-Type-1">
-            <style>
-                -fx-background-color: #00BCD4;
-            </style>
-        </Button>
-        <Button fx:id="button8" text="              " />
-    </VBox>
-
-
-
-
-
-</GridPane>
+</HBox>
