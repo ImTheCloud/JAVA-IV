@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ElectoController {
     @FXML
@@ -60,21 +63,18 @@ public class ElectoController {
 
     private void enregistrerVente(String emplacement) {
         try {
-            // Emplacement du fichier sur le bureau
-            File fileOnDesktop = new File(System.getProperty("user.home") + "/Desktop/ventes.txt");
-            FileWriter writer = new FileWriter(fileOnDesktop, true);
+            // Emplacement du fichier dans le dossier ticket
+            File fileInTicket = new File("ticket/ventes.txt");
+            FileWriter writer = new FileWriter(fileInTicket, true);
             writer.write("Vente du produit de l'emplacement " + emplacement + "\n");
             writer.close();
 
-            // Emplacement du fichier dans le dossier src du projet
-            File fileInSrc = new File("src/ventes.txt");
-            writer = new FileWriter(fileInSrc, true);
-            writer.write("Vente du produit de l'emplacement " + emplacement + "\n");
-            writer.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
+
 
 
 
