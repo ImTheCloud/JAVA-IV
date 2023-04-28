@@ -1,5 +1,6 @@
 package com.example.helbelectro;
 
+import com.example.helbelectro.Component.Parser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -12,12 +13,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 
-import static com.example.helbelectro.Ticket.enregistrerVente;
+import static com.example.helbelectro.Factory.Ticket.enregistrerVente;
 
-public class ElectoController {
+public class Controller {
     private Button button,sellButton,statsButton;
 
 

@@ -1,4 +1,4 @@
-package com.example.helbelectro;
+package com.example.helbelectro.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
