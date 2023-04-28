@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -40,14 +41,17 @@ public class ElectoController {
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
         sellButton.setOnAction(e -> {
             enregistrerVente(button.getText()); // Appelle la méthode de la classe Ticket
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Vente enregistrée");
+            alert.setHeaderText(null);
+            alert.setContentText("Le produit a été vendu !");
+            alert.showAndWait();
             modal.close();
         });
 
-        closeButton = new Button("Close");
-        closeButton.setOnAction(e -> modal.close());
-
         // UNE VBox pour ajouter les boutons
-        VBox vbox = new VBox(label, statsButton, sellButton, closeButton);
+        VBox vbox = new VBox(label, statsButton, sellButton);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(20));
