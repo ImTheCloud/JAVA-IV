@@ -12,14 +12,25 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+
 import static com.example.helbelectro.Ticket.enregistrerVente;
 
 public class ElectoController {
+    private Button button,sellButton,statsButton;
+
+
     @FXML
-    private Label place;
-    private Button button,sellButton,closeButton,statsButton;
-
-
+    public void initialize() {
+        //La méthode s'appelle "initialize" car c'est une méthode spéciale utilisée par JavaFX
+        // pour initialiser les éléments du contrôleur juste après que le fichier FXML associé a été chargé.
+        try {
+            Parser.parseSimulationFile(); // appel de la méthode parseSimulationFile
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué
@@ -59,17 +70,4 @@ public class ElectoController {
         modal.setScene(new Scene(vbox, 400, 250));
         modal.showAndWait();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

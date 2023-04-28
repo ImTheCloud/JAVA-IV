@@ -44,17 +44,7 @@
             <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button fx:id="p2" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <columnConstraints>
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
+
          </GridPane>
       </children>
    </VBox>
