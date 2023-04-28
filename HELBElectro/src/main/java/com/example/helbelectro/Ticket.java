@@ -13,22 +13,25 @@ public class Ticket {
     private static String fileName;
     static SimpleDateFormat sdfFileName,sdfFileContent;
 
-        public static void enregistrerVente(String emplacement) {
-            try {
-                sdfFileName = new SimpleDateFormat("HHmmss");
-                sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                fileName = "ticket/" + "t_"+sdfFileName.format(new Date()) + ".txt";
-                File fileInTicket = new File(fileName);
+    public static void enregistrerVente(String emplacement) {
+        try {
+            // objets SimpleDateFormat pour les dates
+            sdfFileName = new SimpleDateFormat("HHmmss");
+            sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            fileName = "ticket/" + "t_"+sdfFileName.format(new Date()) + ".txt";
 
-                // ecrit dans le fichier
-                writer = new FileWriter(fileInTicket, true);
-                writer.write("Date: " + sdfFileContent.format(new Date()) + "\n");
-                writer.write("Vente du produit :" + emplacement + "\n");
-                writer.close();
+            // crée un objet File à partir du nom
+            File fileInTicket = new File(fileName);
+            // ecrire dans le fichier
+            writer = new FileWriter(fileInTicket, true);
+            writer.write("Date: " + sdfFileContent.format(new Date()) + "\n");
+            writer.write("Vente du produit :" + emplacement + "\n");
+            writer.close();
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-
     }
+
+
+}

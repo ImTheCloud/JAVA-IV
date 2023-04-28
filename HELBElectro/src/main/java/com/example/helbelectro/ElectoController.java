@@ -21,39 +21,41 @@ public class ElectoController {
 
     @FXML
     protected void onComponentClicked(ActionEvent event) {
+        // Pour savoir quel bouton a été cliqué
         button = (Button) event.getSource();
+        // Obtient l'indice de la ligne et de la colonne du bouton dans la grille
         int rowIndex = GridPane.getRowIndex(button);
         int columnIndex = GridPane.getColumnIndex(button);
+
+        // Crée une nouvelle fenêtre
         Stage modal = new Stage();
         modal.initModality(Modality.APPLICATION_MODAL);
 
         Label label = new Label("Emplacements (" + rowIndex + ", " + columnIndex + ")");
 
         statsButton = new Button("Voir les statistiques de cet emplacement");
-        statsButton.setStyle("-fx-background-color: #00BCD4; -fx-text-fill: white;");
+        statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");
 
         sellButton = new Button("Vendre produit");
-        sellButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
         sellButton.setOnAction(e -> {
-            enregistrerVente(button.getText()); //prend la methode de Ticket
+            enregistrerVente(button.getText()); // Appelle la méthode de la classe Ticket
             modal.close();
         });
 
         closeButton = new Button("Close");
         closeButton.setOnAction(e -> modal.close());
 
+        // UNE VBox pour ajouter les boutons
         VBox vbox = new VBox(label, statsButton, sellButton, closeButton);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(20));
 
-        GridPane.setConstraints(label, 0, 1, GridPane.REMAINING, 1);
-        GridPane.setConstraints(statsButton, 0, 2, GridPane.REMAINING, 1);
-        GridPane.setConstraints(sellButton, 0, 3, GridPane.REMAINING, 1);
-
-        modal.setScene(new Scene(vbox));
+        modal.setScene(new Scene(vbox, 400, 250));
         modal.showAndWait();
     }
+
 
 
 

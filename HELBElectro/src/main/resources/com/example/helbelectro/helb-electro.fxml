@@ -7,45 +7,41 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER" prefHeight="380.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #3f7ad9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.ElectoController">
+<HBox alignment="CENTER" prefHeight="380.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #9a9a9a;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.ElectoController">
    <padding>
       <Insets bottom="10.0" left="20.0" right="30.0" top="20.0" />
    </padding>
+   <VBox prefHeight="200.0" prefWidth="500.0">
+      <children>
+         <Label alignment="CENTER" prefHeight="6.0" prefWidth="510.0" text="HELBElectro" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="40.0" />
+         </font></Label>
 
-   <GridPane hgap="20" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;" vgap="20">
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
+         <GridPane hgap="20" prefHeight="421.0" prefWidth="323.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;" vgap="20">
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
 
-      <Label fx:id="place" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+            <Label fx:id="place" GridPane.columnSpan="3" GridPane.rowIndex="1" />
 
-      <Button fx:id="p1" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-      <Button fx:id="p3" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Button fx:id="p1" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button fx:id="p3" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-      <Button fx:id="p4" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-      <Button fx:id="p5" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button fx:id="p6" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="p4" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button fx:id="p5" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="p6" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-      <Button fx:id="p7" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-      <Button fx:id="p8" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Button fx:id="p9" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="p7" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button fx:id="p8" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="p9" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-      <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-      <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button fx:id="p2" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-      <columnConstraints>
-         <ColumnConstraints />
-         <ColumnConstraints />
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
-
-   </GridPane>
+            <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="p2" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+         </GridPane>
+      </children>
+   </VBox>
 
    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
    <!-- #00BCD4 -->
