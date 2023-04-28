@@ -11,7 +11,7 @@ public class HELBElectro extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HELBElectro.class.getResource("helb-electro.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 470);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 490);
         stage.setTitle("HELBElectro");
         stage.setScene(scene);
         stage.show();
