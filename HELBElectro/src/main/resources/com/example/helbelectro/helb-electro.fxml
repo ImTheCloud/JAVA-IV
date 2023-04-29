@@ -44,7 +44,6 @@
             <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button fx:id="p2" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
          </GridPane>
       </children>
    </VBox>
@@ -79,14 +78,14 @@
       </Label>
 
       <VBox spacing="10" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10px;">
-      <Label fx:id="component1" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
-      <Button fx:id="component2" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
-      <Button fx:id="component3" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
-      <Button fx:id="component4" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
-      <Button fx:id="component5" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
-      <Button fx:id="component6" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
-      <Button fx:id="component7" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
-      <Button fx:id="component8" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
+      <Label fx:id="component1" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <Label fx:id="component2" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <Label fx:id="component3" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <Label fx:id="component4" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <Label fx:id="component5" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <Label fx:id="component6" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <Label fx:id="component7" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <Label fx:id="component8" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
    </VBox>
    </VBox>
 
