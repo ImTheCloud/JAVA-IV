@@ -79,7 +79,7 @@
       </Label>
 
       <VBox spacing="10" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10px;">
-      <Button fx:id="component1" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
+      <Label fx:id="component1" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
       <Button fx:id="component2" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
       <Button fx:id="component3" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
       <Button fx:id="component4" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;" text="EMPTY" />
