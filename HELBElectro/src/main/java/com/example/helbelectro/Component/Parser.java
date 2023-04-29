@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Parser {
 
     public static void parseSimulationFile() throws FileNotFoundException {
-        String fileName = "/home/helb/Documents/GitHub/JAVA-IV/HELBElectro/simulation.txt";
+        String fileName = "simulation.txt";
         File file = new File(fileName);
 
         Scanner scanner = new Scanner(file);
