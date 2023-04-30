@@ -1,10 +1,15 @@
 package com.example.helbelectro.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Parser {
-    static String fileName, line, componentName, range, color, load, power;
+    private static String fileName, line, componentName, range, color, load, power;
+    private int componentCounter = 0;
+    private static List<String> componentNames = new ArrayList<>();
+
     public static void parseSimulationFile() throws FileNotFoundException, InterruptedException {
         fileName = "simulation.txt";
         File file = new File(fileName);
@@ -28,15 +33,19 @@ public class Parser {
                 color = values[3];
                 ComponentSensor sensor = new ComponentSensor(range, color);
                 System.out.println("Sensor created in " + timeInSeconds + " seconds");
+                componentNames.add("Sensor");
             } else if (componentName.equals("Batterie")) {
                 load = values[2];
                 ComponentBattery battery = new ComponentBattery(load);
                 System.out.println("Battery created in " + timeInSeconds + " seconds");
+                componentNames.add("Battery");
             } else if (componentName.equals("Moteur")) {
                 power = values[2];
                 ComponentMotor motor = new ComponentMotor(power);
                 System.out.println("Motor created in " + timeInSeconds + " seconds");
+                componentNames.add("Motor");
             }
+
         }
         scanner.close();
     }
