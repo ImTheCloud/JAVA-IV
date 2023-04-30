@@ -1,13 +1,24 @@
 package com.example.helbelectro.Component;
 
-import com.example.helbelectro.Factory.FactoryProduct;
 
-public class ComponentElectricMotor extends FactoryProduct {
+    public class ComponentElectricMotor {
+        private String puissance;
 
-    private int power;
+        public ComponentElectricMotor(String puissance) {
+            this.puissance = puissance;
+        }
 
+        public String getPuissance() {
+            return puissance;
+        }
 
-    public ComponentElectricMotor(ComponentBattery battery, ComponentElectricMotor electricMotor, ComponentMotionSensor motionSensor) {
-        super(battery, electricMotor, motionSensor);
+        public void demarrer() {
+            // Code pour démarrer le moteur
+        }
+
+        public void arreter() {
+            // Code pour arrêter le moteur
+        }
     }
-}
+
+

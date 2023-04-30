@@ -1,14 +1,21 @@
 package com.example.helbelectro.Component;
 
-import com.example.helbelectro.Factory.FactoryProduct;
 
-public class ComponentBattery extends FactoryProduct {
-    private int percentage;
+public class ComponentBattery {
+    private String niveauDeCharge;
 
-    public ComponentBattery(ComponentBattery battery, ComponentElectricMotor electricMotor, ComponentMotionSensor motionSensor) {
-        super(battery, electricMotor, motionSensor);
+    public ComponentBattery(String niveauDeCharge) {
+        this.niveauDeCharge = niveauDeCharge;
     }
 
+    public String getNiveauDeCharge() {
+        return niveauDeCharge;
+    }
 
+    public double fournirEnergie() {
+        // Code pour fournir de l'énergie et la retourner en tant que double
+        return 0;
+    }
 
 }
+

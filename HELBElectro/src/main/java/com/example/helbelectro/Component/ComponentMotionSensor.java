@@ -1,16 +1,25 @@
 package com.example.helbelectro.Component;
 
-import com.example.helbelectro.Factory.FactoryProduct;
+    public class ComponentMotionSensor {
+        private String resistance;
+        private String couleur;
 
-public class ComponentMotionSensor extends FactoryProduct {
+        public ComponentMotionSensor(String resistance, String couleur) {
+            this.resistance = resistance;
+            this.couleur = couleur;
+        }
 
-    private int metter;
-    private String color;
+        public String getResistance() {
+            return resistance;
+        }
 
-    public ComponentMotionSensor(ComponentBattery battery, ComponentElectricMotor electricMotor, ComponentMotionSensor motionSensor) {
-        super(battery, electricMotor, motionSensor);
+        public String getCouleur() {
+            return couleur;
+        }
+
+        public double lireMesure() {
+            // Code pour lire la mesure du capteur et la retourner en tant que double
+            return 0;
+        }
     }
 
-
-
-}

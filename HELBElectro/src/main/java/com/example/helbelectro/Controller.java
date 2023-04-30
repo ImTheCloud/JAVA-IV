@@ -14,23 +14,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.example.helbelectro.Factory.Ticket.enregistrerVente;
 
 public class Controller {
     private Button button,sellButton,statsButton;
 
-
-    @FXML
-    public void initialize() {
-        //La méthode s'appelle "initialize" car c'est une méthode spéciale utilisée par JavaFX
-        // pour initialiser les éléments du contrôleur juste après que le fichier FXML associé a été chargé.
-        try {
-            Parser.parseSimulationFile(); // appel de la méthode parseSimulationFile
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué
@@ -70,4 +61,22 @@ public class Controller {
         modal.setScene(new Scene(vbox, 400, 250));
         modal.showAndWait();
     }
+
+
+    @FXML
+    public void initialize() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> {
+            try {
+                Parser.parseSimulationFile();
+            } catch (FileNotFoundException e) {
+                System.err.println("Le fichier de simulation est introuvable : " + e.getMessage());
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.err.println("L'attente a été interrompue : " + e.getMessage());
+            }
+        });
+        executor.shutdown();
+    }
+
 }
