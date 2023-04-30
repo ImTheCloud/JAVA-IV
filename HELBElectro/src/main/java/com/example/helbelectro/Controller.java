@@ -73,7 +73,7 @@ public class Controller {
             try {
                 Parser.parseSimulationFile();
             } catch (FileNotFoundException | InterruptedException e) { //on test les 2 exeption pour pas avoir de bug
-                System.err.println("Probleme" + e.getMessage());
+                System.err.println("Exception" + e.getMessage());
             }
         });
         // quand le fichier se finit alors executorService doit se terminer

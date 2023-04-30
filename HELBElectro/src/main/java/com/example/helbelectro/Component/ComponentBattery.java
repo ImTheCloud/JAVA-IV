@@ -2,19 +2,14 @@ package com.example.helbelectro.Component;
 
 
 public class ComponentBattery {
-    private String niveauDeCharge;
+    private String load;
 
-    public ComponentBattery(String niveauDeCharge) {
-        this.niveauDeCharge = niveauDeCharge;
+    public ComponentBattery(String load) {
+        this.load = load;
     }
 
-    public String getNiveauDeCharge() {
-        return niveauDeCharge;
-    }
-
-    public double fournirEnergie() {
-        // Code pour fournir de l'énergie et la retourner en tant que double
-        return 0;
+    public String getLoad() {
+        return load;
     }
 
 }
