@@ -1,6 +1,7 @@
 package com.example.helbelectro;
 
 import com.example.helbelectro.Component.Parser;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -16,7 +17,9 @@ import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.example.helbelectro.Component.Parser.componentNames;
 import static com.example.helbelectro.Factory.Ticket.enregistrerVente;
 
 public class Controller {
@@ -62,23 +65,34 @@ public class Controller {
         modal.showAndWait();
     }
 
-
+    @FXML
+    private Label component1,component2,component3,component4,component5,component6,component7,component8;
     @FXML
     public void initialize() {
-        // Creation d'un noubeau Thread car sinon ca bloque l'interface
+        AtomicInteger componentCounter = new AtomicInteger();
+        // nouveau Thread car sinon ça bloque l'interface
         ExecutorService executor = Executors.newSingleThreadExecutor();
-       // on va donc le donner a tester ensuite pour que ca fonctionner
+        // on va donc le donner a tester ensuite pour que ça fonctionne
         // avant on faisait directement le try catch
         executor.submit(() -> {
             try {
                 Parser.parseSimulationFile();
-            } catch (FileNotFoundException | InterruptedException e) { //on test les 2 exeption pour pas avoir de bug
+                Platform.runLater(() -> {
+                    Label[] labels = { component1, component2,component3,component4,component5,component6,component7,component8};
+                    for (int i = 0; i < componentCounter.get(); i++) {
+                        labels[i].setText(componentNames.get(i));
+                    }
+                });
+            } catch (FileNotFoundException | InterruptedException e) {
                 System.err.println("Exception" + e.getMessage());
             }
         });
         // quand le fichier se finit alors executorService doit se terminer
         executor.shutdown();
     }
+
+
+
 
 
 }

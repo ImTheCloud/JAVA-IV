@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Parser {
-    private static String fileName, line, componentName, range, color, load, power;
-    private int componentCounter = 0;
-    private static List<String> componentNames = new ArrayList<>();
+    private static String fileName,power,line,range,color,load,componentName;
+    public static List<String> componentNames = new ArrayList<>();
 
     public static void parseSimulationFile() throws FileNotFoundException, InterruptedException {
         fileName = "simulation.txt";
@@ -34,6 +33,7 @@ public class Parser {
                 ComponentSensor sensor = new ComponentSensor(range, color);
                 System.out.println("Sensor created in " + timeInSeconds + " seconds");
                 componentNames.add("Sensor");
+
             } else if (componentName.equals("Batterie")) {
                 load = values[2];
                 ComponentBattery battery = new ComponentBattery(load);
@@ -44,7 +44,9 @@ public class Parser {
                 ComponentMotor motor = new ComponentMotor(power);
                 System.out.println("Motor created in " + timeInSeconds + " seconds");
                 componentNames.add("Motor");
+
             }
+            System.out.println("list of components :"+ componentNames);
 
         }
         scanner.close();
