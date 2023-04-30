@@ -65,18 +65,20 @@ public class Controller {
 
     @FXML
     public void initialize() {
+        // Creation d'un noubeau Thread car sinon ca bloque l'interface
         ExecutorService executor = Executors.newSingleThreadExecutor();
+       // on va donc le donner a tester ensuite pour que ca fonctionner
+        // avant on faisait directement le try catch
         executor.submit(() -> {
             try {
                 Parser.parseSimulationFile();
-            } catch (FileNotFoundException e) {
-                System.err.println("Le fichier de simulation est introuvable : " + e.getMessage());
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                System.err.println("L'attente a été interrompue : " + e.getMessage());
+            } catch (FileNotFoundException | InterruptedException e) { //on test les 2 exeption pour pas avoir de bug
+                System.err.println("Probleme" + e.getMessage());
             }
         });
+        // quand le fichier se finit alors executorService doit se terminer
         executor.shutdown();
     }
+
 
 }
