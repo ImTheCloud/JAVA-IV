@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -66,33 +67,104 @@ public class Controller {
     }
 
     @FXML
-    private Label component1,component2,component3,component4,component5,component6,component7,component8;
-    @FXML
+    private Label component1, component2, component3, component4, component5, component6, component7, component8;
+
     public void initialize() {
-        AtomicInteger componentCounter = new AtomicInteger();
-        // nouveau Thread car sinon ça bloque l'interface
+        //  executor  utilise un thread pour la lecture
+        // c'est un thread unique, il le faut sinon ca ne fonctionnait
         ExecutorService executor = Executors.newSingleThreadExecutor();
+
         // on va donc le donner a tester ensuite pour que ça fonctionne
         // avant on faisait directement le try catch
+        // nouveau Thread car sinon ça bloque l'interface quand je run
         executor.submit(() -> {
             try {
                 Parser.parseSimulationFile();
-                Platform.runLater(() -> {
-                    Label[] labels = { component1, component2,component3,component4,component5,component6,component7,component8};
-                    for (int i = 0; i < componentCounter.get(); i++) {
-                        labels[i].setText(componentNames.get(i));
-                    }
-                });
             } catch (FileNotFoundException | InterruptedException e) {
-                System.err.println("Exception" + e.getMessage());
+                e.printStackTrace();
             }
         });
-        // quand le fichier se finit alors executorService doit se terminer
-        executor.shutdown();
+
+        // faut mettre a jour psq les composant rentre un a un dans la list
+        new Thread(() -> {
+            while (true) {
+                List<String> componentNames = Parser.componentNames; // recupere la liste
+                // utilisation de runLater de la class Platform pour maj les noms des composant
+                Platform.runLater(() -> updateComponentLabels(componentNames));
+                // obliger d'attendre un certain temps pour ne pas generer d'erreurs pendant les maj
+                try {
+                    // Attends 100 millisecondes avant de vérifier si la liste de noms de composants a changé
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
     }
 
+    // ici methode pour maj les composants
+    private void updateComponentLabels(List<String> componentNames) {
+        for (int i = 0; i < componentNames.size(); i++) {
+            String componentName = componentNames.get(i);
+            // pour changer le fond du label
+            if(componentName.equals("C-Type-1")){
+                getComponentLabel(i + 1).setStyle("-fx-background-color: #00BCD4;");
+            }else if(componentName.equals("C-Type-2")){
+                getComponentLabel(i + 1).setStyle("-fx-background-color: #4CAF50;");
+            }else if(componentName.equals("C-Type-3")){
+                getComponentLabel(i + 1).setStyle("-fx-background-color: #A9287D9A;");
+            }
+            // pour prendre le bon label ou faut changer le nom
+            Label componentLabel = getComponentLabel(i + 1);
+            // change le label avec le nom du composant C-Type-
+            componentLabel.setText(componentName);
+        }
+        isComponentsFull();
+    }
 
-
-
+    public void isComponentsFull(){
+        if (componentNames.size() == 8) {
+            componentNames.clear();
+            component1.setText("Empty");
+            component2.setText("Empty");
+            component3.setText("Empty");
+            component4.setText("Empty");
+            component5.setText("Empty");
+            component6.setText("Empty");
+            component7.setText("Empty");
+            component8.setText("Empty");
+            component1.setStyle("-fx-background-color: #E1E0E0;");
+            component2.setStyle("-fx-background-color: #E1E0E0;");
+            component3.setStyle("-fx-background-color: #E1E0E0;");
+            component4.setStyle("-fx-background-color: #E1E0E0;");
+            component5.setStyle("-fx-background-color: #E1E0E0;");
+            component6.setStyle("-fx-background-color: #E1E0E0;");
+            component7.setStyle("-fx-background-color: #E1E0E0;");
+            component8.setStyle("-fx-background-color: #E1E0E0;");
+        }
+    }
+    private Label getComponentLabel(int index) {
+        switch (index) {
+            case 1:
+                return component1;
+            case 2:
+                return component2;
+            case 3:
+                return component3;
+            case 4:
+                return component4;
+            case 5:
+                return component5;
+            case 6:
+                return component6;
+            case 7:
+                return component7;
+            case 8:
+                return component8;
+            default:
+                throw new IllegalArgumentException("erreur");
+        }
+    }
 
 }

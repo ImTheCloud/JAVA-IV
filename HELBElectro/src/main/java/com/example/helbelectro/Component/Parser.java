@@ -27,26 +27,25 @@ public class Parser {
             // de simulation pour chaque composant
             Thread.sleep(timeInSeconds * 1000);
 
-            if (componentName.equals("Capteur")) {
+            if (componentName.equals("Batterie")) {
+                load = values[2];
+                ComponentBattery battery = new ComponentBattery(load);
+                System.out.println("Battery created in " + timeInSeconds + " seconds");
+                componentNames.add("C-Type-1");
+                } else if (componentName.equals("Capteur")) {
                 range = values[2];
                 color = values[3];
                 ComponentSensor sensor = new ComponentSensor(range, color);
                 System.out.println("Sensor created in " + timeInSeconds + " seconds");
-                componentNames.add("Sensor");
+                componentNames.add("C-Type-2");
 
-            } else if (componentName.equals("Batterie")) {
-                load = values[2];
-                ComponentBattery battery = new ComponentBattery(load);
-                System.out.println("Battery created in " + timeInSeconds + " seconds");
-                componentNames.add("Battery");
             } else if (componentName.equals("Moteur")) {
                 power = values[2];
                 ComponentMotor motor = new ComponentMotor(power);
                 System.out.println("Motor created in " + timeInSeconds + " seconds");
-                componentNames.add("Motor");
-
+                componentNames.add("C-Type-3");
             }
-            System.out.println("list of components :"+ componentNames);
+            //System.out.println("list of components :"+ componentNames);
 
         }
         scanner.close();
