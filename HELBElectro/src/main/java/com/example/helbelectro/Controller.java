@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
+import javax.swing.JOptionPane;
 
 import static com.example.helbelectro.Component.Parser.componentNames;
 import static com.example.helbelectro.Factory.Ticket.enregistrerVente;
@@ -142,7 +142,10 @@ public class Controller {
             component6.setStyle("-fx-background-color: #E1E0E0;");
             component7.setStyle("-fx-background-color: #E1E0E0;");
             component8.setStyle("-fx-background-color: #E1E0E0;");
+
+            //JOptionPane.showMessageDialog(null, "The component area is filled, all components are moved");
         }
+
     }
     private Label getComponentLabel(int index) {
         switch (index) {
