@@ -134,14 +134,14 @@ public class Controller {
             component6.setText("Empty");
             component7.setText("Empty");
             component8.setText("Empty");
-            component1.setStyle("-fx-background-color: #E1E0E0;");
-            component2.setStyle("-fx-background-color: #E1E0E0;");
-            component3.setStyle("-fx-background-color: #E1E0E0;");
-            component4.setStyle("-fx-background-color: #E1E0E0;");
-            component5.setStyle("-fx-background-color: #E1E0E0;");
-            component6.setStyle("-fx-background-color: #E1E0E0;");
-            component7.setStyle("-fx-background-color: #E1E0E0;");
-            component8.setStyle("-fx-background-color: #E1E0E0;");
+            component1.setStyle("-fx-background-color: white ;");
+            component2.setStyle("-fx-background-color: white;");
+            component3.setStyle("-fx-background-color: white;");
+            component4.setStyle("-fx-background-color: white;");
+            component5.setStyle("-fx-background-color: white;");
+            component6.setStyle("-fx-background-color: white;");
+            component7.setStyle("-fx-background-color: white;");
+            component8.setStyle("-fx-background-color: white;");
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Area full !");

@@ -7,44 +7,60 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER" prefHeight="380.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #9a9a9a;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.Controller">
-   <padding>
-      <Insets bottom="10.0" left="20.0" right="30.0" top="20.0" />
-   </padding>
+<HBox alignment="CENTER" prefHeight="380.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #282F76; -fx-border-color: white; -fx-border-width: 4px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.Controller">
+
    <VBox prefHeight="200.0" prefWidth="500.0" spacing="10">
       <children>
-         <Label alignment="CENTER" prefHeight="6.0" prefWidth="510.0" text="HELBElectro" textAlignment="CENTER" textFill="#000000f6">
+         <Label alignment="CENTER" prefHeight="6.0" prefWidth="510.0" text="HELBElectro" textAlignment="CENTER" textFill="#fffffff5">
          <font>
             <Font size="40.0" />
          </font></Label>
-         <Label alignment="CENTER" prefHeight="6.0" prefWidth="200.0" text="Product Area" textAlignment="CENTER">
+         <Label alignment="CENTER" prefHeight="25.0" prefWidth="591.0" text="Product Area" textAlignment="CENTER" textFill="WHITE">
             <font>
                <Font size="20.0" />
             </font>
          </Label>
 
-         <GridPane hgap="20" prefHeight="421.0" prefWidth="323.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;" vgap="20">
+         <GridPane hgap="20" prefHeight="421.0" prefWidth="323.0" style="-fx-border-color: white; -fx-border-width: 2px; -fx-background-color: #626786;" vgap="20">
             <padding>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
 
             <Label fx:id="place" GridPane.columnSpan="3" GridPane.rowIndex="1" />
 
-            <Button fx:id="p1" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button fx:id="p3" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Button fx:id="p1" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button fx:id="p3" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-            <Button fx:id="p4" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <Button fx:id="p5" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="p6" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="p4" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button fx:id="p5" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="p6" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-            <Button fx:id="p7" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Button fx:id="p8" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="p9" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="p7" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button fx:id="p8" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="p9" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-            <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="p2" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="p12" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" style="-fx-background-color: white;" text="EMPTY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+
+
          </GridPane>
+         <Label alignment="CENTER" prefHeight="14.0" prefWidth="532.0" text="Creation of product finish in progress..." textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Label>
       </children>
    </VBox>
 
@@ -54,7 +70,7 @@
    <!-- #A9287D9A -->
    <VBox spacing="10">
 
-      <HBox style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10px;">
+      <HBox style="-fx-border-color: white; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: #626786;">
          <Label text="Opti : " textFill="WHITE">
             <font>
                <Font size="20.0" />
@@ -71,23 +87,32 @@
          </ComboBox>
       </HBox>
 
-      <Label alignment="CENTER" prefHeight="6.0" prefWidth="200.0" text="Component Area" textAlignment="CENTER">
+      <Label alignment="CENTER" prefHeight="6.0" prefWidth="200.0" text="Component Area" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
 
-      <VBox spacing="10" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10px;">
-      <Label fx:id="component1" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
-      <Label fx:id="component2" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
-      <Label fx:id="component3" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
-      <Label fx:id="component4" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
-      <Label fx:id="component5" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
-      <Label fx:id="component6" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
-      <Label fx:id="component7" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
-      <Label fx:id="component8" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color: #e1e0e0;" text="EMPTY" />
+      <VBox spacing="10" style="-fx-border-color: white; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: #626786;">
+      <Label fx:id="component1" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component2" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component3" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component4" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component5" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component6" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component7" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component8" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" text="EMPTY" />
    </VBox>
+
+      <Label alignment="CENTER" prefHeight="25.0" prefWidth="205.0" text="Creation of components in progress..." textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </VBox>
+   <padding>
+      <Insets bottom="10.0" left="20.0" right="30.0" top="20.0" />
+   </padding>
 
 
 </HBox>
