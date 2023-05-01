@@ -143,7 +143,11 @@ public class Controller {
             component7.setStyle("-fx-background-color: #E1E0E0;");
             component8.setStyle("-fx-background-color: #E1E0E0;");
 
-            //JOptionPane.showMessageDialog(null, "The component area is filled, all components are moved");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Area full !");
+            alert.setHeaderText(null);
+            alert.setContentText("The component area is filled, all components are moved !");
+            alert.showAndWait();
         }
 
     }
