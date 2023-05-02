@@ -1,6 +1,6 @@
 package com.example.helbelectro;
 
-public abstract class Factory {
+public class Factory {
 
     private ComponentBattery battery;
     private ComponentMotor electricMotor;
@@ -15,10 +15,22 @@ public abstract class Factory {
         this.motionSensor = motionSensor;
     }
 
-
-    public static void creationOfCOmponent() {
-
+    public static Object createComponent(String componentName, String[] values) {
+        if (componentName.equals("Batterie")) {
+            String load = values[2];
+            return new ComponentBattery(load);
+        } else if (componentName.equals("Capteur")) {
+            String range = values[2];
+            String color = values[3];
+            return new ComponentSensor(range, color);
+        } else if (componentName.equals("Moteur")) {
+            String power = values[2];
+            return new ComponentMotor(power);
+        }
+        return null;
     }
+
+
 }
 
 
