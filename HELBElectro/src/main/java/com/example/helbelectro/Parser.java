@@ -11,9 +11,11 @@ public class Parser {
 
     private Parser() {
         // constructeur private pour ne plus faire de new
-
+        // obligatoire pour eviter l'utilisation des instances dans d'autre class
+        // mais ca peux fonctionner sans le constructeur
     }
 
+    //  design patern singleton
     // appeler la class grace a un getInstance, similaire que en mobile
     public static Parser getInstance() {
         if (instance == null) {
@@ -28,7 +30,7 @@ public class Parser {
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
 
-        Factory factory = new Factory(new ComponentBattery("0"), new ComponentMotor("0"), new ComponentSensor("0", "0"));
+        Factory factory = Factory.getInstance(new ComponentBattery("0"), new ComponentMotor("0"), new ComponentSensor("0", "0"));
 
         while (scanner.hasNextLine()) {
             // lire chaque ligne, et pour chaque virgule la ligne est divisé
@@ -40,7 +42,7 @@ public class Parser {
             // de simulation pour chaque composant
             Thread.sleep(timeInSeconds * 1000);
 
-            Object obj = factory.createComponent(componentName, values);
+            Object obj = Factory.createComponent(componentName, values);
 
             if (obj != null) {
                 if (componentName.equals("Batterie")) {
