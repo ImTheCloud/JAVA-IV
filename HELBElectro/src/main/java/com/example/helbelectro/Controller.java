@@ -24,7 +24,7 @@ public class Controller {
     @FXML
     private Button bt_productFInish,sellButton,statsButton,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
     @FXML
-    private Label component1, component2, component3, component4, component5, component6, component7, component8;
+    private Label component1, component2, component3, component4, component5, component6, component7, component8,progressComponent;
     private List<Label> componentLabels;
     private int maxComponent = 8;
     
@@ -82,6 +82,8 @@ public class Controller {
                 // change le label avec le nom du composant C-Type-
                 componentLabel.setText(componentName);
             }
+        }else {
+            progressComponent.setText("Component area is full !");
         }
     }
 

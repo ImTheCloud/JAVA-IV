@@ -82,17 +82,17 @@
       </Label>
 
       <VBox prefHeight="382.0" prefWidth="200.0" spacing="10" style="-fx-border-color: white; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: #626786;">
-      <Label fx:id="component1" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
-      <Label fx:id="component2" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
-      <Label fx:id="component3" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
-      <Label fx:id="component4" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
-      <Label fx:id="component5" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" text="EMPTY" />
-      <Label fx:id="component6" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" text="EMPTY" />
-      <Label fx:id="component7" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" text="EMPTY" />
-      <Label fx:id="component8" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" text="EMPTY" />
+      <Label fx:id="component1" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;"  />
+      <Label fx:id="component2" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;"  />
+      <Label fx:id="component3" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" />
+      <Label fx:id="component4" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" />
+      <Label fx:id="component5" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" />
+      <Label fx:id="component6" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" />
+      <Label fx:id="component7" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" />
+      <Label fx:id="component8" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" />
    </VBox>
 
-      <Label alignment="CENTER" prefHeight="14.0" prefWidth="216.0" text="Creation of components in progress..." textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="progressComponent"  alignment="CENTER" prefHeight="14.0" prefWidth="216.0" text="Creation of components in progress..." textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="10.0" />
          </font>
