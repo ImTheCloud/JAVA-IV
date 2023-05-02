@@ -1,5 +1,4 @@
-package com.example.helbelectro.Component;
-
+package com.example.helbelectro;
     public class ComponentSensor {
         private String range;
         private String color;

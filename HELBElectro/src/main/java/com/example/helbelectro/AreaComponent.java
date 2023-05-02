@@ -1,4 +1,4 @@
-package com.example.helbelectro.Area;
+package com.example.helbelectro;
 
 public class AreaComponent {
 

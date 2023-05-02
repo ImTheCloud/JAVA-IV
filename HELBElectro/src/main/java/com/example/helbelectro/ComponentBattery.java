@@ -1,5 +1,4 @@
-package com.example.helbelectro.Component;
-
+package com.example.helbelectro;
 
 public class ComponentBattery {
     private String load;

@@ -1,5 +1,4 @@
-package com.example.helbelectro.Factory;
-
+package com.example.helbelectro;
 import java.util.Date;
 import java.io.File;
 import java.io.FileWriter;

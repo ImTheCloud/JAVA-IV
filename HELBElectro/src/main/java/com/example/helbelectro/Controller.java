@@ -1,6 +1,6 @@
 package com.example.helbelectro;
 
-import com.example.helbelectro.Component.Parser;
+import com.example.helbelectro.Parser;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +20,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javax.swing.JOptionPane;
 
-import static com.example.helbelectro.Component.Parser.componentNames;
-import static com.example.helbelectro.Factory.Ticket.enregistrerVente;
+import static com.example.helbelectro.Parser.componentNames;
+import static com.example.helbelectro.Ticket.enregistrerVente;
 
 public class Controller {
     private Button button,sellButton,statsButton;

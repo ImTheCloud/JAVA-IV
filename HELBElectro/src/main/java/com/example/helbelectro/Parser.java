@@ -1,4 +1,4 @@
-package com.example.helbelectro.Component;
+package com.example.helbelectro;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -10,10 +10,10 @@ public class Parser {
     public static List<String> componentNames = new ArrayList<>();
 
     public static void parseSimulationFile() throws FileNotFoundException, InterruptedException {
-        fileName = "simulation.txt";
+        fileName = "helbelectro.data";
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
-        System.out.println("Creation of components in progress");
+        //System.out.println("Creation of components in progress");
 
         while (scanner.hasNextLine()) {
             // lire chaque ligne, et pour chaque virgule la ligne est divisé
