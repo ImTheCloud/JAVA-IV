@@ -1,6 +1,5 @@
 package com.example.helbelectro;
 
-import com.example.helbelectro.Parser;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,18 +14,22 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import static com.example.helbelectro.Parser.componentNames;
 import static com.example.helbelectro.Ticket.enregistrerVente;
 
 public class Controller {
-    private Button button,sellButton,statsButton;
+    @FXML
+    private Button bt_productFInish,sellButton,statsButton,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
     @FXML
     private Label component1, component2, component3, component4, component5, component6, component7, component8;
-
+    private List<Label> componentLabels;
+    private int maxComponent = 8;
+    
     public void initialize() {
+        componentLabels = Arrays.asList(component1, component2, component3, component4, component5, component6, component7, component8);
         //  executor  utilise un thread pour la lecture
         // c'est un thread unique, il le faut sinon ca ne fonctionnait
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -60,13 +63,44 @@ public class Controller {
         }).start();
     }
 
+
+    // ici methode pour maj les composants
+    private void updateComponentLabels(List<String> componentNames) {
+        if (componentNames.size() <= maxComponent) {  // modifier les label que si il sont plus petit que 8
+            for (int i = 0; i < componentNames.size(); i++) {
+                String componentName = componentNames.get(i);
+                // pour changer le fond du label
+                if(componentName.equals("C-Type-1")){
+                    getComponentLabel(i + 1).setStyle("-fx-background-color: #00BCD4;");
+                }else if(componentName.equals("C-Type-2")){
+                    getComponentLabel(i + 1).setStyle("-fx-background-color: #4CAF50;");
+                }else if(componentName.equals("C-Type-3")){
+                    getComponentLabel(i + 1).setStyle("-fx-background-color: #A9287D9A;");
+                }
+                // pour prendre le bon label ou faut changer le nom
+                Label componentLabel = getComponentLabel(i + 1);
+                // change le label avec le nom du composant C-Type-
+                componentLabel.setText(componentName);
+            }
+        }
+    }
+
+    private Label getComponentLabel(int index) {
+        if (index < 1 || index > componentLabels.size()) {
+        }
+        return componentLabels.get(index - 1);
+    }
+
+
+    
+    
     @FXML
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué
-        button = (Button) event.getSource();
+        bt_productFInish = (Button) event.getSource();
         // Obtient l'indice de la ligne et de la colonne du bouton dans la grille
-        int rowIndex = GridPane.getRowIndex(button);
-        int columnIndex = GridPane.getColumnIndex(button);
+        int rowIndex = GridPane.getRowIndex(bt_productFInish);
+        int columnIndex = GridPane.getColumnIndex(bt_productFInish);
 
         // Crée une nouvelle fenêtre
         Stage modal = new Stage();
@@ -80,7 +114,7 @@ public class Controller {
         sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
         sellButton.setOnAction(e -> {
-            enregistrerVente(button.getText()); // Appelle la méthode de la classe Ticket
+            enregistrerVente(bt_productFInish.getText()); // Appelle la méthode de la classe Ticket
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Vente enregistrée");
@@ -100,75 +134,5 @@ public class Controller {
         modal.showAndWait();
     }
 
-    // ici methode pour maj les composants
-    private void updateComponentLabels(List<String> componentNames) {
-        for (int i = 0; i < componentNames.size(); i++) {
-            String componentName = componentNames.get(i);
-            // pour changer le fond du label
-            if(componentName.equals("C-Type-1")){
-                getComponentLabel(i + 1).setStyle("-fx-background-color: #00BCD4;");
-            }else if(componentName.equals("C-Type-2")){
-                getComponentLabel(i + 1).setStyle("-fx-background-color: #4CAF50;");
-            }else if(componentName.equals("C-Type-3")){
-                getComponentLabel(i + 1).setStyle("-fx-background-color: #A9287D9A;");
-            }
-            // pour prendre le bon label ou faut changer le nom
-            Label componentLabel = getComponentLabel(i + 1);
-            // change le label avec le nom du composant C-Type-
-            componentLabel.setText(componentName);
-        }
-        isComponentsFull();
-    }
-
-    public void isComponentsFull(){
-        if (componentNames.size() == 8) {
-            componentNames.clear();
-            component1.setText("Empty");
-            component2.setText("Empty");
-            component3.setText("Empty");
-            component4.setText("Empty");
-            component5.setText("Empty");
-            component6.setText("Empty");
-            component7.setText("Empty");
-            component8.setText("Empty");
-            component1.setStyle("-fx-background-color: white ;");
-            component2.setStyle("-fx-background-color: white;");
-            component3.setStyle("-fx-background-color: white;");
-            component4.setStyle("-fx-background-color: white;");
-            component5.setStyle("-fx-background-color: white;");
-            component6.setStyle("-fx-background-color: white;");
-            component7.setStyle("-fx-background-color: white;");
-            component8.setStyle("-fx-background-color: white;");
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Area full !");
-            alert.setHeaderText(null);
-            alert.setContentText("The component area is filled, all components are moved !");
-            alert.showAndWait();
-        }
-
-    }
-    private Label getComponentLabel(int index) {
-        switch (index) {
-            case 1:
-                return component1;
-            case 2:
-                return component2;
-            case 3:
-                return component3;
-            case 4:
-                return component4;
-            case 5:
-                return component5;
-            case 6:
-                return component6;
-            case 7:
-                return component7;
-            case 8:
-                return component8;
-            default:
-                throw new IllegalArgumentException("erreur");
-        }
-    }
 
 }
