@@ -9,11 +9,7 @@ public class Parser {
     private static String fileName, line, componentName;
     public static List<String> componentNames = new ArrayList<>();
 
-    private Parser() {
-        // constructeur private pour ne plus faire de new
-        // obligatoire pour eviter l'utilisation des instances dans d'autre class
-        // mais ca peux fonctionner sans le constructeur
-    }
+
 
     //  design patern singleton
     // appeler la class grace a un getInstance, similaire que en mobile

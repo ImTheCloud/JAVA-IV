@@ -39,7 +39,7 @@ public class Controller {
         // nouveau Thread car sinon ça bloque l'interface quand je run
         executor.submit(() -> {
             try {
-                Parser.getInstance().parseSimulationFile();
+                Parser.getInstance().parseSimulationFile(); // utilisation singleton ( pas de new )
             } catch (FileNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
