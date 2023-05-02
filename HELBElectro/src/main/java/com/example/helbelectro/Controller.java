@@ -18,13 +18,47 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import javax.swing.JOptionPane;
-
 import static com.example.helbelectro.Parser.componentNames;
 import static com.example.helbelectro.Ticket.enregistrerVente;
 
 public class Controller {
     private Button button,sellButton,statsButton;
+    @FXML
+    private Label component1, component2, component3, component4, component5, component6, component7, component8;
+
+    public void initialize() {
+        //  executor  utilise un thread pour la lecture
+        // c'est un thread unique, il le faut sinon ca ne fonctionnait
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        // on va donc le donner a tester ensuite pour que ça fonctionne
+        // avant on faisait directement le try catch
+        // nouveau Thread car sinon ça bloque l'interface quand je run
+        executor.submit(() -> {
+            try {
+                Parser.parseSimulationFile();
+            } catch (FileNotFoundException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // faut mettre a jour psq les composant rentre un a un dans la list
+        new Thread(() -> {
+            while (true) {
+                List<String> componentNames = Parser.componentNames; // recupere la liste
+                // utilisation de runLater de la class Platform pour maj les noms des composant
+                Platform.runLater(() -> updateComponentLabels(componentNames));
+                // obliger d'attendre un certain temps pour ne pas generer d'erreurs pendant les maj
+                try {
+                    // Attends 100 millisecondes avant de vérifier si la liste de noms de composants a changé
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+    }
 
     @FXML
     protected void onComponentClicked(ActionEvent event) {
@@ -64,43 +98,6 @@ public class Controller {
 
         modal.setScene(new Scene(vbox, 400, 250));
         modal.showAndWait();
-    }
-
-    @FXML
-    private Label component1, component2, component3, component4, component5, component6, component7, component8;
-
-    public void initialize() {
-        //  executor  utilise un thread pour la lecture
-        // c'est un thread unique, il le faut sinon ca ne fonctionnait
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-
-        // on va donc le donner a tester ensuite pour que ça fonctionne
-        // avant on faisait directement le try catch
-        // nouveau Thread car sinon ça bloque l'interface quand je run
-        executor.submit(() -> {
-            try {
-                Parser.parseSimulationFile();
-            } catch (FileNotFoundException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        // faut mettre a jour psq les composant rentre un a un dans la list
-        new Thread(() -> {
-            while (true) {
-                List<String> componentNames = Parser.componentNames; // recupere la liste
-                // utilisation de runLater de la class Platform pour maj les noms des composant
-                Platform.runLater(() -> updateComponentLabels(componentNames));
-                // obliger d'attendre un certain temps pour ne pas generer d'erreurs pendant les maj
-                try {
-                    // Attends 100 millisecondes avant de vérifier si la liste de noms de composants a changé
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();
     }
 
     // ici methode pour maj les composants
