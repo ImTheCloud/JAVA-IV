@@ -63,7 +63,7 @@
             <font>
                <Font size="20.0" />
             </font></Label>
-         <ComboBox fx:id="sortComboBox" value="time">
+         <ComboBox fx:id="cb_opti" value="time">
             <items>
                <FXCollections fx:factory="observableArrayList">
                   <String fx:value="time" />

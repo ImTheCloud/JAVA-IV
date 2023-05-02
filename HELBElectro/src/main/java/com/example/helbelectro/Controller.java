@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -18,18 +19,33 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import static com.example.helbelectro.Ticket.enregistrerVente;
 
 public class Controller {
     @FXML
     private Button bt_productFInish,sellButton,statsButton,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
     @FXML
     private Label component1, component2, component3, component4, component5, component6, component7, component8,progressComponent;
-    private List<Label> componentLabels;
+    @FXML
+    private ComboBox<String> cb_opti;
+    private List<Label> componentLabelsList;
     private int maxComponent = 8;
+
     
     public void initialize() {
-        componentLabels = Arrays.asList(component1, component2, component3, component4, component5, component6, component7, component8);
+        setLabelComponents();
+        getChoiceOPti();
+
+    }
+
+    public void getChoiceOPti(){
+        cb_opti.setOnAction(event -> {
+            String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
+            System.out.println("Selected item: " + selectedItem);
+        });
+    }
+
+    public void setLabelComponents(){
+        componentLabelsList = Arrays.asList(component1, component2, component3, component4, component5, component6, component7, component8);
         //  executor  utilise un thread pour la lecture
         // c'est un thread unique, il le faut sinon ca ne fonctionnait
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -88,14 +104,14 @@ public class Controller {
     }
 
     private Label getComponentLabel(int index) {
-        if (index < 1 || index > componentLabels.size()) {
+        if (index < 1 || index > componentLabelsList.size()) {
         }
-        return componentLabels.get(index - 1);
+        return componentLabelsList.get(index - 1);
     }
 
 
     
-    
+
     @FXML
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué
@@ -116,7 +132,9 @@ public class Controller {
         sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
         sellButton.setOnAction(e -> {
-            enregistrerVente(bt_productFInish.getText()); // Appelle la méthode de la classe Ticket
+
+            // singleton
+            Ticket.getInstance().registerSale(bt_productFInish.getText()); // Appelle la méthode de la classe Ticket
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Vente enregistrée");

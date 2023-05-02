@@ -9,7 +9,9 @@ public class Parser {
     private static String fileName, line, componentName;
     public static List<String> componentNames = new ArrayList<>();
 
-
+    private Parser() {
+        // empecher la creation d'instance
+    }
 
     //  design patern singleton
     // appeler la class grace a un getInstance, similaire que en mobile
@@ -25,9 +27,6 @@ public class Parser {
         fileName = "helbelectro.data";
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
-
-        Factory factory = Factory.getInstance(new ComponentBattery("0"), new ComponentMotor("0"), new ComponentSensor("0", "0"));
-
         while (scanner.hasNextLine()) {
             // lire chaque ligne, et pour chaque virgule la ligne est divisé
             line = scanner.nextLine();
@@ -37,8 +36,7 @@ public class Parser {
             // Thread Sleep c'est pour attendre autant de temps qui est indique dans le fichier
             // de simulation pour chaque composant
             Thread.sleep(timeInSeconds * 1000);
-
-            Object obj = Factory.createComponent(componentName, values);
+            Object obj = Factory.getInstance().createComponent(componentName, values);
 
             if (obj != null) {
                 if (componentName.equals("Batterie")) {

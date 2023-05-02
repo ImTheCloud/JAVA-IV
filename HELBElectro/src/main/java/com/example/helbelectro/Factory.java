@@ -1,41 +1,35 @@
 package com.example.helbelectro;
+
 public class Factory {
-
     private static Factory instance = null;
-    private ComponentBattery battery;
-    private ComponentMotor electricMotor;
-    private ComponentSensor motionSensor;
     private double sellingPrice;
-    private int ecoScore;
-    private int manufacturingDuration;
-    private Factory(ComponentBattery battery, ComponentMotor electricMotor, ComponentSensor motionSensor) {
-        this.battery = battery;
-        this.electricMotor = electricMotor;
-        this.motionSensor = motionSensor;
-    }
+    private int ecoScoren,manufacturingDuration;
+    private Factory() {
 
-    //  design patern : singleton
-    public static Factory getInstance(ComponentBattery battery, ComponentMotor electricMotor, ComponentSensor motionSensor) {
+    }
+    // design pattern : singleton
+    public static Factory getInstance() {
         if (instance == null) {
-            instance = new Factory(battery, electricMotor, motionSensor);
+            instance = new Factory();
         }
         return instance;
     }
 
-    public static Object createComponent(String componentName, String[] values) {
+    public Object createComponent(String componentName, String[] values) {
         if (componentName.equals("Batterie")) {
             String load = values[2];
+            System.out.println("Batterie created");
             return new ComponentBattery(load);
         } else if (componentName.equals("Capteur")) {
             String range = values[2];
             String color = values[3];
+            System.out.println("Capteur created");
             return new ComponentSensor(range, color);
         } else if (componentName.equals("Moteur")) {
             String power = values[2];
+            System.out.println("Moteur created");
             return new ComponentMotor(power);
         }
         return null;
     }
-
-    
 }

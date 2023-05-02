@@ -1,23 +1,36 @@
 package com.example.helbelectro;
-import java.util.Date;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-public class Ticket {
+import java.util.Date;
 
+public class Ticket {
+    private static Ticket instance;
     private String productType;
-    private int charge,power,ecoScore,price;
+    private int charge, power, ecoScore, price;
     private static FileWriter writer;
     private static String fileName;
-    static SimpleDateFormat sdfFileName,sdfFileContent;
+    static SimpleDateFormat sdfFileName, sdfFileContent;
 
-    public static void enregistrerVente(String emplacement) {
+    private Ticket() {
+
+    }
+
+    public static Ticket getInstance() {
+        if (instance == null) {
+            instance = new Ticket();
+        }
+        return instance;
+    }
+
+    public void registerSale(String emplacement) {
         try {
             // objets SimpleDateFormat pour les dates
             sdfFileName = new SimpleDateFormat("HHmmss");
             sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            fileName = "ticket/" + "t_"+sdfFileName.format(new Date()) + ".txt";
+            fileName = "ticket/" + "t_" + sdfFileName.format(new Date()) + ".txt";
 
             // crée un objet File à partir du nom
             File fileInTicket = new File(fileName);
@@ -31,6 +44,4 @@ public class Ticket {
             ex.printStackTrace();
         }
     }
-
-
 }
