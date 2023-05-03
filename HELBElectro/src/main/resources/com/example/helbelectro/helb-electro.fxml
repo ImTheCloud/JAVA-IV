@@ -21,27 +21,12 @@
             </font>
          </Label>
 
-         <GridPane fx:id="areaProduct"  hgap="20" prefHeight="371.0" prefWidth="531.0" style="-fx-border-color: white; -fx-border-width: 2px; -fx-background-color: #626786;" vgap="20">
+         <GridPane fx:id="areaProduct"  hgap="20" style="-fx-border-color: white; -fx-border-width: 2px; -fx-background-color: #626786;" vgap="20">
             <padding>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
 
             <Label fx:id="place" GridPane.columnSpan="3" GridPane.rowIndex="1" />
-
-            <Button fx:id="p1" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button fx:id="p3" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-
-            <Button fx:id="p4" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <Button fx:id="p5" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="p6" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-
-            <Button fx:id="p7" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Button fx:id="p8" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="p9" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="2" GridPane.rowIndex="2" />
-
-            <Button fx:id="p10" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <Button fx:id="p11" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="p2" onAction="#onComponentClicked" prefHeight="73.0" prefWidth="138.0"  GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
          </GridPane>
          <Label alignment="CENTER" prefHeight="14.0" prefWidth="532.0" text="Creation of product finish in progress..." textAlignment="CENTER" textFill="WHITE">
@@ -81,15 +66,8 @@
          </font>
       </Label>
 
-      <VBox prefHeight="382.0" prefWidth="200.0" spacing="10" style="-fx-border-color: white; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: #626786;">
-      <Label fx:id="component1" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;"  />
-      <Label fx:id="component2" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;"  />
-      <Label fx:id="component3" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" />
-      <Label fx:id="component4" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" />
-      <Label fx:id="component5" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px; -fx-background-color:  white;" />
-      <Label fx:id="component6" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" />
-      <Label fx:id="component7" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" />
-      <Label fx:id="component8" alignment="CENTER" prefHeight="42.0" prefWidth="183.0" style="-fx-padding: 10px;  -fx-background-color:  white;" />
+      <VBox fx:id="areaComponent"  spacing="10" style="-fx-border-color: white; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: #626786;">
+
    </VBox>
 
       <Label fx:id="progressComponent"  alignment="CENTER" prefHeight="14.0" prefWidth="216.0" text="Creation of components in progress..." textAlignment="CENTER" textFill="WHITE">

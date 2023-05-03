@@ -36,12 +36,12 @@ public class Factory {
                 .thenComparing(Product::getEcoScore)
                 .thenComparing(Product::getManufacturingDuration));
 
-//        for (Product product : productList) {
-//            System.out.println("Classe : " + product.getClass().getSimpleName() +
-//                    ", Eco-score : " + product.getEcoScore() +
-//                    ", Temps de fabrication : " + product.getManufacturingDuration() +
-//                    ", Prix de vente : " + product.getSellingPrice());
-//        }
+        for (Product product : productList) {
+            System.out.println(product.getClass().getSimpleName() +
+                    ", score : " + product.getEcoScore() +
+                    ", fabrication : " + product.getManufacturingDuration() +
+                    ", Prix : " + product.getSellingPrice());
+        }
         return productList;
     }
 

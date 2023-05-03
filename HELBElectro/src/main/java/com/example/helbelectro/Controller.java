@@ -10,11 +10,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -26,21 +26,80 @@ public class Controller {
 //        // empecher la creation d'instance
 //    }
     @FXML
-    private Button bt_productFInish,sellButton,statsButton,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
+    private Button bt_productFInish,sellButton,statsButton;
     @FXML
-    private Label component1, component2, component3, component4, component5, component6, component7, component8,progressComponent;
+    private Label progressComponent;
     @FXML
     private ComboBox<String> cb_opti;
+    @FXML
+    private GridPane areaProduct;
+    @FXML
+    private VBox areaComponent;
     private List<Label> componentLabelsList;
-    private int maxComponent = 8;
+    private static final int size_row = 4;
+    private static final int size_col = 3;
+
+    private static final int bt_product_height = 73;
+    private static final int bt_product_with = 138;
+    private static final int number_lb_component =8;
+    private static final int lb_component_height = 42;
+    private static final int lb_component_with = 183;
+
+
 
     public void initialize() {
         setLabelComponents();
         getChoiceOPti();
         Factory.getSortedProductList();
+
+        initializeProductArea();
+        initializeComponentArea();
+    }
+    public void initializeComponentArea() {
+        componentLabelsList = new ArrayList<>();
+        for (int i = 0; i < number_lb_component; i++) {
+            Label label = new Label();
+            label.setPrefSize(lb_component_with, lb_component_height);
+            label.setId("component" + i);
+            label.setAlignment(Pos.CENTER);
+            componentLabelsList.add(label);
+            label.setStyle("-fx-background-color: white;");
+            areaComponent.getChildren().add(label);
+        }
     }
 
-    public void getChoiceOPti(){
+
+    public void initializeProductArea() {
+        for (int i = 0; i < size_col; i++) {
+            ColumnConstraints column = new ColumnConstraints();
+            column.setHgrow(Priority.ALWAYS); // agrandir
+            areaProduct.getColumnConstraints().add(column);
+        }
+        for (int i = 0; i < size_row; i++) {
+            RowConstraints row = new RowConstraints();
+            row.setVgrow(Priority.ALWAYS);
+            areaProduct.getRowConstraints().add(row);
+        }
+        for (int i = 0; i < size_row; i++) {
+            for (int j = 0; j < size_col; j++) {
+                Button button = new Button();
+                button.setPrefSize(bt_product_with, bt_product_height);
+                button.setStyle("-fx-background-color: white;");
+                button.setOnAction(this::onComponentClicked);
+                if (i == size_row-1 && j == size_col-1) {
+                    // derniere case de la grid pas de bouton
+                    // comme dans l'interface du prof
+                    continue;
+                }
+                areaProduct.add(button, j, i);
+            }
+        }
+    }
+
+
+
+
+        public void getChoiceOPti(){
         cb_opti.setOnAction(event -> {
             String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
             if(selectedItem.equals("Time")){
@@ -50,7 +109,6 @@ public class Controller {
     }
 
     public void setLabelComponents(){
-        componentLabelsList = Arrays.asList(component1, component2, component3, component4, component5, component6, component7, component8);
         //  executor  utilise un thread pour la lecture
         // c'est un thread unique, il le faut sinon ca ne fonctionnait
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -87,7 +145,7 @@ public class Controller {
 
     // ici methode pour maj les composants
     private void updateComponentLabels(List<String> componentNames) {
-        if (componentNames.size() <= maxComponent) {  // modifier les label que si il sont plus petit que 8
+        if (componentNames.size() <= number_lb_component) {  // modifier les label que si il sont plus petit que le nbr de label
             for (int i = 0; i < componentNames.size(); i++) {
                 String componentName = componentNames.get(i);
                 // pour changer le fond du label
