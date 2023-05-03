@@ -12,7 +12,7 @@ public class Ticket {
     private int charge, power, ecoScore, price;;
 
     private Ticket() {
-
+        // empecher la creation d'instance
     }
 
     public static Ticket getInstance() {

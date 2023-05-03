@@ -38,7 +38,6 @@ public class Controller {
     public void initialize() {
         setLabelComponents();
         getChoiceOPti();
-
     }
 
     public void getChoiceOPti(){

@@ -5,8 +5,7 @@ import java.util.List;
 
 public class Factory {
     private static Factory instance = null;
-    private double sellingPrice;
-    private int ecoScore,manufacturingDuration;
+
     private List<Object> componentObjectList = new ArrayList<>();
     public static List<String> componentNames = new ArrayList<>();
 
@@ -42,7 +41,13 @@ public class Factory {
             componentNames.add("C-Type-3");
             return motor;
         }
-
         return null;
     }
+
+    //il faut sauvoir que j'ai 6 classes Product qui extend la class Product
+   // je voudrais avoir une methode qui va verifier tout les elements dans la liste d'objet,
+    public void optiTime(){
+        
+    }
+
 }
