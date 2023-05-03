@@ -21,6 +21,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Controller {
+
+//    private Controller() {
+//        // empecher la creation d'instance
+//    }
     @FXML
     private Button bt_productFInish,sellButton,statsButton,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11;
     @FXML
@@ -64,7 +68,7 @@ public class Controller {
         // faut mettre a jour psq les composant rentre un a un dans la list
         new Thread(() -> {
             while (true) {
-                List<String> componentNames = Parser.componentNames; // recupere la liste
+                List<String> componentNames = Factory.componentNames; // recupere la liste
                 // utilisation de runLater de la class Platform pour maj les noms des composant
                 Platform.runLater(() -> updateComponentLabels(componentNames));
                 // obliger d'attendre un certain temps pour ne pas generer d'erreurs pendant les maj

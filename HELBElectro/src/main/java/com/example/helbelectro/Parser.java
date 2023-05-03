@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 public class Parser {
     private static Parser instance = null;
-    public static List<String> componentNames = new ArrayList<>();
 
 
     private Parser() {
@@ -37,17 +36,7 @@ public class Parser {
             // Thread Sleep c'est pour attendre autant de temps qui est indique dans le fichier
             // de simulation pour chaque composant
             Thread.sleep(timeInSeconds * 1000);
-            Object obj = Factory.getInstance().createComponent(componentName, values);
-
-            if (obj != null) {
-                if (componentName.equals("Batterie")) {
-                    componentNames.add("C-Type-1");
-                } else if (componentName.equals("Capteur")) {
-                    componentNames.add("C-Type-2");
-                } else if (componentName.equals("Moteur")) {
-                    componentNames.add("C-Type-3");
-                }
-            }
+            Factory.getInstance().createComponent(componentName, values);
         }
         scanner.close();
     }
