@@ -34,7 +34,6 @@ public class Controller {
     private List<Label> componentLabelsList;
     private int maxComponent = 8;
 
-    
     public void initialize() {
         setLabelComponents();
         getChoiceOPti();
@@ -43,7 +42,9 @@ public class Controller {
     public void getChoiceOPti(){
         cb_opti.setOnAction(event -> {
             String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
-            System.out.println("Selected item: " + selectedItem);
+            if(selectedItem.equals("Time")){
+                Factory.getOPtiTime();
+            }
         });
     }
 

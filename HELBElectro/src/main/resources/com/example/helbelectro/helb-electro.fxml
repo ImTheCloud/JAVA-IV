@@ -63,13 +63,13 @@
             <font>
                <Font size="20.0" />
             </font></Label>
-         <ComboBox fx:id="cb_opti" value="time">
+         <ComboBox fx:id="cb_opti" value="Cost">
             <items>
                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="time" />
-                  <String fx:value="cost" />
-                  <String fx:value="score" />
-                  <String fx:value="diverse" />
+                  <String fx:value="Cost" />
+                  <String fx:value="Time" />
+                  <String fx:value="Score" />
+                  <String fx:value="Diverse" />
                </FXCollections>
             </items>
          </ComboBox>

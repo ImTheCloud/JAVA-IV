@@ -1,8 +1,8 @@
 package com.example.helbelectro;
 
-public class ProductElectricMotor extends Product {
+public class ProductMotor extends Product {
 
-    public ProductElectricMotor() {
+    public ProductMotor() {
         this.setSellingPrice(15);
         this.setEcoScore("A");
         this.setManufacturingDuration(3);
