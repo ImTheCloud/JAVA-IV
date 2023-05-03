@@ -48,12 +48,12 @@ public class Controller {
 
 
     public void initialize() {
+        initializeProductArea();
+        initializeComponentArea();
+
         setLabelComponents();
         getChoiceOPti();
         Factory.getSortedProductList();
-
-        initializeProductArea();
-        initializeComponentArea();
     }
     public void initializeComponentArea() {
         componentLabelsList = new ArrayList<>();
