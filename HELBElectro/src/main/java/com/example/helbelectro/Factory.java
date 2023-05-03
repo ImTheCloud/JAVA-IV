@@ -43,36 +43,43 @@ public class Factory {
         return null;
     }
 
-    public static List<Product> getOPtiTime() {
+    public static List<Product> getOptiTime() {
         List<Product> productList = new ArrayList<>();
         int minDuration = Integer.MAX_VALUE;
 
-        // Get minimum manufacturing duration among all products
+        // recuperer le temps de produit le plus petit
         for (Product product : new Product[]{new ProductBattery(), new ProductSensor(), new ProductMotor(),
                 new ProductCar(), new ProductAlarm(), new ProductDrone(), new ProductRobot()}) {
             if (product.getManufacturingDuration() < minDuration) {
                 minDuration = product.getManufacturingDuration();
             }
         }
-        // Create products with optimal manufacturing time based on minimum duration
+
+
         for (Object component : componentObjectList) {
             if (component instanceof ComponentBattery) {
                 ProductBattery batteryProduct = new ProductBattery();
-                if (batteryProduct.getManufacturingDuration() == minDuration) {
+                if (batteryProduct.getManufacturingDuration() <= minDuration) {
                     productList.add(batteryProduct);
+                    componentObjectList.remove(component);
                 }
             } else if (component instanceof ComponentSensor) {
                 ProductSensor sensorProduct = new ProductSensor();
-                if (sensorProduct.getManufacturingDuration() == minDuration) {
+                if (sensorProduct.getManufacturingDuration() <= minDuration) {
                     productList.add(sensorProduct);
+                    componentObjectList.remove(component);
                 }
             } else if (component instanceof ComponentMotor) {
                 ProductMotor motorProduct = new ProductMotor();
-                if (motorProduct.getManufacturingDuration() == minDuration) {
+                if (motorProduct.getManufacturingDuration() <= minDuration) {
                     productList.add(motorProduct);
+                    componentObjectList.remove(component);
                 }
+            } else if (component instanceof ComponentBattery && component instanceof ComponentSensor) {
+                ProductAlarm alarmProduct = new ProductAlarm();
+                productList.add(alarmProduct);
             }
-            // Add other product types here
+
         }
         return productList;
     }
