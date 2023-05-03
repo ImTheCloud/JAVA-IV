@@ -1,6 +1,8 @@
 package com.example.helbelectro;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Factory {
@@ -19,6 +21,30 @@ public class Factory {
         }
         return instance;
     }
+    public static List<Product> getSortedProductList() {
+        List<Product> productList = new ArrayList<>();
+
+        productList.add(new ProductBattery());
+        productList.add(new ProductSensor());
+        productList.add(new ProductMotor());
+        productList.add(new ProductCar());
+        productList.add(new ProductAlarm());
+        productList.add(new ProductDrone());
+        productList.add(new ProductRobot());
+
+        productList.sort(Comparator.comparing(Product::getSellingPrice)
+                .thenComparing(Product::getEcoScore)
+                .thenComparing(Product::getManufacturingDuration));
+
+//        for (Product product : productList) {
+//            System.out.println("Classe : " + product.getClass().getSimpleName() +
+//                    ", Eco-score : " + product.getEcoScore() +
+//                    ", Temps de fabrication : " + product.getManufacturingDuration() +
+//                    ", Prix de vente : " + product.getSellingPrice());
+//        }
+        return productList;
+    }
+
     public Object createComponent(String componentName, String[] values) {
         if (componentName.equals("Batterie")) {
             String load = values[2];
@@ -47,7 +73,7 @@ public class Factory {
         List<Product> productList = new ArrayList<>();
         int minDuration = Integer.MAX_VALUE;
 
-        // recuperer le temps de produit le plus petit
+        // récupérer le temps de production le plus petit
         for (Product product : new Product[]{new ProductBattery(), new ProductSensor(), new ProductMotor(),
                 new ProductCar(), new ProductAlarm(), new ProductDrone(), new ProductRobot()}) {
             if (product.getManufacturingDuration() < minDuration) {
@@ -55,34 +81,23 @@ public class Factory {
             }
         }
 
-
-        for (Object component : componentObjectList) {
-            if (component instanceof ComponentBattery) {
-                ProductBattery batteryProduct = new ProductBattery();
-                if (batteryProduct.getManufacturingDuration() <= minDuration) {
-                    productList.add(batteryProduct);
-                    componentObjectList.remove(component);
-                }
-            } else if (component instanceof ComponentSensor) {
-                ProductSensor sensorProduct = new ProductSensor();
-                if (sensorProduct.getManufacturingDuration() <= minDuration) {
-                    productList.add(sensorProduct);
-                    componentObjectList.remove(component);
-                }
-            } else if (component instanceof ComponentMotor) {
-                ProductMotor motorProduct = new ProductMotor();
-                if (motorProduct.getManufacturingDuration() <= minDuration) {
-                    productList.add(motorProduct);
-                    componentObjectList.remove(component);
-                }
-            } else if (component instanceof ComponentBattery && component instanceof ComponentSensor) {
-                ProductAlarm alarmProduct = new ProductAlarm();
-                productList.add(alarmProduct);
+        // créer les produits en parcourant la liste triée et en vérifiant le temps de production
+        for (Product product : getSortedProductList()) {
+            try{
+              //  Thread.sleep(minDuration*1000);
+              //  System.out.println(minDuration*1000);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
+            if (product.getManufacturingDuration() <= minDuration) {
+                productList.add(product);
+                minDuration = product.getManufacturingDuration();
+            }
         }
+        System.out.println(productList);
         return productList;
     }
+
 
 
 

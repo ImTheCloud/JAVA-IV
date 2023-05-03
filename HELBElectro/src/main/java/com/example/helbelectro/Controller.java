@@ -37,6 +37,7 @@ public class Controller {
     public void initialize() {
         setLabelComponents();
         getChoiceOPti();
+        Factory.getSortedProductList();
     }
 
     public void getChoiceOPti(){
