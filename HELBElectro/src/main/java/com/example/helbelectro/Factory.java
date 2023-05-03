@@ -45,20 +45,38 @@ public class Factory {
 
     public static List<Product> getOPtiTime() {
         List<Product> productList = new ArrayList<>();
+        int minDuration = Integer.MAX_VALUE;
+
+        // Get minimum manufacturing duration among all products
+        for (Product product : new Product[]{new ProductBattery(), new ProductSensor(), new ProductMotor(),
+                new ProductCar(), new ProductAlarm(), new ProductDrone(), new ProductRobot()}) {
+            if (product.getManufacturingDuration() < minDuration) {
+                minDuration = product.getManufacturingDuration();
+            }
+        }
+        // Create products with optimal manufacturing time based on minimum duration
         for (Object component : componentObjectList) {
             if (component instanceof ComponentBattery) {
                 ProductBattery batteryProduct = new ProductBattery();
-                productList.add(batteryProduct);
+                if (batteryProduct.getManufacturingDuration() == minDuration) {
+                    productList.add(batteryProduct);
+                }
             } else if (component instanceof ComponentSensor) {
-                ProdutSensor sensorProduct = new ProdutSensor();
-                productList.add(sensorProduct);
+                ProductSensor sensorProduct = new ProductSensor();
+                if (sensorProduct.getManufacturingDuration() == minDuration) {
+                    productList.add(sensorProduct);
+                }
             } else if (component instanceof ComponentMotor) {
                 ProductMotor motorProduct = new ProductMotor();
-                productList.add(motorProduct);
+                if (motorProduct.getManufacturingDuration() == minDuration) {
+                    productList.add(motorProduct);
+                }
             }
+            // Add other product types here
         }
         return productList;
     }
+
 
 
 }
