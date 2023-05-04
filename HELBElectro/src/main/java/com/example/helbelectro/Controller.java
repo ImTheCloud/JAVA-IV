@@ -60,7 +60,7 @@ public class Controller {
         cb_opti.setOnAction(event -> {
             String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
             if(selectedItem.equals("Time")){
-                Factory.getOptiTime();
+                Factory.getOPtiTime();
             }
         });
     }
