@@ -8,7 +8,7 @@ public class ProductDrone extends Product {
         super("E", 12, 60);
     }
 
-    @Override
+
     public List<Object> getComponentList() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {

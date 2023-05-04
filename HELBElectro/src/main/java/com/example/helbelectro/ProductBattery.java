@@ -8,7 +8,7 @@ public class ProductBattery extends Product {
         super("C", 3, 5);
     }
 
-    @Override
+
     public List<Object> getComponentList() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {
@@ -16,6 +16,7 @@ public class ProductBattery extends Product {
                 componentList.add(component);
             }
         }
+
         return componentList;
     }
 

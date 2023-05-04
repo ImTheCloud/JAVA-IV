@@ -9,7 +9,7 @@ public class ProductMotor extends Product {
         super("A", 3, 15);
     }
 
-    @Override
+
     public List<Object> getComponentList() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {

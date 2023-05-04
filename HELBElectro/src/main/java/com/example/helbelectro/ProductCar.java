@@ -8,7 +8,7 @@ public class ProductCar extends Product {
         super("B", 5, 30);
     }
 
-    @Override
+
     public List<Object> getComponentList() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {

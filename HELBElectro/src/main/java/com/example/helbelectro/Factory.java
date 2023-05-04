@@ -64,7 +64,7 @@ public class Factory {
 
     public static void getOptiTime() {
         for (Product product : productObjectListSorted) {
-            boolean validProduct = true;
+            boolean hasAllComponents = false;
             for (Object componentName : product.getComponentList()) {
                 boolean hasComponent = false;
                 for (Object component : componentObjectList) {
@@ -74,25 +74,25 @@ public class Factory {
                     }
                 }
                 if (!hasComponent) {
-                    validProduct = false;
+                    hasAllComponents = true;
                     break;
                 }
             }
-            if (validProduct) {
+            if (hasAllComponents) {
                 try {
                     Product newProduct = product.getClass().newInstance();
                     productObjectList.add(newProduct);
-                    System.out.println(newProduct.getClass().getSimpleName() +
-                            " créé avec succès.");
+                    System.out.println(newProduct.getClass().getSimpleName() + " créé avec succès.");
                 } catch (InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             } else {
-                System.out.println("Impossible de créer le produit " +
-                        product.getClass().getSimpleName() + ", les composants nécessaires sont manquants.");
+                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
+                        ", certains composants sont manquants.");
             }
         }
     }
+
 
 
 

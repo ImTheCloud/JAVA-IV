@@ -8,7 +8,7 @@ public class ProductSensor extends Product {
         super("B", 3, 10);
     }
 
-    @Override
+
     public List<Object> getComponentList() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {
@@ -16,6 +16,7 @@ public class ProductSensor extends Product {
                 componentList.add(component);
             }
         }
+
         return componentList;
     }
 }

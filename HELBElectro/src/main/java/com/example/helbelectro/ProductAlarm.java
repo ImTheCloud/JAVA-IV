@@ -8,7 +8,7 @@ public class ProductAlarm extends Product {
         super("C", 4, 20);
     }
 
-    @Override
+
     public List<Object> getComponentList() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {

@@ -8,7 +8,7 @@ public class ProductRobot extends Product {
         super("B", 6, 40);
     }
 
-    @Override
+
     public List<Object> getComponentList() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {
