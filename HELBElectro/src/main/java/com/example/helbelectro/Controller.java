@@ -47,6 +47,7 @@ public class Controller {
     public static final int number_lb_component =8;
     private final int lb_component_height = 42;
     private final int lb_component_with = 183;
+    private Timeline timeline;
 
 
 
@@ -55,20 +56,28 @@ public class Controller {
         initializeComponentArea();
 
         setLabelComponents();
-        getChoiceOPti();
+        getChoiceOpti();
         Factory.getSortedProductListByTime();
 
     }
 
-    public void getChoiceOPti() {
-        cb_opti.setOnAction(event -> updateOpti());
-    }
-
-    private void updateOpti() {
-        String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
-        if (selectedItem.equals("Time")) {
-            Factory.getOptiTime();
-        }
+    public void getChoiceOpti() {
+        cb_opti.setOnAction(event -> {
+            String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
+            if (selectedItem.equals("Time")) {
+                timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+                    Factory.getOptiTime();
+                }));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
+                //System.out.println("continue");
+            } else if (selectedItem.equals("Cost")) {
+              //  System.out.println("Cost");
+                if (timeline != null) {
+                    timeline.stop();
+                }
+            }
+        });
     }
 
 
@@ -117,11 +126,13 @@ public class Controller {
     public void setLabelComponents() {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
+
             try {
                 Parser.getInstance().parseSimulationFile();
-            } catch (FileNotFoundException | InterruptedException e) {
-                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
             }
+
         });
 
         new Thread(() -> {

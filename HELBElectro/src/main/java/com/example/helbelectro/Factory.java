@@ -64,8 +64,8 @@ public class Factory {
                 boolean hasComponent = false;
                 Object componentToRemove = null;
                 for (Object component : componentObjectList) {
-                    System.out.println(component.getClass().getSimpleName()+"  nom");
-                    System.out.println(componentName.getClass().getSimpleName()+"  nom2");
+//                    System.out.println(component.getClass().getSimpleName()+"  nom");
+//                    System.out.println(componentName.getClass().getSimpleName()+"  nom2");
 
                     if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                         hasComponent = true;
@@ -79,21 +79,29 @@ public class Factory {
                 } else {
                     hasAllComponents = true;
                     componentObjectList.remove(componentToRemove);
-                    System.out.println(componentObjectList+ "  composant restant ");
+//                    System.out.println(componentObjectList+ "  composant restant ");
                 }
             }
             if (hasAllComponents) {
                 try {
+//                    try {
+//                    Thread.sleep( product.getManufacturingDuration() * 1000);
+//                        System.out.println(product.getManufacturingDuration() * 1000);
+//                    } catch (InterruptedException e) {
+//                        throw new RuntimeException(e);
+//                    }
+
                     Product newProduct = product.getClass().newInstance();
                     productObjectList.add(newProduct);
-                    System.out.println(newProduct.getClass().getSimpleName() + " créé avec succès.");
+                    System.out.println(newProduct.getClass().getSimpleName() + " créé ");
                 } catch (InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
-            } else {
-                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
-                        ", certains composants sont manquants.");
             }
+//            else {
+//                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
+//                        ", certains composants sont manquants.");
+//            }
         }
     }
 
