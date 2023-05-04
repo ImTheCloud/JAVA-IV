@@ -1,5 +1,8 @@
 package com.example.helbelectro;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,14 +60,18 @@ public class Controller {
 
     }
 
-    public void getChoiceOPti(){
-        cb_opti.setOnAction(event -> {
-            String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
-            if(selectedItem.equals("Time")){
-                Factory.getOptiTime();
-            }
-        });
+    public void getChoiceOPti() {
+        cb_opti.setOnAction(event -> updateOpti());
     }
+
+    private void updateOpti() {
+        String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
+        if (selectedItem.equals("Time")) {
+            Factory.getOptiTime();
+        }
+    }
+
+
 
     public void initializeComponentArea() {
         componentLabelsList = new ArrayList<>();
@@ -116,9 +125,17 @@ public class Controller {
         });
 
         new Thread(() -> {
+            int previousSize = -1;
             while (true) {
                 List<Object> componentList = Factory.componentObjectList;
-                Platform.runLater(() -> updateComponentLabels(componentList));
+                int currentSize = componentList.size();
+                if (currentSize < previousSize) {
+                    Platform.runLater(this::clearComponentLabels);
+                }
+                if (currentSize != previousSize) {
+                    Platform.runLater(() -> updateComponentLabels(componentList));
+                }
+                previousSize = currentSize;
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -126,10 +143,19 @@ public class Controller {
                 }
             }
         }).start();
+
+    }
+
+    private void clearComponentLabels() {
+        for (Label label : componentLabelsList) {
+            label.setStyle("-fx-background-color: #FFFFFF;");
+            label.setText("");
+        }
     }
 
 
-        // ici methode pour maj les composants
+
+    // ici methode pour maj les composants
         private void updateComponentLabels(List<Object> componentList) {
             for (int i = 0; i < componentList.size(); i++) {
                 Object component = componentList.get(i);
