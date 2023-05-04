@@ -15,7 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -106,60 +105,51 @@ public class Controller {
         }
     }
 
-    public void setLabelComponents(){
-        //  executor  utilise un thread pour la lecture
-        // c'est un thread unique, il le faut sinon ca ne fonctionnait
+    public void setLabelComponents() {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-
-        // on va donc le donner a tester ensuite pour que ça fonctionne
-        // avant on faisait directement le try catch
-        // nouveau Thread car sinon ça bloque l'interface quand je run
         executor.submit(() -> {
             try {
-                Parser.getInstance().parseSimulationFile(); // utilisation singleton ( pas de new )
+                Parser.getInstance().parseSimulationFile();
             } catch (FileNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
 
-        // faut mettre a jour psq les composant rentre un a un dans la list
         new Thread(() -> {
             while (true) {
-                List<String> componentNames = Factory.componentNames; // recupere la liste
-                // utilisation de runLater de la class Platform pour maj les noms des composant
-                Platform.runLater(() -> updateComponentLabels(componentNames));
-                // obliger d'attendre un certain temps pour ne pas generer d'erreurs pendant les maj
+                List<Object> componentList = Factory.componentObjectList;
+                Platform.runLater(() -> updateComponentLabels(componentList));
                 try {
-                    // Attends 100 millisecondes avant de vérifier si la liste de noms de composants a changé
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
         }).start();
     }
 
 
-    // ici methode pour maj les composants
-    private void updateComponentLabels(List<String> componentNames) {
-            for (int i = 0; i < componentNames.size(); i++) {
-                String componentName = componentNames.get(i);
-                // pour changer le fond du labelMoteur
-                if(componentName.equals("Batterie")){
+        // ici methode pour maj les composants
+        private void updateComponentLabels(List<Object> componentList) {
+            for (int i = 0; i < componentList.size(); i++) {
+                Object component = componentList.get(i);
+                String componentName = "";
+                if (component instanceof ComponentBattery) {
+                    componentName = "Batterie";
                     getComponentLabel(i + 1).setStyle("-fx-background-color: #00BCD4;");
-                }else if(componentName.equals("Capteur")){
+                } else if (component instanceof ComponentSensor) {
+                    componentName = "Capteur";
                     getComponentLabel(i + 1).setStyle("-fx-background-color: #4CAF50;");
-                }else if(componentName.equals("Moteur")){
+                } else if (component instanceof ComponentMotor) {
+                    componentName = "Moteur";
                     getComponentLabel(i + 1).setStyle("-fx-background-color: #A9287D9A;");
                 }
-                // pour prendre le bon label ou faut changer le nom
-                Label componentLabel = getComponentLabel(i + 1);
-                // change le label avec le nom du composant C-Type-
-                componentLabel.setText(componentName);
-            }
 
-    }
+                Label componentLabel = getComponentLabel(i + 1);
+                componentLabel.setText(componentName); // + "-C-Type-" + (i+1)
+            }
+        }
+
 
     private Label getComponentLabel(int index) {
         if (index < 1 || index > componentLabelsList.size()) {

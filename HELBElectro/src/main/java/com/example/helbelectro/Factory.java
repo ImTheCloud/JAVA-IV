@@ -6,8 +6,6 @@ public class Factory {
     private static Factory instance = null;
     static List<Object> componentObjectList = new ArrayList<>();
     private static List<Object> productObjectList = new ArrayList<>();
-
-    public static List<String> componentNames = new ArrayList<>();
     private static List<Product> productObjectListSorted = new ArrayList<>();
 
 
@@ -31,7 +29,7 @@ public class Factory {
                 String load = values[2];
                 ComponentBattery battery = new ComponentBattery(load);
                 componentObjectList.add(battery);
-                componentNames.add("Batterie");//C-Type-1
+                //componentNames.add("Batterie");//C-Type-1
                 System.out.println("Composant Batterie crée");
                 return battery;
             } else if (componentName.equals("Capteur")) {
@@ -39,7 +37,7 @@ public class Factory {
                 String color = values[3];
                 ComponentSensor sensor = new ComponentSensor(range, color);
                 componentObjectList.add(sensor);
-                componentNames.add("Capteur");
+                //componentNames.add("Capteur");
                 System.out.println("Composant Capteur crée");
 
                 return sensor;
@@ -47,16 +45,13 @@ public class Factory {
                 String power = values[2];
                 ComponentMotor motor = new ComponentMotor(power);
                 componentObjectList.add(motor);
-                componentNames.add("Moteur");
+               // componentNames.add("Moteur");
                 System.out.println("Composant Moteur crée");
 
                 return motor;
             }
 
         }
-
-
-
         return null;
     }
 
@@ -67,15 +62,24 @@ public class Factory {
             boolean hasAllComponents = false;
             for (Object componentName : product.getComponentList()) {
                 boolean hasComponent = false;
+                Object componentToRemove = null;
                 for (Object component : componentObjectList) {
-                    if (component.getClass().getSimpleName().equals(componentName)) {
+                    System.out.println(component.getClass().getSimpleName()+"  nom");
+                    System.out.println(componentName.getClass().getSimpleName()+"  nom2");
+
+                    if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                         hasComponent = true;
+                        componentToRemove = component;
                         break;
                     }
                 }
                 if (!hasComponent) {
-                    hasAllComponents = true;
+                    hasAllComponents = false;
                     break;
+                } else {
+                    hasAllComponents = true;
+                    componentObjectList.remove(componentToRemove);
+                    System.out.println(componentObjectList+ "  composant restant ");
                 }
             }
             if (hasAllComponents) {
@@ -92,12 +96,6 @@ public class Factory {
             }
         }
     }
-
-
-
-
-
-
 
     public static List<Product> addProductList() {
         productObjectListSorted.add(new ProductBattery());
