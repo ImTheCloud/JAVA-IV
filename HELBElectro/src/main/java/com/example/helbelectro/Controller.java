@@ -36,14 +36,13 @@ public class Controller {
     @FXML
     private VBox areaComponent;
     private List<Label> componentLabelsList;
-    private static final int size_row = 4;
-    private static final int size_col = 3;
-
-    private static final int bt_product_height = 73;
-    private static final int bt_product_with = 138;
-    private static final int number_lb_component =8;
-    private static final int lb_component_height = 42;
-    private static final int lb_component_with = 183;
+    private  final int size_row = 4;
+    private  final int size_col = 3;
+    private final int bt_product_height = 73;
+    private final int bt_product_with = 138;
+    private final int number_lb_component =8;
+    private final int lb_component_height = 42;
+    private final int lb_component_with = 183;
 
 
 
@@ -53,8 +52,19 @@ public class Controller {
 
         setLabelComponents();
         getChoiceOPti();
-        Factory.getSortedProductList();
+        Factory.getSortedProductListByTime();
+
     }
+
+    public void getChoiceOPti(){
+        cb_opti.setOnAction(event -> {
+            String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
+            if(selectedItem.equals("Time")){
+                Factory.getOptiTime();
+            }
+        });
+    }
+
     public void initializeComponentArea() {
         componentLabelsList = new ArrayList<>();
         for (int i = 0; i < number_lb_component; i++) {
@@ -94,18 +104,6 @@ public class Controller {
                 areaProduct.add(button, j, i);
             }
         }
-    }
-
-
-
-
-        public void getChoiceOPti(){
-        cb_opti.setOnAction(event -> {
-            String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
-            if(selectedItem.equals("Time")){
-                Factory.getOptiTime();
-            }
-        });
     }
 
     public void setLabelComponents(){

@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER" prefHeight="538.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #282F76; -fx-border-color: white; -fx-border-width: 4px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.Controller">
+<HBox alignment="CENTER" prefHeight="538.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #282F76; -fx-border-color: white;
+-fx-border-width: 4px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.Controller">
 
    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="500.0" spacing="10">
       <children>
