@@ -1,9 +1,6 @@
 package com.example.helbelectro;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Factory {
     private static Factory instance = null;
@@ -47,6 +44,7 @@ public class Factory {
         return null;
     }
     public static List<Product> getOPtiTime() {
+        Timer timer = new Timer();
         Iterator<Object> iterator = componentObjectList.iterator();
         while (iterator.hasNext()) {
             Object component = iterator.next();
@@ -54,22 +52,33 @@ public class Factory {
                 ProductBattery batteryProduct = new ProductBattery();
                 productObjectList.add(batteryProduct);
                 iterator.remove();
+                timer.schedule(new ProductTimerTask(batteryProduct), batteryProduct.getManufacturingDuration()*1000);
             } else if (component instanceof ComponentSensor) {
                 ProductSensor sensorProduct = new ProductSensor();
                 productObjectList.add(sensorProduct);
                 iterator.remove();
+                timer.schedule(new ProductTimerTask(sensorProduct), sensorProduct.getManufacturingDuration()*1000);
             } else if (component instanceof ComponentMotor) {
                 ProductMotor motorProduct = new ProductMotor();
                 productObjectList.add(motorProduct);
                 iterator.remove();
+                timer.schedule(new ProductTimerTask(motorProduct), motorProduct.getManufacturingDuration()*1000);
+            } else if (productObjectList.contains(new ProductMotor()) && productObjectList.contains(new ProductBattery())) {
+                ProductCar carProduct = new ProductCar();
+                productObjectList.add(carProduct);
+                iterator.remove();
+                timer.schedule(new ProductTimerTask(carProduct), carProduct.getManufacturingDuration()*1000);
             }
         }
+
 
         // Afficher les produits et les composants restants dans les listes
         System.out.println("liste des produit : "+productObjectList);
         System.out.println("liste des composant : "+componentObjectList);
         return productObjectList;
     }
+
+
 
 
     public static List<Product> addProductList() {
