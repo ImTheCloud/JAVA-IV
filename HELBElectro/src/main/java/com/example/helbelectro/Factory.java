@@ -1,6 +1,9 @@
 package com.example.helbelectro;
 
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Factory {
     private static Factory instance = null;
@@ -43,43 +46,43 @@ public class Factory {
         }
         return null;
     }
-    public static List<Product> getOPtiTime() {
-        Timer timer = new Timer();
+    public static List<Product> getOptiTime() {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Iterator<Object> iterator = componentObjectList.iterator();
         while (iterator.hasNext()) {
             Object component = iterator.next();
             if (component instanceof ComponentBattery) {
-                ProductBattery batteryProduct = new ProductBattery();
-                productObjectList.add(batteryProduct);
-                iterator.remove();
-                timer.schedule(new ProductTimerTask(batteryProduct), batteryProduct.getManufacturingDuration()*1000);
+                createAndScheduleProduct(new ProductBattery(), scheduler, iterator);
             } else if (component instanceof ComponentSensor) {
-                ProductSensor sensorProduct = new ProductSensor();
-                productObjectList.add(sensorProduct);
-                iterator.remove();
-                timer.schedule(new ProductTimerTask(sensorProduct), sensorProduct.getManufacturingDuration()*1000);
+                createAndScheduleProduct(new ProductSensor(), scheduler, iterator);
             } else if (component instanceof ComponentMotor) {
-                ProductMotor motorProduct = new ProductMotor();
-                productObjectList.add(motorProduct);
-                iterator.remove();
-                timer.schedule(new ProductTimerTask(motorProduct), motorProduct.getManufacturingDuration()*1000);
-            } else if (productObjectList.contains(new ProductMotor()) && productObjectList.contains(new ProductBattery())) {
-                ProductCar carProduct = new ProductCar();
-                productObjectList.add(carProduct);
-                iterator.remove();
-                timer.schedule(new ProductTimerTask(carProduct), carProduct.getManufacturingDuration()*1000);
+                createAndScheduleProduct(new ProductMotor(), scheduler, iterator);
             }
         }
 
+        // Attendre que toutes les tâches soient terminées avant de continuer
+        scheduler.shutdown();
+        try {
+            scheduler.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // Afficher les produits et les composants restants dans les listes
-        System.out.println("liste des produit : "+productObjectList);
-        System.out.println("liste des composant : "+componentObjectList);
+        System.out.println("liste des produit : " + productObjectList);
+        System.out.println("liste des composant : " + componentObjectList);
         return productObjectList;
     }
 
-
-
+    private static void createAndScheduleProduct(Product product, ScheduledExecutorService scheduler, Iterator<Object> iterator) {
+        long manufacturingDuration = product.getManufacturingDuration();
+        System.out.println("Temps restant avant la création de " + product.getClass().getSimpleName() + " : " + manufacturingDuration + " secondes.");
+        scheduler.schedule(() -> {
+            productObjectList.add(product);
+            iterator.remove();
+            System.out.println(product.getClass().getSimpleName() + " a été fabriqué");
+        }, manufacturingDuration, TimeUnit.SECONDS);
+    }
 
     public static List<Product> addProductList() {
         productObjectListSortedBy.add(new ProductBattery());
