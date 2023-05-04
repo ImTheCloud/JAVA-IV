@@ -4,10 +4,11 @@ import java.util.*;
 
 public class Factory {
     private static Factory instance = null;
-    private static List<Object> componentObjectList = new ArrayList<>();
+    static List<Object> componentObjectList = new ArrayList<>();
+    private static List<Object> productObjectList = new ArrayList<>();
+
     public static List<String> componentNames = new ArrayList<>();
-    private static List<Product> productObjectListSortedBy = new ArrayList<>();
-    private static List<Product> productObjectList = new ArrayList<>();
+    private static List<Product> productObjectListSorted = new ArrayList<>();
 
 
     private Factory() {
@@ -59,82 +60,82 @@ public class Factory {
         return null;
     }
 
-    public static List<Product> getOptiTime() {
-        Timer timer = new Timer();
-        Iterator<Object> iterator = componentObjectList.iterator();
-        int numProducts = 1;
-        while (iterator.hasNext()) {
-            Object component = iterator.next();
-            if (component instanceof ComponentBattery) {
-                createAndScheduleProduct(new ProductBattery(), timer, iterator, numProducts);
-            } else if (component instanceof ComponentSensor) {
-                createAndScheduleProduct(new ProductSensor(), timer, iterator, numProducts);
-            } else if (component instanceof ComponentMotor) {
-                createAndScheduleProduct(new ProductMotor(), timer, iterator, numProducts);
+
+
+    public static void getOptiTime() {
+        for (Product product : productObjectListSorted) {
+            boolean validProduct = true;
+            for (Object componentName : product.getComponentList()) {
+                boolean hasComponent = false;
+                for (Object component : componentObjectList) {
+                    if (component.getClass().getSimpleName().equals(componentName)) {
+                        hasComponent = true;
+                        break;
+                    }
+                }
+                if (!hasComponent) {
+                    validProduct = false;
+                    break;
+                }
             }
-            numProducts++;
+            if (validProduct) {
+                try {
+                    Product newProduct = product.getClass().newInstance();
+                    productObjectList.add(newProduct);
+                    System.out.println(newProduct.getClass().getSimpleName() +
+                            " créé avec succès.");
+                } catch (InstantiationException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Impossible de créer le produit " +
+                        product.getClass().getSimpleName() + ", les composants nécessaires sont manquants.");
+            }
         }
-
-        // Afficher les produits et les composants restants dans les listes
-        //System.out.println("liste des produit : " + productObjectList);
-        //System.out.println("liste des composant : " + componentObjectList);
-        return productObjectList;
     }
 
-    private static void createAndScheduleProduct(Product product, Timer timer, Iterator<Object> iterator, int numProducts) {
-        productObjectList.add(product);
-        iterator.remove();
-        long manufacturingDuration = product.getManufacturingDuration() * 1000;
-        long delay = manufacturingDuration * numProducts;
-        System.out.println("Temps restant avant la création de " + product.getClass().getSimpleName() + " : " + delay/1000 + " secondes.");
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println(product.getClass().getSimpleName() + " a été fabriqué");
-            }
-        }, delay);
-    }
+
 
 
 
 
     public static List<Product> addProductList() {
-        productObjectListSortedBy.add(new ProductBattery());
-        productObjectListSortedBy.add(new ProductSensor());
-        productObjectListSortedBy.add(new ProductMotor());
-        productObjectListSortedBy.add(new ProductCar());
-        productObjectListSortedBy.add(new ProductAlarm());
-        productObjectListSortedBy.add(new ProductDrone());
-        productObjectListSortedBy.add(new ProductRobot());
-        return productObjectListSortedBy;
+        productObjectListSorted.add(new ProductBattery());
+        productObjectListSorted.add(new ProductSensor());
+        productObjectListSorted.add(new ProductMotor());
+        productObjectListSorted.add(new ProductCar());
+        productObjectListSorted.add(new ProductAlarm());
+        productObjectListSorted.add(new ProductDrone());
+        productObjectListSorted.add(new ProductRobot());
+        return productObjectListSorted;
     }
     public static List<Product> getSortedProductListByTime() {
         addProductList();
-        productObjectListSortedBy.sort(Comparator.comparing(Product::getManufacturingDuration));
-        for (Product product : productObjectListSortedBy) {
+        productObjectListSorted.sort(Comparator.comparing(Product::getManufacturingDuration));
+        for (Product product : productObjectListSorted) {
             System.out.println(product.getClass().getSimpleName() +
                     " fabrication : " + product.getManufacturingDuration());
         }
         System.out.println("\n");
-        return productObjectListSortedBy;
+        return productObjectListSorted;
     }
     public static List<Product> getSortedProductListByScore() {
         addProductList();
-        productObjectListSortedBy.sort(Comparator.comparing(Product::getEcoScore));
-        for (Product product : productObjectListSortedBy) {
+        productObjectListSorted.sort(Comparator.comparing(Product::getEcoScore));
+        for (Product product : productObjectListSorted) {
             System.out.println(product.getClass().getSimpleName() +
                     ", score : " + product.getEcoScore());
         }
-        return productObjectListSortedBy;
+        return productObjectListSorted;
     }
     public static List<Product> getSortedProductListByPrice() {
         addProductList();
-        productObjectListSortedBy.sort(Comparator.comparing(Product::getSellingPrice));
-        for (Product product : productObjectListSortedBy) {
+        productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
+        for (Product product : productObjectListSorted) {
             System.out.println(product.getClass().getSimpleName() +
                     ", Prix : " + product.getSellingPrice());
         }
-        return productObjectListSortedBy;
+        return productObjectListSorted;
     }
 
 

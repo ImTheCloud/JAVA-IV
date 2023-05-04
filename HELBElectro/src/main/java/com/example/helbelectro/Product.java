@@ -1,5 +1,9 @@
 package com.example.helbelectro;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Product {
     private String ecoScore;
     private int manufacturingDuration, sellingPrice;
@@ -8,6 +12,11 @@ public class Product {
         this.ecoScore = ecoScore;
         this.manufacturingDuration = manufacturingDuration;
         this.sellingPrice = sellingPrice;
+    }
+
+    public List<Object> getComponentList() {
+        List<Object> componentList = new ArrayList<>();
+        return componentList;
     }
 
     // Getter and Setter
@@ -34,4 +43,6 @@ public class Product {
     public void setManufacturingDuration(int manufacturingDuration) {
         this.manufacturingDuration = manufacturingDuration;
     }
+
+
 }
