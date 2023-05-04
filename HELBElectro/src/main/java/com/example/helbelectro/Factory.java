@@ -1,5 +1,9 @@
 package com.example.helbelectro;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 import java.util.*;
 
 public class Factory {
@@ -7,6 +11,8 @@ public class Factory {
     static List<Object> componentObjectList = new ArrayList<>();
     private static List<Object> productObjectList = new ArrayList<>();
     private static List<Product> productObjectListSorted = new ArrayList<>();
+    private static Timeline timeline = new Timeline();
+
 
 
     private Factory() {
@@ -83,20 +89,20 @@ public class Factory {
                 }
             }
             if (hasAllComponents) {
-                try {
-//                    try {
-//                    Thread.sleep( product.getManufacturingDuration() * 1000);
-//                        System.out.println(product.getManufacturingDuration() * 1000);
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
-//                    }
+                int manufacturingDuration = product.getManufacturingDuration();
+                System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
 
-                    Product newProduct = product.getClass().newInstance();
-                    productObjectList.add(newProduct);
-                    System.out.println(newProduct.getClass().getSimpleName() + " créé ");
-                } catch (InstantiationException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+                // Utilisation de Timeline pour la pause
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
+                    try {
+                        Product newProduct = product.getClass().newInstance();
+                        productObjectList.add(newProduct);
+                        System.out.println(newProduct.getClass().getSimpleName() + " créé ");
+                    } catch (InstantiationException | IllegalAccessException ex) {
+                        ex.printStackTrace();
+                    }
+                }));
+                timeline.play();
             }
 //            else {
 //                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
