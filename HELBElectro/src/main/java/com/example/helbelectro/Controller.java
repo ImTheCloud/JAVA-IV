@@ -40,7 +40,7 @@ public class Controller {
     private  final int size_col = 3;
     private final int bt_product_height = 73;
     private final int bt_product_with = 138;
-    private final int number_lb_component =8;
+    public static final int number_lb_component =8;
     private final int lb_component_height = 42;
     private final int lb_component_with = 183;
 
@@ -143,15 +143,14 @@ public class Controller {
 
     // ici methode pour maj les composants
     private void updateComponentLabels(List<String> componentNames) {
-        if (componentNames.size() <= number_lb_component) {  // modifier les label que si il sont plus petit que le nbr de label
             for (int i = 0; i < componentNames.size(); i++) {
                 String componentName = componentNames.get(i);
-                // pour changer le fond du label
-                if(componentName.equals("C-Type-1")){
+                // pour changer le fond du labelMoteur
+                if(componentName.equals("Batterie")){
                     getComponentLabel(i + 1).setStyle("-fx-background-color: #00BCD4;");
-                }else if(componentName.equals("C-Type-2")){
+                }else if(componentName.equals("Capteur")){
                     getComponentLabel(i + 1).setStyle("-fx-background-color: #4CAF50;");
-                }else if(componentName.equals("C-Type-3")){
+                }else if(componentName.equals("Moteur")){
                     getComponentLabel(i + 1).setStyle("-fx-background-color: #A9287D9A;");
                 }
                 // pour prendre le bon label ou faut changer le nom
@@ -159,9 +158,7 @@ public class Controller {
                 // change le label avec le nom du composant C-Type-
                 componentLabel.setText(componentName);
             }
-        }else {
-            progressComponent.setText("Component area is full !");
-        }
+
     }
 
     private Label getComponentLabel(int index) {

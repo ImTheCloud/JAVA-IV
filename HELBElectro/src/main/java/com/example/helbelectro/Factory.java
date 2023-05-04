@@ -1,9 +1,6 @@
 package com.example.helbelectro;
 
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Factory {
     private static Factory instance = null;
@@ -23,66 +20,83 @@ public class Factory {
         return instance;
     }
     public Object createComponent(String componentName, String[] values) {
+        // Vérifier si le nombre maximal de labels a été atteint
+        if (componentObjectList.size() >= Controller.number_lb_component) {
+            System.out.println("Nombre maximal de composant atteint");
+            return null;
+        }else{
+            // Créer le composant
+            if (componentName.equals("Batterie")) {
+                String load = values[2];
+                ComponentBattery battery = new ComponentBattery(load);
+                componentObjectList.add(battery);
+                componentNames.add("Batterie");//C-Type-1
+                System.out.println("Composant Batterie crée");
+                return battery;
+            } else if (componentName.equals("Capteur")) {
+                String range = values[2];
+                String color = values[3];
+                ComponentSensor sensor = new ComponentSensor(range, color);
+                componentObjectList.add(sensor);
+                componentNames.add("Capteur");
+                System.out.println("Composant Capteur crée");
 
-        if (componentName.equals("Batterie")) {
-            String load = values[2];
-            ComponentBattery battery = new ComponentBattery(load);
-            componentObjectList.add(battery);
-            componentNames.add("C-Type-1");
-            return battery;
-        } else if (componentName.equals("Capteur")) {
-            String range = values[2];
-            String color = values[3];
-            ComponentSensor sensor = new ComponentSensor(range, color);
-            componentObjectList.add(sensor);
-            componentNames.add("C-Type-2");
-            return sensor;
-        } else if (componentName.equals("Moteur")) {
-            String power = values[2];
-            ComponentMotor motor = new ComponentMotor(power);
-            componentObjectList.add(motor);
-            componentNames.add("C-Type-3");
-            return motor;
+                return sensor;
+            } else if (componentName.equals("Moteur")) {
+                String power = values[2];
+                ComponentMotor motor = new ComponentMotor(power);
+                componentObjectList.add(motor);
+                componentNames.add("Moteur");
+                System.out.println("Composant Moteur crée");
+
+                return motor;
+            }
+
         }
+
+
+
         return null;
     }
+
     public static List<Product> getOptiTime() {
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        Timer timer = new Timer();
         Iterator<Object> iterator = componentObjectList.iterator();
+        int numProducts = 1;
         while (iterator.hasNext()) {
             Object component = iterator.next();
             if (component instanceof ComponentBattery) {
-                createAndScheduleProduct(new ProductBattery(), scheduler, iterator);
+                createAndScheduleProduct(new ProductBattery(), timer, iterator, numProducts);
             } else if (component instanceof ComponentSensor) {
-                createAndScheduleProduct(new ProductSensor(), scheduler, iterator);
+                createAndScheduleProduct(new ProductSensor(), timer, iterator, numProducts);
             } else if (component instanceof ComponentMotor) {
-                createAndScheduleProduct(new ProductMotor(), scheduler, iterator);
+                createAndScheduleProduct(new ProductMotor(), timer, iterator, numProducts);
             }
-        }
-
-        // Attendre que toutes les tâches soient terminées avant de continuer
-        scheduler.shutdown();
-        try {
-            scheduler.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            numProducts++;
         }
 
         // Afficher les produits et les composants restants dans les listes
-        System.out.println("liste des produit : " + productObjectList);
-        System.out.println("liste des composant : " + componentObjectList);
+        //System.out.println("liste des produit : " + productObjectList);
+        //System.out.println("liste des composant : " + componentObjectList);
         return productObjectList;
     }
 
-    private static void createAndScheduleProduct(Product product, ScheduledExecutorService scheduler, Iterator<Object> iterator) {
-        long manufacturingDuration = product.getManufacturingDuration();
-        System.out.println("Temps restant avant la création de " + product.getClass().getSimpleName() + " : " + manufacturingDuration + " secondes.");
-        scheduler.schedule(() -> {
-            productObjectList.add(product);
-            iterator.remove();
-            System.out.println(product.getClass().getSimpleName() + " a été fabriqué");
-        }, manufacturingDuration, TimeUnit.SECONDS);
+    private static void createAndScheduleProduct(Product product, Timer timer, Iterator<Object> iterator, int numProducts) {
+        productObjectList.add(product);
+        iterator.remove();
+        long manufacturingDuration = product.getManufacturingDuration() * 1000;
+        long delay = manufacturingDuration * numProducts;
+        System.out.println("Temps restant avant la création de " + product.getClass().getSimpleName() + " : " + delay/1000 + " secondes.");
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println(product.getClass().getSimpleName() + " a été fabriqué");
+            }
+        }, delay);
     }
+
+
+
 
     public static List<Product> addProductList() {
         productObjectListSortedBy.add(new ProductBattery());
@@ -101,6 +115,7 @@ public class Factory {
             System.out.println(product.getClass().getSimpleName() +
                     " fabrication : " + product.getManufacturingDuration());
         }
+        System.out.println("\n");
         return productObjectListSortedBy;
     }
     public static List<Product> getSortedProductListByScore() {
