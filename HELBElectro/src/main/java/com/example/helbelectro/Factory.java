@@ -36,7 +36,7 @@ public class Factory {
                 ComponentBattery battery = new ComponentBattery(load);
                 componentObjectList.add(battery);
                 //componentNames.add("Batterie");//C-Type-1
-                System.out.println("Composant Batterie crée");
+                System.out.println("Component Batterie : "+load);
                 return battery;
             } else if (componentName.equals("Capteur")) {
                 String range = values[2];
@@ -44,7 +44,7 @@ public class Factory {
                 ComponentSensor sensor = new ComponentSensor(range, color);
                 componentObjectList.add(sensor);
                 //componentNames.add("Capteur");
-                System.out.println("Composant Capteur crée");
+                System.out.println("Component Capteur : "+range+", "+color);
 
                 return sensor;
             } else if (componentName.equals("Moteur")) {
@@ -52,7 +52,7 @@ public class Factory {
                 ComponentMotor motor = new ComponentMotor(power);
                 componentObjectList.add(motor);
                // componentNames.add("Moteur");
-                System.out.println("Composant Moteur crée");
+                System.out.println("Component Moteur : "+power);
 
                 return motor;
             }
@@ -124,9 +124,10 @@ public class Factory {
     public static List<Product> getSortedProductListByTime() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getManufacturingDuration));
+        System.out.println("Product list sorted by time :");
         for (Product product : productObjectListSorted) {
             System.out.println(product.getClass().getSimpleName() +
-                    " fabrication : " + product.getManufacturingDuration());
+                    " time : " + product.getManufacturingDuration());
         }
         System.out.println("\n");
         return productObjectListSorted;
@@ -134,6 +135,8 @@ public class Factory {
     public static List<Product> getSortedProductListByScore() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getEcoScore));
+        System.out.println("Product list sorted by score :");
+
         for (Product product : productObjectListSorted) {
             System.out.println(product.getClass().getSimpleName() +
                     ", score : " + product.getEcoScore());
@@ -143,9 +146,10 @@ public class Factory {
     public static List<Product> getSortedProductListByPrice() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
+        System.out.println("Product list sorted by Price :");
         for (Product product : productObjectListSorted) {
             System.out.println(product.getClass().getSimpleName() +
-                    ", Prix : " + product.getSellingPrice());
+                    ", Price : " + product.getSellingPrice());
         }
         return productObjectListSorted;
     }
