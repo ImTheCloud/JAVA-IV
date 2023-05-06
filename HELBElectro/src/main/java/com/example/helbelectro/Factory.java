@@ -74,9 +74,6 @@ public class Factory {
                 boolean hasComponent = false;
                 Object componentToRemove = null;
                 for (Object component : componentObjectList) {
-//                    System.out.println(component.getClass().getSimpleName()+"  nom");
-//                    System.out.println(componentName.getClass().getSimpleName()+"  nom2");
-
                     if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                         hasComponent = true;
                         componentToRemove = component;
@@ -88,8 +85,6 @@ public class Factory {
                     break;
                 } else {
                     hasAllComponents = true;
-                    componentObjectList.remove(componentToRemove);
-//                    System.out.println(componentObjectList+ "  composant restant ");
                 }
             }
             if (hasAllComponents) {
@@ -102,18 +97,32 @@ public class Factory {
                         Product newProduct = product.getClass().newInstance();
                         productObjectList.add(newProduct);
                         System.out.println(newProduct.getClass().getSimpleName() + " créé ");
+
+                        // Suppression des composants utilisés
+                        for (Object componentName : product.getComponentListNecessary()) {
+                            Object componentToRemove = null;
+                            for (Object component : componentObjectList) {
+                                if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
+                                    componentToRemove = component;
+                                    break;
+                                }
+                            }
+                            if (componentToRemove != null) {
+                                componentObjectList.remove(componentToRemove);
+                            }
+                        }
                     } catch (InstantiationException | IllegalAccessException ex) {
                         ex.printStackTrace();
                     }
                 }));
                 timeline.play();
+            } else {
+                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
+                        ", certains composants sont manquants.");
             }
-//            else {
-//                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
-//                        ", certains composants sont manquants.");
-//            }
         }
     }
+
 
     public static List<Product> addProductList() {
         productObjectListSorted.add(new ProductBattery());

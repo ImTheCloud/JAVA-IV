@@ -3,7 +3,6 @@ package com.example.helbelectro;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -17,12 +16,9 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Controller {
 
@@ -59,11 +55,11 @@ public class Controller {
         getChoiceOpti();
 
 
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+        timelineBt.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
             setButtonProduct();
         }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        timelineBt.setCycleCount(Animation.INDEFINITE);
+        timelineBt.play();
 
 
     }
@@ -91,6 +87,7 @@ public class Controller {
                 index++;
             }
         }
+        Factory.productObjectList.clear();
     }
 
 
@@ -101,7 +98,7 @@ public class Controller {
                 Factory.getSortedProductListByTime();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -110,7 +107,7 @@ public class Controller {
                 Factory.getSortedProductListByPrice();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -119,7 +116,7 @@ public class Controller {
                 Factory.getSortedProductListByScore();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -128,7 +125,7 @@ public class Controller {
                 //Factory.getSortedProductListByScore();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     //Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -177,7 +174,7 @@ public class Controller {
     }
 
     public void setLabelComponents() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             try {
                 Parser.getInstance().parseSimulationFile();
             } catch (FileNotFoundException e) {
