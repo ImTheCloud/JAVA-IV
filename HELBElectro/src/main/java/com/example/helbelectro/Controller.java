@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -64,6 +65,8 @@ public class Controller {
 
     }
 
+
+
     public void setButtonProduct(){
         List<Product> productList = new ArrayList<>();
         for (Object obj : Factory.productObjectList) {
@@ -73,22 +76,21 @@ public class Controller {
         }
 
         int index = 0;
-        for (int i = 0; i < size_row; i++) {
-            for (int j = 0; j < size_col; j++) {
+        for (Node node : areaProduct.getChildren()) {
+            if (node instanceof Button) {
                 if (index >= productList.size()) {
                     break;
                 }
                 Product product = productList.get(index);
-                Button button = new Button(product.getName());
-                button.setPrefSize(bt_product_with, bt_product_height);
+                Button button = (Button) node;
+                button.setText(product.getName());
                 button.setStyle("-fx-background-color: " + product.getColor() + ";");
-                button.setOnAction(this::onComponentClicked);
-                areaProduct.add(button, j, i);
                 index++;
             }
         }
         Factory.productObjectList.clear();
     }
+
 
 
     public void getChoiceOpti() {
@@ -255,6 +257,8 @@ public class Controller {
             alert.setContentText("Le produit a été vendu !");
             alert.showAndWait();
             modal.close();
+            bt_productFInish.setStyle("-fx-background-color: white;");
+            bt_productFInish.setText("");
         });
 
         // UNE VBox pour ajouter les boutons

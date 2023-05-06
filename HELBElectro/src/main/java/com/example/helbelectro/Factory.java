@@ -72,11 +72,9 @@ public class Factory {
             boolean hasAllComponents = false;
             for (Object componentName : product.getComponentListNecessary()) {
                 boolean hasComponent = false;
-                Object componentToRemove = null;
                 for (Object component : componentObjectList) {
                     if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                         hasComponent = true;
-                        componentToRemove = component;
                         break;
                     }
                 }

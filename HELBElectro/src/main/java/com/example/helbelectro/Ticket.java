@@ -27,14 +27,18 @@ public class Ticket {
             // objets SimpleDateFormat pour les dates
             SimpleDateFormat sdfFileName = new SimpleDateFormat("HHmmss");
             SimpleDateFormat sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            String fileName = "ticket/" + "t_" + sdfFileName.format(new Date()) + ".txt";
+            String fileName = "t_" + sdfFileName.format(new Date()) + ".txt";
 
             // crée un objet File à partir du nom
             File fileInTicket = new File(fileName);
             // ecrire dans le fichier
+
             FileWriter writer = new FileWriter(fileInTicket, true);
+            writer.write("------------------------------------------------\n");
             writer.write("Date: " + sdfFileContent.format(new Date()) + "\n");
             writer.write("Vente du produit :" + emplacement + "\n");
+            writer.write("------------------------------------------------\n");
+
             writer.close();
 
         } catch (IOException ex) {
