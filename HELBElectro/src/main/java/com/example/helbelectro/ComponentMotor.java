@@ -1,6 +1,8 @@
 package com.example.helbelectro;
 
-    public class ComponentMotor {
+import java.awt.*;
+
+public class ComponentMotor extends Component{
         private String power;
 
         public ComponentMotor(String power) {
@@ -11,7 +13,13 @@ package com.example.helbelectro;
             return power;
         }
 
+    public String getName() {
+        return "-C-Type-3";
+    }
 
+    public String getColor() {
+        return "#A9287D9A";
+    }
     }
 
 

@@ -1,5 +1,8 @@
 package com.example.helbelectro;
-    public class ComponentSensor {
+
+import java.awt.*;
+
+public class ComponentSensor extends Component {
         private String range;
         private String color;
 
@@ -12,9 +15,13 @@ package com.example.helbelectro;
             return range;
         }
 
-        public String getColor() {
-            return color;
-        }
+    public String getName() {
+        return "-C-Type-2";
+    }
+
+    public String getColor() {
+        return "#4CAF50";
+    }
 
 
     }

@@ -172,21 +172,23 @@ public class Controller {
             for (int i = 0; i < componentList.size(); i++) {
                 Object component = componentList.get(i);
                 String componentName = "";
+                Object componentColor = null;
                 if (component instanceof ComponentBattery) {
-                    componentName = "Batterie";
-                    getComponentLabel(i + 1).setStyle("-fx-background-color: #00BCD4;");
+                    componentName = ((ComponentBattery) component).getName();
+                    componentColor = ((ComponentBattery) component).getColor();
                 } else if (component instanceof ComponentSensor) {
-                    componentName = "Capteur";
-                    getComponentLabel(i + 1).setStyle("-fx-background-color: #4CAF50;");
+                    componentName = ((ComponentSensor) component).getName();
+                    componentColor = ((ComponentSensor) component).getColor();
                 } else if (component instanceof ComponentMotor) {
-                    componentName = "Moteur";
-                    getComponentLabel(i + 1).setStyle("-fx-background-color: #A9287D9A;");
+                    componentName = ((ComponentMotor) component).getName();
+                    componentColor = ((ComponentMotor) component).getColor();
                 }
-
                 Label componentLabel = getComponentLabel(i + 1);
                 componentLabel.setText(componentName); // + "-C-Type-" + (i+1)
+                componentLabel.setStyle("-fx-background-color: "+componentColor);
             }
         }
+
 
 
     private Label getComponentLabel(int index) {

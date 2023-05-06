@@ -1,12 +1,11 @@
 package com.example.helbelectro;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Product {
-    private String ecoScore;
-    private int manufacturingDuration, sellingPrice;
+abstract class Product {
+    protected String ecoScore;
+    protected int manufacturingDuration, sellingPrice;
 
     public Product(String ecoScore, int manufacturingDuration, int sellingPrice) {
         this.ecoScore = ecoScore;
