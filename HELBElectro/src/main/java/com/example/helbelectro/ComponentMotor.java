@@ -14,11 +14,11 @@ public class ComponentMotor extends Component{
         }
 
     public String getName() {
-        return "-C-Type-3";
+        return "C-Type-3";
     }
 
     public String getColor() {
-        return "#A9287D9A";
+        return "#B111BB";
     }
     }
 

@@ -10,7 +10,7 @@ public class ComponentBattery extends Component {
     }
 
     public String getName() {
-        return "-C-Type-1";
+        return "C-Type-1";
     }
 
     public String getColor() {

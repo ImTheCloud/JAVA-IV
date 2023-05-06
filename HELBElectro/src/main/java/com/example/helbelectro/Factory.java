@@ -63,10 +63,10 @@ public class Factory {
 
 
 
-    public static void getOptiTime() {
+    public static void createProduct() {
         for (Product product : productObjectListSorted) {
             boolean hasAllComponents = false;
-            for (Object componentName : product.getComponentList()) {
+            for (Object componentName : product.getComponentListNecessary()) {
                 boolean hasComponent = false;
                 Object componentToRemove = null;
                 for (Object component : componentObjectList) {
@@ -146,6 +146,7 @@ public class Factory {
     public static List<Product> getSortedProductListByPrice() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
+        Collections.reverse(productObjectListSorted);
         System.out.println("Product list sorted by Price :");
         for (Product product : productObjectListSorted) {
             System.out.println(product.getClass().getSimpleName() +

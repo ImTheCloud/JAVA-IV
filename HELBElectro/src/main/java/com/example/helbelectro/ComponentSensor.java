@@ -16,7 +16,7 @@ public class ComponentSensor extends Component {
         }
 
     public String getName() {
-        return "-C-Type-2";
+        return "C-Type-2";
     }
 
     public String getColor() {

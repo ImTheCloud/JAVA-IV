@@ -5,11 +5,11 @@ import java.util.List;
 
 public class ProductAlarm extends Product {
     public ProductAlarm() {
-        super("C", 4, 20);
+        super("C", "#A25846", "P4",4,20);
     }
 
 
-    public List<Object> getComponentList() {
+    public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {
             if (component instanceof ComponentBattery && component instanceof ComponentSensor) {

@@ -5,11 +5,12 @@ import java.util.List;
 
 public class ProductCar extends Product {
     public ProductCar() {
-        super("B", 5, 30);
+        super("B", "#A7632D", "P5",5,30);
+
     }
 
 
-    public List<Object> getComponentList() {
+    public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {
             if (component instanceof ComponentBattery && component instanceof ComponentMotor) {

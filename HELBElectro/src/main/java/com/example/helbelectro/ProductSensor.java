@@ -5,11 +5,12 @@ import java.util.List;
 
 public class ProductSensor extends Product {
     public ProductSensor() {
-        super("B", 3, 10);
+        super("B", "#B111BB", "P2",3,10);
+
     }
 
 
-    public List<Object> getComponentList() {
+    public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {
             if (component instanceof ComponentSensor) {

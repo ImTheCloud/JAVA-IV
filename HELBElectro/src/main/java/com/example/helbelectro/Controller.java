@@ -57,7 +57,6 @@ public class Controller {
 
         setLabelComponents();
         getChoiceOpti();
-        Factory.getSortedProductListByTime();
 
     }
 
@@ -65,23 +64,44 @@ public class Controller {
         cb_opti.setOnAction(event -> {
             String selectedItem = cb_opti.getSelectionModel().getSelectedItem();
             if (selectedItem.equals("Time")) {
+                Factory.getSortedProductListByTime();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
                 timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-                    Factory.getOptiTime();
+                    Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
-              //  System.out.println("continue");
             } else if (selectedItem.equals("Cost")) {
-              //  System.out.println("Cost");
+                Factory.getSortedProductListByPrice();
                 timeline.stop();
+                timeline.getKeyFrames().clear();
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                    Factory.createProduct();
+                }));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
+            } else if (selectedItem.equals("Score")) {
+                Factory.getSortedProductListByScore();
+                timeline.stop();
+                timeline.getKeyFrames().clear();
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                    Factory.createProduct();
+                }));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
+            } else if (selectedItem.equals("Diverse")) {
+                //Factory.getSortedProductListByScore();
+                timeline.stop();
+                timeline.getKeyFrames().clear();
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                    //Factory.createProduct();
+                }));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
             }
         });
     }
-
-
-
 
     public void initializeComponentArea() {
         componentLabelsList = new ArrayList<>();
@@ -95,8 +115,6 @@ public class Controller {
             areaComponent.getChildren().add(label);
         }
     }
-
-
     public void initializeProductArea() {
         for (int i = 0; i < size_col; i++) {
             ColumnConstraints column = new ColumnConstraints();
@@ -189,17 +207,11 @@ public class Controller {
             }
         }
 
-
-
     private Label getComponentLabel(int index) {
         if (index < 1 || index > componentLabelsList.size()) {
         }
         return componentLabelsList.get(index - 1);
     }
-
-
-    
-
     @FXML
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué

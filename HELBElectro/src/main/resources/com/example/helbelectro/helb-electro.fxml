@@ -46,7 +46,7 @@
             <font>
                <Font size="20.0" />
             </font></Label>
-         <ComboBox fx:id="cb_opti" value="Cost">
+         <ComboBox fx:id="cb_opti" value="Diverse">
             <items>
                <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Cost" />

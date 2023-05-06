@@ -5,11 +5,12 @@ import java.util.List;
 
 public class ProductRobot extends Product {
     public ProductRobot() {
-        super("B", 6, 40);
+        super("B", "#BBAE2A", "P6",6,40);
+
     }
 
 
-    public List<Object> getComponentList() {
+    public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         for (Object component : Factory.componentObjectList) {
             if (component instanceof ComponentSensor && component instanceof ComponentMotor) {
