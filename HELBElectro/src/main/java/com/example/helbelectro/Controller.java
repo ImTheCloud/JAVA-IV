@@ -186,26 +186,27 @@ public class Controller {
 
 
     // ici methode pour maj les composants
-        private void updateComponentLabels(List<Object> componentList) {
-            for (int i = 0; i < componentList.size(); i++) {
-                Object component = componentList.get(i);
-                String componentName = "";
-                Object componentColor = null;
-                if (component instanceof ComponentBattery) {
-                    componentName = ((ComponentBattery) component).getName();
-                    componentColor = ((ComponentBattery) component).getColor();
-                } else if (component instanceof ComponentSensor) {
-                    componentName = ((ComponentSensor) component).getName();
-                    componentColor = ((ComponentSensor) component).getColor();
-                } else if (component instanceof ComponentMotor) {
-                    componentName = ((ComponentMotor) component).getName();
-                    componentColor = ((ComponentMotor) component).getColor();
-                }
-                Label componentLabel = getComponentLabel(i + 1);
-                componentLabel.setText(componentName); // + "-C-Type-" + (i+1)
-                componentLabel.setStyle("-fx-background-color: "+componentColor);
+    private void updateComponentLabels(List<Object> componentList) {
+        int index = 1;
+        for (Object component : componentList) {
+            String componentName = "";
+            Object componentColor = null;
+            if (component instanceof ComponentBattery) {
+                componentName = ((ComponentBattery) component).getName();
+                componentColor = ((ComponentBattery) component).getColor();
+            } else if (component instanceof ComponentSensor) {
+                componentName = ((ComponentSensor) component).getName();
+                componentColor = ((ComponentSensor) component).getColor();
+            } else if (component instanceof ComponentMotor) {
+                componentName = ((ComponentMotor) component).getName();
+                componentColor = ((ComponentMotor) component).getColor();
             }
+            Label componentLabel = getComponentLabel(index);
+            componentLabel.setText(componentName);
+            componentLabel.setStyle("-fx-background-color: "+componentColor);
+            index++;
         }
+    }
 
     private Label getComponentLabel(int index) {
         if (index < 1 || index > componentLabelsList.size()) {

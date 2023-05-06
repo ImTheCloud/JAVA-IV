@@ -2,13 +2,14 @@ package com.example.helbelectro;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.util.Duration;
 
 import java.util.*;
 
 public class Factory {
     private static Factory instance = null;
-    static List<Object> componentObjectList = new ArrayList<>();
     private static List<Object> productObjectList = new ArrayList<>();
     private static List<Product> productObjectListSorted = new ArrayList<>();
     private static Timeline timeline = new Timeline();
@@ -24,6 +25,9 @@ public class Factory {
         }
         return instance;
     }
+
+    static ObservableList<Object> componentObjectList = FXCollections.observableArrayList();
+
     public Object createComponent(String componentName, String[] values) {
         // Vérifier si le nombre maximal de labels a été atteint
         if (componentObjectList.size() >= Controller.number_lb_component) {
