@@ -58,6 +58,23 @@ public class Controller {
         setLabelComponents();
         getChoiceOpti();
 
+        List<Product> productList = Factory.addProductList();
+        int index = 0;
+        for (int i = 0; i < size_row; i++) {
+            for (int j = 0; j < size_col; j++) {
+                if (index >= productList.size()) {
+                    break;
+                }
+                Product product = productList.get(index);
+                Button button = new Button(product.getName());
+                button.setPrefSize(bt_product_with, bt_product_height);
+                button.setStyle("-fx-background-color: " + product.getColor() + ";");
+                button.setOnAction(this::onComponentClicked);
+                areaProduct.add(button, j, i);
+                index++;
+            }
+        }
+
     }
 
     public void getChoiceOpti() {
