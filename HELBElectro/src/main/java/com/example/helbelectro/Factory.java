@@ -10,8 +10,8 @@ import java.util.*;
 
 public class Factory {
     private static Factory instance = null;
-    private static List<Object> productObjectList = new ArrayList<>();
-    private static List<Product> productObjectListSorted = new ArrayList<>();
+    public static List<Object> productObjectList = new ArrayList<>();
+    public static List<Product> productObjectListSorted = new ArrayList<>();
     private static Timeline timeline = new Timeline();
 
 

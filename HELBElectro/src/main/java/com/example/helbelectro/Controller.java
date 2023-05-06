@@ -32,8 +32,6 @@ public class Controller {
     @FXML
     private Button bt_productFInish,sellButton,statsButton;
     @FXML
-    private Label progressComponent;
-    @FXML
     private ComboBox<String> cb_opti;
     @FXML
     private GridPane areaProduct;
@@ -48,6 +46,8 @@ public class Controller {
     private final int lb_component_height = 42;
     private final int lb_component_with = 183;
     private Timeline timeline = new Timeline();
+    private Timeline timelineBt = new Timeline();
+
 
 
 
@@ -58,7 +58,24 @@ public class Controller {
         setLabelComponents();
         getChoiceOpti();
 
-        List<Product> productList = Factory.addProductList();
+
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+            setButtonProduct();
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+
+    }
+
+    public void setButtonProduct(){
+        List<Product> productList = new ArrayList<>();
+        for (Object obj : Factory.productObjectList) {
+            if (obj instanceof Product) {
+                productList.add((Product) obj);
+            }
+        }
+
         int index = 0;
         for (int i = 0; i < size_row; i++) {
             for (int j = 0; j < size_col; j++) {
@@ -74,8 +91,8 @@ public class Controller {
                 index++;
             }
         }
-
     }
+
 
     public void getChoiceOpti() {
         cb_opti.setOnAction(event -> {
@@ -160,37 +177,20 @@ public class Controller {
     }
 
     public void setLabelComponents() {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> {
-
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             try {
                 Parser.getInstance().parseSimulationFile();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
-
-        });
-
-        new Thread(() -> {
-            int previousSize = -1;
-            while (true) {
-                List<Object> componentList = Factory.componentObjectList;
-                int currentSize = componentList.size();
-                if (currentSize < previousSize) {
-                    Platform.runLater(this::clearComponentLabels);
-                }
-                if (currentSize != previousSize) {
-                    Platform.runLater(() -> updateComponentLabels(componentList));
-                }
-                previousSize = currentSize;
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            List<Object> componentList = Factory.componentObjectList;
+            if (componentList.size() != componentLabelsList.size()) {
+                clearComponentLabels();
             }
-        }).start();
-
+            updateComponentLabels(componentList);
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     private void clearComponentLabels() {
@@ -199,8 +199,6 @@ public class Controller {
             label.setText("");
         }
     }
-
-
 
     // ici methode pour maj les composants
     private void updateComponentLabels(List<Object> componentList) {
