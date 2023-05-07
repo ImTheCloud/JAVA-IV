@@ -59,7 +59,7 @@ public class Controller {
 
 
         timelineBt.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-            // setButtonProduct();
+             setButtonProduct();
         }));
         timelineBt.setCycleCount(Animation.INDEFINITE);
         timelineBt.play();

@@ -74,8 +74,8 @@ public class Factory {
                 boolean hasComponent = false;
                 for (Object component : componentObjectList) {
                     if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
-                        System.out.println(component.getClass().getSimpleName());
-                        System.out.println(componentName.getClass().getSimpleName()+"******");
+//                        System.out.println(component.getClass().getSimpleName());
+//                        System.out.println(componentName.getClass().getSimpleName()+"******");
                         hasComponent = true;
                         break;
                     }
@@ -98,7 +98,8 @@ public class Factory {
                         Product newProduct = product.getClass().newInstance();
                         productObjectList.add(newProduct);
                         System.out.println(newProduct.getClass().getSimpleName() + " créé ");
-                        // Suppression des composants utilisés
+
+                        // supp des composants utilisés
                         for (Object componentName : product.getComponentListNecessary()) {
                             Object componentToRemove = null;
                             for (Object component : componentObjectList) {
@@ -111,6 +112,8 @@ public class Factory {
                                 componentObjectList.remove(componentToRemove);
                             }
                         }
+
+
                     } catch (InstantiationException | IllegalAccessException ex) {
                         ex.printStackTrace();
                     }
