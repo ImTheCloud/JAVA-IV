@@ -9,7 +9,11 @@ public class ComponentMotor extends Component{
             this.power = power;
         }
 
-        public String getPower() {
+    public ComponentMotor() {
+
+    }
+
+    public String getPower() {
             return power;
         }
 

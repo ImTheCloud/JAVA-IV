@@ -12,11 +12,8 @@ public class ProductRobot extends Product {
 
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
-        for (Object component : Factory.componentObjectList) {
-            if (component instanceof ComponentSensor && component instanceof ComponentMotor) {
-                componentList.add(component);
-            }
-        }
+        componentList.add(new ComponentSensor());
+        componentList.add(new ComponentMotor());
         return componentList;
     }
 }

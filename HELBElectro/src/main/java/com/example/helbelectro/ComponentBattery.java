@@ -9,6 +9,10 @@ public class ComponentBattery extends Component {
         this.load = load;
     }
 
+    public ComponentBattery() {
+
+    }
+
     public String getName() {
         return "C-Type-1";
     }

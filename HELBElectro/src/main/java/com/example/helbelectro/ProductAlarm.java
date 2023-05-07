@@ -11,11 +11,9 @@ public class ProductAlarm extends Product {
 
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
-        for (Object component : Factory.componentObjectList) {
-            if (component instanceof ComponentBattery && component instanceof ComponentSensor) {
-                componentList.add(component);
-            }
-        }
+        componentList.add(new ComponentBattery());
+        componentList.add(new ComponentSensor());
+
         return componentList;
     }
 

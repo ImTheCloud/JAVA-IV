@@ -13,12 +13,9 @@ public class ProductDrone extends Product {
 
     public List<Object> getComponentListNecessary() {
      componentList = new ArrayList<>();
-        for (Object component : Factory.componentObjectList) {
-            if (component instanceof ComponentBattery && component instanceof ComponentSensor && component instanceof ComponentMotor) {
-                componentList.add(component);
-            }
-        }
-        System.out.println(componentList);
+        componentList.add(new ComponentBattery());
+        componentList.add(new ComponentSensor());
+        componentList.add(new ComponentMotor());
         return componentList;
     }
 

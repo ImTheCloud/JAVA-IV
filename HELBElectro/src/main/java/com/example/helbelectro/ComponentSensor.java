@@ -11,7 +11,11 @@ public class ComponentSensor extends Component {
             this.color = color;
         }
 
-        public String getRange() {
+    public ComponentSensor() {
+
+    }
+
+    public String getRange() {
             return range;
         }
 

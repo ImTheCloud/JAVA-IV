@@ -12,12 +12,7 @@ public class ProductSensor extends Product {
 
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
-        for (Object component : Factory.componentObjectList) {
-            if (component instanceof ComponentSensor) {
-                componentList.add(component);
-            }
-        }
-
+        componentList.add(new ComponentSensor());
         return componentList;
     }
 }
