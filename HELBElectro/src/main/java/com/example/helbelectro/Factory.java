@@ -69,20 +69,16 @@ public class Factory {
 
     public static void createProduct() {
         for (Product product : productObjectListSorted) {
-            boolean hasAllComponents = false;
+            boolean hasAllComponents = true;
             for (Object componentName : product.getComponentListNecessary()) {
                 boolean hasComponent = false;
                 for (Object component : componentObjectList) {
                     if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                         hasComponent = true;
-                        break;
                     }
                 }
                 if (!hasComponent) {
                     hasAllComponents = false;
-                    break;
-                } else {
-                    hasAllComponents = true;
                 }
             }
             if (hasAllComponents) {
@@ -102,7 +98,6 @@ public class Factory {
                             for (Object component : componentObjectList) {
                                 if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                                     componentToRemove = component;
-                                    break;
                                 }
                             }
                             if (componentToRemove != null) {
@@ -120,6 +115,7 @@ public class Factory {
             }
         }
     }
+
 
 
     public static List<Product> addProductList() {

@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Controller {
@@ -67,7 +68,7 @@ public class Controller {
 
 
 
-    public void setButtonProduct(){
+    public void setButtonProduct() {
         List<Product> productList = new ArrayList<>();
         for (Object obj : Factory.productObjectList) {
             if (obj instanceof Product) {
@@ -76,11 +77,10 @@ public class Controller {
         }
 
         int index = 0;
-        for (Node node : areaProduct.getChildren()) {
+        Iterator<Node> nodeIterator = areaProduct.getChildren().iterator();
+        while (nodeIterator.hasNext() && index < productList.size()) {
+            Node node = nodeIterator.next();
             if (node instanceof Button) {
-                if (index >= productList.size()) {
-                    break;
-                }
                 Product product = productList.get(index);
                 Button button = (Button) node;
                 button.setText(product.getName());
@@ -90,6 +90,7 @@ public class Controller {
         }
         Factory.productObjectList.clear();
     }
+
 
 
 
