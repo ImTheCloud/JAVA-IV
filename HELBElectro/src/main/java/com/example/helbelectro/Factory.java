@@ -55,7 +55,7 @@ public class Factory {
                 String power = values[2];
                 ComponentMotor motor = new ComponentMotor(power);
                 componentObjectList.add(motor);
-               // componentNames.add("Moteur");
+                // componentNames.add("Moteur");
                 System.out.println("Component Moteur : "+power);
 
                 return motor;
@@ -69,35 +69,38 @@ public class Factory {
 
     public static void createProduct() {
         for (Product product : productObjectListSorted) {
-            boolean hasAllComponents = true;
+            boolean hasAllComponents = false;
             for (Object componentName : product.getComponentListNecessary()) {
                 boolean hasComponent = false;
                 for (Object component : componentObjectList) {
                     if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                         hasComponent = true;
+                        break;
                     }
                 }
                 if (!hasComponent) {
                     hasAllComponents = false;
+                    break;
+                } else {
+                    hasAllComponents = true;
                 }
             }
             if (hasAllComponents) {
                 int manufacturingDuration = product.getManufacturingDuration();
                 System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
-
                 // Utilisation de Timeline pour la pause
                 timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
                     try {
                         Product newProduct = product.getClass().newInstance();
                         productObjectList.add(newProduct);
                         System.out.println(newProduct.getClass().getSimpleName() + " créé ");
-
                         // Suppression des composants utilisés
                         for (Object componentName : product.getComponentListNecessary()) {
                             Object componentToRemove = null;
                             for (Object component : componentObjectList) {
                                 if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
                                     componentToRemove = component;
+                                    break;
                                 }
                             }
                             if (componentToRemove != null) {
@@ -110,8 +113,8 @@ public class Factory {
                 }));
                 timeline.play();
             } else {
-                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
-                        ", certains composants sont manquants.");
+//                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
+//                        ", certains composants sont manquants.");
             }
         }
     }

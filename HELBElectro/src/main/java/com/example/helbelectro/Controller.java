@@ -58,7 +58,7 @@ public class Controller {
 
 
         timelineBt.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-            setButtonProduct();
+         //   setButtonProduct();
         }));
         timelineBt.setCycleCount(Animation.INDEFINITE);
         timelineBt.play();
@@ -160,6 +160,7 @@ public class Controller {
             row.setVgrow(Priority.ALWAYS);
             areaProduct.getRowConstraints().add(row);
         }
+
         for (int i = 0; i < size_row; i++) {
             for (int j = 0; j < size_col; j++) {
                 Button button = new Button();
