@@ -9,13 +9,14 @@ public class ProductAlarm extends Product {
     }
 
 
-    public List<String> getComponentListNecessary() {
-        List<String> componentListName = new ArrayList<>();
-
-        componentListName.add("ComponentBattery");
-        componentListName.add("ComponentSensor");
-
-        return componentListName;
+    public List<Object> getComponentListNecessary() {
+        List<Object> componentList = new ArrayList<>();
+        for (Object component : Factory.componentObjectList) {
+            if (component instanceof ComponentBattery && component instanceof ComponentSensor) {
+                componentList.add(component);
+            }
+        }
+        return componentList;
     }
 
 }

@@ -10,10 +10,15 @@ public class ProductBattery extends Product {
 
 
 
-    public List<String> getComponentListNecessary() {
-        List<String> componentListName = new ArrayList<>();
-        componentListName.add("ComponentBattery");
-        return componentListName;
+    public List<Object> getComponentListNecessary() {
+        List<Object> componentList = new ArrayList<>();
+        for (Object component : Factory.componentObjectList) {
+            if (component instanceof ComponentBattery) {
+                componentList.add(component);
+            }
+        }
+
+        return componentList;
     }
 
 }
