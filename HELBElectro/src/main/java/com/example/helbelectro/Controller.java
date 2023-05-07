@@ -51,9 +51,9 @@ public class Controller {
 
 
     public void initialize() {
+
         initializeProductArea();
         initializeComponentArea();
-
 
         getChoiceOpti();
 
@@ -111,7 +111,7 @@ public class Controller {
                 Factory.getSortedProductListByPrice();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10), e -> {
                     Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -120,7 +120,7 @@ public class Controller {
                 Factory.getSortedProductListByScore();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10), e -> {
                     Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -129,7 +129,7 @@ public class Controller {
                 //Factory.getSortedProductListByScore();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10), e -> {
                     //Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -235,11 +235,14 @@ public class Controller {
     protected void onStartClick() {
         if (timelineComponent != null && timelineComponent.getStatus() == Animation.Status.RUNNING) {
             timelineComponent.stop();
-            Parser.getInstance().getTimelineParser().stop();
-            helb.setStyle("-fx-background-color:  #626786;");
+            Parser.getInstance().setProductionPaused(true);
+            helb.setStyle("-fx-background-color:  #3AA852;"); // green
             helb.setText("Start production of components");
+           // System.out.println(Parser.getInstance().getProductionPaused());
+
         } else {
-            helb.setStyle("-fx-background-color: #A25846;");
+            Parser.getInstance().setProductionPaused(false);
+            helb.setStyle("-fx-background-color: #A25846;"); // red
             helb.setText("Stop production of components");
             setLabelComponents();
         }

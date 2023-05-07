@@ -11,14 +11,11 @@ public class ProductMotor extends Product {
     }
 
 
-    public List<Object> getComponentListNecessary() {
-        List<Object> componentList = new ArrayList<>();
-        for (Object component : Factory.componentObjectList) {
-            if (component instanceof ComponentMotor) {
-                componentList.add(component);
-            }
-        }
-        return componentList;
+
+    public List<String> getComponentListNecessary() {
+        List<String> componentListName = new ArrayList<>();
+        componentListName.add("ComponentMotor");
+        return componentListName;
     }
 }
 

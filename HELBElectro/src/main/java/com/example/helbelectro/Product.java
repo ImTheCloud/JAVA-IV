@@ -18,9 +18,9 @@ public abstract class Product {
         this.sellingPrice = sellingPrice;
     }
 
-    public List<Object> getComponentListNecessary() {
-        List<Object> componentList = new ArrayList<>();
-        return componentList;
+    public List<String> getComponentListNecessary() {
+        List<String> componentListName = new ArrayList<>();
+        return componentListName;
     }
     public String getName() {
         return name;

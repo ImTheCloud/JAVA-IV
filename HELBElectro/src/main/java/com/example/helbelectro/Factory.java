@@ -74,6 +74,8 @@ public class Factory {
                 boolean hasComponent = false;
                 for (Object component : componentObjectList) {
                     if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
+                        System.out.println(component.getClass().getSimpleName());
+                        System.out.println(componentName.getClass().getSimpleName()+"******");
                         hasComponent = true;
                         break;
                     }
