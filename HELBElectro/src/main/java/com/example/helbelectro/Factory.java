@@ -85,6 +85,8 @@ public class Factory {
                     hasAllComponents = true;
                 }
             }
+
+
             if (hasAllComponents) {
                 int manufacturingDuration = product.getManufacturingDuration();
                 System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());

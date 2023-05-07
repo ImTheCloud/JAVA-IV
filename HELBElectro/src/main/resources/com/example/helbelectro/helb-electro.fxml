@@ -7,27 +7,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER" prefHeight="538.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #282F76; -fx-border-color: white;
--fx-border-width: 4px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.Controller">
+<HBox alignment="CENTER" prefHeight="538.0" prefWidth="776.0" spacing="20.0" style="-fx-background-color: #282F76; -fx-border-color: white; -fx-border-width: 4px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helbelectro.Controller">
 
    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="500.0" spacing="10">
       <children>
-         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="259.0" style="-fx-background-color: #626786 #626786; -fx-border-color: white; -fx-border-width: 2px;" text="HELBElectro" textAlignment="CENTER" textFill="#fffffff5">
+         <Button  fx:id="helb" onAction="#onStartClick" alignment="CENTER" contentDisplay="CENTER" prefHeight="89.0" prefWidth="327.0"
+                  style="-fx-background-color: #626786; -fx-border-color: white; -fx-border-width: 2px;"
+                  text="Start production of components" textAlignment="CENTER" textFill="#fffffff5">
          <font>
-            <Font size="40.0" />
-         </font></Label>
+            <Font size="20.0" />
+         </font></Button>
          <Label alignment="CENTER" prefHeight="25.0" prefWidth="591.0" text="Product Area" textAlignment="CENTER" textFill="WHITE">
             <font>
                <Font size="20.0" />
             </font>
          </Label>
 
-         <GridPane fx:id="areaProduct"  hgap="20" style="-fx-border-color: white; -fx-border-width: 2px; -fx-background-color: #626786;" vgap="20">
+         <GridPane fx:id="areaProduct" hgap="20" style="-fx-border-color: white; -fx-border-width: 2px; -fx-background-color: #626786;" vgap="20">
             <padding>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
 
             <Label fx:id="place" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+
+
 
          </GridPane>
          <Label alignment="CENTER" prefHeight="14.0" prefWidth="532.0" text="Creation of product finish in progress..." textAlignment="CENTER" textFill="WHITE">
@@ -64,11 +67,11 @@
          </font>
       </Label>
 
-      <VBox fx:id="areaComponent"  spacing="10" style="-fx-border-color: white; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: #626786;">
+      <VBox fx:id="areaComponent" spacing="10" style="-fx-border-color: white; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: #626786;">
 
    </VBox>
 
-      <Label fx:id="progressComponent"  alignment="CENTER" prefHeight="14.0" prefWidth="216.0" text="Creation of components in progress..." textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="progressComponent" alignment="CENTER" prefHeight="14.0" prefWidth="216.0" text="Creation of components in progress..." textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="10.0" />
          </font>

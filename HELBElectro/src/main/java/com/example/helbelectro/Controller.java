@@ -24,11 +24,11 @@ import java.util.List;
 
 public class Controller {
 
-//    private Controller() {
+    //    private Controller() {
 //        // empecher la creation d'instance
 //    }
     @FXML
-    private Button bt_productFInish,sellButton,statsButton;
+    private Button bt_productFInish,sellButton,statsButton,helb;
     @FXML
     private ComboBox<String> cb_opti;
     @FXML
@@ -45,6 +45,7 @@ public class Controller {
     private final int lb_component_with = 183;
     private Timeline timeline = new Timeline();
     private Timeline timelineBt = new Timeline();
+    private Timeline timelineComponent;
 
 
 
@@ -53,12 +54,12 @@ public class Controller {
         initializeProductArea();
         initializeComponentArea();
 
-        setLabelComponents();
+
         getChoiceOpti();
 
 
         timelineBt.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-         //   setButtonProduct();
+            // setButtonProduct();
         }));
         timelineBt.setCycleCount(Animation.INDEFINITE);
         timelineBt.play();
@@ -178,7 +179,7 @@ public class Controller {
     }
 
     public void setLabelComponents() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+        timelineComponent = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             try {
                 Parser.getInstance().parseSimulationFile();
             } catch (FileNotFoundException e) {
@@ -190,8 +191,8 @@ public class Controller {
             }
             updateComponentLabels(componentList);
         }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        timelineComponent.setCycleCount(Animation.INDEFINITE);
+        timelineComponent.play();
     }
 
     private void clearComponentLabels() {
@@ -229,6 +230,21 @@ public class Controller {
         }
         return componentLabelsList.get(index - 1);
     }
+
+    @FXML
+    protected void onStartClick() {
+        if (timelineComponent != null && timelineComponent.getStatus() == Animation.Status.RUNNING) {
+            timelineComponent.stop();
+            Parser.getInstance().getTimelineParser().stop();
+            helb.setStyle("-fx-background-color:  #626786;");
+            helb.setText("Start production of components");
+        } else {
+            helb.setStyle("-fx-background-color: #A25846;");
+            helb.setText("Stop production of components");
+            setLabelComponents();
+        }
+    }
+
     @FXML
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué

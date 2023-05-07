@@ -12,6 +12,12 @@ import java.util.Scanner;
 public class Parser {
     private static Parser instance = null;
     private int timeDelay = 0;
+
+    public Timeline getTimelineParser() {
+        return timelineParser;
+    }
+
+    private   Timeline timelineParser;
     private Parser() {
         // empêcher la création d'instance
     }
@@ -41,10 +47,10 @@ public class Parser {
             // Attendre autant de temps qui est indiqué dans le fichier de simulation pour chaque composant
             Duration delay = Duration.seconds(timeDelay);
             Duration duration = Duration.seconds(timeInSeconds);
-            Timeline timeline = new Timeline(new KeyFrame(delay.add(duration), e -> {
+             timelineParser = new Timeline(new KeyFrame(delay.add(duration), e -> {
                 Factory.getInstance().createComponent(componentName, values);
             }));
-            timeline.play();
+            timelineParser.play();
             timeDelay += timeInSeconds;
         }
         scanner.close();
