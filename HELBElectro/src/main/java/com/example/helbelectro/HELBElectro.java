@@ -280,11 +280,18 @@ public class HELBElectro extends Application {
         // Crée une nouvelle fenêtre
         Stage modal = new Stage();
         modal.initModality(Modality.APPLICATION_MODAL);
+        Label type,price,ecoScore;
 
-        // Affiche les attributs du produit
-        Label type = new Label("Type de produit: " + product.getnameForScene());
-        Label price = new Label("Prix : " + product.getSellingPrice()+" euros");
-        Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
+            if( product != null){
+                // Affiche les attributs du produit
+                type = new Label("Type de produit: " + product.getnameForScene());
+                 price = new Label("Prix : " + product.getSellingPrice()+" euros");
+                 ecoScore = new Label("Eco-Score : " + product.getEcoScore());
+            }else{
+                type = new Label("Emplacement vide");
+                price = new Label("Pas de prix");
+                ecoScore = new Label("Pas de score");
+            }
 
         Button statsButton = new Button("Voir les statistiques de cet emplacement");
         statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");
@@ -293,19 +300,30 @@ public class HELBElectro extends Application {
 
         Button sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
+
         sellButton.setOnAction(e -> {
+            if( product != null){
+                // singleton
+                Ticket.getInstance().registerSale(product.getnameForScene(),product.getSellingPrice(),product.getEcoScore()); // Appelle la méthode de la classe Ticket
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Vente enregistrée");
+                alert.setHeaderText(null);
+                alert.setContentText("Le produit a été vendu !");
+                alert.showAndWait();
+                modal.close();
+                bt_productFinish.setStyle("-fx-background-color: white;");
+                bt_productFinish.setText("");
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Pas de vente");
+                alert.setHeaderText(null);
+                alert.setContentText("Impossible de vendre un produit inexistant !");
+                alert.showAndWait();
+                modal.close();
+                bt_productFinish.setStyle("-fx-background-color: white;");
+                bt_productFinish.setText("");
+            }
 
-            // singleton
-            Ticket.getInstance().registerSale(product.getnameForScene(),product.getSellingPrice(),product.getEcoScore()); // Appelle la méthode de la classe Ticket
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Vente enregistrée");
-            alert.setHeaderText(null);
-            alert.setContentText("Le produit a été vendu !");
-            alert.showAndWait();
-            modal.close();
-            bt_productFinish.setStyle("-fx-background-color: white;");
-            bt_productFinish.setText("");
         });
         // UNE VBox pour ajouter les labels
         VBox vbox = new VBox(emplacements,type, price, ecoScore, statsButton, sellButton);

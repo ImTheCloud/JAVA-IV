@@ -1,0 +1,6 @@
+
+-DESIGN PATTERN
+-Attente du temps de fabrication pour fabriquer un produit
+-Quand un produit se fabrique, il doit s'ajouter en continue dans le reste de la grid
+-
+
