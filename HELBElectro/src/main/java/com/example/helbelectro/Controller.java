@@ -77,7 +77,7 @@ public class Controller {
                 Product product = productList.get(index);
                 Button button = (Button) node;
                 button.setUserData(product);
-                button.setText(product.getName());
+                button.setText(product.getnameForP());
                 button.setStyle("-fx-background-color: " + product.getColor() + ";");
                 index++;
             }

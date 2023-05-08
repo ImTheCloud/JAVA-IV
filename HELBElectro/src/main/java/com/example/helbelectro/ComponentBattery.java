@@ -3,7 +3,7 @@ package com.example.helbelectro;
 import java.awt.*;
 
 public class ComponentBattery extends Component {
-    private String load;
+    protected String load;
 
     public ComponentBattery(String load) {
         this.load = load;

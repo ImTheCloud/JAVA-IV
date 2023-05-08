@@ -3,8 +3,8 @@ package com.example.helbelectro;
 import java.awt.*;
 
 public class ComponentSensor extends Component {
-        private String range;
-        private String color;
+        protected String range;
+        protected String color;
 
         public ComponentSensor(String range, String color) {
             this.range = range;

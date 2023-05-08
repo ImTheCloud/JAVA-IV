@@ -3,7 +3,7 @@ package com.example.helbelectro;
 import java.awt.*;
 
 public class ComponentMotor extends Component{
-        private String power;
+        protected String power;
 
         public ComponentMotor(String power) {
             this.power = power;
