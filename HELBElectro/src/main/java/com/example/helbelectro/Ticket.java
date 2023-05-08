@@ -22,7 +22,7 @@ public class Ticket {
         return instance;
     }
 
-    public void registerSale(String emplacement) {
+    public void registerSale(String typeProduct,int price,String ecoScore) {
         try {
             // objets SimpleDateFormat pour les dates
             SimpleDateFormat sdfFileName = new SimpleDateFormat("HHmmss");
@@ -36,7 +36,15 @@ public class Ticket {
             FileWriter writer = new FileWriter(fileInTicket, true);
             writer.write("------------------------------------------------\n");
             writer.write("Date: " + sdfFileContent.format(new Date()) + "\n");
-            writer.write("Vente du produit :" + emplacement + "\n");
+            writer.write("Type  produit:" + typeProduct + "\n");
+            writer.write("Prix:" + price + "\n");
+            writer.write("Eco-Score :" + ecoScore + "\n");
+
+//            writer.write("Charge :" + emplacement + "\n");
+//            writer.write("Portée :" + emplacement + "\n");
+//            writer.write("Couleur :" + emplacement + "\n");
+//            writer.write("Puissance :" + emplacement + "\n");
+
             writer.write("------------------------------------------------\n");
 
             writer.close();

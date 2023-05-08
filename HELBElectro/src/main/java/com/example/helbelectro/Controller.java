@@ -263,7 +263,7 @@ public class Controller {
 
         // Affiche les attributs du produit
         Label type = new Label("Type de produit: " + product.getnameForScene());
-        Label prix = new Label("Prix : " + product.getSellingPrice()+" euros");
+        Label price = new Label("Prix : " + product.getSellingPrice()+" euros");
         Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
 
         statsButton = new Button("Voir les statistiques de cet emplacement");
@@ -276,7 +276,7 @@ public class Controller {
         sellButton.setOnAction(e -> {
 
             // singleton
-            Ticket.getInstance().registerSale(bt_productFInish.getText()); // Appelle la méthode de la classe Ticket
+            Ticket.getInstance().registerSale(product.getnameForScene(),product.getSellingPrice(),product.getEcoScore()); // Appelle la méthode de la classe Ticket
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Vente enregistrée");
@@ -289,7 +289,7 @@ public class Controller {
         });
 
 // UNE VBox pour ajouter les labels
-        VBox vbox = new VBox(emplacements,type, prix, ecoScore, statsButton, sellButton);
+        VBox vbox = new VBox(emplacements,type, price, ecoScore, statsButton, sellButton);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
