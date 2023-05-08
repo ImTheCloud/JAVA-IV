@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
-
 import java.util.*;
 
 public class Factory {
@@ -91,34 +90,32 @@ public class Factory {
 
             if (hasAllComponents) {
                 int manufacturingDuration = product.getManufacturingDuration();
-                System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
+                //System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
                 // Utilisation de Timeline pour la pause
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
-                    try {
-                        Product newProduct = product.getClass().newInstance();
-                        productObjectList.add(newProduct);
-                        System.out.println(newProduct.getClass().getSimpleName() + " créé ");
 
-                        // supp des composants utilisés
-                        for (Object componentName : product.getComponentListNecessary()) {
-                            Object componentToRemove = null;
-                            for (Object component : componentObjectList) {
-                                if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
-                                    componentToRemove = component;
-                                    break;
-                                }
-                            }
-                            if (componentToRemove != null) {
-                                componentObjectList.remove(componentToRemove);
-                            }
+//                try {
+//                    Thread.sleep(manufacturingDuration*1000);
+                    Product newProduct = product;
+                    productObjectList.add(newProduct);
+                    System.out.println(newProduct.getClass().getSimpleName() + " créé ");
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+
+                // supp des composants utilisés
+                for (Object componentName : product.getComponentListNecessary()) {
+                    Object componentToRemove = null;
+                    for (Object component : componentObjectList) {
+                        if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
+                            componentToRemove = component;
+                            break;
                         }
-
-
-                    } catch (InstantiationException | IllegalAccessException ex) {
-                        ex.printStackTrace();
                     }
-                }));
-                timeline.play();
+                    if (componentToRemove != null) {
+                        componentObjectList.remove(componentToRemove);
+                    }
+                }
+
             } else {
 //                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
 //                        ", certains composants sont manquants.");
@@ -141,34 +138,34 @@ public class Factory {
     public static List<Product> getSortedProductListByTime() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getManufacturingDuration));
-        System.out.println("Product list sorted by time :");
-        for (Product product : productObjectListSorted) {
-            System.out.println(product.getClass().getSimpleName() +
-                    " time : " + product.getManufacturingDuration());
-        }
-        System.out.println("\n");
+//        System.out.println("Product list sorted by time :");
+//        for (Product product : productObjectListSorted) {
+//            System.out.println(product.getClass().getSimpleName() +
+//                    " time : " + product.getManufacturingDuration());
+//        }
+//        System.out.println("\n");
         return productObjectListSorted;
     }
     public static List<Product> getSortedProductListByScore() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getEcoScore));
-        System.out.println("Product list sorted by score :");
-
-        for (Product product : productObjectListSorted) {
-            System.out.println(product.getClass().getSimpleName() +
-                    ", score : " + product.getEcoScore());
-        }
+//        System.out.println("Product list sorted by score :");
+//
+//        for (Product product : productObjectListSorted) {
+//            System.out.println(product.getClass().getSimpleName() +
+//                    ", score : " + product.getEcoScore());
+//        }
         return productObjectListSorted;
     }
     public static List<Product> getSortedProductListByPrice() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
         Collections.reverse(productObjectListSorted);
-        System.out.println("Product list sorted by Price :");
-        for (Product product : productObjectListSorted) {
-            System.out.println(product.getClass().getSimpleName() +
-                    ", Price : " + product.getSellingPrice());
-        }
+//        System.out.println("Product list sorted by Price :");
+//        for (Product product : productObjectListSorted) {
+//            System.out.println(product.getClass().getSimpleName() +
+//                    ", Price : " + product.getSellingPrice());
+//        }
         return productObjectListSorted;
     }
 

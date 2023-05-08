@@ -56,15 +56,6 @@ public class Controller {
         initializeComponentArea();
 
         getChoiceOpti();
-
-
-        timelineBt.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-             setButtonProduct();
-        }));
-        timelineBt.setCycleCount(Animation.INDEFINITE);
-        timelineBt.play();
-
-
     }
 
 
@@ -78,12 +69,14 @@ public class Controller {
         }
 
         int index = 0;
-        Iterator<Node> nodeIterator = areaProduct.getChildren().iterator();
-        while (nodeIterator.hasNext() && index < productList.size()) {
-            Node node = nodeIterator.next();
+        for (Node node : areaProduct.getChildren()) {
             if (node instanceof Button) {
+                if (index >= productList.size()) {
+                    break;
+                }
                 Product product = productList.get(index);
                 Button button = (Button) node;
+                button.setUserData(product);
                 button.setText(product.getName());
                 button.setStyle("-fx-background-color: " + product.getColor() + ";");
                 index++;
@@ -91,7 +84,6 @@ public class Controller {
         }
         Factory.productObjectList.clear();
     }
-
 
 
 
@@ -104,6 +96,7 @@ public class Controller {
                 timeline.getKeyFrames().clear();
                 timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     Factory.createProduct();
+                    setButtonProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
@@ -111,8 +104,9 @@ public class Controller {
                 Factory.getSortedProductListByPrice();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     Factory.createProduct();
+                    setButtonProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
@@ -120,16 +114,18 @@ public class Controller {
                 Factory.getSortedProductListByScore();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     Factory.createProduct();
+                    setButtonProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
             } else if (selectedItem.equals("Diverse")) {
                 //Factory.getSortedProductListByScore();
+                //setButtonProduct();
                 timeline.stop();
                 timeline.getKeyFrames().clear();
-                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(10), e -> {
+                timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
                     //Factory.createProduct();
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -255,15 +251,25 @@ public class Controller {
         // Obtient l'indice de la ligne et de la colonne du bouton dans la grille
         int rowIndex = GridPane.getRowIndex(bt_productFInish);
         int columnIndex = GridPane.getColumnIndex(bt_productFInish);
+        // Obtient les attributs du produit associé au bouton
+        Label emplacements = new Label("Emplacements (" + rowIndex + ", " + columnIndex + ")");
+
+        Product product = (Product) bt_productFInish.getUserData();
+
 
         // Crée une nouvelle fenêtre
         Stage modal = new Stage();
         modal.initModality(Modality.APPLICATION_MODAL);
 
-        Label label = new Label("Emplacements (" + rowIndex + ", " + columnIndex + ")");
+        // Affiche les attributs du produit
+        Label type = new Label("Type de produit: " + product.getName());
+        Label prix = new Label("Prix : " + product.getSellingPrice()+" euros");
+        Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
 
         statsButton = new Button("Voir les statistiques de cet emplacement");
         statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");
+        statsButton.setOnAction(e -> {
+        });
 
         sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
@@ -282,13 +288,13 @@ public class Controller {
             bt_productFInish.setText("");
         });
 
-        // UNE VBox pour ajouter les boutons
-        VBox vbox = new VBox(label, statsButton, sellButton);
+// UNE VBox pour ajouter les labels
+        VBox vbox = new VBox(emplacements, prix, ecoScore, statsButton, sellButton);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
         vbox.setPadding(new Insets(20));
 
-        modal.setScene(new Scene(vbox, 400, 250));
+        modal.setScene(new Scene(vbox, 400, 350));
         modal.showAndWait();
     }
 
