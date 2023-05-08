@@ -110,19 +110,19 @@ public class HELBElectro extends Application {
         int index = 0;
         for (Node node : areaProduct.getChildren()) { // node pour parcouri la grid
             if (node instanceof Button setButton) { // on peux donner un nom au bouton deja ici
-                if (index >= Factory.productObjectList.size()) { // index out of bound si on ne verifie pas l'index
+                if (index >= Controller.productObjectList.size()) { // index out of bound si on ne verifie pas l'index
                     break;
                 }
                 // vu que les bouton change de valeur il faut bien faire en sorte
                 // que ce soit ces bouton qui change sans en crer d'autre
-                Product product = (Product) Factory.productObjectList.get(index);
+                Product product = (Product) Controller.productObjectList.get(index);
                 setButton.setUserData(product);
                 setButton.setText(product.getnameForP());
                 setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
                 index++;
             }
         }
-        Factory.productObjectList.clear(); // on vide sinon a chaque ajoute ca recommence pour tout
+        Controller.productObjectList.clear(); // on vide sinon a chaque ajoute ca recommence pour tout
     }
 
     private VBox vb_areaComponent() {
@@ -157,7 +157,7 @@ public class HELBElectro extends Application {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            List<Object> componentList = Factory.componentObjectList;
+            List<Object> componentList = Controller.componentObjectList;
             if (componentList.size() != componentLabelsList.size()) {
                 clearComponentLabels();
             }
@@ -221,33 +221,33 @@ public class HELBElectro extends Application {
             String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
             switch (selectedItem) {
                 case "Time" -> {
-                    Factory.getSortedProductListByTime();
+                    Controller.getSortedProductListByTime();
                     timelineChoiceOpti.stop();
                     timelineChoiceOpti.getKeyFrames().clear();
                     timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-                        Factory.createProduct();
+                        Controller.createProduct();
                         setButtonProduct();
                     }));
                     timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
                     timelineChoiceOpti.play();
                 }
                 case "Cost" -> {
-                    Factory.getSortedProductListByPrice();
+                    Controller.getSortedProductListByPrice();
                     timelineChoiceOpti.stop();
                     timelineChoiceOpti.getKeyFrames().clear();
                     timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-                        Factory.createProduct();
+                        Controller.createProduct();
                         setButtonProduct();
                     }));
                     timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
                     timelineChoiceOpti.play();
                 }
                 case "Score" -> {
-                    Factory.getSortedProductListByScore();
+                    Controller.getSortedProductListByScore();
                     timelineChoiceOpti.stop();
                     timelineChoiceOpti.getKeyFrames().clear();
                     timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-                        Factory.createProduct();
+                        Controller.createProduct();
                         setButtonProduct();
                     }));
                     timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
@@ -264,7 +264,7 @@ public class HELBElectro extends Application {
             }
         });
     }
-    
+
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué
         Button bt_productFinish = (Button) event.getSource();
