@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ProductSensor extends Product {
     public ProductSensor() {
-        super("B", "#4CAF50", "P2",3,10);
+        super("B", "#4CAF50", "P2",3,10,"Capteur de mouvement");
 
     }
 

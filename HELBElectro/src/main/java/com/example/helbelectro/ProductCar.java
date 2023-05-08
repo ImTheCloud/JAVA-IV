@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ProductCar extends Product {
     public ProductCar() {
-        super("B", "#A7632D", "P5",5,30);
+        super("B", "#A7632D", "P5",5,30,"Voiture télécommandée");
 
     }
 

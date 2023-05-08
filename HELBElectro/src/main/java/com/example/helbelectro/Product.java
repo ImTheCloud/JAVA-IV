@@ -6,16 +6,18 @@ import java.util.List;
 public abstract class Product {
 
     protected String name;
+    protected String nameForScene;
     protected int manufacturingDuration, sellingPrice;
     protected String ecoScore;
     protected String color;
 
-    public Product(String ecoScore, String color, String name, int manufacturingDuration, int sellingPrice) {
+    public Product(String ecoScore, String color, String name, int manufacturingDuration, int sellingPrice,String nameForScene) {
         this.ecoScore = ecoScore;
         this.color = color;
         this.name = name;
         this.manufacturingDuration = manufacturingDuration;
         this.sellingPrice = sellingPrice;
+        this.nameForScene = nameForScene;
     }
 
     public List<Object> getComponentListNecessary() {
@@ -24,6 +26,9 @@ public abstract class Product {
     }
     public String getName() {
         return name;
+    }
+    public String getnameForScene() {
+        return nameForScene;
     }
 
     public String getColor() {

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ProductAlarm extends Product {
     public ProductAlarm() {
-        super("C", "#A25846", "P4",4,20);
+        super("C", "#A25846", "P4",4,20,"Alarme de sécurité");
     }
 
 

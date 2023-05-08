@@ -262,7 +262,7 @@ public class Controller {
         modal.initModality(Modality.APPLICATION_MODAL);
 
         // Affiche les attributs du produit
-        Label type = new Label("Type de produit: " + product.getName());
+        Label type = new Label("Type de produit: " + product.getnameForScene());
         Label prix = new Label("Prix : " + product.getSellingPrice()+" euros");
         Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
 
@@ -289,9 +289,9 @@ public class Controller {
         });
 
 // UNE VBox pour ajouter les labels
-        VBox vbox = new VBox(emplacements, prix, ecoScore, statsButton, sellButton);
+        VBox vbox = new VBox(emplacements,type, prix, ecoScore, statsButton, sellButton);
         vbox.setAlignment(Pos.CENTER);
-        vbox.setSpacing(20);
+        vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
 
         modal.setScene(new Scene(vbox, 400, 350));

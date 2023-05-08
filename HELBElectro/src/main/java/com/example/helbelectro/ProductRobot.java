@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ProductRobot extends Product {
     public ProductRobot() {
-        super("B", "#BBAE2A", "P6",6,40);
+        super("B", "#BBAE2A", "P6",6,40,"Robot suiveur");
 
     }
 
