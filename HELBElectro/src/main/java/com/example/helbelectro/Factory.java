@@ -29,7 +29,7 @@ public class Factory {
 
     public Object createComponent(String componentName, String[] values) {
         // Vérifier si le nombre maximal de labels a été atteint
-        if (componentObjectList.size() >= Controller.number_lb_component) {
+        if (componentObjectList.size() >= HELBElectro.number_lb_component) {
             System.out.println("Nombre maximal de composant atteint");
             return null;
         }else{
