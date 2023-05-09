@@ -1,59 +1,51 @@
 package com.example.helbelectro;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.util.Duration;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-public class HELBElectroView extends Application {
 
+public class HELBElectroView {
+    private final Stage stage;
+    private final HBox screen;
     private final VBox areaComponent = new VBox();
     private final GridPane areaProduct = new GridPane();
     private final Timeline timelineChoiceOpti = new Timeline();
     private final ComboBox<String> optiComboBox = new ComboBox<>();
-    private Button bt_changeltNb = new Button();
     private List<Label> componentLabelsList;
     public static final int number_lb_component =8;
     private final int widthScene = 776;
     private final int heightScene = 538;
-    @Override
-    public void start(Stage stage) {
-        HBox screen = createScreen();
-        Scene scene = new Scene(screen, widthScene, heightScene);
-        stage.setTitle("HELBElectro");
 
-        bt_changeltNb =button();
-        VBox root = new VBox(bt_changeltNb, screen);
+    public HELBElectroView(Stage stage) {
+        this.stage = stage;
+        this.screen = createScreen();
+    }
+
+    public void afficher() {
+        stage.setTitle("HELBElectro");
+        VBox root = new VBox(screen);
         root.setAlignment(Pos.TOP_LEFT);
         stage.setScene(new Scene(root, widthScene, heightScene));
         stage.show();
     }
-
-    public static void main(String[] args) {
-        launch();
-    }
-    private Button button() {
-        bt_changeltNb = new Button("Letter");
-        return bt_changeltNb;
-    }
-
 
     private HBox createScreen() {
         HBox screen = new HBox();
@@ -67,6 +59,7 @@ public class HELBElectroView extends Application {
         screen.getChildren().addAll(grid, vbox);
         return screen;
     }
+
 
 
     private GridPane gd_araProduct() {
@@ -307,16 +300,16 @@ public class HELBElectroView extends Application {
         modal.initModality(Modality.APPLICATION_MODAL);
         Label type,price,ecoScore;
 
-            if( product != null){
-                // Affiche les attributs du produit
-                type = new Label("Type de produit: " + product.getnameForScene());
-                 price = new Label("Prix : " + product.getSellingPrice()+" euros");
-                 ecoScore = new Label("Eco-Score : " + product.getEcoScore());
-            }else{
-                type = new Label("Emplacement vide");
-                price = new Label("Pas de prix");
-                ecoScore = new Label("Pas de score");
-            }
+        if( product != null){
+            // Affiche les attributs du produit
+            type = new Label("Type de produit: " + product.getnameForScene());
+            price = new Label("Prix : " + product.getSellingPrice()+" euros");
+            ecoScore = new Label("Eco-Score : " + product.getEcoScore());
+        }else{
+            type = new Label("Emplacement vide");
+            price = new Label("Pas de prix");
+            ecoScore = new Label("Pas de score");
+        }
 
         Button statsButton = new Button("Voir les statistiques de cet emplacement");
         statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");

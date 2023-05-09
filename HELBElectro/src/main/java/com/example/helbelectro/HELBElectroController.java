@@ -10,14 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class HELBElectroController {
     private static HELBElectroController instance = null;
     public static List<Object> productObjectList = new ArrayList<>();
     public static List<Product> productObjectListSorted = new ArrayList<>();
     public static ObservableList<Object> componentObjectList = FXCollections.observableArrayList();
-    private static Timeline timeline = new Timeline();
+    private static final Timeline timeline = new Timeline();
 
 
     public static HELBElectroController getInstance() {
