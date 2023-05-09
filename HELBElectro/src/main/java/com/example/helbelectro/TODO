@@ -1,6 +1,28 @@
 
+General :
 -DESIGN PATTERN
+
+Grid:
+-Ajouter les numeros a la grid et pouvoir modifier en lettre
+
+Emplacement :
+-Nombre total de produit stocker pour chaque type de produits (stat)
+-Nombre total de vente pour chaque enplacement (stat)
+
+Composant :
 -Attente du temps de fabrication pour fabriquer un produit
+
+Produit :
+-Les produit doivent posseder les attribut des composants dont il sont crée
 -Quand un produit se fabrique, il doit s'ajouter en continue dans le reste de la grid
--
+-Lorsque la grid est pleine, elle doit se vider (manuellement) (bouton, deplacer produit grand entrepot)
+-Arreter la production de produit quand c'est plein, et redemarer manuelelement la production
+-Lorsque je vend un produit il doit prendre les attribut du composant
+-Lorsque je vend un produit ca doit donner l'emplacement au prochain produit en vidant la place
+
+Opti:
+-Liste selon le produit le moin présent dans la zone des produits
+
+Ticket :
+-Ajouter les attribut des composant dans le ticket
 

@@ -33,13 +33,9 @@ public class HELBElectro extends Application {
     public static final int number_lb_component =8;
     private final int widthScene = 776;
     private final int heightScene = 538;
-    private final String border_color = "white";
-    private final String GRID_BACKGROUND_COLOR = "#626786";
-    private final Color OPTI_LABEL_COLOR = Color.WHITE;
-
     @Override
     public void start(Stage stage) {
-        HBox screen = createRoot();
+        HBox screen = createScreen();
         Scene scene = new Scene(screen, widthScene, heightScene);
         stage.setTitle("HELBElectro");
         stage.setScene(scene);
@@ -49,14 +45,12 @@ public class HELBElectro extends Application {
         launch();
     }
 
-    private HBox createRoot() {
+    private HBox createScreen() {
         HBox screen = new HBox();
         screen.setAlignment(Pos.CENTER);
         screen.setPrefSize(widthScene, heightScene);
         screen.setSpacing(10.0);
-        String backgrund_color = "#282F76";
-        int border_width = 4;
-        screen.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", backgrund_color, border_color, border_width));
+        screen.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
         screen.setPadding(new Insets(20, 20, 20, 20));
         GridPane grid = gd_araProduct();
         VBox vbox = vb_areaComponent();
@@ -68,7 +62,7 @@ public class HELBElectro extends Application {
     private GridPane gd_araProduct() {
         areaProduct.setHgap(10);
         areaProduct.setVgap(10);
-        areaProduct.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-background-color: %s;", border_color, GRID_BACKGROUND_COLOR));
+        areaProduct.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-background-color: %s;", "white", "#626786"));
         areaProduct.setPadding(new Insets(20, 20, 20, 20));
         initializeProductArea();
         return areaProduct;
@@ -81,11 +75,26 @@ public class HELBElectro extends Application {
             column.setHgrow(Priority.ALWAYS); // agrandir
             areaProduct.getColumnConstraints().add(column);
         }
+
         int size_rowGrid = 4;
         for (int i = 0; i < size_rowGrid; i++) {
             RowConstraints row = new RowConstraints();
             row.setVgrow(Priority.ALWAYS);
             areaProduct.getRowConstraints().add(row);
+        }
+
+        // Ajout des numéros de colonne
+        for (int j = 0; j < size_colGrid; j++) {
+            Label label = new Label(String.valueOf(j));
+            label.setStyle("-fx-font-size: 14; -fx-font-weight: bold;  -fx-text-fill: white;");
+            areaProduct.add(label, j+1, 0);
+        }
+
+// Ajout des numéros de ligne
+        for (int i = 0; i < size_rowGrid; i++) {
+            Label label = new Label(String.valueOf(i));
+            label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(label, 0, i+1);
         }
 
         for (int i = 0; i < size_rowGrid; i++) {
@@ -101,10 +110,12 @@ public class HELBElectro extends Application {
                     // comme dans l'interface du prof
                     continue;
                 }
-                areaProduct.add(button, j, i);
+                areaProduct.add(button, j+1, i+1);
             }
         }
     }
+
+
 
     public void setButtonProduct() {
         int index = 0;
@@ -127,7 +138,7 @@ public class HELBElectro extends Application {
 
     private VBox vb_areaComponent() {
         areaComponent.setSpacing(10);
-        areaComponent.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", border_color, GRID_BACKGROUND_COLOR));
+        areaComponent.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
         HBox optiBox = createOptiBox();
         areaComponent.getChildren().addAll(optiBox, new VBox());
         initializeComponentArea();
@@ -203,10 +214,10 @@ public class HELBElectro extends Application {
 
     private HBox createOptiBox() {
         HBox optiBox = new HBox();
-        optiBox.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", border_color, "#626786"));
+        optiBox.setStyle(String.format("-fx-border-color: %s; -fx-font-weight: bold; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
         optiBox.setSpacing(10);
         Label optiLabel = new Label("Opti : ");
-        optiLabel.setTextFill(OPTI_LABEL_COLOR);
+        optiLabel.setStyle(String.format("-fx-font-weight: bold;  -fx-text-fill: white;"));
         optiComboBox.setValue("Diverse");
         ObservableList<String> optiList = FXCollections.observableArrayList("Cost", "Time", "Score", "Diverse");
         optiComboBox.setItems(optiList);
@@ -269,8 +280,8 @@ public class HELBElectro extends Application {
         // Pour savoir quel bouton a été cliqué
         Button bt_productFinish = (Button) event.getSource();
         // Obtient l'indice de la ligne et de la colonne du bouton dans la grille
-        int rowIndex = GridPane.getRowIndex(bt_productFinish);
-        int columnIndex = GridPane.getColumnIndex(bt_productFinish);
+        int rowIndex = GridPane.getRowIndex(bt_productFinish)-1;
+        int columnIndex = GridPane.getColumnIndex(bt_productFinish)-1;
         // Obtient les attributs du produit associé au bouton
         Label emplacements = new Label("Emplacements (" + rowIndex + ", " + columnIndex + ")");
 
