@@ -31,39 +31,16 @@ public class HELBElectroController {
         // Vérifier si le nombre maximal de labels a été atteint
         if (componentObjectList.size() >= HELBElectroView.number_lb_component) {
             System.out.println("Nombre maximal de composant atteint");
-        }else{
-            // Créer le composant
-            switch (componentName) {
-                case "Batterie" -> {
-                    String load = values[2];
-                    ComponentBattery battery = new ComponentBattery(load);
-                    componentObjectList.add(battery);
-                    //componentNames.add("Batterie");//C-Type-1
-                    System.out.println("Component Batterie : " + load);
-                }
-                case "Capteur" -> {
-                    String range = values[2];
-                    String color = values[3];
-                    ComponentSensor sensor = new ComponentSensor(range, color);
-                    componentObjectList.add(sensor);
-                    //componentNames.add("Capteur");
-                    System.out.println("Component Capteur : " + range + ", " + color);
-                }
-                case "Moteur" -> {
-                    String power = values[2];
-                    ComponentMotor motor = new ComponentMotor(power);
-                    componentObjectList.add(motor);
-                    // componentNames.add("Moteur");
-                    System.out.println("Component Moteur : " + power);
-                }
-            }
-
+        } else {
+            // Créer le composant en utilisant la Factory
+            Factory factory = new Factory();
+            Component component = factory.createComponent(componentName, values);
+            componentObjectList.add(component);
+            System.out.println("Component " + componentName + " créé");
         }
     }
-
-
+    
     public static void createProduct() {
-
             for (Product product : productObjectListSorted) {
                 boolean hasAllComponents = false;
                 for (Object componentName : product.getComponentListNecessary()) {
