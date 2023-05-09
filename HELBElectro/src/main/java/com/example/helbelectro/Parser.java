@@ -1,6 +1,5 @@
 package com.example.helbelectro;
 
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -48,7 +47,7 @@ public class Parser {
             Duration delay = Duration.seconds(timeDelay);
             Duration duration = Duration.seconds(timeInSeconds);
             Timeline timelineParser = new Timeline(new KeyFrame(delay.add(duration), e -> {
-                Controller.getInstance().createComponent(componentName, values);
+                HELBElectroController.getInstance().createComponent(componentName, values);
             }));
             timelineParser.play();
             timeDelay += timeInSeconds;
