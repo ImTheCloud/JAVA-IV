@@ -26,14 +26,13 @@ public class HELBElectroView {
     private final Stage stage;
     private final HBox screen;
     private  Label lb_numberCol,lb_numberRow;
-    private List<Label> listeLabelRow= new ArrayList<>();
-    private List<Label> listeLabelCol= new ArrayList<>();
+    private final List<Label> listeLabelRow= new ArrayList<>();
+    private final List<Label> listeLabelCol= new ArrayList<>();
     private Button bt_letter_number;
     private final VBox areaComponent = new VBox();
     private final GridPane areaProduct = new GridPane();
     private final Timeline timelineChoiceOpti = new Timeline();
     private final ComboBox<String> optiComboBox = new ComboBox<>();
-
     private final int size_colGrid = 3;
     private final int size_rowGrid = 4;
     private List<Label> componentLabelsList;
@@ -78,7 +77,7 @@ public class HELBElectroView {
     private void changeNumberLetter(ActionEvent actionEvent) {
         areaProduct.getChildren().removeAll(listeLabelCol);
         areaProduct.getChildren().removeAll(listeLabelRow);
-        if(bt_letter_number.getText().equals("Lettre")){
+        if(bt_letter_number.getText().equals("Letter")){
             for (int j = 0; j < size_colGrid; j++) {
                 lb_numberCol = new Label(String.valueOf((char) ('A' + j)));
                 lb_numberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
@@ -91,13 +90,12 @@ public class HELBElectroView {
                 areaProduct.add(lb_numberRow, 0, i+1);
                 listeLabelRow.add(lb_numberRow);
             }
-            bt_letter_number.setText("Nombre");
+            bt_letter_number.setText("Number");
         }else{
-            bt_letter_number.setText("Lettre");
+            bt_letter_number.setText("Letter");
             // Ajout des numéros de colonne
             inializeGridWithNumber();
         }
-
     }
 
 

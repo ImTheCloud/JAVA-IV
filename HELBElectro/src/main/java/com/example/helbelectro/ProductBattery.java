@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductBattery extends Product {
+    protected String load;
 
-    public ProductBattery() {
-        super("C", "#00BCD4", "P1",3,5,"Batterie");
+
+    public ProductBattery(String load) {
+        super("C", "#00BCD4", "P1", 3, 5, "Batterie");
+        this.load = load;
     }
 
     public List<Object> getComponentListNecessary() {

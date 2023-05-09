@@ -1,13 +1,13 @@
 package com.example.helbelectro;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductMotor extends Product {
-    public ProductMotor() {
-        super("A", "#B111BB", "P3",3,15,"Moteur éléctrique");
+    protected String power;
 
+    public ProductMotor(String power) {
+        super("A", "#B111BB", "P3",3,15,"Moteur éléctrique");
+        this.power = power;
     }
 
 

@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRobot extends Product {
-    public ProductRobot() {
+    protected String power;
+    protected String color;
+    protected String range;
+    public ProductRobot(String power,String color, String range) {
         super("B", "#BBAE2A", "P6",6,40,"Robot suiveur");
-
+        this.color = color;
+        this.range = range;
+        this.power = power;
     }
 
 

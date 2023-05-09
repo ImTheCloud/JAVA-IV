@@ -10,12 +10,6 @@ public abstract class Product {
     protected int manufacturingDuration, sellingPrice;
     protected String ecoScore;
     protected String color;
-    protected String load;
-    protected String power;
-    protected String range;
-    protected String colorComponent;
-
-
     public Product(String ecoScore, String color, String nameForP,
                    int manufacturingDuration, int sellingPrice,String nameForScene) {
         this.ecoScore = ecoScore;
@@ -24,13 +18,6 @@ public abstract class Product {
         this.manufacturingDuration = manufacturingDuration;
         this.sellingPrice = sellingPrice;
         this.nameForScene = nameForScene;
-
-        //  String load,String power, String range, String colorComponent
-//        this.load = load;
-//        this.power = power;
-//        this.range = range;
-//        this.colorComponent = colorComponent;
-
     }
 
     public List<Object> getComponentListNecessary() {

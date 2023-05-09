@@ -2,9 +2,6 @@
 General :
 -DESIGN PATTERN
 
-Grid:
--Modifier les numeros en lettres
-
 Emplacement :
 -Nombre total de produit stocker pour chaque type de produits (stat)
 -Nombre total de vente pour chaque enplacement (stat)
