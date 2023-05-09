@@ -1,18 +1,24 @@
 package com.example.helbelectro;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class HELBElectroController {
     private static HELBElectroController instance = null;
     public static List<Object> productObjectList = new ArrayList<>();
     public static List<Product> productObjectListSorted = new ArrayList<>();
     public static ObservableList<Object> componentObjectList = FXCollections.observableArrayList();
+    private static Timeline timeline = new Timeline();
+
 
     public static HELBElectroController getInstance() {
         if (instance == null) {
@@ -57,62 +63,60 @@ public class HELBElectroController {
 
 
     public static void createProduct() {
-        for (Product product : productObjectListSorted) {
-            boolean hasAllComponents = false;
-            for (Object componentName : product.getComponentListNecessary()) {
-                boolean hasComponent = false;
-                for (Object component : componentObjectList) {
-                    if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
-//                        System.out.println(component.getClass().getSimpleName());
-//                        System.out.println(componentName.getClass().getSimpleName()+"******");
-                        hasComponent = true;
-                        break;
-                    }
-                }
-                if (!hasComponent) {
-                    hasAllComponents = false;
-                    break;
-                } else {
-                    hasAllComponents = true;
-                }
-            }
 
-
-            if (hasAllComponents) {
-               // int manufacturingDuration = product.getManufacturingDuration();
-                //System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
-                // Utilisation de Timeline pour la pause
-
-//                try {
-//                    Thread.sleep(manufacturingDuration*1000);
-                productObjectList.add(product);
-                System.out.println(product.getClass().getSimpleName() + " créé ");
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-
-                // supp des composants utilisés
+            for (Product product : productObjectListSorted) {
+                boolean hasAllComponents = false;
                 for (Object componentName : product.getComponentListNecessary()) {
-                    Object componentToRemove = null;
+                    boolean hasComponent = false;
                     for (Object component : componentObjectList) {
                         if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
-                            componentToRemove = component;
+//                        System.out.println(component.getClass().getSimpleName());
+//                        System.out.println(componentName.getClass().getSimpleName()+"******");
+                            hasComponent = true;
                             break;
                         }
                     }
-                    if (componentToRemove != null) {
-                        componentObjectList.remove(componentToRemove);
+                    if (!hasComponent) {
+                        hasAllComponents = false;
+                        break;
+                    } else {
+                        hasAllComponents = true;
                     }
                 }
 
-            } else {
+                if (hasAllComponents) {
+                    int manufacturingDuration = product.getManufacturingDuration();
+                    System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
+                    // Utilisation de Timeline pour la pause
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
+                        try {
+                            Product newProduct = product.getClass().newInstance();
+                            productObjectList.add(newProduct);
+                            System.out.println(newProduct.getClass().getSimpleName() + " créé ");
+                            // Suppression des composants utilisés
+                            for (Object componentName : product.getComponentListNecessary()) {
+                                Object componentToRemove = null;
+                                for (Object component : componentObjectList) {
+                                    if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
+                                        componentToRemove = component;
+                                        break;
+                                    }
+                                }
+                                if (componentToRemove != null) {
+                                    componentObjectList.remove(componentToRemove);
+                                }
+                            }
+                        } catch (InstantiationException | IllegalAccessException ex) {
+                            ex.printStackTrace();
+                        }
+                    }));
+                    timeline.play();
+                } else {
 //                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
 //                        ", certains composants sont manquants.");
+                }
             }
         }
-    }
-
-
 
     public static void addProductList() {
         productObjectListSorted.add(new ProductBattery());

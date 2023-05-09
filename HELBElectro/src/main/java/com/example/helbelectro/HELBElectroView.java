@@ -217,7 +217,7 @@ public class HELBElectroView extends Application {
         optiBox.setSpacing(10);
         Label optiLabel = new Label("Opti : ");
         optiLabel.setStyle("-fx-font-weight: bold;  -fx-text-fill: white;");
-        optiComboBox.setValue("Diverse");
+        optiComboBox.setValue("Choice opti");
         ObservableList<String> optiList = FXCollections.observableArrayList("Cost", "Time", "Score", "Diverse");
         optiComboBox.setItems(optiList);
 

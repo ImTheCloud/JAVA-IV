@@ -9,12 +9,10 @@ Emplacement :
 -Nombre total de produit stocker pour chaque type de produits (stat)
 -Nombre total de vente pour chaque enplacement (stat)
 
-Composant :
--Attente du temps de fabrication pour fabriquer un produit
-
 Produit :
 -Les produit doivent posseder les attribut des composants dont il sont crée
 -Quand un produit se fabrique, il doit s'ajouter en continue dans le reste de la grid
+-Attente du temps de fabrication pour fabriquer un produit
 -Lorsque la grid est pleine, elle doit se vider (manuellement) (bouton, deplacer produit grand entrepot)
 -Arreter la production de produit quand c'est plein, et redemarer manuelelement la production
 -Lorsque je vend un produit il doit prendre les attribut du composant
