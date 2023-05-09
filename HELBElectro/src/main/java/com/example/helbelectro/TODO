@@ -10,7 +10,6 @@ Produit :
 -Doublons pour les produits
 -Lorsque la grid est pleine, elle doit se vider (manuellement) (bouton, deplacer produit grand entrepot)
 -Lorsque je vend un produit il doit prendre les attribut du composant
--Lorsque je vend un produit ca doit donner l'emplacement au prochain produit en vidant la place
 
 Opti:
 -Liste selon le produit le moin présent dans la zone des produits
@@ -18,5 +17,7 @@ Opti:
 Ticket :
 -Ajouter les attribut des composant dans le ticket
 
-
+Questions :
+-Retirer manuellement ca veux dire avec un bouton suprimer pour chaque produit ?
+-insteancOf dans la view ??
 

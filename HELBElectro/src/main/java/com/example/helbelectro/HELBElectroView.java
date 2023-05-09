@@ -271,7 +271,7 @@ public class HELBElectroView {
         Label optiLabel = new Label("Opti : ");
         optiLabel.setStyle("-fx-font-weight: bold;  -fx-text-fill: white;");
         optiComboBox.setValue("Choice");
-        ObservableList<String> optiList = FXCollections.observableArrayList("Choice","Cost", "Time", "Score", "Diverse");
+        ObservableList<String> optiList = FXCollections.observableArrayList("Time", "Cost", "Score", "Diverse");
         optiComboBox.setItems(optiList);
 
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
@@ -297,10 +297,7 @@ public class HELBElectroView {
                     startTimeline();
                 }
                 case "Diverse" -> stopTimeline();
-                case "Choice" -> {
-                    stopTimeline();
-                    System.out.println("Stop production produit");
-                }
+
             }
         });
     }
@@ -326,64 +323,41 @@ public class HELBElectroView {
 
 
     protected void onComponentClicked(ActionEvent event) {
-        // Pour savoir quel bouton a été cliqué
         Button bt_productFinish = (Button) event.getSource();
-        // Obtient l'indice de la ligne et de la colonne du bouton dans la grille
-        int rowIndex = GridPane.getRowIndex(bt_productFinish)-1;
-        int columnIndex = GridPane.getColumnIndex(bt_productFinish)-1;
-        // Obtient les attributs du produit associé au bouton
+        int rowIndex = GridPane.getRowIndex(bt_productFinish) - 1;
+        int columnIndex = GridPane.getColumnIndex(bt_productFinish) - 1;
         Label emplacements = new Label("Emplacements (" + rowIndex + ", " + columnIndex + ")");
-
-        Product product = (Product) bt_productFinish.getUserData();
-
-
-        // Crée une nouvelle fenêtre
         Stage modal = new Stage();
         modal.initModality(Modality.APPLICATION_MODAL);
-        Label type,price,ecoScore;
+        Product product = (Product) bt_productFinish.getUserData();
 
-        if( product != null){
-            // Affiche les attributs du produit
-            type = new Label("Type de produit: " + product.getnameForScene());
-            price = new Label("Prix : " + product.getSellingPrice()+" euros");
-            ecoScore = new Label("Eco-Score : " + product.getEcoScore());
-        }else{
-            type = new Label("Emplacement vide");
-            price = new Label("Pas de prix");
-            ecoScore = new Label("Pas de score");
+        if (product == null) {
+            showEmptyProductModal(modal, emplacements);
+        } else {
+            showProductModal(modal, product, emplacements, bt_productFinish);
         }
+    }
 
-        Button statsButton = new Button("Voir les statistiques de cet emplacement");
-        statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");
-        statsButton.setOnAction(e -> {
-        });
+    private void showEmptyProductModal(Stage modal, Label emplacements) {
+        Label statut = new Label("Statut : inoccupé");
+        VBox vbox = new VBox(emplacements, statut);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setSpacing(10);
+        vbox.setPadding(new Insets(20));
+        modal.setScene(new Scene(vbox, 400, 350));
+        modal.showAndWait();
+    }
 
-        Button sellButton = new Button("Vendre produit");
-        sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
+    private void showProductModal(Stage modal, Product product, Label emplacements, Button bt_productFinish) {
+        Label statut = new Label("Statut : occupé");
+        Label type = new Label("Type de produit: " + product.getnameForScene());
+        Label price = new Label("Prix : " + product.getSellingPrice() + " euros");
+        Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
+        Button statsButton = createStatsButton();
 
-        sellButton.setOnAction(e -> {
-            if( product != null){
-                // singleton
-                Ticket.getInstance().registerSale(product.getnameForScene(),product.getSellingPrice(),product.getEcoScore()); // Appelle la méthode de la classe Ticket
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Vente enregistrée");
-                alert.setHeaderText(null);
-                alert.setContentText("Le produit a été vendu !");
-                alert.showAndWait();
-            }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Pas de vente");
-                alert.setHeaderText(null);
-                alert.setContentText("Impossible de vendre un produit inexistant !");
-                alert.showAndWait();
-            }
-            modal.close();
-            bt_productFinish.setStyle("-fx-background-color: white;");
-            bt_productFinish.setText("");
+        Button sellButton = createSellButton(product, bt_productFinish, modal);
 
-        });
-        // UNE VBox pour ajouter les labels
-        VBox vbox = new VBox(emplacements,type, price, ecoScore, statsButton, sellButton);
+        VBox vbox = new VBox(emplacements, statut, type, price, ecoScore, statsButton, sellButton);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
@@ -391,4 +365,39 @@ public class HELBElectroView {
         modal.setScene(new Scene(vbox, 400, 350));
         modal.showAndWait();
     }
+
+    private Button createStatsButton() {
+        Button statsButton = new Button("Voir les statistiques de cet emplacement");
+        statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");
+        statsButton.setOnAction(e -> {
+
+        });
+        return statsButton;
+    }
+
+    private Button createSellButton(Product product, Button bt_productFinish, Stage modal) {
+        Button sellButton = new Button("Vendre produit");
+        sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
+
+        sellButton.setOnAction(e -> {
+            Ticket.getInstance().registerSale(product.getnameForScene(), product.getSellingPrice(),
+                    product.getEcoScore());
+            HELBElectroController.productObjectList.remove(product);
+
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Vente enregistrée");
+            alert.setHeaderText(null);
+            alert.setContentText("Le produit a été vendu !");
+            alert.showAndWait();
+            modal.close();
+
+
+            bt_productFinish.setStyle("-fx-background-color: white;");
+            bt_productFinish.setText("");
+        });
+
+        return sellButton;
+    }
+
 }
