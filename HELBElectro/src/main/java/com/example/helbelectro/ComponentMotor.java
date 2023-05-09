@@ -1,13 +1,13 @@
 package com.example.helbelectro;
 public class ComponentMotor extends Component{
-        protected String power;
+        protected static String power;
         public ComponentMotor(String power) {
             this.power = power;
         }
     public ComponentMotor() {
 
     }
-    public String getPower() {
+    public static String getPower() {
             return power;
         }
 

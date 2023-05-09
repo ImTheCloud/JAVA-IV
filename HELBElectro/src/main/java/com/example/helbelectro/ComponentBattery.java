@@ -1,9 +1,7 @@
 package com.example.helbelectro;
 
-import java.awt.*;
-
 public class ComponentBattery extends Component {
-    protected String load;
+    protected static String load;
     public ComponentBattery(String load) {
         this.load = load;
     }
@@ -15,7 +13,7 @@ public class ComponentBattery extends Component {
     public String getColor() {
         return "#00BCD4";
     }
-    public String getLoad() {
+    public static String getLoad() {
         return load;
     }
 }

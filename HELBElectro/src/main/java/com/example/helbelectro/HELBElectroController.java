@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HELBElectroController {
     private static HELBElectroController instance = null;
     public static List<Object> productObjectList = new ArrayList<>();
     public static List<Product> productObjectListSorted = new ArrayList<>();
     public static ObservableList<Object> componentObjectList = FXCollections.observableArrayList();
-    private static final Timeline timeline = new Timeline();
 
 
     public static HELBElectroController getInstance() {
@@ -40,62 +40,73 @@ public class HELBElectroController {
     }
 
     public static void createProduct() {
+        AtomicBoolean isBusy = new AtomicBoolean(false);
+        for (Product product : productObjectListSorted) {
+            boolean hasAllComponents = hasAllNecessaryComponents(product);
+            if (hasAllComponents && !isBusy.get()) {
+                int manufacturingDuration = product.getManufacturingDuration();
+                System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
+                isBusy.set(true);
 
-            for (Product product : productObjectListSorted) {
-                boolean hasAllComponents = false;
-                for (Object componentName : product.getComponentListNecessary()) {
-                    boolean hasComponent = false;
-                    for (Object component : componentObjectList) {
-                        if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
-//                        System.out.println(component.getClass().getSimpleName());
-//                        System.out.println(componentName.getClass().getSimpleName()+"******");
-                            hasComponent = true;
-                            break;
-                        }
-                    }
-                    if (!hasComponent) {
-                        hasAllComponents = false;
-                        break;
-                    } else {
-                        hasAllComponents = true;
-                    }
-                }
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
+                    Product newProduct = createNewProduct(product);
 
-                if (hasAllComponents) {
-                    int manufacturingDuration = product.getManufacturingDuration();
-                    System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
-                    // Utilisation de Timeline pour la pause
-                    timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
-                        try {
-                            Product newProduct = product.getClass().newInstance();
-                            productObjectList.add(newProduct);
-                            System.out.println(newProduct.getClass().getSimpleName() + " créé ");
-                            // Suppression des composants utilisés
-                            for (Object componentName : product.getComponentListNecessary()) {
-                                Object componentToRemove = null;
-                                for (Object component : componentObjectList) {
-                                    if (component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName())) {
-                                        componentToRemove = component;
-                                        break;
-                                    }
-                                }
-                                if (componentToRemove != null) {
-                                    componentObjectList.remove(componentToRemove);
-                                }
-                            }
-                        } catch (InstantiationException | IllegalAccessException ex) {
-                            ex.printStackTrace();
-                        }
-                    }));
-                    timeline.play();
-                } else {
-//                System.out.println("Impossible de créer le produit " + product.getClass().getSimpleName() +
-//                        ", certains composants sont manquants.");
-                }
+                    if (newProduct != null) {
+                        productObjectList.add(newProduct);
+                        System.out.println(newProduct.getClass().getSimpleName() + " créé ");
+                    }
+
+                    isBusy.set(false);
+                }));
+
+                timeline.play(); // lancer la timeline pour attendre la durée de fabrication du produit
+
+                removeUsedComponents(product);
+
+                break; // arrêter la boucle pour ne fabriquer qu'un seul produit à la fois
             }
         }
+    }
 
-    public static void addProductList() {
+    private static boolean hasAllNecessaryComponents(Product product) {
+        for (Object componentName : product.getComponentListNecessary()) {
+            boolean hasComponent = componentObjectList.stream()
+                    .anyMatch(component -> component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName()));
+            if (!hasComponent) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static Product createNewProduct(Product product) {
+        if (product instanceof ProductSensor) {
+            return new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
+        } else if (product instanceof ProductBattery) {
+            return new ProductBattery(ComponentBattery.getLoad());
+        } else if (product instanceof ProductMotor) {
+            return new ProductMotor(ComponentMotor.getPower());
+        } else if (product instanceof ProductDrone) {
+            return new ProductDrone(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange(), ComponentBattery.getLoad());
+        } else if (product instanceof ProductCar) {
+            return new ProductCar(ComponentMotor.getPower(), ComponentBattery.getLoad());
+        } else if (product instanceof ProductAlarm) {
+            return new ProductAlarm(ComponentBattery.getLoad(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
+        } else if (product instanceof ProductRobot) {
+            return new ProductRobot(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
+        } else {
+            return null;
+        }
+    }
+
+    private static void removeUsedComponents(Product product) {
+        for (Object componentName : product.getComponentListNecessary()) {
+            componentObjectList.removeIf(component -> component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName()));
+        }
+    }
+
+
+        public static void addProductList() {
         productObjectListSorted.add(new ProductBattery(""));
         productObjectListSorted.add(new ProductSensor("",""));
         productObjectListSorted.add(new ProductMotor(""));
