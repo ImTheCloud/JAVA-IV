@@ -160,9 +160,6 @@ public class HELBElectroView {
             listeLabelRow.add(lb_numberRow);
         }
     }
-
-
-
     public void setButtonProduct() {
         int index = 0;
         for (Node node : areaProduct.getChildren()) { // node pour parcouri la grid
@@ -179,7 +176,6 @@ public class HELBElectroView {
                 index++;
             }
         }
-        HELBElectroController.productObjectList.clear(); // on vide sinon a chaque ajoute ca recommence pour tout
     }
 
     private VBox vb_areaComponent() {
@@ -264,8 +260,8 @@ public class HELBElectroView {
         optiBox.setSpacing(10);
         Label optiLabel = new Label("Opti : ");
         optiLabel.setStyle("-fx-font-weight: bold;  -fx-text-fill: white;");
-        optiComboBox.setValue("Pause");
-        ObservableList<String> optiList = FXCollections.observableArrayList("Pause","Cost", "Time", "Score", "Diverse");
+        optiComboBox.setValue("Choice");
+        ObservableList<String> optiList = FXCollections.observableArrayList("Choice","Cost", "Time", "Score", "Diverse");
         optiComboBox.setItems(optiList);
 
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
@@ -276,55 +272,48 @@ public class HELBElectroView {
     public void getChoiceOpti() {
         optiComboBox.setOnAction(event -> {
             String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
+
             switch (selectedItem) {
                 case "Time" -> {
                     HELBElectroController.getSortedProductListByTime();
-                    timelineChoiceOpti.stop();
-                    timelineChoiceOpti.getKeyFrames().clear();
-                    timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-                        HELBElectroController.createProduct();
-                        setButtonProduct();
-                    }));
-                    timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
-                    timelineChoiceOpti.play();
+                    startAnimation();
                 }
                 case "Cost" -> {
                     HELBElectroController.getSortedProductListByPrice();
-                    timelineChoiceOpti.stop();
-                    timelineChoiceOpti.getKeyFrames().clear();
-                    timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-                        HELBElectroController.createProduct();
-                        setButtonProduct();
-                    }));
-                    timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
-                    timelineChoiceOpti.play();
+                    startAnimation();
                 }
                 case "Score" -> {
                     HELBElectroController.getSortedProductListByScore();
-                    timelineChoiceOpti.stop();
-                    timelineChoiceOpti.getKeyFrames().clear();
-                    timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-                        HELBElectroController.createProduct();
-                        setButtonProduct();
-                    }));
-                    timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
-                    timelineChoiceOpti.play();
+                    startAnimation();
                 }
-                case "Diverse" -> {
-                    timelineChoiceOpti.stop();
-                    timelineChoiceOpti.getKeyFrames().clear();
-                    timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-                    }));
-                    timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
-                    timelineChoiceOpti.play();
-                }
-                case "Pause" -> {
-                    timelineChoiceOpti.stop();
+                case "Diverse" -> stopAnimation();
+                case "Choice" -> {
+                    stopAnimation();
                     System.out.println("Stop production produit");
                 }
             }
         });
     }
+
+    private void startAnimation() {
+        timelineChoiceOpti.stop();
+        timelineChoiceOpti.getKeyFrames().clear();
+        timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+            HELBElectroController.createProduct();
+            setButtonProduct();
+        }));
+        timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
+        timelineChoiceOpti.play();
+    }
+
+    private void stopAnimation() {
+        timelineChoiceOpti.stop();
+        timelineChoiceOpti.getKeyFrames().clear();
+        timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {}));
+        timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
+        timelineChoiceOpti.play();
+    }
+
 
     protected void onComponentClicked(ActionEvent event) {
         // Pour savoir quel bouton a été cliqué
