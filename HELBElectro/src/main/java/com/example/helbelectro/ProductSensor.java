@@ -11,7 +11,6 @@ import java.util.List;
             this.color = color;
             this.range = range;
         }
-
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         componentList.add(new ComponentSensor());

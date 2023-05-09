@@ -1,18 +1,12 @@
 package com.example.helbelectro;
-
-import java.awt.*;
-
 public class ComponentMotor extends Component{
         protected String power;
-
         public ComponentMotor(String power) {
             this.power = power;
         }
-
     public ComponentMotor() {
 
     }
-
     public String getPower() {
             return power;
         }

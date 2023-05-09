@@ -96,43 +96,36 @@ public class HELBElectroController {
         }
 
     public static void addProductList() {
-//        productObjectListSorted.add(new ProductBattery());
-//        productObjectListSorted.add(new ProductSensor());
-//        productObjectListSorted.add(new ProductMotor());
-//        productObjectListSorted.add(new ProductCar());
-//        productObjectListSorted.add(new ProductAlarm());
-//        productObjectListSorted.add(new ProductDrone());
-//        productObjectListSorted.add(new ProductRobot());
+        productObjectListSorted.add(new ProductBattery(""));
+        productObjectListSorted.add(new ProductSensor("",""));
+        productObjectListSorted.add(new ProductMotor(""));
+        productObjectListSorted.add(new ProductCar("",""));
+        productObjectListSorted.add(new ProductAlarm("","",""));
+        productObjectListSorted.add(new ProductDrone("","","",""));
+        productObjectListSorted.add(new ProductRobot("","",""));
     }
     public static void getSortedProductListByTime() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getManufacturingDuration));
-        System.out.println("Product list sorted by time :");
-        for (Product product : productObjectListSorted) {
-            System.out.println(product.getClass().getSimpleName() +
-                    " time : " + product.getManufacturingDuration());
-        }
-        System.out.println("\n");
     }
     public static void getSortedProductListByScore() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getEcoScore));
-        System.out.println("Product list sorted by score :");
-
-        for (Product product : productObjectListSorted) {
-            System.out.println(product.getClass().getSimpleName() +
-                    ", score : " + product.getEcoScore());
-        }
+//        System.out.println("Product list sorted by score :");
+//        for (Product product : productObjectListSorted) {
+//            System.out.println(product.getClass().getSimpleName() +
+//                    ", score : " + product.getEcoScore());
+//        }
     }
     public static void getSortedProductListByPrice() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
         Collections.reverse(productObjectListSorted);
-        System.out.println("Product list sorted by Price :");
-        for (Product product : productObjectListSorted) {
-            System.out.println(product.getClass().getSimpleName() +
-                    ", Price : " + product.getSellingPrice());
-        }
+//        System.out.println("Product list sorted by Price :");
+//        for (Product product : productObjectListSorted) {
+//            System.out.println(product.getClass().getSimpleName() +
+//                    ", Price : " + product.getSellingPrice());
+//        }
     }
 
 }

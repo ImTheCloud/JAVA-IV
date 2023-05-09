@@ -13,8 +13,6 @@ public class ProductRobot extends Product {
         this.range = range;
         this.power = power;
     }
-
-
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         componentList.add(new ComponentSensor());
