@@ -14,7 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
@@ -217,7 +216,7 @@ public class HELBElectro extends Application {
         optiBox.setStyle(String.format("-fx-border-color: %s; -fx-font-weight: bold; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
         optiBox.setSpacing(10);
         Label optiLabel = new Label("Opti : ");
-        optiLabel.setStyle(String.format("-fx-font-weight: bold;  -fx-text-fill: white;"));
+        optiLabel.setStyle("-fx-font-weight: bold;  -fx-text-fill: white;");
         optiComboBox.setValue("Diverse");
         ObservableList<String> optiList = FXCollections.observableArrayList("Cost", "Time", "Score", "Diverse");
         optiComboBox.setItems(optiList);
@@ -321,19 +320,16 @@ public class HELBElectro extends Application {
                 alert.setHeaderText(null);
                 alert.setContentText("Le produit a été vendu !");
                 alert.showAndWait();
-                modal.close();
-                bt_productFinish.setStyle("-fx-background-color: white;");
-                bt_productFinish.setText("");
             }else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Pas de vente");
                 alert.setHeaderText(null);
                 alert.setContentText("Impossible de vendre un produit inexistant !");
                 alert.showAndWait();
-                modal.close();
-                bt_productFinish.setStyle("-fx-background-color: white;");
-                bt_productFinish.setText("");
             }
+            modal.close();
+            bt_productFinish.setStyle("-fx-background-color: white;");
+            bt_productFinish.setText("");
 
         });
         // UNE VBox pour ajouter les labels
