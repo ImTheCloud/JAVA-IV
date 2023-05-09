@@ -39,7 +39,7 @@ public class HELBElectroController {
             System.out.println("Component " + componentName + " créé");
         }
     }
-    
+
     public static void createProduct() {
             for (Product product : productObjectListSorted) {
                 boolean hasAllComponents = false;

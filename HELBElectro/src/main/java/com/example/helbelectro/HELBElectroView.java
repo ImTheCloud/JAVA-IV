@@ -217,8 +217,8 @@ public class HELBElectroView extends Application {
         optiBox.setSpacing(10);
         Label optiLabel = new Label("Opti : ");
         optiLabel.setStyle("-fx-font-weight: bold;  -fx-text-fill: white;");
-        optiComboBox.setValue("Choice opti");
-        ObservableList<String> optiList = FXCollections.observableArrayList("Cost", "Time", "Score", "Diverse");
+        optiComboBox.setValue("Pause");
+        ObservableList<String> optiList = FXCollections.observableArrayList("Pause","Cost", "Time", "Score", "Diverse");
         optiComboBox.setItems(optiList);
 
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
@@ -270,6 +270,10 @@ public class HELBElectroView extends Application {
                     }));
                     timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
                     timelineChoiceOpti.play();
+                }
+                case "Pause" -> {
+                    timelineChoiceOpti.stop();
+                    System.out.println("Stop production produit");
                 }
             }
         });

@@ -25,7 +25,8 @@ public class Factory {
                 String power = values[2];
                 return new ComponentMotor(power);
             default:
-                throw new IllegalArgumentException("Composant non reconnu : " + componentName);
+                System.out.println("Composant non reconnu : " + componentName);
         }
+        return null;
     }
 }
