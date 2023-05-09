@@ -28,6 +28,7 @@ public class HELBElectroView extends Application {
     private final GridPane areaProduct = new GridPane();
     private final Timeline timelineChoiceOpti = new Timeline();
     private final ComboBox<String> optiComboBox = new ComboBox<>();
+    private Button bt_changeltNb = new Button();
     private List<Label> componentLabelsList;
     public static final int number_lb_component =8;
     private final int widthScene = 776;
@@ -37,12 +38,22 @@ public class HELBElectroView extends Application {
         HBox screen = createScreen();
         Scene scene = new Scene(screen, widthScene, heightScene);
         stage.setTitle("HELBElectro");
-        stage.setScene(scene);
+
+        bt_changeltNb =button();
+        VBox root = new VBox(bt_changeltNb, screen);
+        root.setAlignment(Pos.TOP_LEFT);
+        stage.setScene(new Scene(root, widthScene, heightScene));
         stage.show();
     }
+
     public static void main(String[] args) {
         launch();
     }
+    private Button button() {
+        bt_changeltNb = new Button("Letter");
+        return bt_changeltNb;
+    }
+
 
     private HBox createScreen() {
         HBox screen = new HBox();
@@ -54,9 +65,9 @@ public class HELBElectroView extends Application {
         GridPane grid = gd_araProduct();
         VBox vbox = vb_areaComponent();
         screen.getChildren().addAll(grid, vbox);
-
         return screen;
     }
+
 
     private GridPane gd_araProduct() {
         areaProduct.setHgap(10);
