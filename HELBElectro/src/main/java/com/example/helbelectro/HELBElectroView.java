@@ -25,10 +25,14 @@ import java.util.List;
 public class HELBElectroView {
     private final Stage stage;
     private final HBox screen;
+    private  Label lb_numberCol,lb_numberRow;
     private final VBox areaComponent = new VBox();
     private final GridPane areaProduct = new GridPane();
     private final Timeline timelineChoiceOpti = new Timeline();
     private final ComboBox<String> optiComboBox = new ComboBox<>();
+
+    private final int size_colGrid = 3;
+    private final int size_rowGrid = 4;
     private List<Label> componentLabelsList;
     public static final int number_lb_component =8;
     private final int widthScene = 776;
@@ -55,11 +59,45 @@ public class HELBElectroView {
         screen.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
         screen.setPadding(new Insets(20, 20, 20, 20));
         GridPane grid = gd_araProduct();
-        VBox vbox = vb_areaComponent();
-        screen.getChildren().addAll(grid, vbox);
+
+        Button button = new Button("Letter");
+        button.setPrefWidth(150);
+        button.setOnAction(this::changeNumberLetter);
+        button.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));
+        VBox vboxComponent = vb_areaComponent();
+
+        VBox vboxGrid = new VBox();
+        vboxGrid.getChildren().addAll(button,grid);
+        screen.getChildren().addAll(vboxGrid, vboxComponent);
         return screen;
     }
 
+    private void changeNumberLetter(ActionEvent actionEvent) {
+        // Tableau contenant les lettres de l'alphabet
+        String[] letters = new String[size_colGrid + size_rowGrid];
+        for (int i = 0; i < size_colGrid + size_rowGrid; i++) {
+            if (i < size_colGrid) {
+                letters[i] = String.valueOf((char)('A' + i));
+            } else {
+                letters[i] = String.valueOf((char)('A' + (i % size_colGrid))) + (i / size_colGrid);
+            }
+        }
+
+        // Modification des numéros de colonne en lettres
+        for (int j = 0; j < size_colGrid; j++) {
+            lb_numberCol = new Label(letters[j]);
+            lb_numberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(lb_numberCol, j+1, 0);
+        }
+
+        // Modification des numéros de ligne en lettres
+        for (int i = 0; i < size_rowGrid; i++) {
+            lb_numberRow
+            lb_numberRow = new Label(letters[size_colGrid + i]);
+            lb_numberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(lb_numberRow, 0, i+1);
+        }
+    }
 
 
     private GridPane gd_araProduct() {
@@ -88,16 +126,16 @@ public class HELBElectroView {
 
         // Ajout des numéros de colonne
         for (int j = 0; j < size_colGrid; j++) {
-            Label label = new Label(String.valueOf(j));
-            label.setStyle("-fx-font-size: 14; -fx-font-weight: bold;  -fx-text-fill: white;");
-            areaProduct.add(label, j+1, 0);
+            lb_numberCol = new Label(String.valueOf(j));
+            lb_numberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold;  -fx-text-fill: white;");
+            areaProduct.add(lb_numberCol, j+1, 0);
         }
 
 // Ajout des numéros de ligne
         for (int i = 0; i < size_rowGrid; i++) {
-            Label label = new Label(String.valueOf(i));
-            label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-            areaProduct.add(label, 0, i+1);
+            lb_numberRow = new Label(String.valueOf(i));
+            lb_numberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(lb_numberRow, 0, i+1);
         }
 
         for (int i = 0; i < size_rowGrid; i++) {
