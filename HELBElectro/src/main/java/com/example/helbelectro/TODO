@@ -7,7 +7,7 @@ Emplacement :
 -Nombre total de vente pour chaque enplacement (stat)
 
 Produit :
--Attente du temps de fabrication pour fabriquer un produit
+-Doublons pour les produits
 -Lorsque la grid est pleine, elle doit se vider (manuellement) (bouton, deplacer produit grand entrepot)
 -Lorsque je vend un produit il doit prendre les attribut du composant
 -Lorsque je vend un produit ca doit donner l'emplacement au prochain produit en vidant la place

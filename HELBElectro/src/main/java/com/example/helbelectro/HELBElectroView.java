@@ -35,6 +35,8 @@ public class HELBElectroView {
     private final ComboBox<String> optiComboBox = new ComboBox<>();
     private final int size_colGrid = 3;
     private final int size_rowGrid = 4;
+
+    private final int numberButton = (size_colGrid*size_rowGrid)-1;
     private List<Label> componentLabelsList;
     public static final int number_lb_component =8;
     private final int widthScene = 776;
@@ -162,18 +164,26 @@ public class HELBElectroView {
     }
     public void setButtonProduct() {
         int index = 0;
+        int compteur = 0;
         for (Node node : areaProduct.getChildren()) { // node pour parcouri la grid
             if (node instanceof Button setButton) { // on peux donner un nom au bouton deja ici
                 if (index >= HELBElectroController.productObjectList.size()) { // index out of bound si on ne verifie pas l'index
                     break;
                 }
-                // vu que les bouton change de valeur il faut bien faire en sorte
-                // que ce soit ces bouton qui change sans en crer d'autre
+        // vu que les bouton change de valeur il faut bien faire en sorte
+        // que ce soit ces bouton qui change sans en crer d'autre
                 Product product = (Product) HELBElectroController.productObjectList.get(index);
                 setButton.setUserData(product);
                 setButton.setText(product.getnameForP());
                 setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
                 index++;
+                // Vérifiez si le compteur est égal à "numberButton" et appeler la méthode "stopTimeline()"
+                compteur++;
+                if (compteur == numberButton) {
+                    System.out.println("stop production");
+                    stopTimeline();
+                    break;
+                }
             }
         }
     }
@@ -276,26 +286,26 @@ public class HELBElectroView {
             switch (selectedItem) {
                 case "Time" -> {
                     HELBElectroController.getSortedProductListByTime();
-                    startAnimation();
+                    startTimeline();
                 }
                 case "Cost" -> {
                     HELBElectroController.getSortedProductListByPrice();
-                    startAnimation();
+                    startTimeline();
                 }
                 case "Score" -> {
                     HELBElectroController.getSortedProductListByScore();
-                    startAnimation();
+                    startTimeline();
                 }
-                case "Diverse" -> stopAnimation();
+                case "Diverse" -> stopTimeline();
                 case "Choice" -> {
-                    stopAnimation();
+                    stopTimeline();
                     System.out.println("Stop production produit");
                 }
             }
         });
     }
 
-    private void startAnimation() {
+    private void startTimeline() {
         timelineChoiceOpti.stop();
         timelineChoiceOpti.getKeyFrames().clear();
         timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
@@ -306,7 +316,7 @@ public class HELBElectroView {
         timelineChoiceOpti.play();
     }
 
-    private void stopAnimation() {
+    private void stopTimeline() {
         timelineChoiceOpti.stop();
         timelineChoiceOpti.getKeyFrames().clear();
         timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {}));
