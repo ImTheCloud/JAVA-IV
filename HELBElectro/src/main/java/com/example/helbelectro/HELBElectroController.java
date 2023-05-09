@@ -41,13 +41,15 @@ public class HELBElectroController {
 
     public static void createProduct() {
         AtomicBoolean isBusy = new AtomicBoolean(false);
+        if (isBusy.get()) {
+            return;
+        }
         for (Product product : productObjectListSorted) {
             boolean hasAllComponents = hasAllNecessaryComponents(product);
             if (hasAllComponents && !isBusy.get()) {
                 int manufacturingDuration = product.getManufacturingDuration();
                 System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
                 isBusy.set(true);
-
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
                     Product newProduct = createNewProduct(product);
 
@@ -67,6 +69,8 @@ public class HELBElectroController {
             }
         }
     }
+
+
 
     private static boolean hasAllNecessaryComponents(Product product) {
         for (Object componentName : product.getComponentListNecessary()) {
@@ -104,7 +108,6 @@ public class HELBElectroController {
             componentObjectList.removeIf(component -> component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName()));
         }
     }
-
 
         public static void addProductList() {
         productObjectListSorted.add(new ProductBattery(""));
