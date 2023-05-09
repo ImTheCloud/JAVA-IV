@@ -3,7 +3,7 @@ General :
 -DESIGN PATTERN
 
 Grid:
--Ajouter les numeros a la grid et pouvoir modifier en lettre
+-Modifier les numeros en lettres
 
 Emplacement :
 -Nombre total de produit stocker pour chaque type de produits (stat)
