@@ -2,6 +2,7 @@ package com.example.helbelectro;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,10 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,6 +19,7 @@ import javafx.util.Duration;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class HELBElectroView {
     private final Stage stage;
@@ -36,9 +35,9 @@ public class HELBElectroView {
     private final ComboBox<String> optiComboBox = new ComboBox<>();
     private final int size_colGrid = 3;
     private final int size_rowGrid = 4;
-
     private final int numberButton = (size_colGrid*size_rowGrid)-1;
     private List<Label> componentLabelsList;
+    private List<Button> productButtonList;
     public static final int number_lb_component =8;
     private final int widthScene = 776;
     private final int heightScene = 538;
@@ -163,26 +162,55 @@ public class HELBElectroView {
     public void setButtonProduct() {
         int index = 0;
         int compteur = 0;
-        for (Node node : areaProduct.getChildren()) { // node pour parcouri la grid
-            if (node instanceof Button setButton) { // on peux donner un nom au bouton deja ici
-                if (index >= HELBElectroController.productObjectList.size()) { // index out of bound si on ne verifie pas l'index
+        productButtonList = new ArrayList<>(); // Création de la liste de boutons
+
+        for (Node node : areaProduct.getChildren()) {
+            if (node instanceof Button setButton) {
+                if (index >= HELBElectroController.productObjectList.size()) {
                     break;
                 }
-        // vu que les bouton change de valeur il faut bien faire en sorte
-        // que ce soit ces bouton qui change sans en crer d'autre
+
                 Product product = (Product) HELBElectroController.productObjectList.get(index);
                 setButton.setUserData(product);
                 setButton.setText(product.getnameForP());
                 setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
+
+                productButtonList.add(setButton); // Ajout du bouton à la liste
+
                 index++;
-                // Vérifiez si le compteur est égal à "numberButton" et appeler la méthode "stopTimeline()"
                 compteur++;
                 if (compteur == numberButton) {
-                    System.out.println("stop production");
-                    stopTimeline();
+                    inializeAlertForAreaProductFull();
                     break;
                 }
             }
+        }
+    }
+
+
+    private void inializeAlertForAreaProductFull() {
+            System.out.println("stop production");
+            stopTimeline();
+        // runlater psq ya le thread java fx en cours
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Entrepôt des produits");
+                alert.setHeaderText(null);
+                alert.setContentText("L'entrepôt est complet, veuillez le vider !");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    HELBElectroController.productObjectList.clear();
+                    clearProductLabels();
+                    System.out.println("Entrepôt vidé !");
+                }
+            });
+    }
+
+    private void clearProductLabels() {
+        for (Button button : productButtonList) {
+            button.setStyle("-fx-background-color: #FFFFFF;");
+            button.setText("");
         }
     }
 
