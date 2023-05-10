@@ -10,21 +10,12 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HELBElectroController {
-    private static HELBElectroController instance = null;
      static List<Object> productObjectList = new ArrayList<>();
      static List<Product> productObjectListSorted = new ArrayList<>();
      static List<Object> componentObjectList = new ArrayList<>();
-
-    public static HELBElectroController getInstance() {
-        if (instance == null) {
-            instance = new HELBElectroController();
-        }
-        return instance;
-    }
-
-    public void createComponent(String componentName, String[] values) {
+    public static void createComponent(String componentName, String[] values) {
         // Vérifier si le nombre maximal de labels a été atteint
-        if (componentObjectList.size() >= HELBElectroView.number_lb_component) {
+        if (componentObjectList.size() >= HELBElectroView.numberLBComponent) {
             System.out.println("Nombre maximal de composant atteint");
         } else {
             // Créer le composant en utilisant la Factory
@@ -47,7 +38,7 @@ public class HELBElectroController {
                 System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
                 isBusy.set(true);
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
-                    Product newProduct = Factory.getInstance().createNewProduct(product);
+                    Product newProduct = Factory.createNewProduct(product);
 
                     if (newProduct != null) {
                         productObjectList.add(newProduct);

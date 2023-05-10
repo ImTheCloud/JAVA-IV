@@ -22,23 +22,25 @@ import java.util.Optional;
 public class HELBElectroView {
     private final Stage stage;
     private final HBox screen;
-    private Label lb_numberCol;
-    private Label lb_numberRow;
+    private Label lbNumberCol;
+    private Label lbNumberRow;
     private final List<Label> listeLabelRow= new ArrayList<>();
     private final List<Label> listeLabelCol= new ArrayList<>();
-    private Button bt_letter_number;
+    private Button btLetterNumber;
     private final VBox areaComponent = new VBox();
     private final GridPane areaProduct = new GridPane();
     private final Timeline timelineChoiceOpti = new Timeline();
     private final ComboBox<String> optiComboBox = new ComboBox<>();
-    private final int size_colGrid = 3;
-    private final int size_rowGrid = 4;
-    private final int numberButton = (size_colGrid*size_rowGrid)-1;
+    private final int sizeColGrid = 3;
+    private final int sizeRowGrid = 4;
+    private final int numberButton = (sizeColGrid*sizeRowGrid)-1;
     private List<Label> componentLabelsList;
     private List<Button> productButtonList;
-    public static final int number_lb_component =8;
+    static final int numberLBComponent =8;
     private final int widthScene = 776;
     private final int heightScene = 538;
+    private final String setNameButtonToLetter = "Letter";
+    private final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
 
     public HELBElectroView(Stage stage) {
         this.stage = stage;
@@ -62,14 +64,14 @@ public class HELBElectroView {
         screen.setPadding(new Insets(20, 20, 20, 20));
         GridPane grid = initGridAraProduct();
 
-        bt_letter_number = new Button("Letter");
-        bt_letter_number.setPrefWidth(150);
-        bt_letter_number.setOnAction(this::changeNumberLetter);
-        bt_letter_number.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));
+        btLetterNumber = new Button(setNameButtonToLetter);
+        btLetterNumber.setPrefWidth(150);
+        btLetterNumber.setOnAction(this::changeNumberLetter);
+        btLetterNumber.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));
         VBox vboxComponent = initVBoxAreaComponent();
 
         VBox vboxGrid = new VBox();
-        vboxGrid.getChildren().addAll(bt_letter_number,grid);
+        vboxGrid.getChildren().addAll(btLetterNumber,grid);
         screen.getChildren().addAll(vboxGrid, vboxComponent);
         return screen;
     }
@@ -77,22 +79,22 @@ public class HELBElectroView {
     private void changeNumberLetter(ActionEvent actionEvent) {
         areaProduct.getChildren().removeAll(listeLabelCol);
         areaProduct.getChildren().removeAll(listeLabelRow);
-        if(bt_letter_number.getText().equals("Letter")){
-            for (int j = 0; j < size_colGrid; j++) {
-                lb_numberCol = new Label(String.valueOf((char) ('A' + j)));
-                lb_numberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-                areaProduct.add(lb_numberCol, j+1, 0);
-                listeLabelCol.add(lb_numberCol);
+        if(btLetterNumber.getText().equals(setNameButtonToLetter)){
+            for (int j = 0; j < sizeColGrid; j++) {
+                lbNumberCol = new Label(String.valueOf((char) ('A' + j)));
+                lbNumberCol.setStyle(labelStyle);
+                areaProduct.add(lbNumberCol, j+1, 0);
+                listeLabelCol.add(lbNumberCol);
             }
-            for (int i = 0; i < size_rowGrid; i++) {
-                lb_numberRow = new Label(String.valueOf((char) ('A' + i)));
-                lb_numberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-                areaProduct.add(lb_numberRow, 0, i+1);
-                listeLabelRow.add(lb_numberRow);
+            for (int i = 0; i < sizeRowGrid; i++) {
+                lbNumberRow = new Label(String.valueOf((char) ('A' + i)));
+                lbNumberRow.setStyle(labelStyle);
+                areaProduct.add(lbNumberRow, 0, i+1);
+                listeLabelRow.add(lbNumberRow);
             }
-            bt_letter_number.setText("Number");
+            btLetterNumber.setText("Number");
         }else{
-            bt_letter_number.setText("Letter");
+            btLetterNumber.setText(setNameButtonToLetter);
             // Ajout des numéros de colonne
             inializeGridWithNumber();
         }
@@ -109,12 +111,12 @@ public class HELBElectroView {
     }
 
     public void initializeProductArea() {
-        for (int i = 0; i < size_colGrid; i++) {
+        for (int i = 0; i < sizeColGrid; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setHgrow(Priority.ALWAYS); // agrandir
             areaProduct.getColumnConstraints().add(column);
         }
-        for (int i = 0; i < size_rowGrid; i++) {
+        for (int i = 0; i < sizeRowGrid; i++) {
             RowConstraints row = new RowConstraints();
             row.setVgrow(Priority.ALWAYS);
             areaProduct.getRowConstraints().add(row);
@@ -122,15 +124,15 @@ public class HELBElectroView {
 
         inializeGridWithNumber();
 
-        for (int i = 0; i < size_rowGrid; i++) {
-            for (int j = 0; j < size_colGrid; j++) {
+        for (int i = 0; i < sizeRowGrid; i++) {
+            for (int j = 0; j < sizeColGrid; j++) {
                 Button button = new Button();
                 int btProductWith = 138;
                 int btProductHeight = 73;
                 button.setPrefSize(btProductWith, btProductHeight);
                 button.setStyle("-fx-background-color: white;");
                 button.setOnAction(DisplayProductDetail::onComponentClicked);
-                if (i == size_rowGrid -1 && j == size_colGrid -1) {
+                if (i == sizeRowGrid -1 && j == sizeColGrid -1) {
                     // derniere case de la grid pas de bouton
                     // comme dans l'interface du prof
                     continue;
@@ -143,19 +145,19 @@ public class HELBElectroView {
 
     public void inializeGridWithNumber(){
         // Ajout des numéros de colonne
-        for (int j = 0; j < size_colGrid; j++) {
-            lb_numberCol = new Label(String.valueOf(j));
-            lb_numberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-            areaProduct.add(lb_numberCol, j+1, 0);
-            listeLabelCol.add(lb_numberCol);
+        for (int j = 0; j < sizeColGrid; j++) {
+            lbNumberCol = new Label(String.valueOf(j));
+            lbNumberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(lbNumberCol, j+1, 0);
+            listeLabelCol.add(lbNumberCol);
         }
 
         // Ajout des numéros de ligne
-        for (int i = 0; i < size_rowGrid; i++) {
-            lb_numberRow = new Label(String.valueOf(i));
-            lb_numberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-            areaProduct.add(lb_numberRow, 0, i+1);
-            listeLabelRow.add(lb_numberRow);
+        for (int i = 0; i < sizeRowGrid; i++) {
+            lbNumberRow = new Label(String.valueOf(i));
+            lbNumberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(lbNumberRow, 0, i+1);
+            listeLabelRow.add(lbNumberRow);
         }
     }
     public void setButtonProduct() {
@@ -224,7 +226,7 @@ public class HELBElectroView {
 
     public void initializeComponentArea() {
         componentLabelsList = new ArrayList<>();
-        for (int i = 0; i < number_lb_component; i++) {
+        for (int i = 0; i < numberLBComponent; i++) {
             Label label = new Label();
             label.setPrefSize(183, 42);
             label.setId("component" + i);
@@ -264,8 +266,7 @@ public class HELBElectroView {
     private void updateComponentLabels(List<Object> componentList) {
         int index = 1;
         for (Object component : componentList) {
-            if (component instanceof Component) {
-                Component currentComponent = (Component) component;
+            if (component instanceof Component currentComponent) {
                 Label componentLabel = getComponentLabel(index);
                 componentLabel.setText(currentComponent.getName());
                 componentLabel.setStyle("-fx-background-color: " + currentComponent.getColor());
