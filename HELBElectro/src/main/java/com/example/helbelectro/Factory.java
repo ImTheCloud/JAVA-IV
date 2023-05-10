@@ -1,7 +1,7 @@
 package com.example.helbelectro;
 
 public class Factory {
-    private static Factory instance = null;
+    private static volatile Factory instance = null;
     Factory() {
     }
     // design pattern : singleton

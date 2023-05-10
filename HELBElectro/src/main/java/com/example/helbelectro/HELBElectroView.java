@@ -131,7 +131,7 @@ public class HELBElectroView {
                 int btProductHeight = 73;
                 button.setPrefSize(btProductWith, btProductHeight);
                 button.setStyle("-fx-background-color: white;");
-                button.setOnAction(this::onComponentClicked);
+                button.setOnAction(DisplayProductDetail::onComponentClicked);
                 if (i == size_rowGrid -1 && j == size_colGrid -1) {
                     // derniere case de la grid pas de bouton
                     // comme dans l'interface du prof
@@ -141,6 +141,7 @@ public class HELBElectroView {
             }
         }
     }
+
 
     public void inializeGridWithNumber(){
         // Ajout des numéros de colonne
@@ -340,125 +341,4 @@ public class HELBElectroView {
         timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
         timelineChoiceOpti.play();
     }
-
-
-    protected void onComponentClicked(ActionEvent event) {
-        Button bt_productFinish = (Button) event.getSource();
-        int rowIndex = GridPane.getRowIndex(bt_productFinish) - 1;
-        int columnIndex = GridPane.getColumnIndex(bt_productFinish) - 1;
-        String emplacements = "Emplacements (" + rowIndex + ", " + columnIndex + ")";
-        Stage modal = new Stage();
-        modal.initModality(Modality.APPLICATION_MODAL);
-        modal.setTitle(emplacements);
-        Product product = (Product) bt_productFinish.getUserData();
-
-        if (product == null) {
-            showEmptyProductModal(modal);
-        } else {
-            showProductModal(modal, product, bt_productFinish);
-        }
-    }
-
-    private void showEmptyProductModal(Stage modal) {
-        Label statut = new Label("Statut : inoccupé");
-        VBox vbox = new VBox(statut);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setSpacing(10);
-        vbox.setPadding(new Insets(20));
-        modal.setScene(new Scene(vbox, 400, 350));
-        modal.showAndWait();
-    }
-
-    private void showProductModal(Stage modal, Product product, Button bt_productFinish) {
-        Label statut = new Label("Statut : occupé");
-        Label type = new Label("Type de produit: " + product.getnameForScene());
-        Label price = new Label("Prix : " + product.getSellingPrice() + " euros");
-        Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
-        Button statsButton = createStatsButton();
-        Button sellButton = createSellButton(product, bt_productFinish, modal);
-
-        VBox vbox = new VBox(statsButton, statut, type, price, ecoScore);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setSpacing(10);
-        vbox.setPadding(new Insets(20));
-
-        if (product instanceof ProductSensor) {
-            addSensorLabels(vbox);
-        } else if (product instanceof ProductBattery) {
-            addBatteryLabel(vbox);
-        } else if (product instanceof ProductMotor) {
-            addMotorLabel(vbox);
-        } else if (product instanceof ProductDrone) {
-            addMotorLabel(vbox);
-            addSensorLabels(vbox);
-            addBatteryLabel(vbox);
-        } else if (product instanceof ProductCar) {
-            addMotorLabel(vbox);
-            addBatteryLabel(vbox);
-        } else if (product instanceof ProductAlarm) {
-            addBatteryLabel(vbox);
-            addSensorLabels(vbox);
-        } else if (product instanceof ProductRobot) {
-            addMotorLabel(vbox);
-            addSensorLabels(vbox);
-        }
-        vbox.getChildren().addAll( sellButton);
-
-
-        modal.setScene(new Scene(vbox, 400, 350));
-        modal.showAndWait();
-    }
-
-    private void addSensorLabels(VBox vbox) {
-        Label rangeLabel = new Label("Range: " + ComponentSensor.getRange());
-        Label colorSensorLabel = new Label("Color Sensor: " + ComponentSensor.getColorSensor());
-        vbox.getChildren().addAll(rangeLabel, colorSensorLabel);
-    }
-
-    private void addBatteryLabel(VBox vbox) {
-        Label loadLabel = new Label("Load: " + ComponentBattery.getLoad());
-        vbox.getChildren().add(loadLabel);
-    }
-
-    private void addMotorLabel(VBox vbox) {
-        Label powerLabel = new Label("Power: " + ComponentMotor.getPower());
-        vbox.getChildren().add(powerLabel);
-    }
-
-
-
-    private Button createStatsButton() {
-        Button statsButton = new Button("Voir les statistiques de cet emplacement");
-        statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");
-        statsButton.setOnAction(e -> {
-
-        });
-        return statsButton;
-    }
-
-    private Button createSellButton(Product product, Button bt_productFinish, Stage modal) {
-        Button sellButton = new Button("Vendre produit");
-        sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
-
-        sellButton.setOnAction(e -> {
-            Ticket.registerSale(product.getnameForScene(), product.getSellingPrice(),
-                    product.getEcoScore());
-            HELBElectroController.productObjectList.remove(product);
-
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Vente enregistrée");
-            alert.setHeaderText(null);
-            alert.setContentText("Le produit a été vendu !");
-            alert.showAndWait();
-            modal.close();
-
-
-            bt_productFinish.setStyle("-fx-background-color: white;");
-            bt_productFinish.setText("");
-        });
-
-        return sellButton;
-    }
-
 }
