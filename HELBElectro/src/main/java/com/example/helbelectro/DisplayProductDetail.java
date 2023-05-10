@@ -13,6 +13,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class DisplayProductDetail {
+    private static int sellCount = 0;
+    private static int statNumberBattery = 0;
+    private static int statNumberSensor = 0;
+    private static int statNumberMotor = 0;
+    private static int statNumberAlarm = 0;
+    private static int statNumberCar = 0;
+    private static int statNumberRobot = 0;
+    private static int statNumberDrone = 0;
 
     public static void onComponentClicked(ActionEvent event) {
         Button bt_productFinish = (Button) event.getSource();
@@ -55,22 +63,29 @@ public class DisplayProductDetail {
         vbox.setPadding(new Insets(20));
 
         if (product instanceof ProductSensor) {
+            statNumberSensor++;
             addSensorLabels(vbox);
         } else if (product instanceof ProductBattery) {
+            statNumberBattery++;
             addBatteryLabel(vbox);
         } else if (product instanceof ProductMotor) {
+            statNumberMotor++;
             addMotorLabel(vbox);
         } else if (product instanceof ProductDrone) {
+            statNumberDrone++;
             addMotorLabel(vbox);
             addSensorLabels(vbox);
             addBatteryLabel(vbox);
         } else if (product instanceof ProductCar) {
+            statNumberCar++;
             addMotorLabel(vbox);
             addBatteryLabel(vbox);
         } else if (product instanceof ProductAlarm) {
+            statNumberAlarm++;
             addBatteryLabel(vbox);
             addSensorLabels(vbox);
         } else if (product instanceof ProductRobot) {
+            statNumberRobot++;
             addMotorLabel(vbox);
             addSensorLabels(vbox);
         }
@@ -97,27 +112,62 @@ public class DisplayProductDetail {
         vbox.getChildren().add(powerLabel);
     }
 
-
-
     private static Button createStatsButton() {
         Button statsButton = new Button("Voir les statistiques de cet emplacement");
-        statsButton.setStyle("-fx-background-color:  #3f7ad9; -fx-text-fill: white;");
-        statsButton.setOnAction(e -> {
+        statsButton.setStyle("-fx-background-color: #3f7ad9; -fx-text-fill: white;");
 
+        statsButton.setOnAction(e -> {
+            int totalSellCount = sellCount;
+            int totalProductCount = statNumberSensor + statNumberBattery + statNumberMotor + statNumberDrone
+                    + statNumberCar + statNumberAlarm + statNumberRobot;
+
+            String contentText = "Nombre total de vente dans cet emplacement : " + totalSellCount + "\n";
+            contentText += "Nombre total de produits : " + totalProductCount + "\n";
+
+            if (statNumberSensor > 0) {
+                contentText += "Nombre de produits Sensor : " + statNumberSensor + "\n";
+            }
+            if (statNumberBattery > 0) {
+                contentText += "Nombre de produits Battery : " + statNumberBattery + "\n";
+            }
+            if (statNumberMotor > 0) {
+                contentText += "Nombre de produits Motor : " + statNumberMotor + "\n";
+            }
+            if (statNumberDrone > 0) {
+                contentText += "Nombre de produits Drone : " + statNumberDrone + "\n";
+            }
+            if (statNumberCar > 0) {
+                contentText += "Nombre de produits Car : " + statNumberCar + "\n";
+            }
+            if (statNumberAlarm > 0) {
+                contentText += "Nombre de produits Alarm : " + statNumberAlarm + "\n";
+            }
+            if (statNumberRobot > 0) {
+                contentText += "Nombre de produits Robot : " + statNumberRobot + "\n";
+            }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Statistiques de l'emplacement");
+            alert.setHeaderText(null);
+            alert.setContentText(contentText);
+            alert.showAndWait();
         });
+
         return statsButton;
     }
+
+
 
     private static Button createSellButton(Product product, Button bt_productFinish, Stage modal) {
         Button sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
 
+
         sellButton.setOnAction(e -> {
-            Ticket.registerSale(product, product.getSellingPrice(),
-                    product.getEcoScore());
+            Ticket.registerSale(product, product.getSellingPrice(), product.getEcoScore());
             HELBElectroController.productObjectList.remove(product);
 
-
+            sellCount++;
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Vente enregistrée");
             alert.setHeaderText(null);
@@ -125,11 +175,11 @@ public class DisplayProductDetail {
             alert.showAndWait();
             modal.close();
 
-
             bt_productFinish.setStyle("-fx-background-color: white;");
             bt_productFinish.setText("");
         });
 
         return sellButton;
     }
+
 }
