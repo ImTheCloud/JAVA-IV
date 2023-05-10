@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCar extends Product {
-    protected String load;
-    protected String power;
+    private String load;
+    private String power;
     public ProductCar(String power,String load) {
         super("B", "#A7632D", "P5",5,30,"Voiture télécommandée");
         this.load = load;

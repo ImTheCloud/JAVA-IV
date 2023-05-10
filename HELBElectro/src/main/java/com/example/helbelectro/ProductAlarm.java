@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAlarm extends Product {
-    protected String load;
-    protected String colorComponent;
-    protected String range;
+    private String load;
+    private String colorComponent;
+    private String range;
 
     public ProductAlarm(String load,String colorComponent, String range) {
         super("C", "#A25846", "P4",4,20,"Alarme de sécurité");

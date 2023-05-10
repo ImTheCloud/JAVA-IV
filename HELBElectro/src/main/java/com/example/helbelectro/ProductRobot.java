@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRobot extends Product {
-    protected String power;
-    protected String colorComponent;
-    protected String range;
+    private String power;
+    private String colorComponent;
+    private String range;
     public ProductRobot(String power,String colorComponent, String range) {
         super("B", "#BBAE2A", "P6",6,40,"Robot suiveur");
         this.colorComponent = colorComponent;

@@ -1,0 +1,38 @@
+
+a	java:S112Ù"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a
+java:S1192@"FDefine a constant instead of duplicating this literal "white" 6 times.(šçÿ‰øÿÿÿÿ
+y
+java:S1192†"]Define a constant instead of duplicating this literal "-fx-background-color: white;" 3 times.(§Ğéõşÿÿÿÿ
+^
+java:S1192l"HDefine a constant instead of duplicating this literal "#626786" 3 times.(¿­ë¿
+œ
+java:S1192V"€Define a constant instead of duplicating this literal "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" 4 times.(¯Œä¨ùÿÿÿÿ
+b
+java:S1192D"GDefine a constant instead of duplicating this literal "Letter" 3 times.(á†Øáùÿÿÿÿ
+t	java:S135¦"YReduce the total number of break and continue statements in this loop to use at most one.(É‚—€üÿÿÿÿ
+l	java:S117¾"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óîıÿÿÿÿ
+l	java:S117×"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢ôüûÿÿÿÿÿ
+l	java:S117ò"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê÷ïãÿÿÿÿÿ
+t	java:S115*"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(û‡¯œşÿÿÿÿ
+l	java:S116"WRename this field "lb_numberCol" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô‹”ô
+q	java:S116"WRename this field "lb_numberRow" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÇÂ´ûÿÿÿÿ
+u	java:S116 "[Rename this field "bt_letter_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô§ƒ‘ÿÿÿÿÿ
+l	java:S116%"WRename this field "size_colGrid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞšÌë
+l	java:S116&"WRename this field "size_rowGrid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é»ò¸
+7
+java:S1170%"!Make this final field static too.(ŞšÌë
+7
+java:S1170&"!Make this final field static too.(é»ò¸
+<
+java:S1170("!Make this final field static too.(óÇ­ şÿÿÿÿ
+<
+java:S1170+"!Make this final field static too.(™”ıÿÿÿÿ
+7
+java:S1170,"!Make this final field static too.(¸ŒéÔ
+U
+java:S1117<":Rename "screen" which hides the field declared at line 27.(öÜûïıÿÿÿÿ
+O	java:S106µ"9Replace this use of System.out or System.err by a logger.(³·±
+j
+java:S6201ğ"SReplace this instanceof check and cast with 'instanceof Component currentComponent'(¨òÎĞ
+8	java:S131’""Add a default case to this switch.(¢¾§

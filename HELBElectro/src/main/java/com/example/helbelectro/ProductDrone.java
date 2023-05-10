@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDrone extends Product {
-    protected String load;
-    protected String power;
-    protected String colorComponent;
-    protected String range;
+    private String load;
+    private String power;
+    private String colorComponent;
+    private String range;
     List<Object> componentList;
     public ProductDrone(String power,String colorComponent, String range,String load) {
         super("E", "#767676", "P7",12,60,"Drone de surveillance");
