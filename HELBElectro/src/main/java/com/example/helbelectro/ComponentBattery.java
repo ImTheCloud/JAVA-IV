@@ -1,11 +1,13 @@
 package com.example.helbelectro;
 
 public class ComponentBattery extends Component {
+    // attribut neccesaire a la creation du composant :
     protected static String load;
     public ComponentBattery(String load) {
         ComponentBattery.load = load;
     }
     public ComponentBattery() {
+        // constructeur vide car besoin pour la liste des composant necesaire a la cretion d'un produit
     }
     public String getName() {
         return "C-Type-1";
