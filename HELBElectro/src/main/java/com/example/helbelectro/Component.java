@@ -1,7 +1,12 @@
 package com.example.helbelectro;
 
-public interface Component {
-    String getName();
-    String getColor();
+public abstract class Component {
+    String getName() {
+        return null;
+    }
+
+    String getColor() {
+        return null;
+    }
 
 }

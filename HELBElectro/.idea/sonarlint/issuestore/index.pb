@@ -15,13 +15,9 @@ g
 7src/main/java/com/example/helbelectro/ProductAlarm.java,1\0\107b04939afcb9fb880fcc13178afb9f8c547580
 6
 run.sh,3\2\324fcb49f1cf313ebdd7cbda6a71b73727ddd94d
-d
-4src/main/java/com/example/helbelectro/Component.java,c\8\c8d1d03bc2f2f11f6010c58897bab542445728ea
 a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
 o
 ?src/main/java/com/example/helbelectro/DisplayProductDetail.java,7\4\747138e665b0ce1a50c8e6c56cc756b462e9c242
-k
-;src/main/java/com/example/helbelectro/ComponentBattery.java,9\c\9ca09a898042933812bb8b09c70fbf099f5ecb53
 b
 2src/main/java/com/example/helbelectro/Product.java,8\0\801dd03f314f006461791d338bc95f5bfea39aea
