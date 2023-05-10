@@ -6,16 +6,18 @@ import java.util.List;
 public class ProductDrone extends Product {
     protected String load;
     protected String power;
-    protected String color;
+    protected String colorComponent;
     protected String range;
     List<Object> componentList;
-    public ProductDrone(String power,String color, String range,String load) {
+    public ProductDrone(String power,String colorComponent, String range,String load) {
         super("E", "#767676", "P7",12,60,"Drone de surveillance");
         this.load = load;
-        this.color = color;
+        this.colorComponent = colorComponent;
         this.range = range;
         this.power = power;
     }
+
+    @Override
     public List<Object> getComponentListNecessary() {
      componentList = new ArrayList<>();
         componentList.add(new ComponentBattery());

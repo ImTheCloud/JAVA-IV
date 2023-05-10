@@ -1,9 +1,9 @@
 package com.example.helbelectro;
 
-public class ComponentBattery extends Component {
+public class ComponentBattery implements Component {
     protected static String load;
     public ComponentBattery(String load) {
-        this.load = load;
+        ComponentBattery.load = load;
     }
     public ComponentBattery() {
     }

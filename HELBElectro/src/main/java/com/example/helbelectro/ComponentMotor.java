@@ -1,8 +1,8 @@
 package com.example.helbelectro;
-public class ComponentMotor extends Component{
+public class ComponentMotor implements Component{
         protected static String power;
         public ComponentMotor(String power) {
-            this.power = power;
+            ComponentMotor.power = power;
         }
     public ComponentMotor() {
 

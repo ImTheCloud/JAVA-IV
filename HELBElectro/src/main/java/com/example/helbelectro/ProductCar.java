@@ -11,6 +11,8 @@ public class ProductCar extends Product {
         this.load = load;
         this.power = power;
     }
+
+    @Override
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         componentList.add(new ComponentBattery());

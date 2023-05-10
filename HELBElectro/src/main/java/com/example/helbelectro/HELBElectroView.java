@@ -62,7 +62,7 @@ public class HELBElectroView {
         screen.setSpacing(10.0);
         screen.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
         screen.setPadding(new Insets(20, 20, 20, 20));
-        GridPane grid = gd_araProduct();
+        GridPane grid = init_gd_araProduct();
 
         bt_letter_number = new Button("Letter");
         bt_letter_number.setPrefWidth(150);
@@ -101,7 +101,7 @@ public class HELBElectroView {
     }
 
 
-    private GridPane gd_araProduct() {
+    private GridPane init_gd_araProduct() {
         areaProduct.setHgap(10);
         areaProduct.setVgap(10);
         areaProduct.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-background-color: %s;", "white", "#626786"));
@@ -216,7 +216,7 @@ public class HELBElectroView {
     public void setLabelComponents() {
         Timeline timelineComponent = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             try {
-                Parser.getInstance().parseSimulationFile();
+                Parser.parseSimulationFile();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -384,7 +384,7 @@ public class HELBElectroView {
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
 
         sellButton.setOnAction(e -> {
-            Ticket.getInstance().registerSale(product.getnameForScene(), product.getSellingPrice(),
+            Ticket.registerSale(product.getnameForScene(), product.getSellingPrice(),
                     product.getEcoScore());
             HELBElectroController.productObjectList.remove(product);
 

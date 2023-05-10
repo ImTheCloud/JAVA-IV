@@ -1,0 +1,19 @@
+
+c
+java:S2095"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(–˜úìùÿÿÿÿ
+]
+java:S1659"BDeclare "power" and all following declarations on a separate line.(±ëÛÓûÿÿÿÿ
+7
+java:S1116"Remove this empty statement.(±ëÛÓûÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(ÊÎÈ¨ûÿÿÿÿ
+E
+java:S1068
+"/Remove this unused "productType" private field.(„Ûñİ
+E
+java:S1068"*Remove this unused "charge" private field.(±ëÛÓûÿÿÿÿ
+D
+java:S1068")Remove this unused "power" private field.(±ëÛÓûÿÿÿÿ
+G
+java:S1068",Remove this unused "ecoScore" private field.(±ëÛÓûÿÿÿÿ
+D
+java:S1068")Remove this unused "price" private field.(±ëÛÓûÿÿÿÿ

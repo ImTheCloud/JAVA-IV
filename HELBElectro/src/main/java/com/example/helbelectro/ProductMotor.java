@@ -8,6 +8,8 @@ public class ProductMotor extends Product {
         super("A", "#B111BB", "P3",3,15,"Moteur éléctrique");
         this.power = power;
     }
+
+    @Override
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
 

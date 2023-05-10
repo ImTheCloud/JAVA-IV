@@ -7,10 +7,11 @@ public abstract class Product {
 
     protected String nameForP;
     protected String nameForScene;
-    protected int manufacturingDuration, sellingPrice;
+    protected int manufacturingDuration;
+    protected int sellingPrice;
     protected String ecoScore;
     protected String color;
-    public Product(String ecoScore, String color, String nameForP,
+    protected Product(String ecoScore, String color, String nameForP,
                    int manufacturingDuration, int sellingPrice,String nameForScene) {
         this.ecoScore = ecoScore;
         this.color = color;
@@ -21,8 +22,7 @@ public abstract class Product {
     }
 
     public List<Object> getComponentListNecessary() {
-        List<Object> componentList = new ArrayList<>();
-        return componentList;
+        return new ArrayList<>();
     }
     public String getnameForP() {
         return nameForP;

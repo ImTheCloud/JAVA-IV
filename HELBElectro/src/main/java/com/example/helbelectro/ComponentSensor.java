@@ -1,15 +1,17 @@
 package com.example.helbelectro;
-public class ComponentSensor extends Component {
+public class ComponentSensor implements Component {
     protected static String range;
     protected static String colorSensor;
 
         public ComponentSensor(String range, String colorSensor) {
-            this.range = range;
-            this.colorSensor = colorSensor;
+            ComponentSensor.range = range;
+            ComponentSensor.colorSensor = colorSensor;
         }
+
     public ComponentSensor() {
 
     }
+
     public static String getColorSensor() {
         return colorSensor;
     }

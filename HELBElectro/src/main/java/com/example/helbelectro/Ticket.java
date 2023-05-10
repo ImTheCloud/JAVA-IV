@@ -7,22 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ticket {
-    private static Ticket instance;
     private String productType;
     private int charge, power, ecoScore, price;;
 
-    private Ticket() {
-        // empecher la creation d'instance
-    }
-
-    public static Ticket getInstance() {
-        if (instance == null) {
-            instance = new Ticket();
-        }
-        return instance;
-    }
-
-    public void registerSale(String typeProduct,int price,String ecoScore) {
+    public static void registerSale(String typeProduct, int price, String ecoScore) {
         try {
             // objets SimpleDateFormat pour les dates
             SimpleDateFormat sdfFileName = new SimpleDateFormat("HHmmss");

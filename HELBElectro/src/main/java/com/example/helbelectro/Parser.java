@@ -3,40 +3,20 @@ package com.example.helbelectro;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Parser {
-    private static Parser instance = null;
-    private int timeDelay = 0;
-
-
-
-
-    private Boolean isProductionPaused = false;
-    private Parser() {
-        // empêcher la création d'instance
-    }
-
-    // design pattern singleton
-// appeler la classe grâce à un getInstance, similaire à en mobile
-    public static Parser getInstance() {
-        if (instance == null) {
-            instance = new Parser();
-        }
-        return instance;
-    }
+    private static int timeDelay = 0;
 
     // plus besoin de mettre les méthodes en static puisqu'il y a le singleton
-    public void parseSimulationFile() throws FileNotFoundException {
+    public static void parseSimulationFile() throws FileNotFoundException {
         String fileName = "helbelectro.data";
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
 
-        while (scanner.hasNextLine() && isProductionPaused == false) {
-            //System.out.println(isProductionPaused);
+        while (scanner.hasNextLine()) {
             // lire chaque ligne, et pour chaque virgule la ligne est divisée
             String line = scanner.nextLine();
             String[] values = line.split(",");
@@ -54,12 +34,4 @@ public class Parser {
         }
         scanner.close();
     }
-
-    public Boolean getProductionPaused() {
-        return isProductionPaused;
-    }
-    public void setProductionPaused(Boolean productionPaused) {
-        isProductionPaused = productionPaused;
-    }
-
 }
