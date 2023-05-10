@@ -346,21 +346,22 @@ public class HELBElectroView {
         Button bt_productFinish = (Button) event.getSource();
         int rowIndex = GridPane.getRowIndex(bt_productFinish) - 1;
         int columnIndex = GridPane.getColumnIndex(bt_productFinish) - 1;
-        Label emplacements = new Label("Emplacements (" + rowIndex + ", " + columnIndex + ")");
+        String emplacements = "Emplacements (" + rowIndex + ", " + columnIndex + ")";
         Stage modal = new Stage();
         modal.initModality(Modality.APPLICATION_MODAL);
+        modal.setTitle(emplacements);
         Product product = (Product) bt_productFinish.getUserData();
 
         if (product == null) {
-            showEmptyProductModal(modal, emplacements);
+            showEmptyProductModal(modal);
         } else {
-            showProductModal(modal, product, emplacements, bt_productFinish);
+            showProductModal(modal, product, bt_productFinish);
         }
     }
 
-    private void showEmptyProductModal(Stage modal, Label emplacements) {
+    private void showEmptyProductModal(Stage modal) {
         Label statut = new Label("Statut : inoccupé");
-        VBox vbox = new VBox(emplacements, statut);
+        VBox vbox = new VBox(statut);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
@@ -368,23 +369,63 @@ public class HELBElectroView {
         modal.showAndWait();
     }
 
-    private void showProductModal(Stage modal, Product product, Label emplacements, Button bt_productFinish) {
+    private void showProductModal(Stage modal, Product product, Button bt_productFinish) {
         Label statut = new Label("Statut : occupé");
         Label type = new Label("Type de produit: " + product.getnameForScene());
         Label price = new Label("Prix : " + product.getSellingPrice() + " euros");
         Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
         Button statsButton = createStatsButton();
-
         Button sellButton = createSellButton(product, bt_productFinish, modal);
 
-        VBox vbox = new VBox(emplacements, statut, type, price, ecoScore, statsButton, sellButton);
+        VBox vbox = new VBox(statsButton, statut, type, price, ecoScore);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
 
+        if (product instanceof ProductSensor) {
+            addSensorLabels(vbox);
+        } else if (product instanceof ProductBattery) {
+            addBatteryLabel(vbox);
+        } else if (product instanceof ProductMotor) {
+            addMotorLabel(vbox);
+        } else if (product instanceof ProductDrone) {
+            addMotorLabel(vbox);
+            addSensorLabels(vbox);
+            addBatteryLabel(vbox);
+        } else if (product instanceof ProductCar) {
+            addMotorLabel(vbox);
+            addBatteryLabel(vbox);
+        } else if (product instanceof ProductAlarm) {
+            addBatteryLabel(vbox);
+            addSensorLabels(vbox);
+        } else if (product instanceof ProductRobot) {
+            addMotorLabel(vbox);
+            addSensorLabels(vbox);
+        }
+        vbox.getChildren().addAll( sellButton);
+
+
         modal.setScene(new Scene(vbox, 400, 350));
         modal.showAndWait();
     }
+
+    private void addSensorLabels(VBox vbox) {
+        Label rangeLabel = new Label("Range: " + ComponentSensor.getRange());
+        Label colorSensorLabel = new Label("Color Sensor: " + ComponentSensor.getColorSensor());
+        vbox.getChildren().addAll(rangeLabel, colorSensorLabel);
+    }
+
+    private void addBatteryLabel(VBox vbox) {
+        Label loadLabel = new Label("Load: " + ComponentBattery.getLoad());
+        vbox.getChildren().add(loadLabel);
+    }
+
+    private void addMotorLabel(VBox vbox) {
+        Label powerLabel = new Label("Power: " + ComponentMotor.getPower());
+        vbox.getChildren().add(powerLabel);
+    }
+
+
 
     private Button createStatsButton() {
         Button statsButton = new Button("Voir les statistiques de cet emplacement");

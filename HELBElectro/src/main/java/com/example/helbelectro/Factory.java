@@ -31,19 +31,22 @@ public class Factory {
     }
 
     public static Product createNewProduct(Product product) {
-        return switch (product.getClass().getSimpleName()) {
-            case "ProductSensor" -> new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
-            case "ProductBattery" -> new ProductBattery(ComponentBattery.getLoad());
-            case "ProductMotor" -> new ProductMotor(ComponentMotor.getPower());
-            case "ProductDrone" ->
-                    new ProductDrone(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange(), ComponentBattery.getLoad());
-            case "ProductCar" -> new ProductCar(ComponentMotor.getPower(), ComponentBattery.getLoad());
-            case "ProductAlarm" ->
-                    new ProductAlarm(ComponentBattery.getLoad(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
-            case "ProductRobot" ->
-                    new ProductRobot(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
-            default -> null;
-        };
+        if (product instanceof ProductSensor) {
+            return new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
+        } else if (product instanceof ProductBattery) {
+            return new ProductBattery(ComponentBattery.getLoad());
+        } else if (product instanceof ProductMotor) {
+            return new ProductMotor(ComponentMotor.getPower());
+        } else if (product instanceof ProductDrone) {
+            return new ProductDrone(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange(), ComponentBattery.getLoad());
+        } else if (product instanceof ProductCar) {
+            return new ProductCar(ComponentMotor.getPower(), ComponentBattery.getLoad());
+        } else if (product instanceof ProductAlarm) {
+            return new ProductAlarm(ComponentBattery.getLoad(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
+        } else if (product instanceof ProductRobot) {
+            return new ProductRobot(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
+        } else {
+            return null;
+        }
     }
-
 }

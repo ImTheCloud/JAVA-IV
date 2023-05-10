@@ -18,7 +18,6 @@ public class HELBElectroController {
     public static List<Product> productObjectListSorted = new ArrayList<>();
     public static ObservableList<Object> componentObjectList = FXCollections.observableArrayList();
 
-
     public static HELBElectroController getInstance() {
         if (instance == null) {
             instance = new HELBElectroController();
@@ -52,7 +51,6 @@ public class HELBElectroController {
                 isBusy.set(true);
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
                     Product newProduct = Factory.getInstance().createNewProduct(product);
-
 
                     if (newProduct != null) {
                         productObjectList.add(newProduct);
