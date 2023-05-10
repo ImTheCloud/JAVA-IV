@@ -51,7 +51,8 @@ public class HELBElectroController {
                 System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
                 isBusy.set(true);
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
-                    Product newProduct = createNewProduct(product);
+                    Product newProduct = Factory.getInstance().createNewProduct(product);
+
 
                     if (newProduct != null) {
                         productObjectList.add(newProduct);
@@ -83,25 +84,7 @@ public class HELBElectroController {
         return true;
     }
 
-    private static Product createNewProduct(Product product) {
-        if (product instanceof ProductSensor) {
-            return new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
-        } else if (product instanceof ProductBattery) {
-            return new ProductBattery(ComponentBattery.getLoad());
-        } else if (product instanceof ProductMotor) {
-            return new ProductMotor(ComponentMotor.getPower());
-        } else if (product instanceof ProductDrone) {
-            return new ProductDrone(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange(), ComponentBattery.getLoad());
-        } else if (product instanceof ProductCar) {
-            return new ProductCar(ComponentMotor.getPower(), ComponentBattery.getLoad());
-        } else if (product instanceof ProductAlarm) {
-            return new ProductAlarm(ComponentBattery.getLoad(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
-        } else if (product instanceof ProductRobot) {
-            return new ProductRobot(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
-        } else {
-            return null;
-        }
-    }
+
 
     private static void removeUsedComponents(Product product) {
         for (Object componentName : product.getComponentListNecessary()) {

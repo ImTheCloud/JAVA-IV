@@ -29,4 +29,21 @@ public class Factory {
         }
         return null;
     }
+
+    public static Product createNewProduct(Product product) {
+        return switch (product.getClass().getSimpleName()) {
+            case "ProductSensor" -> new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
+            case "ProductBattery" -> new ProductBattery(ComponentBattery.getLoad());
+            case "ProductMotor" -> new ProductMotor(ComponentMotor.getPower());
+            case "ProductDrone" ->
+                    new ProductDrone(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange(), ComponentBattery.getLoad());
+            case "ProductCar" -> new ProductCar(ComponentMotor.getPower(), ComponentBattery.getLoad());
+            case "ProductAlarm" ->
+                    new ProductAlarm(ComponentBattery.getLoad(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
+            case "ProductRobot" ->
+                    new ProductRobot(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
+            default -> null;
+        };
+    }
+
 }

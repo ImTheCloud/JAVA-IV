@@ -1,8 +1,6 @@
 
 a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
-b
-2src/main/java/com/example/helbelectro/Product.java,8\0\801dd03f314f006461791d338bc95f5bfea39aea
 i
 9src/main/java/com/example/helbelectro/ProductBattery.java,8\d\8d27ee1ca941d290eae128428f5f87a4e044674e
 e
