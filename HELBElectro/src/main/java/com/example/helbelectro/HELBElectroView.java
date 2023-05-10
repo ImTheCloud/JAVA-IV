@@ -25,7 +25,8 @@ import java.util.List;
 public class HELBElectroView {
     private final Stage stage;
     private final HBox screen;
-    private  Label lb_numberCol,lb_numberRow;
+    private Label lb_numberCol;
+    private Label lb_numberRow;
     private final List<Label> listeLabelRow= new ArrayList<>();
     private final List<Label> listeLabelCol= new ArrayList<>();
     private Button bt_letter_number;
@@ -62,13 +63,13 @@ public class HELBElectroView {
         screen.setSpacing(10.0);
         screen.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
         screen.setPadding(new Insets(20, 20, 20, 20));
-        GridPane grid = init_gd_araProduct();
+        GridPane grid = initGridAraProduct();
 
         bt_letter_number = new Button("Letter");
         bt_letter_number.setPrefWidth(150);
         bt_letter_number.setOnAction(this::changeNumberLetter);
         bt_letter_number.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));
-        VBox vboxComponent = vb_areaComponent();
+        VBox vboxComponent = initVBoxAreaComponent();
 
         VBox vboxGrid = new VBox();
         vboxGrid.getChildren().addAll(bt_letter_number,grid);
@@ -101,7 +102,7 @@ public class HELBElectroView {
     }
 
 
-    private GridPane init_gd_araProduct() {
+    private GridPane initGridAraProduct() {
         areaProduct.setHgap(10);
         areaProduct.setVgap(10);
         areaProduct.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-background-color: %s;", "white", "#626786"));
@@ -111,14 +112,11 @@ public class HELBElectroView {
     }
 
     public void initializeProductArea() {
-        int size_colGrid = 3;
         for (int i = 0; i < size_colGrid; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setHgrow(Priority.ALWAYS); // agrandir
             areaProduct.getColumnConstraints().add(column);
         }
-
-        int size_rowGrid = 4;
         for (int i = 0; i < size_rowGrid; i++) {
             RowConstraints row = new RowConstraints();
             row.setVgrow(Priority.ALWAYS);
@@ -130,9 +128,9 @@ public class HELBElectroView {
         for (int i = 0; i < size_rowGrid; i++) {
             for (int j = 0; j < size_colGrid; j++) {
                 Button button = new Button();
-                int bt_product_with = 138;
-                int bt_product_height = 73;
-                button.setPrefSize(bt_product_with, bt_product_height);
+                int btProductWith = 138;
+                int btProductHeight = 73;
+                button.setPrefSize(btProductWith, btProductHeight);
                 button.setStyle("-fx-background-color: white;");
                 button.setOnAction(this::onComponentClicked);
                 if (i == size_rowGrid -1 && j == size_colGrid -1) {
@@ -188,7 +186,7 @@ public class HELBElectroView {
         }
     }
 
-    private VBox vb_areaComponent() {
+    private VBox initVBoxAreaComponent() {
         areaComponent.setSpacing(10);
         areaComponent.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
         HBox optiBox = createOptiBox();
@@ -201,9 +199,7 @@ public class HELBElectroView {
         componentLabelsList = new ArrayList<>();
         for (int i = 0; i < number_lb_component; i++) {
             Label label = new Label();
-            int lb_component_with = 183;
-            int lb_component_height = 42;
-            label.setPrefSize(lb_component_with, lb_component_height);
+            label.setPrefSize(183, 42);
             label.setId("component" + i);
             label.setAlignment(Pos.CENTER);
             componentLabelsList.add(label);
@@ -241,24 +237,16 @@ public class HELBElectroView {
     private void updateComponentLabels(List<Object> componentList) {
         int index = 1;
         for (Object component : componentList) {
-            String componentName = "";
-            Object componentColor = null;
-            if (component instanceof ComponentBattery) {
-                componentName = ((ComponentBattery) component).getName();
-                componentColor = ((ComponentBattery) component).getColor();
-            } else if (component instanceof ComponentSensor) {
-                componentName = ((ComponentSensor) component).getName();
-                componentColor = ((ComponentSensor) component).getColor();
-            } else if (component instanceof ComponentMotor) {
-                componentName = ((ComponentMotor) component).getName();
-                componentColor = ((ComponentMotor) component).getColor();
+            if (component instanceof Component) {
+                Component currentComponent = (Component) component;
+                Label componentLabel = getComponentLabel(index);
+                componentLabel.setText(currentComponent.getName());
+                componentLabel.setStyle("-fx-background-color: " + currentComponent.getColor());
+                index++;
             }
-            Label componentLabel = getComponentLabel(index);
-            componentLabel.setText(componentName);
-            componentLabel.setStyle("-fx-background-color: "+componentColor);
-            index++;
         }
     }
+
 
     private Label getComponentLabel(int index) {
         return componentLabelsList.get(index - 1);
