@@ -140,9 +140,13 @@ public class HELBElectroController {
 
     public static void getSortedProductListByDiverse() {
         addProductList();
-        productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectListSorted, p)));
-        Collections.reverse(productObjectListSorted);
-      //  productObjectListSorted.forEach(System.out::println);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectListSorted, p)));
+            Collections.reverse(productObjectListSorted);
+            //  productObjectListSorted.forEach(System.out::println);
+
+        }));
+        timeline.play();
 
     }
 

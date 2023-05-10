@@ -297,7 +297,7 @@ public class HELBElectroView {
                     startTimeline();
                 }
                 case "Diverse" ->{
-                    stopTimeline();
+                    startTimeline();
                     HELBElectroController.getSortedProductListByDiverse();
                 }
 
