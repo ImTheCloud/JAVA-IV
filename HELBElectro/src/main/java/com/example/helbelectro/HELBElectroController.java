@@ -2,10 +2,7 @@ package com.example.helbelectro;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,9 +11,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HELBElectroController {
     private static HELBElectroController instance = null;
-    public static List<Object> productObjectList = new ArrayList<>();
-    public static List<Product> productObjectListSorted = new ArrayList<>();
-    public static ObservableList<Object> componentObjectList = FXCollections.observableArrayList();
+     static List<Object> productObjectList = new ArrayList<>();
+     static List<Product> productObjectListSorted = new ArrayList<>();
+     static List<Object> componentObjectList = new ArrayList<>();
 
     public static HELBElectroController getInstance() {
         if (instance == null) {

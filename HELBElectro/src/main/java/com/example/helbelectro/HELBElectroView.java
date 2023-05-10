@@ -12,10 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;

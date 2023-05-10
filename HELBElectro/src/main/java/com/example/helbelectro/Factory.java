@@ -1,7 +1,7 @@
 package com.example.helbelectro;
 
 public class Factory {
-    private static volatile Factory instance = null;
+    private static Factory instance = null;
     Factory() {
     }
     // design pattern : singleton
@@ -30,7 +30,7 @@ public class Factory {
         return null;
     }
 
-    public static Product createNewProduct(Product product) {
+    static Product createNewProduct(Product product) {
         if (product instanceof ProductSensor) {
             return new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
         } else if (product instanceof ProductBattery) {
