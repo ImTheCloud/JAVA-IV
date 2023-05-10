@@ -11,9 +11,6 @@ Produit :
 -Lorsque la grid est pleine, elle doit se vider (manuellement) (bouton, deplacer produit grand entrepot)
 -Lorsque je vend un produit il doit prendre les attribut du composant
 
-Opti:
--Liste selon le produit le moin présent dans la zone des produits
-
 Ticket :
 -Ajouter les attribut des composant dans le ticket
 

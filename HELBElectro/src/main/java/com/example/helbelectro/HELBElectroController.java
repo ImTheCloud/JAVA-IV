@@ -121,25 +121,31 @@ public class HELBElectroController {
     public static void getSortedProductListByTime() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getManufacturingDuration));
+       // productObjectListSorted.forEach(System.out::println);
+
     }
     public static void getSortedProductListByScore() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getEcoScore));
-//        System.out.println("Product list sorted by score :");
-//        for (Product product : productObjectListSorted) {
-//            System.out.println(product.getClass().getSimpleName() +
-//                    ", score : " + product.getEcoScore());
-//        }
+       // productObjectListSorted.forEach(System.out::println);
+
     }
     public static void getSortedProductListByPrice() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
         Collections.reverse(productObjectListSorted);
-//        System.out.println("Product list sorted by Price :");
-//        for (Product product : productObjectListSorted) {
-//            System.out.println(product.getClass().getSimpleName() +
-//                    ", Price : " + product.getSellingPrice());
-//        }
+       // productObjectListSorted.forEach(System.out::println);
+
     }
+
+    public static void getSortedProductListByDiverse() {
+        addProductList();
+        productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectListSorted, p)));
+        Collections.reverse(productObjectListSorted);
+      //  productObjectListSorted.forEach(System.out::println);
+
+    }
+
+
 
 }

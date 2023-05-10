@@ -296,7 +296,11 @@ public class HELBElectroView {
                     HELBElectroController.getSortedProductListByScore();
                     startTimeline();
                 }
-                case "Diverse" -> stopTimeline();
+                case "Diverse" ->{
+                    stopTimeline();
+                    HELBElectroController.getSortedProductListByDiverse();
+                }
+
 
             }
         });
