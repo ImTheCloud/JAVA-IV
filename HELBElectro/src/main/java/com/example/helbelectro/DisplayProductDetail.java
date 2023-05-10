@@ -113,7 +113,7 @@ public class DisplayProductDetail {
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
 
         sellButton.setOnAction(e -> {
-            Ticket.registerSale(product.getnameForScene(), product.getSellingPrice(),
+            Ticket.registerSale(product, product.getSellingPrice(),
                     product.getEcoScore());
             HELBElectroController.productObjectList.remove(product);
 
