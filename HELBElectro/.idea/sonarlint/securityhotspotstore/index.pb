@@ -13,3 +13,11 @@ h
 8src/main/java/com/example/helbelectro/ProductSensor.java,0\2\022d9e7d4653b2eb032050be305b95edd739cc61
 g
 7src/main/java/com/example/helbelectro/ProductAlarm.java,1\0\107b04939afcb9fb880fcc13178afb9f8c547580
+6
+run.sh,3\2\324fcb49f1cf313ebdd7cbda6a71b73727ddd94d
+a
+1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
+d
+4src/main/java/com/example/helbelectro/Component.java,c\8\c8d1d03bc2f2f11f6010c58897bab542445728ea
+a
+1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10

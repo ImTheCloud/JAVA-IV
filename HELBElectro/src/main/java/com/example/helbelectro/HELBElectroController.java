@@ -125,9 +125,10 @@ public class HELBElectroController {
 
         }));
         timeline.play();
-
     }
 
-
+    public static void clearListProduct() {
+        productObjectList.clear();
+    }
 
 }

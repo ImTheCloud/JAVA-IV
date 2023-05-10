@@ -14,18 +14,20 @@ public class Factory {
 
     public Component createComponent(String componentName, String[] values) {
         switch (componentName) {
-            case "Batterie":
+            case "Batterie" -> {
                 String load = values[2];
                 return new ComponentBattery(load);
-            case "Capteur":
+            }
+            case "Capteur" -> {
                 String range = values[2];
                 String color = values[3];
                 return new ComponentSensor(range, color);
-            case "Moteur":
+            }
+            case "Moteur" -> {
                 String power = values[2];
                 return new ComponentMotor(power);
-            default:
-                System.out.println("Composant non reconnu : " + componentName);
+            }
+            default -> System.out.println("Composant inexistant : " + componentName);
         }
         return null;
     }

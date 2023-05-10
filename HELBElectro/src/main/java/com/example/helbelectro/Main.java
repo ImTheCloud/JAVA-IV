@@ -12,5 +12,4 @@ public class Main extends Application {
         HELBElectroView view = new HELBElectroView(stage);
         view.afficher();
     }
-
 }

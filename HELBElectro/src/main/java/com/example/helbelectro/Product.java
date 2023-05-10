@@ -20,7 +20,7 @@ public abstract class Product {
         this.sellingPrice = sellingPrice;
         this.nameForScene = nameForScene;
     }
-
+    // Getter and Setter
     public List<Object> getComponentListNecessary() {
         return new ArrayList<>();
     }
@@ -30,21 +30,15 @@ public abstract class Product {
     public String getnameForScene() {
         return nameForScene;
     }
-
     public String getColor() {
         return color;
     }
-
-
-    // Getter and Setter
     public int getSellingPrice() {
         return sellingPrice;
     }
-
     public String getEcoScore() {
         return ecoScore;
     }
-
     public int getManufacturingDuration() {
         return manufacturingDuration;
     }

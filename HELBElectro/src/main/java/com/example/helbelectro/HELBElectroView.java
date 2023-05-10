@@ -199,7 +199,7 @@ public class HELBElectroView {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                    HELBElectroController.productObjectList.clear();
+                    HELBElectroController.clearListProduct();
                     clearProductLabels();
                     System.out.println("Entrepôt vidé !");
                 }
