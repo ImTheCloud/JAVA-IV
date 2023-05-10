@@ -19,9 +19,6 @@ public abstract class Product {
         this.sellingPrice = sellingPrice;
         this.nameForScene = nameForScene;
     }
-    protected  Product(){
-        //constructeur vide pour la liste des produit trié par optimisation
-    }
     //List de composant neccesaire avec les constructeur vide des composants
     public List<Object> getComponentListNecessary() {
         return new ArrayList<>();

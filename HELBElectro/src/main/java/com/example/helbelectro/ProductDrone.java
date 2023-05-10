@@ -16,9 +16,6 @@ public class ProductDrone extends Product {
         this.range = range;
         this.power = power;
     }
-    public ProductDrone(){
-        //constructeur vide pour la liste des produit trié par optimisation
-    }
     //List de composant neccesaire avec les constructeur vide des composants
     //Override car on réimplemente la list de la class mere Product
     @Override

@@ -1,6 +1,4 @@
 
-h
-8src/main/java/com/example/helbelectro/ProductSensor.java,0\2\022d9e7d4653b2eb032050be305b95edd739cc61
 6
 run.sh,3\2\324fcb49f1cf313ebdd7cbda6a71b73727ddd94d
 a

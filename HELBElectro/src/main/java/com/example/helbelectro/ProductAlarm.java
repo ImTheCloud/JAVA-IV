@@ -14,9 +14,6 @@ public class ProductAlarm extends Product {
         this.colorComponent = colorComponent;
         this.range = range;
     }
-    public ProductAlarm(){
-        //constructeur vide pour la liste des produit trié par optimisation
-    }
     //List de composant neccesaire avec les constructeur vide des composants
     //Override car on réimplemente la list de la class mere Product
     @Override
