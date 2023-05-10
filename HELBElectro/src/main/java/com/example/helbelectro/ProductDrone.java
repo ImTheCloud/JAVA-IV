@@ -1,9 +1,9 @@
 package com.example.helbelectro;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDrone extends Product {
+    // Attribut pour la creation du produit avec les attribut de leur composant néccesaire a leur creation
     private String load;
     private String power;
     private String colorComponent;
@@ -16,7 +16,11 @@ public class ProductDrone extends Product {
         this.range = range;
         this.power = power;
     }
-
+    public ProductDrone(){
+        //constructeur vide pour la liste des produit trié par optimisation
+    }
+    //List de composant neccesaire avec les constructeur vide des composants
+    //Override car on réimplemente la list de la class mere Product
     @Override
     public List<Object> getComponentListNecessary() {
      componentList = new ArrayList<>();

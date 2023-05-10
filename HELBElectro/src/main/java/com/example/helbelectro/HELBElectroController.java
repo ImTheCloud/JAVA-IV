@@ -79,13 +79,13 @@ public class HELBElectroController {
     }
 
         public static void addProductList() {
-        productObjectListSorted.add(new ProductBattery(""));
-        productObjectListSorted.add(new ProductSensor("",""));
-        productObjectListSorted.add(new ProductMotor(""));
-        productObjectListSorted.add(new ProductCar("",""));
-        productObjectListSorted.add(new ProductAlarm("","",""));
-        productObjectListSorted.add(new ProductDrone("","","",""));
-        productObjectListSorted.add(new ProductRobot("","",""));
+        productObjectListSorted.add(new ProductBattery());
+        productObjectListSorted.add(new ProductSensor());
+        productObjectListSorted.add(new ProductMotor());
+        productObjectListSorted.add(new ProductCar());
+        productObjectListSorted.add(new ProductAlarm());
+        productObjectListSorted.add(new ProductDrone());
+        productObjectListSorted.add(new ProductRobot());
     }
     public static void getSortedProductListByTime() {
         addProductList();

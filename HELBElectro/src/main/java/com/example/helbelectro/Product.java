@@ -1,10 +1,9 @@
 package com.example.helbelectro;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Product {
-
+    // Attribut pour la creation de chaque produit
     protected String nameForP;
     protected String nameForScene;
     protected int manufacturingDuration;
@@ -20,10 +19,14 @@ public abstract class Product {
         this.sellingPrice = sellingPrice;
         this.nameForScene = nameForScene;
     }
-    // Getter and Setter
+    protected  Product(){
+        //constructeur vide pour la liste des produit trié par optimisation
+    }
+    //List de composant neccesaire avec les constructeur vide des composants
     public List<Object> getComponentListNecessary() {
         return new ArrayList<>();
     }
+    // Getter
     public String getnameForP() {
         return nameForP;
     }
@@ -42,5 +45,4 @@ public abstract class Product {
     public int getManufacturingDuration() {
         return manufacturingDuration;
     }
-
 }
