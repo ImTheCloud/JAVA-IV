@@ -54,7 +54,7 @@ public class DisplayProductDetail {
         Label type = new Label("Type de produit: " + product.getnameForScene());
         Label price = new Label("Prix : " + product.getSellingPrice() + " euros");
         Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
-        Button statsButton = createStatsButton();
+        Button statsButton = createStatsButton(product,modal);
         Button sellButton = createSellButton(product, bt_productFinish, modal);
 
         VBox vbox = new VBox(statsButton, statut, type, price, ecoScore);
@@ -112,7 +112,7 @@ public class DisplayProductDetail {
         vbox.getChildren().add(powerLabel);
     }
 
-    private static Button createStatsButton() {
+    private static Button createStatsButton(Product product, Stage modal) {
         Button statsButton = new Button("Voir les statistiques de cet emplacement");
         statsButton.setStyle("-fx-background-color: #3f7ad9; -fx-text-fill: white;");
 
@@ -150,7 +150,26 @@ public class DisplayProductDetail {
             alert.setTitle("Statistiques de l'emplacement");
             alert.setHeaderText(null);
             alert.setContentText(contentText);
+
+            alert.setOnCloseRequest(event -> {
+                if (product instanceof ProductSensor) {
+                    statNumberSensor--;
+                } else if (product instanceof ProductBattery) {
+                    statNumberBattery--;
+                } else if (product instanceof ProductMotor) {
+                    statNumberMotor--;
+                } else if (product instanceof ProductDrone) {
+                    statNumberDrone--;
+                } else if (product instanceof ProductCar) {
+                    statNumberCar--;
+                } else if (product instanceof ProductAlarm) {
+                    statNumberAlarm--;
+                } else if (product instanceof ProductRobot) {
+                    statNumberRobot--;
+                }
+            });
             alert.showAndWait();
+            modal.close();
         });
 
         return statsButton;
