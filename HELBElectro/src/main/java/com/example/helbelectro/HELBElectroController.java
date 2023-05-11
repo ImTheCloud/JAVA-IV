@@ -43,16 +43,28 @@ public class HELBElectroController {
                     if (newProduct != null) {
                         productObjectList.add(newProduct);
                         System.out.println(newProduct.getClass().getSimpleName() + " créé ");
+                        removeUsedComponents(product);
                     }
 
                     isBusy.set(false);
                 }));
-
                 timeline.play(); // lancer la timeline pour attendre la durée de fabrication du produit
-
-                removeUsedComponents(product);
-
                 break; // arrêter la boucle pour ne fabriquer qu'un seul produit à la fois
+            }
+        }
+    }
+
+    private static void removeUsedComponents(Product product) {
+        List<Object> componentNames = product.getComponentListNecessary();
+        for (Object componentName : componentNames) {
+            // Recherche le premier composant qui correspont dans la liste des composants
+            Component componentToRemove = (Component) componentObjectList.stream()
+                    .filter(component -> component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (componentToRemove != null) {
+                componentObjectList.remove(componentToRemove);
             }
         }
     }
@@ -69,15 +81,6 @@ public class HELBElectroController {
         }
         return true;
     }
-
-
-
-    private static void removeUsedComponents(Product product) {
-        for (Object componentName : product.getComponentListNecessary()) {
-            componentObjectList.removeIf(component -> component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName()));
-        }
-    }
-
         public static void addProductList() {
         productObjectListSorted.add(new ProductBattery(""));
         productObjectListSorted.add(new ProductSensor("",""));
