@@ -13,6 +13,8 @@ public class HELBElectroController {
      static List<Object> productObjectList = new ArrayList<>();
      static List<Product> productObjectListSorted = new ArrayList<>();
      static List<Object> componentObjectList = new ArrayList<>();
+     static AtomicBoolean isBusy = new AtomicBoolean(false);
+
     public static void createComponent(String componentName, String[] values) {
         // Vérifier si le nombre maximal de labels a été atteint
         if (componentObjectList.size() >= HELBElectroView.numberLBComponent) {
@@ -26,7 +28,6 @@ public class HELBElectroController {
     }
 
     public static void createProduct() {
-        AtomicBoolean isBusy = new AtomicBoolean(false);
         if (isBusy.get()) {
             return;
         }
@@ -105,7 +106,7 @@ public class HELBElectroController {
     public static void getSortedProductListByDiverse() {
         addProductList();
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-            productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectListSorted, p)));
+            productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectList, p)));
             Collections.reverse(productObjectListSorted);
         }));
         timeline.play();
