@@ -10,14 +10,11 @@ public class Ticket {
 
     public static void registerSale(Product typeProduct, int price, String ecoScore) {
         try {
-            // Objects SimpleDateFormat for dates
             SimpleDateFormat sdfFileName = new SimpleDateFormat("HHmmss");
             SimpleDateFormat sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String fileName = "t_" + sdfFileName.format(new Date()) + ".txt";
 
-            // Create a File object from the name
             File fileInTicket = new File(fileName);
-            // Write to the file
 
             FileWriter writer = new FileWriter(fileInTicket, true);
             writer.write("------------------------------------------------\n");
@@ -26,7 +23,6 @@ public class Ticket {
             writer.write("Prix:" + price + "\n");
             writer.write("Eco-Score :" + ecoScore + "\n");
 
-            // Retrieve product attributes and write them to the file
             getProductAttributes(typeProduct, writer);
 
             writer.write("------------------------------------------------\n");

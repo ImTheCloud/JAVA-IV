@@ -1,5 +1,5 @@
 package com.example.helbelectro;
-public class ComponentMotor extends Component{
+public class ComponentMotor implements Component{
     // attribut neccesaire a la creation du composant :
     protected static String power;
     public ComponentMotor(String power) {

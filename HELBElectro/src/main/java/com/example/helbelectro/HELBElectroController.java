@@ -19,8 +19,7 @@ public class HELBElectroController {
             System.out.println("Nombre maximal de composant atteint");
         } else {
             // Créer le composant en utilisant la Factory
-            Factory factory = new Factory();
-            Component component = factory.createComponent(componentName, values);
+            Component component = Factory.getInstance().createComponent(componentName, values);
             componentObjectList.add(component);
             System.out.println("Component " + componentName + " créé");
         }
@@ -38,7 +37,7 @@ public class HELBElectroController {
                 System.out.println("Attente de " + manufacturingDuration + " secondes avant de fabriquer " + product.getClass().getSimpleName());
                 isBusy.set(true);
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(manufacturingDuration), e -> {
-                    Product newProduct = Factory.createNewProduct(product);
+                    Product newProduct = Factory.getInstance().createNewProduct(product);
 
                     if (newProduct != null) {
                         productObjectList.add(newProduct);
@@ -96,15 +95,11 @@ public class HELBElectroController {
     public static void getSortedProductListByScore() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getEcoScore));
-       // productObjectListSorted.forEach(System.out::println);
-
     }
     public static void getSortedProductListByPrice() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
         Collections.reverse(productObjectListSorted);
-       // productObjectListSorted.forEach(System.out::println);
-
     }
 
     public static void getSortedProductListByDiverse() {
@@ -112,8 +107,6 @@ public class HELBElectroController {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectListSorted, p)));
             Collections.reverse(productObjectListSorted);
-            //  productObjectListSorted.forEach(System.out::println);
-
         }));
         timeline.play();
     }

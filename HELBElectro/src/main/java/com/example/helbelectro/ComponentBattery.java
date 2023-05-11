@@ -1,6 +1,6 @@
 package com.example.helbelectro;
 
-public class ComponentBattery extends Component {
+public class ComponentBattery implements Component {
     // attribut neccesaire a la creation du composant :
     protected static String load;
     public ComponentBattery(String load) {

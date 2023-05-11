@@ -22,7 +22,7 @@ public class DisplayProductDetail {
     private static int statNumberRobot = 0;
     private static int statNumberDrone = 0;
 
-    public static void onComponentClicked(ActionEvent event) {
+    public static void onButtonProductClicked(ActionEvent event) {
         Button bt_productFinish = (Button) event.getSource();
         int rowIndex = GridPane.getRowIndex(bt_productFinish) - 1;
         int columnIndex = GridPane.getColumnIndex(bt_productFinish) - 1;
@@ -180,7 +180,6 @@ public class DisplayProductDetail {
     private static Button createSellButton(Product product, Button bt_productFinish, Stage modal) {
         Button sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
-
 
         sellButton.setOnAction(e -> {
             Ticket.registerSale(product, product.getSellingPrice(), product.getEcoScore());

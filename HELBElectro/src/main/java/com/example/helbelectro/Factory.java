@@ -1,7 +1,17 @@
 package com.example.helbelectro;
 
 public class Factory {
-    public Component createComponent(String componentName, String[] values) {
+    private static Factory instance = null;
+    Factory() {
+    }
+    // design pattern : singleton
+    public static Factory getInstance() {
+        if (instance == null) {
+            instance = new Factory();
+        }
+        return instance;
+    }
+     Component createComponent(String componentName, String[] values) {
         switch (componentName) {
             case "Batterie" -> {
                 String load = values[2];
@@ -16,12 +26,11 @@ public class Factory {
                 String power = values[2];
                 return new ComponentMotor(power);
             }
-            default -> System.out.println("Composant inexistant : " + componentName);
         }
         return null;
     }
 
-    static Product createNewProduct(Product product) {
+     Product createNewProduct(Product product) {
         if (product instanceof ProductSensor) {
             return new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
         } else if (product instanceof ProductBattery) {

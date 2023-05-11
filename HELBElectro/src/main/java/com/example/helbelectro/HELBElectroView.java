@@ -131,7 +131,7 @@ public class HELBElectroView {
                 int btProductHeight = 73;
                 button.setPrefSize(btProductWith, btProductHeight);
                 button.setStyle("-fx-background-color: white;");
-                button.setOnAction(DisplayProductDetail::onComponentClicked);
+                button.setOnAction(DisplayProductDetail::onButtonProductClicked);
                 if (i == sizeRowGrid -1 && j == sizeColGrid -1) {
                     // derniere case de la grid pas de bouton
                     // comme dans l'interface du prof
