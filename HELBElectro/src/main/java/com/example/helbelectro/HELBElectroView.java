@@ -22,11 +22,8 @@ import java.util.Optional;
 public class HELBElectroView {
     private final Stage stage;
     private final HBox screen;
-    private Label lbNumberCol;
-    private Label lbNumberRow;
     private final List<Label> listeLabelRow= new ArrayList<>();
     private final List<Label> listeLabelCol= new ArrayList<>();
-    private Button btLetterNumber;
     private final VBox areaComponent = new VBox();
     private final GridPane areaProduct = new GridPane();
     private final Timeline timelineChoiceOpti = new Timeline();
@@ -34,13 +31,17 @@ public class HELBElectroView {
     private final int sizeColGrid = 3;
     private final int sizeRowGrid = 4;
     private final int numberButton = (sizeColGrid*sizeRowGrid)-1;
-    private List<Label> componentLabelsList;
-    private List<Button> productButtonList;
     static final int numberLBComponent =8;
     private final int widthScene = 776;
     private final int heightScene = 538;
     private final String setNameButtonToLetter = "Letter";
     private final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
+    private Label lbNumberCol;
+    private Label lbNumberRow;
+    private Button btLetterNumber;
+    private List<Label> componentLabelsList;
+    private List<Button> productButtonList;
+
 
     public HELBElectroView(Stage stage) {
         this.stage = stage;
