@@ -2,7 +2,7 @@ package com.example.helbelectro;
 
 public class Factory {
     private static Factory instance = null;
-    Factory() {
+    private Factory() {
     }
     // design pattern : singleton
     public static Factory getInstance() {

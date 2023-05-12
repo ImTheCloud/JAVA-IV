@@ -20,17 +20,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class HELBElectroView {
+    private static HELBElectroView instance;
     private final Stage stage;
     private final HBox screen;
     private final List<Label> listeLabelRow= new ArrayList<>();
     private final List<Label> listeLabelCol= new ArrayList<>();
     private final VBox areaComponent = new VBox();
-    private final GridPane areaProduct = new GridPane();
-    private final Timeline timelineChoiceOpti = new Timeline();
+    static  GridPane areaProduct = new GridPane();
     private final ComboBox<String> optiComboBox = new ComboBox<>();
-    private final int sizeColGrid = 3;
-    private final int sizeRowGrid = 4;
-    private final int numberButton = (sizeColGrid*sizeRowGrid)-1;
+    private static final int sizeColGrid = 3;
+    private static final int sizeRowGrid = 4;
+    static int numberButton = (sizeColGrid*sizeRowGrid)-1;
     static final int numberLBComponent =8;
     private final int widthScene = 776;
     private final int heightScene = 538;
@@ -40,13 +40,21 @@ public class HELBElectroView {
     private Label lbNumberRow;
     private Button btLetterNumber;
     private List<Label> componentLabelsList;
-    private List<Button> productButtonList;
+    static List<Button> productButtonList;
 
-
-    public HELBElectroView(Stage stage) {
+    private HELBElectroView(Stage stage) {
         this.stage = stage;
         this.screen = createScreen();
     }
+
+    // Méthode statique pour obtenir l'instance unique du singleton
+    public static HELBElectroView getInstance(Stage stage) {
+        if (instance == null) {
+            instance = new HELBElectroView(stage);
+        }
+        return instance;
+    }
+
 
     public void afficher() {
         stage.setTitle("HELBElectro");
@@ -161,61 +169,14 @@ public class HELBElectroView {
             listeLabelRow.add(lbNumberRow);
         }
     }
-    public void setButtonProduct() {
-        int index = 0;
-        int compteur = 0;
-        productButtonList = new ArrayList<>(); // Création de la liste de boutons
-
-        for (Node node : areaProduct.getChildren()) {
-            if (node instanceof Button setButton) {
-                if (index >= HELBElectroController.productObjectList.size()) {
-                    break;
-                }
-
-                Product product = (Product) HELBElectroController.productObjectList.get(index);
-                setButton.setUserData(product);
-                setButton.setText(product.getnameForP());
-                setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
-
-                productButtonList.add(setButton); // Ajout du bouton à la liste
-
-                index++;
-                compteur++;
-                if (compteur == numberButton) {
-                    inializeAlertForAreaProductFull();
-                    break;
-                }
-            }
-        }
-    }
 
 
-    private void inializeAlertForAreaProductFull() {
-            System.out.println("stop production");
-            stopTimeline();
-        // runlater psq ya le thread java fx en cours
-            Platform.runLater(() -> {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Entrepôt des produits");
-                alert.setHeaderText(null);
-                alert.setContentText("L'entrepôt est complet, veuillez le vider !");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    HELBElectroController.clearListProduct();
-                    clearProductLabels();
-                    System.out.println("Entrepôt vidé !");
-                }
-            });
-    }
-
-    private void clearProductLabels() {
+    static void clearProductLabels() {
         for (Button button : productButtonList) {
             button.setStyle("-fx-background-color: #FFFFFF;");
             button.setText("");
         }
     }
-
     private VBox initVBoxAreaComponent() {
         areaComponent.setSpacing(10);
         areaComponent.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
@@ -290,55 +251,18 @@ public class HELBElectroView {
         optiComboBox.setValue("Choice");
         ObservableList<String> optiList = FXCollections.observableArrayList("Time", "Cost", "Score", "Diverse");
         optiComboBox.setItems(optiList);
+        optiComboBox.setOnAction(event -> {
+             HELBElectroController controller = new HELBElectroController();
+
+            String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
+            controller.onOptiChoiceSelected(selectedItem);
+        });
+
+
+
 
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
-        getChoiceOpti();
         return optiBox;
     }
 
-    public void getChoiceOpti() {
-        optiComboBox.setOnAction(event -> {
-            String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
-
-            switch (selectedItem) {
-                case "Time" -> {
-                    HELBElectroController.getSortedProductListByTime();
-                    startTimeline();
-                }
-                case "Cost" -> {
-                    HELBElectroController.getSortedProductListByPrice();
-                    startTimeline();
-                }
-                case "Score" -> {
-                    HELBElectroController.getSortedProductListByScore();
-                    startTimeline();
-                }
-                case "Diverse" ->{
-                    startTimeline();
-                    HELBElectroController.getSortedProductListByDiverse();
-                }
-
-
-            }
-        });
-    }
-
-    private void startTimeline() {
-        timelineChoiceOpti.stop();
-        timelineChoiceOpti.getKeyFrames().clear();
-        timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-            HELBElectroController.createProduct();
-            setButtonProduct();
-        }));
-        timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
-        timelineChoiceOpti.play();
-    }
-
-    private void stopTimeline() {
-        timelineChoiceOpti.stop();
-        timelineChoiceOpti.getKeyFrames().clear();
-        timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {}));
-        timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
-        timelineChoiceOpti.play();
-    }
 }

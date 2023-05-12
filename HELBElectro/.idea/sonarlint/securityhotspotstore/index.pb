@@ -19,8 +19,6 @@ i
 9src/main/java/com/example/helbelectro/ComponentMotor.java,9\4\94bc6c9e131dd07dcb9f6083eac6e379315839e3
 h
 8src/main/java/com/example/helbelectro/ProductSensor.java,0\2\022d9e7d4653b2eb032050be305b95edd739cc61
-p
-@src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
 a
 1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
 a

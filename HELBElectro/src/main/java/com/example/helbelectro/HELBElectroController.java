@@ -1,15 +1,38 @@
 package com.example.helbelectro;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class HELBElectroController {
+import static com.example.helbelectro.HELBElectroView.numberButton;
+
+public class HELBElectroController implements Optimization {
+    private static HELBElectroController instance;
+    private static final Timeline timelineChoiceOpti = new Timeline();
+
+
+    // Constructeur privé pour empêcher l'instanciation directe
+    HELBElectroController() {
+    }
+
+    // Méthode statique pour obtenir l'instance unique du singleton
+    public static HELBElectroController getInstance() {
+        if (instance == null) {
+            instance = new HELBElectroController();
+        }
+        return instance;
+    }
+
+    // Autres méthodes de la classe
      static List<Object> productObjectList = new ArrayList<>();
      static List<Product> productObjectListSorted = new ArrayList<>();
      static List<Object> componentObjectList = new ArrayList<>();
@@ -112,11 +135,97 @@ public class HELBElectroController {
             productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectList, p)));
             Collections.reverse(productObjectListSorted);
         }));
+         productObjectListSorted.forEach(System.out::println);
+
         timeline.play();
     }
 
-    public static void clearListProduct() {
-        productObjectList.clear();
+    @Override
+    public void onOptiChoiceSelected(String selectedItem) {
+        switch (selectedItem) {
+            case "Time":
+                getSortedProductListByTime();
+                startTimeline();
+                break;
+            case "Cost":
+                getSortedProductListByPrice();
+                startTimeline();
+                break;
+            case "Score":
+                getSortedProductListByScore();
+                startTimeline();
+                break;
+            case "Diverse":
+                getSortedProductListByDiverse();
+                startTimeline();
+                break;
+        }
+    }
+
+    private static void startTimeline() {
+        timelineChoiceOpti.stop();
+        timelineChoiceOpti.getKeyFrames().clear();
+        timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+            HELBElectroController.createProduct();
+            setButtonProduct();
+        }));
+        timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
+        timelineChoiceOpti.play();
+    }
+
+    public static void setButtonProduct() {
+        int index = 0;
+        int compteur = 0;
+        HELBElectroView.productButtonList = new ArrayList<>(); // Création de la liste de boutons
+
+        for (Node node : HELBElectroView.areaProduct.getChildren()) {
+            if (node instanceof Button setButton) {
+                if (index >= productObjectList.size()) {
+                    break;
+                }
+
+                Product product = (Product) productObjectList.get(index);
+                setButton.setUserData(product);
+                setButton.setText(product.getnameForP());
+                setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
+
+                HELBElectroView.productButtonList.add(setButton); // Ajout du bouton à la liste
+
+                index++;
+                compteur++;
+                if (compteur == numberButton) {
+                    inializeAlertForAreaProductFull();
+                    break;
+                }
+            }
+        }
+    }
+
+    private static void inializeAlertForAreaProductFull() {
+        System.out.println("stop production");
+         stopTimeline();
+        // runlater psq ya le thread java fx en cours
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Entrepôt des produits");
+            alert.setHeaderText(null);
+            alert.setContentText("L'entrepôt est complet, veuillez le vider !");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                productObjectList.clear();
+                HELBElectroView.clearProductLabels();
+                System.out.println("Entrepôt vidé !");
+            }
+        });
+    }
+
+    private static void stopTimeline() {
+        timelineChoiceOpti.stop();
+        timelineChoiceOpti.getKeyFrames().clear();
+        timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {}));
+        timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
+        timelineChoiceOpti.play();
     }
 
 }
