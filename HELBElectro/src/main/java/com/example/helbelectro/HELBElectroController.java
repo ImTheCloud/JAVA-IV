@@ -166,7 +166,7 @@ public class HELBElectroController implements Optimization {
         timelineChoiceOpti.stop();
         timelineChoiceOpti.getKeyFrames().clear();
         timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-            HELBElectroController.createProduct();
+            createProduct();
             setButtonProduct();
         }));
         timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);

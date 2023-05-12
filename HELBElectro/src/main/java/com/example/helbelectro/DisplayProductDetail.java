@@ -13,16 +13,29 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class DisplayProductDetail {
-    private static int sellCount = 0;
-    private static int statNumberBattery = 0;
-    private static int statNumberSensor = 0;
-    private static int statNumberMotor = 0;
-    private static int statNumberAlarm = 0;
-    private static int statNumberCar = 0;
-    private static int statNumberRobot = 0;
-    private static int statNumberDrone = 0;
+    private static DisplayProductDetail instance;
 
-    public static void onButtonProductClicked(ActionEvent event) {
+    // Constructeur privé pour empêcher l'instanciation directe
+    DisplayProductDetail() {
+    }
+
+    // Méthode statique pour obtenir l'instance unique du singleton
+    public static DisplayProductDetail getInstance() {
+        if (instance == null) {
+            instance = new DisplayProductDetail();
+        }
+        return instance;
+    }
+    private  int sellCount = 0;
+    private  int statNumberBattery = 0;
+    private static int statNumberSensor = 0;
+    private  int statNumberMotor = 0;
+    private  int statNumberAlarm = 0;
+    private  int statNumberCar = 0;
+    private  int statNumberRobot = 0;
+    private  int statNumberDrone = 0;
+
+    public void onButtonProductClicked(ActionEvent event) {
         Button bt_productFinish = (Button) event.getSource();
         int rowIndex = GridPane.getRowIndex(bt_productFinish) - 1;
         int columnIndex = GridPane.getColumnIndex(bt_productFinish) - 1;
@@ -39,7 +52,7 @@ public class DisplayProductDetail {
         }
     }
 
-    private static void showEmptyProductModal(Stage modal) {
+    private void showEmptyProductModal(Stage modal) {
         Label statut = new Label("Statut : inoccupé");
         VBox vbox = new VBox(statut);
         vbox.setAlignment(Pos.CENTER);
@@ -49,7 +62,7 @@ public class DisplayProductDetail {
         modal.showAndWait();
     }
 
-    private static void showProductModal(Stage modal, Product product, Button bt_productFinish) {
+    private void showProductModal(Stage modal, Product product, Button bt_productFinish) {
         Label statut = new Label("Statut : occupé");
         Label type = new Label("Type de produit: " + product.getnameForScene());
         Label price = new Label("Prix : " + product.getSellingPrice() + " euros");
@@ -96,23 +109,23 @@ public class DisplayProductDetail {
         modal.showAndWait();
     }
 
-    private static void addSensorLabels(VBox vbox) {
+    private void addSensorLabels(VBox vbox) {
         Label rangeLabel = new Label("Range: " + ComponentSensor.getRange());
         Label colorSensorLabel = new Label("Color Sensor: " + ComponentSensor.getColorSensor());
         vbox.getChildren().addAll(rangeLabel, colorSensorLabel);
     }
 
-    private static void addBatteryLabel(VBox vbox) {
+    private void addBatteryLabel(VBox vbox) {
         Label loadLabel = new Label("Load: " + ComponentBattery.getLoad());
         vbox.getChildren().add(loadLabel);
     }
 
-    private static void addMotorLabel(VBox vbox) {
+    private void addMotorLabel(VBox vbox) {
         Label powerLabel = new Label("Power: " + ComponentMotor.getPower());
         vbox.getChildren().add(powerLabel);
     }
 
-    private static Button createStatsButton(Product product, Stage modal) {
+    private Button createStatsButton(Product product, Stage modal) {
         Button statsButton = new Button("Voir les statistiques de cet emplacement");
         statsButton.setStyle("-fx-background-color: #3f7ad9; -fx-text-fill: white;");
 
@@ -177,12 +190,12 @@ public class DisplayProductDetail {
 
 
 
-    private static Button createSellButton(Product product, Button bt_productFinish, Stage modal) {
+    private Button createSellButton(Product product, Button bt_productFinish, Stage modal) {
         Button sellButton = new Button("Vendre produit");
         sellButton.setStyle("-fx-background-color: #0b6517; -fx-text-fill: white;");
 
         sellButton.setOnAction(e -> {
-            Ticket.registerSale(product, product.getSellingPrice(), product.getEcoScore());
+            Ticket.getInstance().registerSale(product, product.getSellingPrice(), product.getEcoScore());
             HELBElectroController.productObjectList.remove(product);
 
             sellCount++;

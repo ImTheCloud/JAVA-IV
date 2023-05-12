@@ -8,10 +8,23 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Parser {
+    private static Parser instance;
+
+    // Constructeur privé pour empêcher l'instanciation directe
+    Parser() {
+    }
+
+    // Méthode statique pour obtenir l'instance unique du singleton
+    public static Parser getInstance() {
+        if (instance == null) {
+            instance = new Parser();
+        }
+        return instance;
+    }
     private static int timeDelay = 0;
 
     // plus besoin de mettre les méthodes en static puisqu'il y a le singleton
-    public static void parseSimulationFile() throws FileNotFoundException {
+    public void parseSimulationFile() throws FileNotFoundException {
         String fileName = "helbelectro.data";
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);

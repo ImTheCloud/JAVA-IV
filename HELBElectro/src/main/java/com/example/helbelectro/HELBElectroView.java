@@ -140,7 +140,7 @@ public class HELBElectroView {
                 int btProductHeight = 73;
                 button.setPrefSize(btProductWith, btProductHeight);
                 button.setStyle("-fx-background-color: white;");
-                button.setOnAction(DisplayProductDetail::onButtonProductClicked);
+                button.setOnAction(DisplayProductDetail.getInstance()::onButtonProductClicked);
                 if (i == sizeRowGrid -1 && j == sizeColGrid -1) {
                     // derniere case de la grid pas de bouton
                     // comme dans l'interface du prof
@@ -203,7 +203,7 @@ public class HELBElectroView {
     public void setLabelComponents() {
         Timeline timelineComponent = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             try {
-                Parser.parseSimulationFile();
+                Parser.getInstance().parseSimulationFile();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -252,10 +252,9 @@ public class HELBElectroView {
         ObservableList<String> optiList = FXCollections.observableArrayList("Time", "Cost", "Score", "Diverse");
         optiComboBox.setItems(optiList);
         optiComboBox.setOnAction(event -> {
-             HELBElectroController controller = new HELBElectroController();
 
             String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
-            controller.onOptiChoiceSelected(selectedItem);
+            HELBElectroController.getInstance().onOptiChoiceSelected(selectedItem);
         });
 
 

@@ -7,8 +7,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ticket {
+    private static Ticket instance;
 
-    public static void registerSale(Product typeProduct, int price, String ecoScore) {
+    // Constructeur privé pour empêcher l'instanciation directe
+    Ticket() {
+    }
+
+    // Méthode statique pour obtenir l'instance unique du singleton
+    public static Ticket getInstance() {
+        if (instance == null) {
+            instance = new Ticket();
+        }
+        return instance;
+    }
+
+    public void registerSale(Product typeProduct, int price, String ecoScore) {
         try {
             SimpleDateFormat sdfFileName = new SimpleDateFormat("HHmmss");
             SimpleDateFormat sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
