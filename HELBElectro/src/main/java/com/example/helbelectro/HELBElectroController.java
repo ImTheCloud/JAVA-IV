@@ -4,27 +4,35 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.example.helbelectro.HELBElectroView.numberButton;
+import static com.example.helbelectro.HELBElectroView.*;
 
 public class HELBElectroController implements Optimization {
     private static HELBElectroController instance;
     private static final Timeline timelineChoiceOpti = new Timeline();
+    private final int numberLBComponent =8;
+
 
 
     // Constructeur privé pour empêcher l'instanciation directe
     HELBElectroController() {
         onOptiClicked();
+        inialize();
     }
 
     // Méthode statique pour obtenir l'instance unique du singleton
@@ -41,9 +49,9 @@ public class HELBElectroController implements Optimization {
      static List<Object> componentObjectList = new ArrayList<>();
      static AtomicBoolean isBusy = new AtomicBoolean(false);
 
-    public static void createComponent(String componentName, String[] values) {
+    public  void createComponent(String componentName, String[] values) {
         // Vérifier si le nombre maximal de labels a été atteint
-        if (componentObjectList.size() >= HELBElectroView.numberLBComponent) {
+        if (componentObjectList.size() >= numberLBComponent) {
             System.out.println("Nombre maximal de composant atteint");
         } else {
             // Créer le composant en utilisant la Factory
@@ -53,7 +61,7 @@ public class HELBElectroController implements Optimization {
         }
     }
 
-    public static void createProduct() {
+    public  void createProduct() {
         if (isBusy.get()) {
             return;
         }
@@ -80,7 +88,7 @@ public class HELBElectroController implements Optimization {
         }
     }
 
-    private static void removeUsedComponents(Product product) {
+    private  void removeUsedComponents(Product product) {
         List<Object> componentNames = product.getComponentListNecessary();
         for (Object componentName : componentNames) {
             // Recherche le premier composant qui correspont dans la liste des composants
@@ -97,7 +105,7 @@ public class HELBElectroController implements Optimization {
 
 
 
-    private static boolean hasAllNecessaryComponents(Product product) {
+    private  boolean hasAllNecessaryComponents(Product product) {
         for (Object componentName : product.getComponentListNecessary()) {
             boolean hasComponent = componentObjectList.stream()
                     .anyMatch(component -> component.getClass().getSimpleName().equals(componentName.getClass().getSimpleName()));
@@ -107,7 +115,7 @@ public class HELBElectroController implements Optimization {
         }
         return true;
     }
-        public static void addProductList() {
+        public  void addProductList() {
         productObjectListSorted.add(new ProductBattery(""));
         productObjectListSorted.add(new ProductSensor("",""));
         productObjectListSorted.add(new ProductMotor(""));
@@ -116,23 +124,23 @@ public class HELBElectroController implements Optimization {
         productObjectListSorted.add(new ProductDrone("","","",""));
         productObjectListSorted.add(new ProductRobot("","",""));
     }
-    public static void getSortedProductListByTime() {
+    public  void getSortedProductListByTime() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getManufacturingDuration));
        // productObjectListSorted.forEach(System.out::println);
 
     }
-    public static void getSortedProductListByScore() {
+    public  void getSortedProductListByScore() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getEcoScore));
     }
-    public static void getSortedProductListByPrice() {
+    public  void getSortedProductListByPrice() {
         addProductList();
         productObjectListSorted.sort(Comparator.comparing(Product::getSellingPrice));
         Collections.reverse(productObjectListSorted);
     }
 
-    public static void getSortedProductListByDiverse() {
+    public  void getSortedProductListByDiverse() {
         addProductList();
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectList, p)));
@@ -171,7 +179,7 @@ public class HELBElectroController implements Optimization {
         }
     }
 
-    private static void startTimeline() {
+    private void startTimeline() {
 
         timelineChoiceOpti.stop();
         timelineChoiceOpti.getKeyFrames().clear();
@@ -183,12 +191,12 @@ public class HELBElectroController implements Optimization {
         timelineChoiceOpti.play();
     }
 
-    public static void setButtonProduct() {
+    public  void setButtonProduct() {
         int index = 0;
         int compteur = 0;
         HELBElectroView.productButtonList = new ArrayList<>(); // Création de la liste de boutons
 
-        for (Node node : HELBElectroView.areaProduct.getChildren()) {
+        for (Node node : areaProduct.getChildren()) {
             if (node instanceof Button setButton) {
                 if (index >= productObjectList.size()) {
                     break;
@@ -211,7 +219,7 @@ public class HELBElectroController implements Optimization {
         }
     }
 
-    private static void inializeAlertForAreaProductFull() {
+    private  void inializeAlertForAreaProductFull() {
         System.out.println("stop production");
          stopTimeline();
         // runlater psq ya le thread java fx en cours
@@ -224,18 +232,163 @@ public class HELBElectroController implements Optimization {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 productObjectList.clear();
-                HELBElectroView.clearProductLabels();
+                clearProductLabels();
                 System.out.println("Entrepôt vidé !");
             }
         });
     }
 
-    private static void stopTimeline() {
+    private void stopTimeline() {
         timelineChoiceOpti.stop();
         timelineChoiceOpti.getKeyFrames().clear();
         timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {}));
         timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
         timelineChoiceOpti.play();
     }
+
+    public void inialize(){
+        inializeGridWithNumber();
+        HELBElectroView.btLetterNumber.setOnAction(this::changeNumberLetter);
+        initializeProductArea();
+        initializeComponentArea();
+    }
+
+
+    public void initializeProductArea() {
+        for (int i = 0; i < sizeColGrid; i++) {
+            ColumnConstraints column = new ColumnConstraints();
+            column.setHgrow(Priority.ALWAYS); // agrandir
+            areaProduct.getColumnConstraints().add(column);
+        }
+        for (int i = 0; i < sizeRowGrid; i++) {
+            RowConstraints row = new RowConstraints();
+            row.setVgrow(Priority.ALWAYS);
+            areaProduct.getRowConstraints().add(row);
+        }
+
+        for (int i = 0; i < sizeRowGrid; i++) {
+            for (int j = 0; j < sizeColGrid; j++) {
+                Button button = new Button();
+                int btProductWith = 138;
+                int btProductHeight = 73;
+                button.setPrefSize(btProductWith, btProductHeight);
+                button.setStyle("-fx-background-color: white;");
+                button.setOnAction(DisplayProductDetail.getInstance()::onButtonProductClicked);
+                if (i == sizeRowGrid -1 && j == sizeColGrid -1) {
+                    // derniere case de la grid pas de bouton
+                    // comme dans l'interface du prof
+                    continue;
+                }
+                areaProduct.add(button, j+1, i+1);
+            }
+        }
+    }
+    private void changeNumberLetter(ActionEvent actionEvent) {
+        areaProduct.getChildren().removeAll(HELBElectroView.listeLabelCol);
+        areaProduct.getChildren().removeAll(HELBElectroView.listeLabelRow);
+        if(HELBElectroView.btLetterNumber.getText().equals("Letter")){
+            for (int j = 0; j < sizeColGrid; j++) {
+                lbNumberCol = new Label(String.valueOf((char) ('A' + j)));
+                HELBElectroView.lbNumberCol.setStyle(HELBElectroView.labelStyle);
+                areaProduct.add(HELBElectroView.lbNumberCol, j+1, 0);
+                HELBElectroView.listeLabelCol.add(HELBElectroView.lbNumberCol);
+            }
+            for (int i = 0; i < HELBElectroView.sizeRowGrid; i++) {
+                HELBElectroView.lbNumberRow = new Label(String.valueOf((char) ('A' + i)));
+                HELBElectroView.lbNumberRow.setStyle(HELBElectroView.labelStyle);
+                areaProduct.add(HELBElectroView.lbNumberRow, 0, i+1);
+                HELBElectroView.listeLabelRow.add(HELBElectroView.lbNumberRow);
+            }
+            HELBElectroView.btLetterNumber.setText("Number");
+        }else{
+            HELBElectroView.btLetterNumber.setText("Letter");
+            // Ajout des numéros de colonne
+             inializeGridWithNumber();
+        }
+    }
+
+    public void inializeGridWithNumber(){
+        // Ajout des numéros de colonne
+        for (int j = 0; j < sizeColGrid; j++) {
+            HELBElectroView.lbNumberCol = new Label(String.valueOf(j));
+            HELBElectroView. lbNumberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(HELBElectroView.lbNumberCol, j+1, 0);
+            HELBElectroView.listeLabelCol.add(HELBElectroView.lbNumberCol);
+        }
+
+        // Ajout des numéros de ligne
+        for (int i = 0; i < HELBElectroView.sizeRowGrid; i++) {
+            HELBElectroView.lbNumberRow = new Label(String.valueOf(i));
+            HELBElectroView.lbNumberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(HELBElectroView.lbNumberRow, 0, i+1);
+            HELBElectroView.listeLabelRow.add(HELBElectroView.lbNumberRow);
+        }
+    }
+
+    public void clearProductLabels() {
+        for (Button button : productButtonList) {
+            button.setStyle("-fx-background-color: #FFFFFF;");
+            button.setText("");
+        }
+    }
+
+    public void initializeComponentArea() {
+        componentLabelsList = new ArrayList<>();
+        for (int i = 0; i < numberLBComponent; i++) {
+            Label label = new Label();
+            label.setPrefSize(183, 42);
+            label.setId("component" + i);
+            label.setAlignment(Pos.CENTER);
+            componentLabelsList.add(label);
+            label.setStyle("-fx-background-color: white;");
+            areaComponent.getChildren().add(label);
+        }
+        setLabelComponents();
+    }
+
+
+    private void setLabelComponents() {
+        Timeline timelineComponent = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+            try {
+                Parser.getInstance().parseSimulationFile();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            List<Object> componentList = HELBElectroController.componentObjectList;
+            if (componentList.size() != componentLabelsList.size()) {
+                clearComponentLabels();
+            }
+            updateComponentLabels(componentList);
+        }));
+        timelineComponent.setCycleCount(Animation.INDEFINITE);
+        timelineComponent.play();
+    }
+
+    private void clearComponentLabels() {
+        for (Label label : componentLabelsList) {
+            label.setStyle("-fx-background-color: #FFFFFF;");
+            label.setText("");
+        }
+    }
+
+    // ici methode pour maj les composants
+    private void updateComponentLabels(List<Object> componentList) {
+        int index = 1;
+        for (Object component : componentList) {
+            if (component instanceof Component currentComponent) {
+                Label componentLabel = getComponentLabel(index);
+                componentLabel.setText(currentComponent.getName());
+                componentLabel.setStyle("-fx-background-color: " + currentComponent.getColor());
+                index++;
+            }
+        }
+    }
+
+
+    private Label getComponentLabel(int index) {
+        return componentLabelsList.get(index - 1);
+    }
+
+
 
 }
