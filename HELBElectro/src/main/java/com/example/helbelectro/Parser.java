@@ -9,23 +9,23 @@ import java.util.Scanner;
 
 public class Parser {
     private static Parser instance;
+    private int timeDelay = 0;
 
-    // Constructeur privé pour empêcher l'instanciation directe
+    // constructeur prive pour empecher l'instanciation directe
     Parser() {
     }
 
-    // Méthode statique pour obtenir l'instance unique du singleton
+    // methode statique pour obtenir l'instance unique du singleton
     public static Parser getInstance() {
         if (instance == null) {
             instance = new Parser();
         }
         return instance;
     }
-    private static int timeDelay = 0;
 
-    // plus besoin de mettre les méthodes en static puisqu'il y a le singleton
+    // methode qui va s'occuper  de parser les lignes des composant dans le helbelectro.data
     public void parseSimulationFile() throws FileNotFoundException {
-        String fileName = "helbelectro.data";
+        String fileName = "helbelectro.data"; // chemin absolu !
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
 
@@ -36,7 +36,7 @@ public class Parser {
             int timeInSeconds = Integer.parseInt(values[0]);
             String componentName = values[1];
 
-            // Attendre autant de temps qui est indiqué dans le fichier de simulation pour chaque composant
+            // attendre autant de temps qui est indiqué dans le fichier de simulation pour chaque composant
             Duration delay = Duration.seconds(timeDelay);
             Duration duration = Duration.seconds(timeInSeconds);
             Timeline timelineParser = new Timeline(new KeyFrame(delay.add(duration), e -> {

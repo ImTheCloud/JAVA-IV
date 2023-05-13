@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAlarm extends Product {
-    // Attribut pour la creation du produit avec les attribut de leur composant néccesaire a leur creation
+    // attribut pour la creation du produit avec les attribut de leur composant néccesaire a leur creation
     private String load;
     private String colorComponent;
     private String range;
@@ -14,8 +14,8 @@ public class ProductAlarm extends Product {
         this.colorComponent = colorComponent;
         this.range = range;
     }
-    //List de composant neccesaire avec les constructeur vide des composants
-    //Override car on réimplemente la list de la class mere Product
+    //list de composant neccesaire avec les constructeur vide des composants
+    //override car on réimplemente la list de la class mere Product
     @Override
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();

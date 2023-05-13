@@ -1,6 +1,6 @@
 package com.example.helbelectro;
 public class ComponentSensor implements Component {
-    // attribut neccesaire a la creation du composant :
+    // attribut neccesaire a la creation du composant
     protected static String range;
     protected static String colorSensor;
     public ComponentSensor(String range, String colorSensor) {

@@ -1,6 +1,6 @@
 package com.example.helbelectro;
 public class ComponentMotor implements Component{
-    // attribut neccesaire a la creation du composant :
+    // attribut neccesaire a la creation du composant
     protected static String power;
     public ComponentMotor(String power) {
             ComponentMotor.power = power;

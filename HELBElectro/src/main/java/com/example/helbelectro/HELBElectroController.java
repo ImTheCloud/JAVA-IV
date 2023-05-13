@@ -289,7 +289,7 @@ public class HELBElectroController implements Optimization {
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public  void createComponent(String componentName, String[] values) {
+    public void createComponent(String componentName, String[] values) {
         // Vérifier si le nombre maximal de labels a été atteint
         if (componentObjectList.size() >= numberLBComponent) {
             System.out.println("Nombre maximal de composant atteint");

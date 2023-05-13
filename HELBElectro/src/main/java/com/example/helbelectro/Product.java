@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Product {
-    // Attribut pour la creation de chaque produit
+    // attribut pour la creation de chaque produit
     protected String nameForP;
     protected String nameForScene;
     protected int manufacturingDuration;
@@ -19,7 +19,7 @@ public abstract class Product {
         this.sellingPrice = sellingPrice;
         this.nameForScene = nameForScene;
     }
-    //List de composant neccesaire avec les constructeur vide des composants
+    // list de composant neccesaire avec les constructeur vide des composants
     public List<Object> getComponentListNecessary() {
         return new ArrayList<>();
     }
