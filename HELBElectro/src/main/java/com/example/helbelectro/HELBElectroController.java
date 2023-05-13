@@ -24,6 +24,7 @@ public class HELBElectroController implements Optimization {
 
     // Constructeur privé pour empêcher l'instanciation directe
     HELBElectroController() {
+        onOptiClicked();
     }
 
     // Méthode statique pour obtenir l'instance unique du singleton
@@ -142,6 +143,12 @@ public class HELBElectroController implements Optimization {
         timeline.play();
     }
 
+    private void onOptiClicked(){
+        HELBElectroView.optiComboBox.setOnAction(event -> {
+            String selectedItem =HELBElectroView.optiComboBox.getSelectionModel().getSelectedItem();
+            onOptiChoiceSelected(selectedItem);
+        });
+    }
     @Override
     public void onOptiChoiceSelected(String selectedItem) {
         switch (selectedItem) {
@@ -165,6 +172,7 @@ public class HELBElectroController implements Optimization {
     }
 
     private static void startTimeline() {
+
         timelineChoiceOpti.stop();
         timelineChoiceOpti.getKeyFrames().clear();
         timelineChoiceOpti.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
@@ -229,4 +237,5 @@ public class HELBElectroController implements Optimization {
         timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
         timelineChoiceOpti.play();
     }
+
 }

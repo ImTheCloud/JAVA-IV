@@ -2,14 +2,11 @@ package com.example.helbelectro;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -18,7 +15,6 @@ import javafx.util.Duration;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class HELBElectroView {
     private static HELBElectroView instance;
@@ -28,7 +24,7 @@ public class HELBElectroView {
     private final List<Label> listeLabelCol= new ArrayList<>();
     private final VBox areaComponent = new VBox();
     static  GridPane areaProduct = new GridPane();
-    private final ComboBox<String> optiComboBox = new ComboBox<>();
+    static final ComboBox<String> optiComboBox = new ComboBox<>();
     private static final int sizeColGrid = 3;
     private static final int sizeRowGrid = 4;
     static int numberButton = (sizeColGrid*sizeRowGrid)-1;
@@ -252,10 +248,6 @@ public class HELBElectroView {
         optiComboBox.setValue("Choice");
         ObservableList<String> optiList = FXCollections.observableArrayList("Time", "Cost", "Score", "Diverse");
         optiComboBox.setItems(optiList);
-        optiComboBox.setOnAction(event -> {
-            String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
-            HELBElectroController.getInstance().onOptiChoiceSelected(selectedItem);
-        });
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
         return optiBox;
     }

@@ -11,6 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         HELBElectroView view = HELBElectroView.getInstance(stage);
+        HELBElectroController.getInstance();
         view.afficher();
     }
 }
