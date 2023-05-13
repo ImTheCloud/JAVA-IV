@@ -8,8 +8,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.util.Duration;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -143,22 +145,22 @@ public class HELBElectroController implements Optimization {
     @Override
     public void onOptiChoiceSelected(String selectedItem) {
         switch (selectedItem) {
-            case "Time":
+            case "Time" -> {
                 getSortedProductListByTime();
                 startTimeline();
-                break;
-            case "Cost":
+            }
+            case "Cost" -> {
                 getSortedProductListByPrice();
                 startTimeline();
-                break;
-            case "Score":
+            }
+            case "Score" -> {
                 getSortedProductListByScore();
                 startTimeline();
-                break;
-            case "Diverse":
+            }
+            case "Diverse" -> {
                 getSortedProductListByDiverse();
                 startTimeline();
-                break;
+            }
         }
     }
 
@@ -227,5 +229,4 @@ public class HELBElectroController implements Optimization {
         timelineChoiceOpti.setCycleCount(Animation.INDEFINITE);
         timelineChoiceOpti.play();
     }
-
 }

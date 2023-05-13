@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -39,7 +40,7 @@ public class HELBElectroView {
     private Label lbNumberCol;
     private Label lbNumberRow;
     private Button btLetterNumber;
-    private List<Label> componentLabelsList;
+    static List<Label> componentLabelsList = FXCollections.observableArrayList();
     static List<Button> productButtonList;
 
     private HELBElectroView(Stage stage) {
@@ -200,7 +201,7 @@ public class HELBElectroView {
         setLabelComponents();
     }
 
-    public void setLabelComponents() {
+    private void setLabelComponents() {
         Timeline timelineComponent = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             try {
                 Parser.getInstance().parseSimulationFile();
@@ -252,16 +253,10 @@ public class HELBElectroView {
         ObservableList<String> optiList = FXCollections.observableArrayList("Time", "Cost", "Score", "Diverse");
         optiComboBox.setItems(optiList);
         optiComboBox.setOnAction(event -> {
-
             String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
             HELBElectroController.getInstance().onOptiChoiceSelected(selectedItem);
         });
-
-
-
-
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
         return optiBox;
     }
-
 }
