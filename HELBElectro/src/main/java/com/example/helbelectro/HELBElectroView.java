@@ -14,11 +14,13 @@ public class HELBElectroView {
     private final HBox screen;
     static final VBox areaComponent = new VBox();
     static  GridPane areaProduct = new GridPane();
-    private HBox screenCreate = new HBox();
+    private final HBox screenCreate = new HBox();
     static final ComboBox<String> optiComboBox = new ComboBox<>();
     private static final int widthScene = 776;
     private static final int heightScene = 538;
     static Button btLetterNumber;
+    private final int setSpace = 10;
+    private final int setPadding = 20;
     static final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
 
 
@@ -46,13 +48,14 @@ public class HELBElectroView {
     private HBox createScreen() {
         screenCreate.setAlignment(Pos.CENTER);
         screenCreate.setPrefSize(widthScene, heightScene);
-        screenCreate.setSpacing(10.0);
+        screenCreate.setSpacing(setSpace);
         screenCreate.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
-        screenCreate.setPadding(new Insets(20, 20, 20, 20));
+        screenCreate.setPadding(new Insets(setPadding, setPadding, setPadding, setPadding));
 
         GridPane grid = initGridAraProduct();
         btLetterNumber = new Button("Letter");
-        btLetterNumber.setPrefWidth(150);
+        int sizeButton =150;
+        btLetterNumber.setPrefWidth(sizeButton);
         btLetterNumber.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));
         VBox vboxComponent = initVBoxAreaComponent();
 
@@ -63,15 +66,16 @@ public class HELBElectroView {
     }
 
     private GridPane initGridAraProduct() {
-        areaProduct.setHgap(10);
-        areaProduct.setVgap(10);
+        int gap = 10;
+        areaProduct.setHgap(gap);
+        areaProduct.setVgap(gap);
         areaProduct.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-background-color: %s;", "white", "#626786"));
-        areaProduct.setPadding(new Insets(20, 20, 20, 20));
+        areaProduct.setPadding(new Insets(setPadding, setPadding, setPadding, setPadding));
         return areaProduct;
     }
 
     private VBox initVBoxAreaComponent() {
-        areaComponent.setSpacing(10);
+        areaComponent.setSpacing(setSpace);
         areaComponent.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
         HBox optiBox = createOptiBox();
         areaComponent.getChildren().addAll(optiBox, new VBox());
@@ -80,7 +84,7 @@ public class HELBElectroView {
     private HBox createOptiBox() {
         HBox optiBox = new HBox();
         optiBox.setStyle(String.format("-fx-border-color: %s; -fx-font-weight: bold; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
-        optiBox.setSpacing(10);
+        optiBox.setSpacing(setSpace);
         Label optiLabel = new Label("Opti : ");
         optiLabel.setStyle("-fx-font-weight: bold;  -fx-text-fill: white;");
         optiComboBox.setValue("Choice");
