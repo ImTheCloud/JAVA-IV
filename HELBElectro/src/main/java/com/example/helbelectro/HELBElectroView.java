@@ -29,8 +29,8 @@ public class HELBElectroView {
     private static final int sizeRowGrid = 4;
     static int numberButton = (sizeColGrid*sizeRowGrid)-1;
     static final int numberLBComponent =8;
-    private final int widthScene = 776;
-    private final int heightScene = 538;
+    private static final int widthScene = 776;
+    private static final int heightScene = 538;
     private final String setNameButtonToLetter = "Letter";
     private final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
     private Label lbNumberCol;
@@ -38,10 +38,12 @@ public class HELBElectroView {
     private Button btLetterNumber;
     static List<Label> componentLabelsList = FXCollections.observableArrayList();
     static List<Button> productButtonList;
+    static HBox screenCreate = new HBox();
 
     private HELBElectroView(Stage stage) {
         this.stage = stage;
         this.screen = createScreen();
+        initialize();
     }
 
     // Méthode statique pour obtenir l'instance unique du singleton
@@ -61,13 +63,18 @@ public class HELBElectroView {
         stage.show();
     }
 
+    public static void initialize(){
+        screenCreate.setAlignment(Pos.CENTER);
+        screenCreate.setPrefSize(widthScene, heightScene);
+        screenCreate.setSpacing(10.0);
+        screenCreate.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
+        screenCreate.setPadding(new Insets(20, 20, 20, 20));
+
+    }
+
     private HBox createScreen() {
-        HBox screen = new HBox();
-        screen.setAlignment(Pos.CENTER);
-        screen.setPrefSize(widthScene, heightScene);
-        screen.setSpacing(10.0);
-        screen.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
-        screen.setPadding(new Insets(20, 20, 20, 20));
+
+
         GridPane grid = initGridAraProduct();
 
         btLetterNumber = new Button(setNameButtonToLetter);
@@ -78,8 +85,8 @@ public class HELBElectroView {
 
         VBox vboxGrid = new VBox();
         vboxGrid.getChildren().addAll(btLetterNumber,grid);
-        screen.getChildren().addAll(vboxGrid, vboxComponent);
-        return screen;
+        screenCreate.getChildren().addAll(vboxGrid, vboxComponent);
+        return screenCreate;
     }
 
     private void changeNumberLetter(ActionEvent actionEvent) {
