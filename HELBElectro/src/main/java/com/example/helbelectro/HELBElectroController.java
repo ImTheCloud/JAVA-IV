@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -26,13 +27,21 @@ public class HELBElectroController implements Optimization {
     private static HELBElectroController instance;
     private static final Timeline timelineChoiceOpti = new Timeline();
     private final int numberLBComponent =8;
+    private List<Label> listeLabelRow= new ArrayList<>();
+    private List<Label> listeLabelCol= new ArrayList<>();
+    private final int sizeColGrid = 3;
+    private final int sizeRowGrid = 4;
+    private final int numberButton = (sizeColGrid*sizeRowGrid)-1;
+    private Label lbNumberCol;
+    private Label lbNumberRow;
+    private List<Label> componentLabelsList = FXCollections.observableArrayList();
+    private List<Button> productButtonList;
 
+    private HELBElectroController() {
 
-
-    // Constructeur privé pour empêcher l'instanciation directe
-    HELBElectroController() {
         onOptiClicked();
         inialize();
+
     }
 
     // Méthode statique pour obtenir l'instance unique du singleton
@@ -152,8 +161,8 @@ public class HELBElectroController implements Optimization {
     }
 
     private void onOptiClicked(){
-        HELBElectroView.optiComboBox.setOnAction(event -> {
-            String selectedItem =HELBElectroView.optiComboBox.getSelectionModel().getSelectedItem();
+        optiComboBox.setOnAction(event -> {
+            String selectedItem =optiComboBox.getSelectionModel().getSelectedItem();
             onOptiChoiceSelected(selectedItem);
         });
     }
@@ -194,7 +203,7 @@ public class HELBElectroController implements Optimization {
     public  void setButtonProduct() {
         int index = 0;
         int compteur = 0;
-        HELBElectroView.productButtonList = new ArrayList<>(); // Création de la liste de boutons
+        productButtonList = new ArrayList<>(); // Création de la liste de boutons
 
         for (Node node : areaProduct.getChildren()) {
             if (node instanceof Button setButton) {
@@ -207,7 +216,7 @@ public class HELBElectroController implements Optimization {
                 setButton.setText(product.getnameForP());
                 setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
 
-                HELBElectroView.productButtonList.add(setButton); // Ajout du bouton à la liste
+                productButtonList.add(setButton); // Ajout du bouton à la liste
 
                 index++;
                 compteur++;
@@ -248,7 +257,7 @@ public class HELBElectroController implements Optimization {
 
     public void inialize(){
         inializeGridWithNumber();
-        HELBElectroView.btLetterNumber.setOnAction(this::changeNumberLetter);
+        btLetterNumber.setOnAction(this::changeNumberLetter);
         initializeProductArea();
         initializeComponentArea();
     }
@@ -284,24 +293,24 @@ public class HELBElectroController implements Optimization {
         }
     }
     private void changeNumberLetter(ActionEvent actionEvent) {
-        areaProduct.getChildren().removeAll(HELBElectroView.listeLabelCol);
-        areaProduct.getChildren().removeAll(HELBElectroView.listeLabelRow);
-        if(HELBElectroView.btLetterNumber.getText().equals("Letter")){
+        areaProduct.getChildren().removeAll(listeLabelCol);
+        areaProduct.getChildren().removeAll(listeLabelRow);
+        if(btLetterNumber.getText().equals("Letter")){
             for (int j = 0; j < sizeColGrid; j++) {
                 lbNumberCol = new Label(String.valueOf((char) ('A' + j)));
-                HELBElectroView.lbNumberCol.setStyle(HELBElectroView.labelStyle);
-                areaProduct.add(HELBElectroView.lbNumberCol, j+1, 0);
-                HELBElectroView.listeLabelCol.add(HELBElectroView.lbNumberCol);
+                lbNumberCol.setStyle(labelStyle);
+                areaProduct.add(lbNumberCol, j+1, 0);
+                listeLabelCol.add(lbNumberCol);
             }
-            for (int i = 0; i < HELBElectroView.sizeRowGrid; i++) {
-                HELBElectroView.lbNumberRow = new Label(String.valueOf((char) ('A' + i)));
-                HELBElectroView.lbNumberRow.setStyle(HELBElectroView.labelStyle);
-                areaProduct.add(HELBElectroView.lbNumberRow, 0, i+1);
-                HELBElectroView.listeLabelRow.add(HELBElectroView.lbNumberRow);
+            for (int i = 0; i < sizeRowGrid; i++) {
+               lbNumberRow = new Label(String.valueOf((char) ('A' + i)));
+                lbNumberRow.setStyle(labelStyle);
+                areaProduct.add(lbNumberRow, 0, i+1);
+                listeLabelRow.add(lbNumberRow);
             }
-            HELBElectroView.btLetterNumber.setText("Number");
+            btLetterNumber.setText("Number");
         }else{
-            HELBElectroView.btLetterNumber.setText("Letter");
+            btLetterNumber.setText("Letter");
             // Ajout des numéros de colonne
              inializeGridWithNumber();
         }
@@ -310,18 +319,18 @@ public class HELBElectroController implements Optimization {
     public void inializeGridWithNumber(){
         // Ajout des numéros de colonne
         for (int j = 0; j < sizeColGrid; j++) {
-            HELBElectroView.lbNumberCol = new Label(String.valueOf(j));
-            HELBElectroView. lbNumberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-            areaProduct.add(HELBElectroView.lbNumberCol, j+1, 0);
-            HELBElectroView.listeLabelCol.add(HELBElectroView.lbNumberCol);
+            lbNumberCol = new Label(String.valueOf(j));
+             lbNumberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(lbNumberCol, j+1, 0);
+            listeLabelCol.add(lbNumberCol);
         }
 
         // Ajout des numéros de ligne
-        for (int i = 0; i < HELBElectroView.sizeRowGrid; i++) {
-            HELBElectroView.lbNumberRow = new Label(String.valueOf(i));
-            HELBElectroView.lbNumberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-            areaProduct.add(HELBElectroView.lbNumberRow, 0, i+1);
-            HELBElectroView.listeLabelRow.add(HELBElectroView.lbNumberRow);
+        for (int i = 0; i < sizeRowGrid; i++) {
+            lbNumberRow = new Label(String.valueOf(i));
+            lbNumberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            areaProduct.add(lbNumberRow, 0, i+1);
+            listeLabelRow.add(lbNumberRow);
         }
     }
 

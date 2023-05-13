@@ -1,7 +1,4 @@
 package com.example.helbelectro;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -10,37 +7,24 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HELBElectroView {
     private static HELBElectroView instance;
     private final Stage stage;
     private final HBox screen;
-    static List<Label> listeLabelRow= new ArrayList<>();
-    static List<Label> listeLabelCol= new ArrayList<>();
     static final VBox areaComponent = new VBox();
     static  GridPane areaProduct = new GridPane();
+    private HBox screenCreate = new HBox();
     static final ComboBox<String> optiComboBox = new ComboBox<>();
-    static final int sizeColGrid = 3;
-    static final int sizeRowGrid = 4;
-    static int numberButton = (sizeColGrid*sizeRowGrid)-1;
     private static final int widthScene = 776;
     private static final int heightScene = 538;
-    static final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
-    static Label lbNumberCol;
-    static Label lbNumberRow;
     static Button btLetterNumber;
-    static List<Label> componentLabelsList = FXCollections.observableArrayList();
-    static List<Button> productButtonList;
-    static HBox screenCreate = new HBox();
+    static final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
+
 
     private HELBElectroView(Stage stage) {
         this.stage = stage;
         this.screen = createScreen();
-        initialize();
     }
 
     // Méthode statique pour obtenir l'instance unique du singleton
@@ -57,9 +41,6 @@ public class HELBElectroView {
         root.setAlignment(Pos.TOP_LEFT);
         stage.setScene(new Scene(root, widthScene, heightScene));
         stage.show();
-    }
-    public static void initialize(){
-
     }
 
     private HBox createScreen() {

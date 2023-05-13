@@ -3,7 +3,7 @@ package com.example.helbelectro;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class  Main extends Application {
+public class Main extends Application {
     // Point d'entrée du programme
     public static void main(String[] args) {
         launch();
