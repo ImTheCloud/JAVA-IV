@@ -28,7 +28,7 @@ public class DisplayProductDetail {
     }
     private  int sellCount = 0;
     private  int statNumberBattery = 0;
-    private static int statNumberSensor = 0;
+    private  int statNumberSensor = 0;
     private  int statNumberMotor = 0;
     private  int statNumberAlarm = 0;
     private  int statNumberCar = 0;
@@ -196,7 +196,7 @@ public class DisplayProductDetail {
 
         sellButton.setOnAction(e -> {
             Ticket.getInstance().registerSale(product, product.getSellingPrice(), product.getEcoScore());
-            HELBElectroController.productObjectList.remove(product);
+            HELBElectroController.getInstance().productObjectList.remove(product);
 
             sellCount++;
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
