@@ -1,0 +1,8 @@
+------------------------------------------------
+Date: 2023/05/14 15:01:36
+Type  produit: ProductSensor
+Prix:10
+Eco-Score :B
+Sensor Range: 140m
+Color Sensor: noir
+------------------------------------------------

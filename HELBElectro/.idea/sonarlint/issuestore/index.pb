@@ -33,13 +33,5 @@ b
 2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
 g
 7src/main/java/com/example/helbelectro/Optimization.java,7\4\7434417a3f37de6988e7f57521a44734bed8c956
-o
-?src/main/java/com/example/helbelectro/DisplayProductDetail.java,7\4\747138e665b0ce1a50c8e6c56cc756b462e9c242
-j
-:src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
 @
 helbelectro.data,1\6\169f3e50925d40e2489a079162d03e9424851651
-p
-@src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
-_
-/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465

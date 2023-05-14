@@ -1,24 +1,0 @@
-
-h	java:S112ı"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ç‡À1
-v	java:S135ñ"YReduce the total number of break and continue statements in this loop to use at most one.(„‚Ñ¨8é‡À1
->
-java:S1170 "!Make this final field static too.(Ï‰á³8×ˆÀ1
-C
-java:S1170!"!Make this final field static too.(êƒşôøÿÿÿÿ8×ˆÀ1
->
-java:S1170""!Make this final field static too.(ÕÛÍ8×ˆÀ1
-C
-java:S1170#"!Make this final field static too.(Ö’¥Æüÿÿÿÿ8ØˆÀ1
-»
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(®¿Ğûÿÿÿÿ8ØˆÀ1
-<
-java:S1872p"Use "isAssignableFrom" instead.(ïË¹‚8İˆÀ1
-B
-java:S1872ƒ"Use "isAssignableFrom" instead.(ÿÁ¬Ñıÿÿÿÿ8ßˆÀ1
-?	java:S131¼""Add a default case to this switch.(¢¾§8áˆÀ1
-:
-java:S6205Î"Remove this redundant block.(ø­µÙ8âˆÀ1
-Z
-java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8Ñ¯À1
-Y
-java:S1128"<Remove this unused import 'javafx.scene.control.ButtonType'.(úêÿ»8Ñ¯À1

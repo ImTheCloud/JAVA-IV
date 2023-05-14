@@ -40,6 +40,11 @@ public class DisplayProductDetail {
     private  int statNumberCar = 0;
     private  int statNumberRobot = 0;
     private  int statNumberDrone = 0;
+    private int padding = 20;
+    private int space = 10;
+    int widthScene = 400;
+    int heightScene = 350;
+
 
     // methode qui prend l'evenement du bouton cliqué
     public void onButtonProductClicked(ActionEvent event) {
@@ -68,9 +73,10 @@ public class DisplayProductDetail {
         Label statut = new Label("Statut : inoccupé");
         VBox vbox = new VBox(statut);
         vbox.setAlignment(Pos.CENTER);
-        vbox.setSpacing(10);
-        vbox.setPadding(new Insets(20));
-        modal.setScene(new Scene(vbox, 400, 350));
+        vbox.setSpacing(space);
+        vbox.setPadding(new Insets(padding));
+
+        modal.setScene(new Scene(vbox, widthScene, heightScene));
         modal.showAndWait();
     }
     // sinon ce sera l'affichage avec la vente et les stats
@@ -86,8 +92,8 @@ public class DisplayProductDetail {
 
         VBox vbox = new VBox(statsButton, statut, type, price, ecoScore);
         vbox.setAlignment(Pos.CENTER);
-        vbox.setSpacing(10);
-        vbox.setPadding(new Insets(20));
+        vbox.setSpacing(space);
+        vbox.setPadding(new Insets(padding));
             //obliger de verifier quel type de produits c'est
         // car il faut savoir combien et quel label ajouter a la vbox de ma fenettre
         // par exemple pour le drone il va ajouter les labels pour tout les attribut des composant
@@ -122,7 +128,7 @@ public class DisplayProductDetail {
         vbox.getChildren().addAll( sellButton);
 
 
-        modal.setScene(new Scene(vbox, 400, 350));
+        modal.setScene(new Scene(vbox, widthScene, heightScene));
         modal.showAndWait();
     }
 
@@ -185,31 +191,34 @@ public class DisplayProductDetail {
             //affiche tous les nombres pour chaque produit
             alert.setContentText(contentText);
 
-            // j'avais un probleme que vu que la logique etait appliquer dans le bouton stat
-            // alors si je quitais la fetere sans vendre, ca incrementait le nombre de produit
-            // alors j'ai decrementer le compteur seuelement si je quitte l'alert
             alert.setOnCloseRequest(event -> {
-                if (product instanceof ProductSensor) {
-                    statNumberSensor--;
-                } else if (product instanceof ProductBattery) {
-                    statNumberBattery--;
-                } else if (product instanceof ProductMotor) {
-                    statNumberMotor--;
-                } else if (product instanceof ProductDrone) {
-                    statNumberDrone--;
-                } else if (product instanceof ProductCar) {
-                    statNumberCar--;
-                } else if (product instanceof ProductAlarm) {
-                    statNumberAlarm--;
-                } else if (product instanceof ProductRobot) {
-                    statNumberRobot--;
-                }
+                updateProductCount(product, false);
             });
             alert.showAndWait();
             modal.close();
         });
 
         return statsButton;
+    }
+
+    private void updateProductCount(Product product, boolean increment) {
+        // maj le cpt en fonction de l'incrémentation
+        // car sinon bug avec les autres boutons, ca se melange
+        if (product instanceof ProductSensor) {
+            statNumberSensor += increment ? 1 : -1; // ? si increment est true, + 1, sinon - 1
+        } else if (product instanceof ProductBattery) {
+            statNumberBattery += increment ? 1 : -1;
+        } else if (product instanceof ProductMotor) {
+            statNumberMotor += increment ? 1 : -1;
+        } else if (product instanceof ProductDrone) {
+            statNumberDrone += increment ? 1 : -1;
+        } else if (product instanceof ProductCar) {
+            statNumberCar += increment ? 1 : -1;
+        } else if (product instanceof ProductAlarm) {
+            statNumberAlarm += increment ? 1 : -1;
+        } else if (product instanceof ProductRobot) {
+            statNumberRobot += increment ? 1 : -1;
+        }
     }
 
     // method de
