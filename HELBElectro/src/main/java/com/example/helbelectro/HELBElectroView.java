@@ -9,27 +9,27 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class HELBElectroView {
+    // DESIN PATTERN MVC
     private static HELBElectroView instance;
     private final Stage stage;
     private final HBox screen;
-    static final VBox areaComponent = new VBox();
-    static  GridPane areaProduct = new GridPane();
-    private final HBox screenCreate = new HBox();
-    static final ComboBox<String> optiComboBox = new ComboBox<>();
-    private static final int widthScene = 776;
-    private static final int heightScene = 538;
-    static Button btLetterNumber;
     private final int setSpace = 10;
     private final int setPadding = 20;
+    private final HBox screenCreate = new HBox();
+    private final int widthScene = 776;
+    private final int heightScene = 538;
+    static final VBox areaComponent = new VBox();
+    static GridPane areaProduct = new GridPane();
+    static final ComboBox<String> optiComboBox = new ComboBox<>();
+    static Button btLetterNumber;
     static final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
-
 
     private HELBElectroView(Stage stage) {
         this.stage = stage;
         this.screen = createScreen();
     }
 
-    // Méthode statique pour obtenir l'instance unique du singleton
+    // methode statique pour obtenir l'instance unique du singleton
     public static HELBElectroView getInstance(Stage stage) {
         if (instance == null) {
             instance = new HELBElectroView(stage);
@@ -37,7 +37,8 @@ public class HELBElectroView {
         return instance;
     }
 
-    public void afficher() {
+    // methode simple pour afficher le stage dans le main
+    public void display() {
         stage.setTitle("HELBElectro");
         VBox root = new VBox(screen);
         root.setAlignment(Pos.TOP_LEFT);
@@ -45,6 +46,10 @@ public class HELBElectroView {
         stage.show();
     }
 
+    // j'a diviser la class en methode pour bien diviser le code et le rendre maintelable
+    // voici createScreen qui va crée l'ecran qui affichera les composants et les produits
+    // dans cette methode sera appeler plusieurs petite methode avec a chaque fois un comportement
+    // propre au nom de la methode
     private HBox createScreen() {
         screenCreate.setAlignment(Pos.CENTER);
         screenCreate.setPrefSize(widthScene, heightScene);
@@ -52,12 +57,12 @@ public class HELBElectroView {
         screenCreate.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
         screenCreate.setPadding(new Insets(setPadding, setPadding, setPadding, setPadding));
 
-        GridPane grid = initGridAraProduct();
+        GridPane grid = initializeGridAraProduct();
         btLetterNumber = new Button("Letter");
         int sizeButton =150;
         btLetterNumber.setPrefWidth(sizeButton);
         btLetterNumber.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));
-        VBox vboxComponent = initVBoxAreaComponent();
+        VBox vboxComponent = initializeVBoxAreaComponent();
 
         VBox vboxGrid = new VBox();
         vboxGrid.getChildren().addAll(btLetterNumber,grid);
@@ -65,7 +70,7 @@ public class HELBElectroView {
         return screenCreate;
     }
 
-    private GridPane initGridAraProduct() {
+    private GridPane initializeGridAraProduct() {
         int gap = 10;
         areaProduct.setHgap(gap);
         areaProduct.setVgap(gap);
@@ -74,13 +79,16 @@ public class HELBElectroView {
         return areaProduct;
     }
 
-    private VBox initVBoxAreaComponent() {
+    private VBox initializeVBoxAreaComponent() {
         areaComponent.setSpacing(setSpace);
         areaComponent.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
         HBox optiBox = createOptiBox();
         areaComponent.getChildren().addAll(optiBox, new VBox());
         return areaComponent;
     }
+
+    // liste observable pour la liste des string des opti, afinn de generer un event
+    // et ecouter si il y a un changements
     private HBox createOptiBox() {
         HBox optiBox = new HBox();
         optiBox.setStyle(String.format("-fx-border-color: %s; -fx-font-weight: bold; -fx-border-width: 2px; -fx-padding: 10px; -fx-background-color: %s;", "white", "#626786"));
@@ -93,4 +101,6 @@ public class HELBElectroView {
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
         return optiBox;
     }
+
+
 }
