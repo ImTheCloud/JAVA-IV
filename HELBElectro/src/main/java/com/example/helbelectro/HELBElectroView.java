@@ -58,7 +58,7 @@ public class HELBElectroView {
         screenCreate.setPadding(new Insets(setPadding, setPadding, setPadding, setPadding));
 
         GridPane grid = initializeGridAraProduct();
-        btLetterNumber = new Button("Letter");
+        btLetterNumber = new Button("Lettres");
         int sizeButton =150;
         btLetterNumber.setPrefWidth(sizeButton);
         btLetterNumber.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));

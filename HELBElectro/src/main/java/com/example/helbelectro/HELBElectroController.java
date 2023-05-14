@@ -328,7 +328,7 @@ public class HELBElectroController implements Optimization {
         // supprimer les labels de colonnes et de ligne existants car sinon ca reecrit dessus
         areaProduct.getChildren().removeAll(listeLabelCol);
         areaProduct.getChildren().removeAll(listeLabelRow);
-        if(btLetterNumber.getText().equals("Letter")){
+        if(btLetterNumber.getText().equals("Lettres")){
             for (int j = 0; j < sizeColGrid; j++) {
                 // cree un nouveau label avec la lettre correspondante a l'indice actuel de la boucle
                 lbNumberCol = new Label(String.valueOf((char) ('A' + j)));
@@ -343,9 +343,9 @@ public class HELBElectroController implements Optimization {
                 areaProduct.add(lbNumberRow, 0, i+1);
                 listeLabelRow.add(lbNumberRow);
             }
-            btLetterNumber.setText("Number");
+            btLetterNumber.setText("Nombres");
         }else{
-            btLetterNumber.setText("Letter");
+            btLetterNumber.setText("Lettres");
              inializeGridWithNumber();
         }
     }
