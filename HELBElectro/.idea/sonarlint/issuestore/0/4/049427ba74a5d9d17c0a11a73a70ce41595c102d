@@ -1,0 +1,16 @@
+
+e
+java:S1192M"HDefine a constant instead of duplicating this literal "#626786" 3 times.(ø≠Îø8∑∏≈ºÅ1
+h
+java:S11929"FDefine a constant instead of duplicating this literal "white" 6 times.(ã€Óﬁ¸ˇˇˇˇ8∏∏≈ºÅ1
+{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(∫î˚ƒ˝ˇˇˇˇ8…∏≈ºÅ1
+>
+java:S1170"!Make this final field static too.(Ä»ıÄ8…∏≈ºÅ1
+C
+java:S1170"!Make this final field static too.(åá◊õ˚ˇˇˇˇ8…∏≈ºÅ1
+C
+java:S1170"!Make this final field static too.(ôêêî˝ˇˇˇˇ8…∏≈ºÅ1
+>
+java:S1170"!Make this final field static too.(∏åÈ‘8…∏≈ºÅ1
+S
+java:S2696="6Make the enclosing method "static" or remove this set.(€‘≈Ì8”∏≈ºÅ1
