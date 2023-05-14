@@ -50,31 +50,31 @@ public class Ticket {
     // le drone aura par exemple les 3 methodes d'attribut car il a les 3 composants
     // le tout est ajouter dans le ticket
     private  void getProductAttributes(Product product, FileWriter writer) throws IOException {
-        if (product instanceof ProductSensor) {
+        if (product instanceof ProductMotionSensor) {
             addSensorAttributes(writer);
         } else if (product instanceof ProductBattery) {
             addBatteryAttributes(writer);
-        } else if (product instanceof ProductMotor) {
+        } else if (product instanceof ProductElectricMotor) {
             addMotorAttributes(writer);
-        } else if (product instanceof ProductDrone) {
+        } else if (product instanceof ProductMonitoringDrone) {
             addSensorAttributes(writer);
             addBatteryAttributes(writer);
             addMotorAttributes(writer);
-        } else if (product instanceof ProductCar) {
+        } else if (product instanceof ProductRemoteCar) {
             addBatteryAttributes(writer);
             addMotorAttributes(writer);
-        } else if (product instanceof ProductAlarm) {
+        } else if (product instanceof ProductSecurityAlarm) {
             addBatteryAttributes(writer);
             addSensorAttributes(writer);
-        } else if (product instanceof ProductRobot) {
+        } else if (product instanceof ProductTrackingRobot) {
             addMotorAttributes(writer);
             addSensorAttributes(writer);
         }
     }
 
     private void addSensorAttributes(FileWriter writer) throws IOException {
-        String range = ComponentSensor.getRange();
-        String colorSensor = ComponentSensor.getColorSensor();
+        String range = ComponentMotionSensor.getRange();
+        String colorSensor = ComponentMotionSensor.getColorSensor();
         writer.write("Sensor Range: " + range + "\n");
         writer.write("Color Sensor: " + colorSensor + "\n");
     }
@@ -85,7 +85,7 @@ public class Ticket {
     }
 
     private void addMotorAttributes(FileWriter writer) throws IOException {
-        String power = ComponentMotor.getPower();
+        String power = ComponentElectricMotor.getPower();
         writer.write("Motor Power: " + power + "\n");
     }
 }

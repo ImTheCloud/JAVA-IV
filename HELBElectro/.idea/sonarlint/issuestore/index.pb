@@ -1,12 +1,8 @@
 
 6
 run.sh,3\2\324fcb49f1cf313ebdd7cbda6a71b73727ddd94d
-k
-;src/main/java/com/example/helbelectro/ComponentBattery.java,9\c\9ca09a898042933812bb8b09c70fbf099f5ecb53
 i
 9src/main/java/com/example/helbelectro/ComponentMotor.java,9\4\94bc6c9e131dd07dcb9f6083eac6e379315839e3
-g
-7src/main/java/com/example/helbelectro/ProductAlarm.java,1\0\107b04939afcb9fb880fcc13178afb9f8c547580
 i
 9src/main/java/com/example/helbelectro/ProductBattery.java,8\d\8d27ee1ca941d290eae128428f5f87a4e044674e
 b
@@ -23,14 +19,8 @@ g
 7src/main/java/com/example/helbelectro/ProductRobot.java,4\9\49990bbe9f0a9b1652b807845bd46bf759db5499
 h
 8src/main/java/com/example/helbelectro/ProductSensor.java,0\2\022d9e7d4653b2eb032050be305b95edd739cc61
-d
-4src/main/java/com/example/helbelectro/Component.java,c\8\c8d1d03bc2f2f11f6010c58897bab542445728ea
-a
-1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
 a
 1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
-b
-2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
 g
 7src/main/java/com/example/helbelectro/Optimization.java,7\4\7434417a3f37de6988e7f57521a44734bed8c956
 @

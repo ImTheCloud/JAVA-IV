@@ -42,8 +42,8 @@ public class DisplayProductDetail {
     private  int statNumberDrone = 0;
     private int padding = 20;
     private int space = 10;
-    int widthScene = 400;
-    int heightScene = 350;
+    private int widthScene = 400;
+    private int heightScene = 350;
 
 
     // methode qui prend l'evenement du bouton cliqué
@@ -98,29 +98,29 @@ public class DisplayProductDetail {
         // car il faut savoir combien et quel label ajouter a la vbox de ma fenettre
         // par exemple pour le drone il va ajouter les labels pour tout les attribut des composant
         // car le drone est consitutuer des 3 composants
-        if (product instanceof ProductSensor) {
+        if (product instanceof ProductMotionSensor) {
             statNumberSensor++;
             addSensorLabels(vbox);
         } else if (product instanceof ProductBattery) {
             statNumberBattery++;
             addBatteryLabel(vbox);
-        } else if (product instanceof ProductMotor) {
+        } else if (product instanceof ProductElectricMotor) {
             statNumberMotor++;
             addMotorLabel(vbox);
-        } else if (product instanceof ProductDrone) {
+        } else if (product instanceof ProductMonitoringDrone) {
             statNumberDrone++;
             addMotorLabel(vbox);
             addSensorLabels(vbox);
             addBatteryLabel(vbox);
-        } else if (product instanceof ProductCar) {
+        } else if (product instanceof ProductRemoteCar) {
             statNumberCar++;
             addMotorLabel(vbox);
             addBatteryLabel(vbox);
-        } else if (product instanceof ProductAlarm) {
+        } else if (product instanceof ProductSecurityAlarm) {
             statNumberAlarm++;
             addBatteryLabel(vbox);
             addSensorLabels(vbox);
-        } else if (product instanceof ProductRobot) {
+        } else if (product instanceof ProductTrackingRobot) {
             statNumberRobot++;
             addMotorLabel(vbox);
             addSensorLabels(vbox);
@@ -133,8 +133,8 @@ public class DisplayProductDetail {
     }
 
     private void addSensorLabels(VBox vbox) {
-        Label rangeLabel = new Label("Range: " + ComponentSensor.getRange());
-        Label colorSensorLabel = new Label("Color Sensor: " + ComponentSensor.getColorSensor());
+        Label rangeLabel = new Label("Range: " + ComponentMotionSensor.getRange());
+        Label colorSensorLabel = new Label("Color Sensor: " + ComponentMotionSensor.getColorSensor());
         vbox.getChildren().addAll(rangeLabel, colorSensorLabel);
     }
     private void addBatteryLabel(VBox vbox) {
@@ -142,7 +142,7 @@ public class DisplayProductDetail {
         vbox.getChildren().add(loadLabel);
     }
     private void addMotorLabel(VBox vbox) {
-        Label powerLabel = new Label("Power: " + ComponentMotor.getPower());
+        Label powerLabel = new Label("Power: " + ComponentElectricMotor.getPower());
         vbox.getChildren().add(powerLabel);
     }
 
@@ -164,25 +164,25 @@ public class DisplayProductDetail {
 
             // verifie pour chaque produit si il est dans le bouton
             if (statNumberSensor > 0) {
-                contentText += "Nombre de produits Sensor : " + statNumberSensor + "\n";
+                contentText += "Nombre Capteur de mouvement : " + statNumberSensor + "\n";
             }
             if (statNumberBattery > 0) {
-                contentText += "Nombre de produits Battery : " + statNumberBattery + "\n";
+                contentText += "Nombre Batterie : " + statNumberBattery + "\n";
             }
             if (statNumberMotor > 0) {
-                contentText += "Nombre de produits Motor : " + statNumberMotor + "\n";
+                contentText += "Nombre de Moteur électrique : " + statNumberMotor + "\n";
             }
             if (statNumberDrone > 0) {
-                contentText += "Nombre de produits Drone : " + statNumberDrone + "\n";
+                contentText += "Nombre de Drone de surveillance: " + statNumberDrone + "\n";
             }
             if (statNumberCar > 0) {
-                contentText += "Nombre de produits Car : " + statNumberCar + "\n";
+                contentText += "Nombre de voiture télécommandée : " + statNumberCar + "\n";
             }
             if (statNumberAlarm > 0) {
-                contentText += "Nombre de produits Alarm : " + statNumberAlarm + "\n";
+                contentText += "Nombre de Alarme de sécuriter : " + statNumberAlarm + "\n";
             }
             if (statNumberRobot > 0) {
-                contentText += "Nombre de produits Robot : " + statNumberRobot + "\n";
+                contentText += "Nombre de Robot suiveur: " + statNumberRobot + "\n";
             }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -204,19 +204,19 @@ public class DisplayProductDetail {
     private void updateProductCount(Product product, boolean increment) {
         // maj le cpt en fonction de l'incrémentation
         // car sinon bug avec les autres boutons, ca se melange
-        if (product instanceof ProductSensor) {
+        if (product instanceof ProductMotionSensor) {
             statNumberSensor += increment ? 1 : -1; // ? si increment est true, + 1, sinon - 1
         } else if (product instanceof ProductBattery) {
             statNumberBattery += increment ? 1 : -1;
-        } else if (product instanceof ProductMotor) {
+        } else if (product instanceof ProductElectricMotor) {
             statNumberMotor += increment ? 1 : -1;
-        } else if (product instanceof ProductDrone) {
+        } else if (product instanceof ProductMonitoringDrone) {
             statNumberDrone += increment ? 1 : -1;
-        } else if (product instanceof ProductCar) {
+        } else if (product instanceof ProductRemoteCar) {
             statNumberCar += increment ? 1 : -1;
-        } else if (product instanceof ProductAlarm) {
+        } else if (product instanceof ProductSecurityAlarm) {
             statNumberAlarm += increment ? 1 : -1;
-        } else if (product instanceof ProductRobot) {
+        } else if (product instanceof ProductTrackingRobot) {
             statNumberRobot += increment ? 1 : -1;
         }
     }

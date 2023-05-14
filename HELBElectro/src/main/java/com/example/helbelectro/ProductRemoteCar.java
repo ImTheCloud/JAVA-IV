@@ -2,17 +2,14 @@ package com.example.helbelectro;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAlarm extends Product {
+public class ProductRemoteCar extends Product {
     // attribut pour la creation du produit avec les attribut de leur composant néccesaire a leur creation
     private String load;
-    private String colorComponent;
-    private String range;
-
-    public ProductAlarm(String load,String colorComponent, String range) {
-        super("C", "#A25846", "P4",4,20,"Alarme de sécurité");
+    private String power;
+    public ProductRemoteCar(String power, String load) {
+        super("B", "#A7632D", "P5",5,30,"Voiture télécommandée");
         this.load = load;
-        this.colorComponent = colorComponent;
-        this.range = range;
+        this.power = power;
     }
     //list de composant neccesaire avec les constructeur vide des composants
     //override car on réimplemente la list de la class mere Product
@@ -20,7 +17,7 @@ public class ProductAlarm extends Product {
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
         componentList.add(new ComponentBattery());
-        componentList.add(new ComponentSensor());
+        componentList.add(new ComponentElectricMotor());
         return componentList;
     }
 }

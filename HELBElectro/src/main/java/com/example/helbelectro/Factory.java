@@ -12,7 +12,7 @@ public class Factory {
         return instance;
     }
 
-    // methode pour simplement créer les composants la facoty s'occupe de ca
+    // methode pour simplement créer les composants
      Component createComponent(String componentName, String[] values) {
         switch (componentName) {
             case "Batterie" -> {
@@ -22,11 +22,11 @@ public class Factory {
             case "Capteur" -> {
                 String range = values[2];
                 String color = values[3];
-                return new ComponentSensor(range, color);
+                return new ComponentMotionSensor(range, color);
             }
             case "Moteur" -> {
                 String power = values[2];
-                return new ComponentMotor(power);
+                return new ComponentElectricMotor(power);
             }
         }
         return null;
@@ -35,20 +35,20 @@ public class Factory {
     // methode pour simplement créer les produits la facoty s'occupe de ca
     // je verifie chaque produits avant de le crée afin d'ajouter les bon attribut a chaque produit
      Product createNewProduct(Product product) {
-        if (product instanceof ProductSensor) {
-            return new ProductSensor(ComponentSensor.getRange(), ComponentSensor.getColorSensor());
+        if (product instanceof ProductMotionSensor) {
+            return new ProductMotionSensor(ComponentMotionSensor.getRange(), ComponentMotionSensor.getColorSensor());
         } else if (product instanceof ProductBattery) {
             return new ProductBattery(ComponentBattery.getLoad());
-        } else if (product instanceof ProductMotor) {
-            return new ProductMotor(ComponentMotor.getPower());
-        } else if (product instanceof ProductDrone) {
-            return new ProductDrone(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange(), ComponentBattery.getLoad());
-        } else if (product instanceof ProductCar) {
-            return new ProductCar(ComponentMotor.getPower(), ComponentBattery.getLoad());
-        } else if (product instanceof ProductAlarm) {
-            return new ProductAlarm(ComponentBattery.getLoad(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
-        } else if (product instanceof ProductRobot) {
-            return new ProductRobot(ComponentMotor.getPower(), ComponentSensor.getColorSensor(), ComponentSensor.getRange());
+        } else if (product instanceof ProductElectricMotor) {
+            return new ProductElectricMotor(ComponentElectricMotor.getPower());
+        } else if (product instanceof ProductMonitoringDrone) {
+            return new ProductMonitoringDrone(ComponentElectricMotor.getPower(), ComponentMotionSensor.getColorSensor(), ComponentMotionSensor.getRange(), ComponentBattery.getLoad());
+        } else if (product instanceof ProductRemoteCar) {
+            return new ProductRemoteCar(ComponentElectricMotor.getPower(), ComponentBattery.getLoad());
+        } else if (product instanceof ProductSecurityAlarm) {
+            return new ProductSecurityAlarm(ComponentBattery.getLoad(), ComponentMotionSensor.getColorSensor(), ComponentMotionSensor.getRange());
+        } else if (product instanceof ProductTrackingRobot) {
+            return new ProductTrackingRobot(ComponentElectricMotor.getPower(), ComponentMotionSensor.getColorSensor(), ComponentMotionSensor.getRange());
         } else {
             return null;
         }

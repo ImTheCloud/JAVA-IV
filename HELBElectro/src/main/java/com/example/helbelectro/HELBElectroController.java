@@ -3,18 +3,15 @@ package com.example.helbelectro;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -141,12 +138,12 @@ public class HELBElectroController implements Optimization {
     // ensuite je vais trier les listess, j'ajoute avec de parametre vide car c'est pas important d'en ajouter
     public  void addProductList() {
         productObjectListSorted.add(new ProductBattery(""));
-        productObjectListSorted.add(new ProductSensor("",""));
-        productObjectListSorted.add(new ProductMotor(""));
-        productObjectListSorted.add(new ProductCar("",""));
-        productObjectListSorted.add(new ProductAlarm("","",""));
-        productObjectListSorted.add(new ProductDrone("","","",""));
-        productObjectListSorted.add(new ProductRobot("","",""));
+        productObjectListSorted.add(new ProductMotionSensor("",""));
+        productObjectListSorted.add(new ProductElectricMotor(""));
+        productObjectListSorted.add(new ProductRemoteCar("",""));
+        productObjectListSorted.add(new ProductSecurityAlarm("","",""));
+        productObjectListSorted.add(new ProductMonitoringDrone("","","",""));
+        productObjectListSorted.add(new ProductTrackingRobot("","",""));
     }
 
     // trie par temps
@@ -264,16 +261,31 @@ public class HELBElectroController implements Optimization {
     }
 
     private void inializeAlertForAreaProductFull() {
-        // Arrêt de la production
+        // arret de la production
         stopTimeline();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Entrepôt des produits");
         alert.setHeaderText(null);
         alert.setContentText("L'entrepôt est complet, veuillez le vider !");
-        productObjectList.clear();
-        clearProductBt();
+
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(okButton);
+        // utilisation du stage car le showandwait genere des bugs
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.setOnShown(event -> {
+            Button okBtn = (Button) alert.getDialogPane().lookupButton(okButton);
+            okBtn.setOnAction(e -> {
+                productObjectList.clear();
+                clearProductBt();
+                stage.close();
+            });
+        });
+
         alert.show();
     }
+
+
+
     public void clearProductBt() {
         for (Button button : productButtonList) {
             button.setStyle("-fx-background-color: #FFFFFF;");
