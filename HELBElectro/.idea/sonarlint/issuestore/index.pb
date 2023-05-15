@@ -1,6 +1,4 @@
 
-a
-1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
 d
 4src/main/java/com/example/helbelectro/Component.java,c\8\c8d1d03bc2f2f11f6010c58897bab542445728ea
 k
@@ -13,8 +11,6 @@ a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
 <
 t_001134.txt,e\0\e0014f3cdeeedb8a9d8bbe8412f726fe5a9f382a
-@
-helbelectro.data,1\6\169f3e50925d40e2489a079162d03e9424851651
 n
 >src/main/java/com/example/helbelectro/ProductMotionSensor.java,d\4\d44287e2a82de558bac7def4f60209dad6638351
 o
@@ -29,19 +25,9 @@ k
 ;src/main/java/com/example/helbelectro/ProductRemoteCar.java,4\9\4986a38f86537fdf47c15b4c33238fcb0f073564
 ;
 diagram.svg,3\1\3122f468445b4dabeccb53e843ade3ba61c6321c
-g
-7src/main/java/com/example/helbelectro/Optimization.java,7\4\7434417a3f37de6988e7f57521a44734bed8c956
 i
 9src/main/java/com/example/helbelectro/ProductBattery.java,8\d\8d27ee1ca941d290eae128428f5f87a4e044674e
 o
 ?src/main/java/com/example/helbelectro/ProductElectricMotor.java,4\1\41859efe6abc45e7cbc8b43279d509f988c0b0bd
-j
-:src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
 b
 2src/main/java/com/example/helbelectro/Product.java,8\0\801dd03f314f006461791d338bc95f5bfea39aea
-l
-<src/main/java/com/example/helbelectro/MySubjectObserved.java,d\a\daa4f6d09df3872d1587fd663c18ab9ea31ddbfe
-e
-5src/main/java/com/example/helbelectro/MyObserver.java,b\9\b949361774f93a94de732d64840643d9c9207845
-c
-3src/main/java/com/example/helbelectro/Observer.java,5\f\5f20a4a82863f0ca8715170818182af649d86a10

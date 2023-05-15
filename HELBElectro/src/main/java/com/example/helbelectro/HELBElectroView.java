@@ -8,6 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HELBElectroView {
     // DESIN PATTERN MVC
     private static HELBElectroView instance;
@@ -22,6 +25,9 @@ public class HELBElectroView {
     static GridPane areaProduct = new GridPane();
     static final ComboBox<String> optiComboBox = new ComboBox<>();
     static Button btLetterNumber;
+    private ObservableList<String> optiList;
+    private List<OptiComboBoxObserver> optiComboBoxObservers = new ArrayList<>();
+
     static final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
 
     private HELBElectroView(Stage stage) {
@@ -96,11 +102,32 @@ public class HELBElectroView {
         Label optiLabel = new Label("Opti : ");
         optiLabel.setStyle("-fx-font-weight: bold;  -fx-text-fill: white;");
         optiComboBox.setValue("Choice");
-        ObservableList<String> optiList = FXCollections.observableArrayList("Pause","Time", "Cost", "Score", "Diverse");
+        optiList = FXCollections.observableArrayList("Pause", "Time", "Cost", "Score", "Diverse");
         optiComboBox.setItems(optiList);
         optiBox.getChildren().addAll(optiLabel, optiComboBox);
+
+        optiComboBox.setOnAction(event -> {
+            String selectedItem = optiComboBox.getSelectionModel().getSelectedItem();
+            notifyOptiComboBoxObservers(selectedItem);
+        });
+
         return optiBox;
     }
+    public void addOptiComboBoxObserver(OptiComboBoxObserver observer) {
+        optiComboBoxObservers.add(observer);
+    }
+
+    public void removeOptiComboBoxObserver(OptiComboBoxObserver observer) {
+        optiComboBoxObservers.remove(observer);
+    }
+
+    private void notifyOptiComboBoxObservers(String selectedItem) {
+        for (OptiComboBoxObserver observer : optiComboBoxObservers) {
+            observer.onOptiChoiceSelected(selectedItem);
+        }
+    }
+
+
 
 
 }

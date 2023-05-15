@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.example.helbelectro.HELBElectroView.*;
 
-public class HELBElectroController implements Optimization {
+public class HELBElectroController implements OptiComboBoxObserver {
     private static HELBElectroController instance;
     private final Timeline timelineChoiceOpti = new Timeline();
     private List<Label> listeLabelRow= new ArrayList<>();
@@ -39,14 +39,8 @@ public class HELBElectroController implements Optimization {
     private AtomicBoolean isBusy = new AtomicBoolean(false);
     public List<Object> productObjectList = new ArrayList<>();
 
-    private MySubjectObserved subjet;
-    private Observer observer;
     private HELBElectroController() {
         initialize();
-        subjet = new MySubjectObserved();
-        observer = new MyObserver();
-        subjet.ajouterObservateur(observer);
-        subjet.notifierObservateurs();
     }
 
     // methode statique pour obtenir l'instance unique du singleton
@@ -181,26 +175,26 @@ public class HELBElectroController implements Optimization {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // logique metier
 
-    private void onOptiClicked(){
-        optiComboBox.setOnAction(event -> {
-            String selectedItem =optiComboBox.getSelectionModel().getSelectedItem();
-            onOptiChoiceSelected(selectedItem);
-        });
+    private void onOptiClicked() {
+        // suprimer l'opti existant pour eviter la duplication
+        HELBElectroView.getInstance(null).removeOptiComboBoxObserver(this);
+        // ensuite on l'ajoute a nouveau
+        HELBElectroView.getInstance(null).addOptiComboBoxObserver(this);
     }
 
     @Override
     public void onOptiChoiceSelected(String selectedItem) {
         switch (selectedItem) {
-// trie les listes en fonction de l'optimisation
-            case "Time" :
+            // trie les listes en fonction de l'optimisation
+            case "Time":
                 getSortedProductListByTime();
                 startTimeline();
-            break;
-            case "Cost" :
+                break;
+            case "Cost":
                 getSortedProductListByPrice();
                 startTimeline();
                 break;
-            case "Score" :
+            case "Score":
                 getSortedProductListByScore();
                 startTimeline();
                 break;
@@ -208,7 +202,7 @@ public class HELBElectroController implements Optimization {
                 getSortedProductListByDiverse();
                 startTimeline();
                 break;
-            case "Pause" :
+            case "Pause":
                 stopTimeline();
                 break;
         }
