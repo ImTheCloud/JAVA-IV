@@ -1,1 +1,1 @@
-nvm clean javafx:run
+mvn clean javafx:run
