@@ -15,19 +15,16 @@ public class Factory {
     // methode pour simplement créer les composants
      Component createComponent(String componentName, String[] values) {
         switch (componentName) {
-            case "Batterie" -> {
+            case "Batterie" :
                 String load = values[2];
                 return new ComponentBattery(load);
-            }
-            case "Capteur" -> {
+            case "Capteur" :
                 String range = values[2];
                 String color = values[3];
                 return new ComponentMotionSensor(range, color);
-            }
-            case "Moteur" -> {
+            case "Moteur" :
                 String power = values[2];
                 return new ComponentElectricMotor(power);
-            }
         }
         return null;
     }

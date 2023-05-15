@@ -11,8 +11,6 @@ q
 Asrc/main/java/com/example/helbelectro/ComponentElectricMotor.java,1\0\10dac3bf0f55191015c2c054b6f1c17550fa33fc
 p
 @src/main/java/com/example/helbelectro/ComponentMotionSensor.java,0\f\0fba021858cd9b056416ded8089734f7c47c404d
-b
-2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
 a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
 <

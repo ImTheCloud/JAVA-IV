@@ -190,25 +190,25 @@ public class HELBElectroController implements Optimization {
     public void onOptiChoiceSelected(String selectedItem) {
         switch (selectedItem) {
 // trie les listes en fonction de l'optimisation
-            case "Time" -> {
+            case "Time" :
                 getSortedProductListByTime();
                 startTimeline();
-            }
-            case "Cost" -> {
+            break;
+            case "Cost" :
                 getSortedProductListByPrice();
                 startTimeline();
-            }
-            case "Score" -> {
+                break;
+            case "Score" :
                 getSortedProductListByScore();
                 startTimeline();
-            }
-            case "Diverse" -> {
+                break;
+            case "Diverse":
                 getSortedProductListByDiverse();
                 startTimeline();
-            }
-            case "Pause" -> {
+                break;
+            case "Pause" :
                 stopTimeline();
-            }
+                break;
         }
     }
 
