@@ -1,14 +1,14 @@
-package com.example.helbelectro;
+package com.example.helbelectro.product;
+import com.example.helbelectro.conponent.ComponentElectricMotor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductRemoteCar extends Product {
+public class ProductElectricMotor extends Product {
     // attribut pour la creation du produit avec les attribut de leur composant néccesaire a leur creation
-    private String load;
     private String power;
-    public ProductRemoteCar(String power, String load) {
-        super("B", "#A7632D", "P5",5,30,"Voiture télécommandée");
-        this.load = load;
+    public ProductElectricMotor(String power) {
+        super("A", "#B111BB", "P3",3,15,"Moteur éléctrique");
         this.power = power;
     }
     //list de composant neccesaire avec les constructeur vide des composants
@@ -16,8 +16,8 @@ public class ProductRemoteCar extends Product {
     @Override
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
-        componentList.add(new ComponentBattery());
         componentList.add(new ComponentElectricMotor());
         return componentList;
     }
 }
+

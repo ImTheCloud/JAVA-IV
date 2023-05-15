@@ -1,5 +1,9 @@
-package com.example.helbelectro;
+package com.example.helbelectro.product;
 
+import com.example.helbelectro.*;
+import com.example.helbelectro.conponent.ComponentBattery;
+import com.example.helbelectro.conponent.ComponentElectricMotor;
+import com.example.helbelectro.conponent.ComponentMotionSensor;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

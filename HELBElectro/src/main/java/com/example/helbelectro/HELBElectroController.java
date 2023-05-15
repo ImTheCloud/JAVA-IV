@@ -1,5 +1,7 @@
 package com.example.helbelectro;
 
+import com.example.helbelectro.conponent.Component;
+import com.example.helbelectro.product.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -35,7 +37,7 @@ public class HELBElectroController implements Optimization {
     private List<Product> productObjectListSorted = new ArrayList<>();
     private List<Object> componentObjectList = new ArrayList<>();
     private AtomicBoolean isBusy = new AtomicBoolean(false);
-    List<Object> productObjectList = new ArrayList<>();
+    public List<Object> productObjectList = new ArrayList<>();
 
     private MySubjectObserved subjet;
     private Observer observer;

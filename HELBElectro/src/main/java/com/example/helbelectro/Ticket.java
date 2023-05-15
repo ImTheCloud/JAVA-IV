@@ -1,5 +1,10 @@
 package com.example.helbelectro;
 
+import com.example.helbelectro.conponent.ComponentBattery;
+import com.example.helbelectro.conponent.ComponentElectricMotor;
+import com.example.helbelectro.conponent.ComponentMotionSensor;
+import com.example.helbelectro.product.*;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

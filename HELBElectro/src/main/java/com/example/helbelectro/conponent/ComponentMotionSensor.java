@@ -1,4 +1,4 @@
-package com.example.helbelectro;
+package com.example.helbelectro.conponent;
 public class ComponentMotionSensor implements Component {
     // attribut neccesaire a la creation du composant
     protected static String range;

@@ -1,5 +1,11 @@
 package com.example.helbelectro;
 
+import com.example.helbelectro.conponent.Component;
+import com.example.helbelectro.conponent.ComponentBattery;
+import com.example.helbelectro.conponent.ComponentElectricMotor;
+import com.example.helbelectro.conponent.ComponentMotionSensor;
+import com.example.helbelectro.product.*;
+
 public class Factory {
     private static Factory instance = null;
     private Factory() {
