@@ -1,0 +1,8 @@
+------------------------------------------------
+Date: 2023/05/15 10:00:08
+Type  produit: ProductMotionSensor
+Prix:10
+Eco-Score :B
+Sensor Range: 517m
+Color Sensor: rouge
+------------------------------------------------

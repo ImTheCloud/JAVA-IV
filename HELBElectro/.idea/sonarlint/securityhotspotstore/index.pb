@@ -35,15 +35,11 @@ h
 diagram.svg,3\1\3122f468445b4dabeccb53e843ade3ba61c6321c
 g
 7src/main/java/com/example/helbelectro/Optimization.java,7\4\7434417a3f37de6988e7f57521a44734bed8c956
-_
-/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
-p
-@src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
-j
-:src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
 i
 9src/main/java/com/example/helbelectro/ProductBattery.java,8\d\8d27ee1ca941d290eae128428f5f87a4e044674e
 o
 ?src/main/java/com/example/helbelectro/ProductElectricMotor.java,4\1\41859efe6abc45e7cbc8b43279d509f988c0b0bd
+j
+:src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
 b
 2src/main/java/com/example/helbelectro/Product.java,8\0\801dd03f314f006461791d338bc95f5bfea39aea

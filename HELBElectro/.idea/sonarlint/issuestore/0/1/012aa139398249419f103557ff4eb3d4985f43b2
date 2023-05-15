@@ -1,20 +1,0 @@
-
-h	java:S112‰"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÆÉîê1
-v	java:S135î"YReduce the total number of break and continue statements in this loop to use at most one.(„‚Ñ¨8ÇÉîê1
->
-java:S1170"!Make this final field static too.(Ï‰á³8¹Ëîê1
-C
-java:S1170"!Make this final field static too.(êƒşôøÿÿÿÿ8¹Ëîê1
->
-java:S1170"!Make this final field static too.(ÕÛÍ8¹Ëîê1
-C
-java:S1170 "!Make this final field static too.(Ö’¥Æüÿÿÿÿ8¹Ëîê1
-»
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(®¿Ğûÿÿÿÿ8ºËîê1
-<
-java:S1872m"Use "isAssignableFrom" instead.(ïË¹‚8ÆËîê1
-B
-java:S1872€"Use "isAssignableFrom" instead.(ÿÁ¬Ñıÿÿÿÿ8ÉËîê1
-?	java:S131¹""Add a default case to this switch.(¢¾§8ÍËîê1
-:
-java:S6205Ë"Remove this redundant block.(ø­µÙ8ÎËîê1

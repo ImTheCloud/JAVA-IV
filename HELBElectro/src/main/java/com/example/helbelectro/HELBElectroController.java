@@ -37,11 +37,17 @@ public class HELBElectroController implements Optimization {
     private AtomicBoolean isBusy = new AtomicBoolean(false);
     List<Object> productObjectList = new ArrayList<>();
 
+    private MySubjectObserved subjet;
+    private Observer observer;
     private HELBElectroController() {
         initialize();
+        subjet = new MySubjectObserved();
+        observer = new MyObserver();
+        subjet.ajouterObservateur(observer);
+        subjet.notifierObservateurs();
     }
 
-    // Méthode statique pour obtenir l'instance unique du singleton
+    // methode statique pour obtenir l'instance unique du singleton
     public static HELBElectroController getInstance() {
         if (instance == null) {
             instance = new HELBElectroController();
