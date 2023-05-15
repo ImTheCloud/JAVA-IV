@@ -179,11 +179,11 @@ public class HELBElectroController implements Optimization {
             onOptiChoiceSelected(selectedItem);
         });
     }
-    // provient de l'interface Optimization
+
     @Override
     public void onOptiChoiceSelected(String selectedItem) {
         switch (selectedItem) {
-            // trie les liste en fonction de l'otpimisation
+// trie les listes en fonction de l'optimisation
             case "Time" -> {
                 getSortedProductListByTime();
                 startTimeline();
