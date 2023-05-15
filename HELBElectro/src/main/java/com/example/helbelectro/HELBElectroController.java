@@ -237,20 +237,22 @@ public class HELBElectroController implements Optimization {
 
     // ajoute les produits au bouton
     public void setButtonProduct() {
-        int index = 0; // index pour acceder aux produits dans la liste productObjectList
+        int index = 0; // index pour accéder aux produits dans la liste productObjectList
         int nbBtAdded = 0;
         productButtonList = new ArrayList<>();
 
         for (Node node : areaProduct.getChildren()) {
-            // verifie si le nœud est un bouton et l'assigne a setButton
-            if (node instanceof Button setButton) {
+            // vérifie si le nœud est un bouton et l'assigne à setButton
+            if (node.getClass().equals(Button.class)) {
+                Button setButton = (Button) node;
+
                 if (index >= productObjectList.size()) {
-                    // verif si tous les produits ont été traités
-                    // sinon gros bug sans cette verif
+                    // vérifie si tous les produits ont été traités
+                    // sinon gros bug sans cette vérification
                     break;
                 }
 
-                Product product = (Product) productObjectList.get(index); //index produit actuel
+                Product product = (Product) productObjectList.get(index); // index produit actuel
                 setButton.setUserData(product);
                 setButton.setText(product.getnameForP());
                 setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
@@ -265,6 +267,7 @@ public class HELBElectroController implements Optimization {
             }
         }
     }
+
 
     private void inializeAlertForAreaProductFull() {
         // arret de la production
@@ -424,7 +427,8 @@ public class HELBElectroController implements Optimization {
         int index = 1;
 
         for (Object component : componentList) {
-            if (component instanceof Component currentComponent) {
+        if (component.getClass().getSimpleName() ==   component.getClass().getSimpleName()) {
+            Component currentComponent = (Component) component;
                 // prendre le bon composant avec l'index
                 Label componentLabel = getComponentLabel(index);
                 // modifie le label avec la couleur et le nom du composants
@@ -434,6 +438,7 @@ public class HELBElectroController implements Optimization {
             }
         }
     }
+
     // avoir l'index du composant en cours
     private Label getComponentLabel(int index) {
         return componentLabelsList.get(index - 1);

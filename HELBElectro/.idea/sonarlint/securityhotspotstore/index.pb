@@ -39,3 +39,9 @@ j
 :src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
 b
 2src/main/java/com/example/helbelectro/Product.java,8\0\801dd03f314f006461791d338bc95f5bfea39aea
+c
+3src/main/java/com/example/helbelectro/Observer.java,5\f\5f20a4a82863f0ca8715170818182af649d86a10
+e
+5src/main/java/com/example/helbelectro/MyObserver.java,b\9\b949361774f93a94de732d64840643d9c9207845
+l
+<src/main/java/com/example/helbelectro/MySubjectObserved.java,d\a\daa4f6d09df3872d1587fd663c18ab9ea31ddbfe
