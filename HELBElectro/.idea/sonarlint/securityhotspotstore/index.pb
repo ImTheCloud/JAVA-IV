@@ -5,10 +5,6 @@ i
 9src/main/java/com/example/helbelectro/ComponentMotor.java,9\4\94bc6c9e131dd07dcb9f6083eac6e379315839e3
 j
 :src/main/java/com/example/helbelectro/ComponentSensor.java,4\c\4c703e52aed8bf603a8477043f83c271c613dc81
-b
-2src/main/java/com/example/helbelectro/Product.java,8\0\801dd03f314f006461791d338bc95f5bfea39aea
-i
-9src/main/java/com/example/helbelectro/ProductBattery.java,8\d\8d27ee1ca941d290eae128428f5f87a4e044674e
 e
 5src/main/java/com/example/helbelectro/ProductCar.java,e\b\eb3f6476234c1cf01648532b4234811d1d457f7b
 g
@@ -23,5 +19,3 @@ a
 1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
 g
 7src/main/java/com/example/helbelectro/Optimization.java,7\4\7434417a3f37de6988e7f57521a44734bed8c956
-@
-helbelectro.data,1\6\169f3e50925d40e2489a079162d03e9424851651

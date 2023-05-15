@@ -8,7 +8,6 @@ public class ProductMonitoringDrone extends Product {
     private String power;
     private String colorComponent;
     private String range;
-    List<Object> componentList;
     public ProductMonitoringDrone(String power, String colorComponent, String range, String load) {
         super("E", "#767676", "P7",12,60,"Drone de surveillance");
         this.load = load;
@@ -20,7 +19,7 @@ public class ProductMonitoringDrone extends Product {
     //override car on réimplemente la list de la class mere Product
     @Override
     public List<Object> getComponentListNecessary() {
-     componentList = new ArrayList<>();
+        List<Object> componentList = new ArrayList<>();
         componentList.add(new ComponentBattery());
         componentList.add(new ComponentMotionSensor());
         componentList.add(new ComponentElectricMotor());

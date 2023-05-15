@@ -14,7 +14,6 @@ public class ProductElectricMotor extends Product {
     @Override
     public List<Object> getComponentListNecessary() {
         List<Object> componentList = new ArrayList<>();
-
         componentList.add(new ComponentElectricMotor());
         return componentList;
     }

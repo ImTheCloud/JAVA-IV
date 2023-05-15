@@ -12,17 +12,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class DisplayProductDetail {
-    private static DisplayProductDetail instance;
+public class ProductDetail {
+    private static ProductDetail instance;
 
     // constructeur prive pour empecher l'instanciation directe
-    DisplayProductDetail() {
+    ProductDetail() {
     }
 
     // methode statique pour obtenir l'instance unique du singleton
-    public static DisplayProductDetail getInstance() {
+    public static ProductDetail getInstance() {
         if (instance == null) {
-            instance = new DisplayProductDetail();
+            instance = new ProductDetail();
         }
         return instance;
     }

@@ -313,7 +313,7 @@ public class HELBElectroController implements Optimization {
                 int btProductHeight = 73;
                 button.setPrefSize(btProductWith, btProductHeight);
                 button.setStyle("-fx-background-color: white;");
-                button.setOnAction(DisplayProductDetail.getInstance()::onButtonProductClicked);
+                button.setOnAction(ProductDetail.getInstance()::onButtonProductClicked);
                 if (i == sizeRowGrid -1 && j == sizeColGrid -1) {
                     // derniere case de la grid pas de bouton
                     // comme dans l'interface du prof
