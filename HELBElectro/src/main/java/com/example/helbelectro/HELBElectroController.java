@@ -165,16 +165,29 @@ public class HELBElectroController implements OptiComboBoxObserver {
         Collections.reverse(productObjectListSorted);
     }
     // trie par diverse
-    // la frequence va trier selon le moin frquent au plus frequent
-    public  void getSortedProductListByDiverse() {
-        productObjectListSorted.sort(Comparator.comparingInt(p -> Collections.frequency(productObjectList, p)));
+    public void getSortedProductListByDiverse() {
+        // map pour compter le nombre de chaque produit
+        Map<Product, Integer> productCountMap = new HashMap<>();
+
+        for (Object product : productObjectList) {
+            if (product instanceof Product) {
+             //  conversion  vers Product
+                Product p = (Product) product;
+                // ajouter le produit a la map et ajoute
+                // le compteur de 1 s'il existe déjà, sinon 0 +1
+                productCountMap.put(p, productCountMap.getOrDefault(p, 0) + 1);
+            }
+        }
+        // trier la liste des produits en fonction du nombre de chaque produit
+        productObjectListSorted.sort(Comparator.comparingInt(p -> productCountMap.getOrDefault((Product) p, 0)));
         Collections.reverse(productObjectListSorted);
     }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // logique metier
-
+     // design pattern observer
     private void onOptiClicked() {
         // suprimer l'opti existant pour eviter la duplication
         HELBElectroView.getInstance(null).removeOptiComboBoxObserver(this);

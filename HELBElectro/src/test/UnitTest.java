@@ -1,25 +1,32 @@
+//package com.example;
+//
 //import static org.junit.jupiter.api.Assertions.*;
-//import com.example.helbelectro.Parser;
-//import com.example.helbelectro.conponent.ComponentBattery;
-//import com.example.helbelectro.conponent.ComponentElectricMotor;
-//import com.example.helbelectro.conponent.ComponentMotionSensor;
-//import com.example.helbelectro.product.Product;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //
-//import java.io.FileNotFoundException;
-//
-// class UnitTest {
-//    private Product produit;
+//public class UnitTest {
+//    private Produit produit;
 //    private Parser parser;
 //
 //    @BeforeEach
 //    public void setUp() {
+//        produit = new Produit();
 //        parser = Parser.getInstance();
 //    }
 //
 //    @Test
-//    public void testParseSimulationFile() throws FileNotFoundException, FileNotFoundException {
+//    public void testGetVentes() {
+//        assertEquals(0, produit.getVentes());
+//    }
+//
+//    @Test
+//    public void testIncrementerVentes() {
+//        produit.incrementerVentes();
+//        assertEquals(1, produit.getVentes());
+//    }
+//
+//    @Test
+//    public void testParseSimulationFile() throws FileNotFoundException {
 //        parser.parseSimulationFile();
 //        // Vérifier que les composants sont correctement créés
 //        assertNotNull(ComponentBattery.getLoad());
