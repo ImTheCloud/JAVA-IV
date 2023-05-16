@@ -15,3 +15,17 @@ j
 test.sh,2\a\2acc65acdda9ae987dbf8da8251ed25fe5a18110
 6
 run.sh,3\2\324fcb49f1cf313ebdd7cbda6a71b73727ddd94d
+_
+/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
+j
+:src/main/java/com/example/helbelectro/product/Product.java,e\0\e0f967148a6bb83ba917d4fb319b935ada2d1963
+q
+Asrc/main/java/com/example/helbelectro/product/ProductBattery.java,9\2\921d7cac10f0a463ec65b74ff707c50af27ee179
+a
+1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
+p
+@src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
+b
+2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
+F
+src/test/UnitTest.java,7\4\743c6cd340b843c6032e7dffa1704345049418e2
