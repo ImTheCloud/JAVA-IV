@@ -96,7 +96,6 @@ public class HELBElectroController implements OptiComboBoxObserver {
                     isBusy.set(false);   // une fois le produit crée, le suivant peux se crée
                 }));
                 timeline.play();
-                break; // arete la boucle pour fabrique les produit 1 a 1
             }
         }
     }
