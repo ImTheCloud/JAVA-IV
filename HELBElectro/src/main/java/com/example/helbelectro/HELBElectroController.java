@@ -245,36 +245,38 @@ public class HELBElectroController implements OptiComboBoxObserver {
 
     // ajoute les produits au bouton
     public void setButtonProduct() {
-        int index = 0; // index pour accéder aux produits dans la liste productObjectList
+        int index = 0; // index pour acceder aux produits dans la liste productObjectList
         int nbBtAdded = 0;
         productButtonList = new ArrayList<>();
 
-        for (Node node : areaProduct.getChildren()) {
-            // vérifie si le nœud est un bouton et l'assigne à setButton
+        boolean allProductsProcessed = false; // indique si tous les produits ont été traités
+        Iterator<Node> iterator = areaProduct.getChildren().iterator(); // itérateur pour parcourir les nœuds
+        while (iterator.hasNext() && nbBtAdded < numberButton && !allProductsProcessed) {
+            Node node = iterator.next();
+            // verifie si le nœud est un bouton et l'assigne à setButton
             if (node.getClass().equals(Button.class)) {
                 Button setButton = (Button) node;
 
                 if (index >= productObjectList.size()) {
-                    // vérifie si tous les produits ont été traités
-                    // sinon gros bug sans cette vérification
-                    break;
-                }
+                    allProductsProcessed = true; // tous les produits ont été traités
+                } else {
+                    Product product = (Product) productObjectList.get(index); // produit correspondant à l'index actuel
+                    setButton.setUserData(product);
+                    setButton.setText(product.getnameForP());
+                    setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
+                    productButtonList.add(setButton);
 
-                Product product = (Product) productObjectList.get(index); // index produit actuel
-                setButton.setUserData(product);
-                setButton.setText(product.getnameForP());
-                setButton.setStyle("-fx-background-color: " + product.getColor() + ";");
-                productButtonList.add(setButton);
-
-                index++;
-                nbBtAdded++;
-                if (nbBtAdded == numberButton) {
-                    inializeAlertForAreaProductFull();
-                    break;
+                    index++;
+                    nbBtAdded++;
+                    if (nbBtAdded == numberButton) {
+                        inializeAlertForAreaProductFull(); 
+                        allProductsProcessed = true; // tous les produits ont été traités
+                    }
                 }
             }
         }
     }
+
 
 
     private void inializeAlertForAreaProductFull() {
