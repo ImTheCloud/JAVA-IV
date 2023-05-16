@@ -19,7 +19,7 @@ public class Factory {
     }
 
     // methode pour simplement créer les composants
-     Component createComponent(String componentName, String[] values) {
+     public Component createComponent(String componentName, String[] values) {
         switch (componentName) {
             case "Batterie" :
                 String load = values[2];
