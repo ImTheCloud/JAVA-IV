@@ -5,10 +5,6 @@
 diagram.svg,3\1\3122f468445b4dabeccb53e843ade3ba61c6321c
 o
 ?src/main/java/com/example/helbelectro/OptiComboBoxObserver.java,9\4\94a93def044e285fce7b3371961a7b434521e269
-7
-test.sh,2\a\2acc65acdda9ae987dbf8da8251ed25fe5a18110
-6
-run.sh,3\2\324fcb49f1cf313ebdd7cbda6a71b73727ddd94d
 q
 Asrc/main/java/com/example/helbelectro/product/ProductBattery.java,9\2\921d7cac10f0a463ec65b74ff707c50af27ee179
 j
@@ -21,5 +17,3 @@ p
 @src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
 j
 :src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
-_
-/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
