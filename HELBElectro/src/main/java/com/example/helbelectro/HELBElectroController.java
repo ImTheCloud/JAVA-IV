@@ -180,6 +180,7 @@ public class HELBElectroController implements OptiComboBoxObserver {
         // trier la liste des produits en fonction du nombre de chaque produit
         productObjectListSorted.sort(Comparator.comparingInt(p -> productCountMap.getOrDefault((Product) p, 0)));
         Collections.reverse(productObjectListSorted);
+        System.out.println(productObjectListSorted);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -269,7 +270,7 @@ public class HELBElectroController implements OptiComboBoxObserver {
                     index++;
                     nbBtAdded++;
                     if (nbBtAdded == numberButton) {
-                        inializeAlertForAreaProductFull(); 
+                        inializeAlertForAreaProductFull();
                         allProductsProcessed = true; // tous les produits ont été traités
                     }
                 }
