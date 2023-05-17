@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.example.helbelectro.HELBElectroView.*;
 
-public class HELBElectroController implements OptiComboBoxObserver {
+public class HELBElectroController implements Observer {
     private static HELBElectroController instance;
     private final Timeline timelineChoiceOpti = new Timeline();
     private List<Label> listeLabelRow= new ArrayList<>();
