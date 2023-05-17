@@ -19,7 +19,7 @@ public class Factory {
     }
 
     // methode pour simplement créer les composants
-     public Component createComponent(String componentName, String[] values) {
+    public Component createComponent(String componentName, String[] values) {
         switch (componentName) {
             case "Batterie" :
                 String load = values[2];
@@ -37,7 +37,7 @@ public class Factory {
 
     // methode pour simplement créer les produits la facoty s'occupe de ca
     // je verifie chaque produits avant de le crée afin d'ajouter les bon attribut a chaque produit
-     Product createNewProduct(Product product) {
+    Product createNewProduct(Product product) {
         if (product instanceof ProductMotionSensor) {
             return new ProductMotionSensor(ComponentMotionSensor.getRange(), ComponentMotionSensor.getColorSensor());
         } else if (product instanceof ProductBattery) {

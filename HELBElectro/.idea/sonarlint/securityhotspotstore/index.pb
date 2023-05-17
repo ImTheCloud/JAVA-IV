@@ -1,16 +1,10 @@
 
-<
-t_001134.txt,e\0\e0014f3cdeeedb8a9d8bbe8412f726fe5a9f382a
 ;
 diagram.svg,3\1\3122f468445b4dabeccb53e843ade3ba61c6321c
-o
-?src/main/java/com/example/helbelectro/OptiComboBoxObserver.java,9\4\94a93def044e285fce7b3371961a7b434521e269
 q
 Asrc/main/java/com/example/helbelectro/product/ProductBattery.java,9\2\921d7cac10f0a463ec65b74ff707c50af27ee179
 j
 :src/main/java/com/example/helbelectro/product/Product.java,e\0\e0f967148a6bb83ba917d4fb319b935ada2d1963
-b
-2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
 a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
 6
@@ -23,11 +17,23 @@ F
 src/test/UnitTest.java,7\4\743c6cd340b843c6032e7dffa1704345049418e2
 c
 3src/main/java/com/example/helbelectro/Observer.java,5\f\5f20a4a82863f0ca8715170818182af649d86a10
-_
-/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
 a
 1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
 j
 :src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
 p
 @src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
+_
+/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
+n
+>src/main/java/com/example/helbelectro/conponent/Component.java,8\7\87c7953e7209160184da823cfef4ea5ed2a1b60b
+}
+Msrc/main/java/com/example/helbelectro/strategy/ComponentCreationStrategy.java,b\f\bf96ce0dddaa3d0713c96f5e537be44fb8946d32
+Å
+Qsrc/main/java/com/example/helbelectro/strategy/ElectricMotorCreationStrategy.java,2\e\2e1a22edb03b9ba12e4610b4ca5f4151db8f45db
+{
+Ksrc/main/java/com/example/helbelectro/strategy/BatteryCreationStrategy.java,f\b\fb5a7cc1ad63136889eb0858b98cd7a2eaf5a9ea
+Ä
+Psrc/main/java/com/example/helbelectro/strategy/MotionSensorCreationStrategy.java,8\f\8f5f8606ac8eefd063b3dd436d89009c1ea299d5
+b
+2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
