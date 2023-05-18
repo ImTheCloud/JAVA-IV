@@ -26,7 +26,7 @@ public class HELBElectroView {
     static final ComboBox<String> optiComboBox = new ComboBox<>();
     static Button btLetterNumber;
     private ObservableList<String> optiList;
-    private List<Observer> optiComboBoxObservers = new ArrayList<>();
+    private List<ObserverOptimization> optiComboBoxObservers = new ArrayList<>();
 
     static final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
 
@@ -113,16 +113,16 @@ public class HELBElectroView {
 
         return optiBox;
     }
-    public void addOptiComboBoxObserver(Observer observer) {
+    public void addOptiComboBoxObserver(ObserverOptimization observer) {
         optiComboBoxObservers.add(observer);
     }
 
-    public void removeOptiComboBoxObserver(Observer observer) {
+    public void removeOptiComboBoxObserver(ObserverOptimization observer) {
         optiComboBoxObservers.remove(observer);
     }
 
     private void notifyOptiComboBoxObservers(String selectedItem) {
-        for (Observer observer : optiComboBoxObservers) {
+        for (ObserverOptimization observer : optiComboBoxObservers) {
             observer.onOptiChoiceSelected(selectedItem);
         }
     }

@@ -9,6 +9,4 @@ module com.example.helbelectro {
     opens com.example.helbelectro.product to javafx.fxml;
     exports com.example.helbelectro.conponent;
     opens com.example.helbelectro.conponent to javafx.fxml;
-    exports com.example.helbelectro.strategy;
-    opens com.example.helbelectro.strategy to javafx.fxml;
 }
