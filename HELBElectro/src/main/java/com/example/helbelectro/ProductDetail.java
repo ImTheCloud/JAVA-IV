@@ -53,8 +53,9 @@ public class ProductDetail {
     // methode qui prend l'evenement du bouton cliqué
     public void onButtonProductClicked(ActionEvent event) {
         Button bt_productFinish = (Button) event.getSource();
-        int rowIndex = GridPane.getRowIndex(bt_productFinish) - 1;
-        int columnIndex = GridPane.getColumnIndex(bt_productFinish) - 1;
+        int displayCorrectPosition = 1; // -1 pour l'affichage car le 1er c'est le label
+        int rowIndex = GridPane.getRowIndex(bt_productFinish) - displayCorrectPosition;
+        int columnIndex = GridPane.getColumnIndex(bt_productFinish) - displayCorrectPosition;
         // j'ajoute au titre l'emplacements du bouton
         String emplacements = "Emplacements (" + rowIndex + ", " + columnIndex + ")";
         Stage modal = new Stage();
@@ -167,7 +168,7 @@ public class ProductDetail {
             contentText += "Nombre total de produits : " + totalProductCount + "\n";
 
             // verifie pour chaque produit si il est dans le bouton
-            if (statNumberSensor > 0) {
+            if (statNumberSensor > 0) { // 0 car si il est pas alors il devra pas etre ajt a l'affichage
                 contentText += "Nombre Capteur de mouvement : " + statNumberSensor + "\n";
             }
             if (statNumberBattery > 0) {

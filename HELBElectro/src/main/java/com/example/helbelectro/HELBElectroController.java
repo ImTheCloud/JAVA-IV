@@ -348,6 +348,7 @@ public class HELBElectroController implements ObserverOptimization {
         // supprimer les labels de colonnes et de ligne existants car sinon ca reecrit dessus
         areaProduct.getChildren().removeAll(listeLabelCol);
         areaProduct.getChildren().removeAll(listeLabelRow);
+        String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
         if(btLetterNumber.getText().equals("Lettres")){
             for (int j = 0; j < sizeColGrid; j++) {
                 // cree un nouveau label avec la lettre correspondante a l'indice actuel de la boucle
@@ -373,15 +374,16 @@ public class HELBElectroController implements ObserverOptimization {
     public void inializeGridWithNumber(){
         // inialiser plus simple que avec des nombres
         btLetterNumber.setOnAction(this::changeNumberLetter);
+        String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
         for (int j = 0; j < sizeColGrid; j++) {
             lbNumberCol = new Label(String.valueOf(j));
-             lbNumberCol.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+             lbNumberCol.setStyle(labelStyle);
             areaProduct.add(lbNumberCol, j+1, 0);
             listeLabelCol.add(lbNumberCol);
         }
         for (int i = 0; i < sizeRowGrid; i++) {
             lbNumberRow = new Label(String.valueOf(i));
-            lbNumberRow.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
+            lbNumberRow.setStyle(labelStyle);
             areaProduct.add(lbNumberRow, 0, i+1);
             listeLabelRow.add(lbNumberRow);
         }
@@ -390,18 +392,21 @@ public class HELBElectroController implements ObserverOptimization {
     // inialiser la zone des composants avec les composant a chaque fois qu'il vienne
     public void initializeComponentArea() {
         componentLabelsList = new ArrayList<>();
+         int defaultLabelWidth = 183;
+         int defaultLabelHeight = 42;
+         String labelStyle = "-fx-background-color: white;";
         for (int i = 0; i < numberLBComponent; i++) {
-            // ajoute les 8 label par defaut du prof
             Label label = new Label();
-            label.setPrefSize(183, 42);
+            label.setPrefSize(defaultLabelWidth, defaultLabelHeight);
             label.setId("component" + i);
-            label.setStyle("-fx-background-color: white;");
+            label.setStyle(labelStyle);
             label.setAlignment(Pos.CENTER);
             componentLabelsList.add(label);
             areaComponent.getChildren().add(label);
         }
         setLabelComponents();
     }
+
 
     // modifie les labels en fonction du composant qui arrive
     private void setLabelComponents() {

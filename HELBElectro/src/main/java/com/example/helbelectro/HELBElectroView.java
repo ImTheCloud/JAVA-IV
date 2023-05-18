@@ -27,8 +27,7 @@ public class HELBElectroView {
     static Button btLetterNumber;
     private ObservableList<String> optiList;
     private List<ObserverOptimization> optiComboBoxObservers = new ArrayList<>();
-
-    static final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
+    private final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
 
     private HELBElectroView(Stage stage) {
         this.stage = stage;
