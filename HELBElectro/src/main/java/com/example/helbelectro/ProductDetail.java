@@ -44,10 +44,10 @@ public class ProductDetail {
     private  int statNumberCar = 0;
     private  int statNumberRobot = 0;
     private  int statNumberDrone = 0;
-    private int padding = 20;
-    private int space = 10;
-    private int widthScene = 400;
-    private int heightScene = 350;
+    private final int padding = 20;
+    private final int space = 10;
+    private final int widthScene = 400;
+    private final int heightScene = 350;
 
 
     // methode qui prend l'evenement du bouton cliqué

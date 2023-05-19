@@ -21,19 +21,26 @@ public class Factory {
     // methode pour simplement créer les composants
     public Component createComponent(String componentName, String[] values) {
         switch (componentName) {
-            case "Batterie" :
+            case "Batterie":
                 String load = values[2];
-                return new ComponentBattery(load);
-            case "Capteur" :
+                ComponentBattery battery = new ComponentBattery(load);
+                System.out.println(battery.getClass().getSimpleName()+ " charge : "+load);
+                return battery;
+            case "Capteur":
                 String range = values[2];
                 String color = values[3];
-                return new ComponentMotionSensor(range, color);
-            case "Moteur" :
+                ComponentMotionSensor motionSensor = new ComponentMotionSensor(range, color);
+                System.out.println(motionSensor.getClass().getSimpleName()+ " range : "+range+" color : "+color);
+                return motionSensor;
+            case "Moteur":
                 String power = values[2];
-                return new ComponentElectricMotor(power);
+                ComponentElectricMotor electricMotor = new ComponentElectricMotor(power);
+                System.out.println(electricMotor.getClass().getSimpleName()+ " power :"+power);
+                return electricMotor;
         }
         return null;
     }
+
 
     // methode pour simplement créer les produits la facoty s'occupe de ca
     // je verifie chaque produits avant de le crée afin d'ajouter les bon attribut a chaque produit

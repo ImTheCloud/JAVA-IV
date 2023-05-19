@@ -24,8 +24,8 @@ import static com.example.helbelectro.HELBElectroView.*;
 public class HELBElectroController implements ObserverOptimization {
     private static HELBElectroController instance;
     private final Timeline timelineChoiceOpti = new Timeline();
-    private List<Label> listeLabelRow= new ArrayList<>();
-    private List<Label> listeLabelCol= new ArrayList<>();
+    private final List<Label> listeLabelRow= new ArrayList<>();
+    private final List<Label> listeLabelCol= new ArrayList<>();
     private Label lbNumberCol;
     private Label lbNumberRow;
     private final int numberLBComponent =8; //  par defaut pour le projet
