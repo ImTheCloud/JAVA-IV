@@ -5,6 +5,7 @@ import com.example.helbelectro.conponent.ComponentBattery;
 import com.example.helbelectro.conponent.ComponentElectricMotor;
 import com.example.helbelectro.conponent.ComponentMotionSensor;
 import com.example.helbelectro.product.*;
+import com.example.helbelectro.product.strategyProduct.*;
 
 public class Factory {
     private static Factory instance = null;
@@ -45,20 +46,26 @@ public class Factory {
     // methode pour simplement créer les produits la facoty s'occupe de ca
     // je verifie chaque produits avant de le crée afin d'ajouter les bon attribut a chaque produit
     Product createNewProduct(Product product) {
+        ProductCreationStrategy creationStrategy = null;
         if (product instanceof ProductMotionSensor) {
-            return new ProductMotionSensor(ComponentMotionSensor.getRange(), ComponentMotionSensor.getColorSensor());
+            creationStrategy = new ProductMotionSensorCreationStrategy();
         } else if (product instanceof ProductBattery) {
-            return new ProductBattery(ComponentBattery.getLoad());
+            creationStrategy = new ProductBatteryCreationStrategy();
         } else if (product instanceof ProductElectricMotor) {
-            return new ProductElectricMotor(ComponentElectricMotor.getPower());
+            creationStrategy = new ProductElectricMotorCreationStrategy();
         } else if (product instanceof ProductMonitoringDrone) {
-            return new ProductMonitoringDrone(ComponentElectricMotor.getPower(), ComponentMotionSensor.getColorSensor(), ComponentMotionSensor.getRange(), ComponentBattery.getLoad());
+            creationStrategy = new ProductMonitoringDroneCreationStrategy();
         } else if (product instanceof ProductRemoteCar) {
-            return new ProductRemoteCar(ComponentElectricMotor.getPower(), ComponentBattery.getLoad());
+            creationStrategy = new ProductRemoteCarCreationStrategy();
         } else if (product instanceof ProductSecurityAlarm) {
-            return new ProductSecurityAlarm(ComponentBattery.getLoad(), ComponentMotionSensor.getColorSensor(), ComponentMotionSensor.getRange());
+            creationStrategy = new ProductSecurityAlarmCreationStrategy();
         } else if (product instanceof ProductTrackingRobot) {
-            return new ProductTrackingRobot(ComponentElectricMotor.getPower(), ComponentMotionSensor.getColorSensor(), ComponentMotionSensor.getRange());
+            creationStrategy = new ProductTrackingRobotCreationStrategy();
+        }
+
+        // si une strategy existe alors il le crée
+        if (creationStrategy != null) {
+            return creationStrategy.createProduct();
         } else {
             return null;
         }
