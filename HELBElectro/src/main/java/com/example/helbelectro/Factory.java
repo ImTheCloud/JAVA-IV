@@ -25,26 +25,22 @@ public class Factory {
             case "Batterie":
                 String load = values[2];
                 ComponentBattery battery = new ComponentBattery(load);
-                System.out.println(battery.getClass().getSimpleName()+ " charge : "+load);
                 return battery;
             case "Capteur":
                 String range = values[2];
                 String color = values[3];
                 ComponentMotionSensor motionSensor = new ComponentMotionSensor(range, color);
-                System.out.println(motionSensor.getClass().getSimpleName()+ " range : "+range+" color : "+color);
                 return motionSensor;
             case "Moteur":
                 String power = values[2];
                 ComponentElectricMotor electricMotor = new ComponentElectricMotor(power);
-                System.out.println(electricMotor.getClass().getSimpleName()+ " power :"+power);
                 return electricMotor;
         }
         return null;
     }
 
 
-    // methode pour simplement créer les produits la facoty s'occupe de ca
-    // je verifie chaque produits avant de le crée afin d'ajouter les bon attribut a chaque produit
+    // methode pour simplement créer les produits depuis la strategy, la facoty s'occupe de ca
     Product createNewProduct(Product product) {
         ProductCreationStrategy creationStrategy = null;
         if (product instanceof ProductMotionSensor) {
