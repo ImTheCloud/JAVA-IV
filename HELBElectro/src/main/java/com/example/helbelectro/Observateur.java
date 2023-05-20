@@ -1,8 +1,8 @@
 package com.example.helbelectro;
 
-import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 
 public interface Observateur {
-    void notifierClicBouton(Button bouton);
+    void notifierClicBouton(ActionEvent event);
 }
 

@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.example.helbelectro.HELBElectroView.*;
 
-public class HELBElectroController implements ObserverOptimization {
+public class HELBElectroController implements ObserverOptimization, Observateur {
     private static HELBElectroController instance;
     private final Timeline timelineChoiceOpti = new Timeline();
     private final List<Label> listeLabelRow= new ArrayList<>();
@@ -314,6 +314,13 @@ public class HELBElectroController implements ObserverOptimization {
         }
     }
 
+    @Override
+    public void notifierClicBouton(ActionEvent event) {
+        // Implémentez le code nécessaire pour gérer le clic du bouton ici
+        // Appel de la méthode onButtonProductClicked de ProductDetail
+        ProductDetail.getInstance().onButtonProductClicked(event);
+    }
+
     public void initializeProductArea() {
         for (int i = 0; i < sizeColGrid; i++) {
             ColumnConstraints column = new ColumnConstraints();
@@ -339,6 +346,7 @@ public class HELBElectroController implements ObserverOptimization {
                     // comme dans l'interface du prof
                     continue;
                 }
+                ProductDetail.getInstance().ajouterObservateur(this);
                 areaProduct.add(button, j+1, i+1);
             }
         }

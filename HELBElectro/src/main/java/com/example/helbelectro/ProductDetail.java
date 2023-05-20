@@ -15,12 +15,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ProductDetail {
+public class ProductDetail implements Observateur {
     private static ProductDetail instance;
+    private List<Observateur> observateurs;
 
     // constructeur prive pour empecher l'instanciation directe
     ProductDetail() {
+        observateurs = new ArrayList<>();
+
     }
 
     // methode statique pour obtenir l'instance unique du singleton
@@ -48,6 +53,15 @@ public class ProductDetail {
     private final int space = 10;
     private final int widthScene = 400;
     private final int heightScene = 350;
+
+    @Override
+    public void notifierClicBouton(ActionEvent event) {
+        // Implémentez le code nécessaire pour gérer le clic du bouton ici
+        onButtonProductClicked(event);
+    }
+    public void ajouterObservateur(Observateur observateur) {
+        observateurs.add(observateur);
+    }
 
 
     // methode qui prend l'evenement du bouton cliqué
