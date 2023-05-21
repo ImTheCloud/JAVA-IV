@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.example.helbelectro.HELBElectroView.*;
 
-public class HELBElectroController implements ObserverOptimization, Observateur {
+public class HELBElectroController implements ObserverOptimization {
     private static HELBElectroController instance;
     private final Timeline timelineChoiceOpti = new Timeline();
     private final List<Label> listeLabelRow= new ArrayList<>();
@@ -194,7 +194,6 @@ public class HELBElectroController implements ObserverOptimization, Observateur 
         // ensuite on l'ajoute a nouveau
         HELBElectroView.getInstance(null).addOptiComboBoxObserver(this);
     }
-
     @Override
     public void onOptiChoiceSelected(String selectedItem) {
         switch (selectedItem) {
@@ -214,9 +213,6 @@ public class HELBElectroController implements ObserverOptimization, Observateur 
             case "Diverse":
                 getSortedProductListByDiverse();
                 startTimeline();
-                break;
-            case "Pause":
-                stopTimeline();
                 break;
         }
     }
@@ -277,9 +273,6 @@ public class HELBElectroController implements ObserverOptimization, Observateur 
             }
         }
     }
-
-
-
     private void inializeAlertForAreaProductFull() {
         // arret de la production
         stopTimeline();
@@ -303,22 +296,12 @@ public class HELBElectroController implements ObserverOptimization, Observateur 
 
         alert.show();
     }
-
-
-
     public void clearProductBt() {
         for (Button button : productButtonList) {
             button.setStyle("-fx-background-color: #FFFFFF;");
             button.setText("");
             button.setUserData(null);
         }
-    }
-
-    @Override
-    public void notifierClicBouton(ActionEvent event) {
-        // Implémentez le code nécessaire pour gérer le clic du bouton ici
-        // Appel de la méthode onButtonProductClicked de ProductDetail
-        ProductDetail.getInstance().onButtonProductClicked(event);
     }
 
     public void initializeProductArea() {
@@ -346,7 +329,6 @@ public class HELBElectroController implements ObserverOptimization, Observateur 
                     // comme dans l'interface du prof
                     continue;
                 }
-                ProductDetail.getInstance().ajouterObservateur(this);
                 areaProduct.add(button, j+1, i+1);
             }
         }
@@ -414,7 +396,6 @@ public class HELBElectroController implements ObserverOptimization, Observateur 
         }
         setLabelComponents();
     }
-
 
     // modifie les labels en fonction du composant qui arrive
     private void setLabelComponents() {

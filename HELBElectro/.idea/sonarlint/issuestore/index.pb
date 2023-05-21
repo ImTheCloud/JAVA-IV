@@ -41,5 +41,3 @@ b
 2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
 ‘
 asrc/main/java/com/example/helbelectro/product/strategyProduct/ProductBatteryCreationStrategy.java,0\e\0e99f25eaeddf5c8cb38db62dd98a74b19660f2c
-j
-:src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
