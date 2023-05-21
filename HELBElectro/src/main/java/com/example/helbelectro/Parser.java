@@ -32,6 +32,7 @@ public class Parser {
         while (scanner.hasNextLine()) {
             // lire chaque ligne, et pour chaque virgule la ligne est divisée
             String line = scanner.nextLine();
+            // diviser la ligne en tableau de valeurs ,
             String[] values = line.split(",");
             int timeInSeconds = Integer.parseInt(values[0]);
             String componentName = values[1];

@@ -15,12 +15,6 @@ N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
 a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
-@
-helbelectro.data,1\6\169f3e50925d40e2489a079162d03e9424851651
-F
-src/test/UnitTest.java,7\4\743c6cd340b843c6032e7dffa1704345049418e2
-a
-1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
 –
 fsrc/main/java/com/example/helbelectro/product/strategyProduct/ProductMotionSensorCreationStrategy.java,c\0\c040ebfb95921766bfa23a57cb33b434790969c0
 “

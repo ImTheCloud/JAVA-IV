@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UnitTest {
     Scanner scanner;
-
     @BeforeEach
     void setUp() throws FileNotFoundException {
         String fileName = "helbelectro.data";
@@ -28,26 +27,26 @@ class UnitTest {
 
     @Test
     void testMotor() {
-        testComponent("Moteur", 0, 9,0, 1000);
+        testComponent("Moteur", 0, 9,0, 999);
     }
 
     private void testComponent(String component, int minTime, int maxTime,
                                int minValue, int maxValue) {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
+            // diviser la ligne en tableau de valeurs ,
             String[] values = line.split(",");
+            // recupérer le composant de la deuxieme colonne
             String currentComponent = values[1].trim();
+            // si le composant correspond au composant des tests
             if (currentComponent.equals(component)) {
-                String time = values[0].trim();
-
-                int timeParse = Integer.parseInt(time);
-                assertTrue(timeParse >= minTime && timeParse <= maxTime);
-
-                String attributFull = values[2].trim();
-                String attributNumber = attributFull.replaceAll("[^\\d]", "");
-                int value = Integer.parseInt(attributNumber);
-                assertTrue(value >= minValue && value <= maxValue);
-
+                String time = values[0].trim(); // trim pour enlever les espace av et apres
+                int timeParse = Integer.parseInt(time); // convertir le temps en integer au cas ou
+                assertTrue(timeParse >= minTime && timeParse <= maxTime); // verifier entre 0 et 9
+                String attributFull = values[2].trim(); // recuperer l'attribut
+                String attributNumber = attributFull.replaceAll("[^\\d]", ""); // pour extraire les chiffre
+                int value = Integer.parseInt(attributNumber); // convertir la valeur de l'attribut en integer
+                assertTrue(value >= minValue && value <= maxValue); // verifier que la valeur est entre les valeur specifier au dessus
             }
         }
     }
@@ -57,8 +56,8 @@ class UnitTest {
             String line = scanner.nextLine();
             String[] values = line.split(",");
             String component = values[1].trim();
-            if (component.equals("Capteur")) {
-                String color = values[3].trim();
+            if (component.equals("Capteur")) { // si le composant est un capteur
+                String color = values[3].trim(); // recup la couleur de la quatrième valeur
                 assertTrue(isValidColor(color, validColors));
             }
         }
@@ -70,6 +69,6 @@ class UnitTest {
                 return true;
             }
         }
-        return false;
+        return false; 
     }
 }
