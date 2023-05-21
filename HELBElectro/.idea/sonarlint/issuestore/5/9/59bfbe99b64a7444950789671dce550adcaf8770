@@ -1,0 +1,20 @@
+
+k	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óîıÿÿÿÿ
+k	java:S117Y"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(å–ĞŠùÿÿÿÿ
+g	java:S117ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ¬¸“
+7
+java:S11702"!Make this final field static too.(Ìéû
+<
+java:S11703"!Make this final field static too.(´ƒİ‘úÿÿÿÿ
+<
+java:S11704"!Make this final field static too.(òèíıÿÿÿÿ
+7
+java:S11705"!Make this final field static too.(ŠıÚØ
+C
+java:S1602È",Remove useless curly braces around statement(›³…ä
+i
+java:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(šÿí
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Íâã÷ƒ1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Îâã÷ƒ1

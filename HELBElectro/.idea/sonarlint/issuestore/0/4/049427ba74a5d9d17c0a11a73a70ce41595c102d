@@ -1,0 +1,21 @@
+
+e
+java:S1192R"HDefine a constant instead of duplicating this literal "#626786" 3 times.(¿­ë¿8œñïé1
+h
+java:S1192>"FDefine a constant instead of duplicating this literal "white" 6 times.(‹ÛîŞüÿÿÿÿ8œñïé1
+>
+java:S1170"!Make this final field static too.(€Èõ€8…òïé1
+C
+java:S1170"!Make this final field static too.(Œ‡×›ûÿÿÿÿ8†òïé1
+C
+java:S1170"!Make this final field static too.(™”ıÿÿÿÿ8†òïé1
+>
+java:S1170"!Make this final field static too.(¸ŒéÔ8†òïé1
+>
+java:S1170"!Make this final field static too.(¸øØ8¦Ó¢ó‚1
+t
+java:S1450"WRemove the "optiList" field and declare it as a local variable in the relevant methods.(ĞÿÍ¤8ŞÚŸ‹‚1
+S
+java:S2696B"6Make the enclosing method "static" or remove this set.(×€ªî8¿òïé1
+K
+java:S1068".Remove this unused "labelStyle" private field.(¸øØ8ÆÓ¢ó‚1
