@@ -394,7 +394,7 @@ public class HELBElectroController implements Observer {
         Timeline timelineComponent = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
             try {
                 // appelle la metjode du parer pour le fichier de simulation
-                Parser.getInstance().parseSimulationFile();
+                Parser.parseSimulationFile();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }

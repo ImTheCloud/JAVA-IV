@@ -29,13 +29,7 @@ h
 8src/main/java/com/example/helbelectro/ProductDetail.java,5\9\59bfbe99b64a7444950789671dce550adcaf8770
 c
 3src/main/java/com/example/helbelectro/Observer.java,5\f\5f20a4a82863f0ca8715170818182af649d86a10
-p
-@src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
-j
-:src/main/java/com/example/helbelectro/HELBElectroView.java,0\4\049427ba74a5d9d17c0a11a73a70ce41595c102d
 b
 2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
 a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
-a
-1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9

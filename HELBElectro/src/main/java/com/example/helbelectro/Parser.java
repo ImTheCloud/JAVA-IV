@@ -8,23 +8,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Parser {
-    private static Parser instance;
-    private int timeDelay = 0;
-
-    // constructeur prive pour empecher l'instanciation directe
-    Parser() {
-    }
-
-    // methode statique pour obtenir l'instance unique du singleton
-    public static Parser getInstance() {
-        if (instance == null) {
-            instance = new Parser();
-        }
-        return instance;
-    }
-
-    // methode qui va s'occuper  de parser les lignes des composant dans le helbelectro.data
-    public void parseSimulationFile() throws FileNotFoundException {
+    // methode qui va s'occuper de parser les lignes des composant dans le helbelectro.data
+    public static void parseSimulationFile() throws FileNotFoundException {
+        int timeDelay = 0;
         String fileName = "helbelectro.data"; // chemin absolu !
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
