@@ -1,6 +1,6 @@
 package com.example.helbelectro.product;
-import com.example.helbelectro.conponent.ComponentBattery;
-import com.example.helbelectro.conponent.ComponentElectricMotor;
+import com.example.helbelectro.component.ComponentBattery;
+import com.example.helbelectro.component.ComponentElectricMotor;
 
 import java.util.ArrayList;
 import java.util.List;

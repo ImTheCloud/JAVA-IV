@@ -1,26 +1,10 @@
 
-;
-diagram.svg,3\1\3122f468445b4dabeccb53e843ade3ba61c6321c
-q
-Asrc/main/java/com/example/helbelectro/product/ProductBattery.java,9\2\921d7cac10f0a463ec65b74ff707c50af27ee179
-j
-:src/main/java/com/example/helbelectro/product/Product.java,e\0\e0f967148a6bb83ba917d4fb319b935ada2d1963
 6
 run.sh,3\2\324fcb49f1cf313ebdd7cbda6a71b73727ddd94d
-7
-test.sh,2\a\2acc65acdda9ae987dbf8da8251ed25fe5a18110
-n
->src/main/java/com/example/helbelectro/conponent/Component.java,8\7\87c7953e7209160184da823cfef4ea5ed2a1b60b
 N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
-u
-Esrc/main/java/com/example/helbelectro/conponent/ComponentBattery.java,5\1\5144ddb63e454688c16f72b40e82113e35f84d0b
-o
-?src/main/java/com/example/helbelectro/ObserverOptimization.java,f\e\fead8b9146721b8ea37cf181163f02362d111011
 @
 helbelectro.data,1\6\169f3e50925d40e2489a079162d03e9424851651
-F
-src/test/UnitTest.java,7\4\743c6cd340b843c6032e7dffa1704345049418e2
 @
 src/test/pom.xml,f\f\ff20ad8b6ecdd52bacaae18d6fabd5f44572a3d2
 `
@@ -35,10 +19,6 @@ csrc/main/java/com/example/helbelectro/product/strategyProduct/ProductRemoteCarC
 gsrc/main/java/com/example/helbelectro/product/strategyProduct/ProductSecurityAlarmCreationStrategy.java,a\8\a8e2ec74273a16e05a537a20415062be4d8ca4c8
 —
 gsrc/main/java/com/example/helbelectro/product/strategyProduct/ProductTrackingRobotCreationStrategy.java,a\2\a28c3e34cf5776842d635894a326e19f6e7856e1
-_
-/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
-<
-t_052618.txt,6\8\68220b9d86f47d939ae476bdc7565cffb17c8e5d
 Š
 Zsrc/main/java/com/example/helbelectro/product/strategyProduct/ProductCreationStrategy.java,7\4\74adbc33f730e632c04ea66c6bf56c1bed1b5da9
 ‘

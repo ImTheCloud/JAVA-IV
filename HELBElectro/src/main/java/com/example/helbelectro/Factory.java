@@ -1,9 +1,9 @@
 package com.example.helbelectro;
 
-import com.example.helbelectro.conponent.Component;
-import com.example.helbelectro.conponent.ComponentBattery;
-import com.example.helbelectro.conponent.ComponentElectricMotor;
-import com.example.helbelectro.conponent.ComponentMotionSensor;
+import com.example.helbelectro.component.Component;
+import com.example.helbelectro.component.ComponentBattery;
+import com.example.helbelectro.component.ComponentElectricMotor;
+import com.example.helbelectro.component.ComponentMotionSensor;
 import com.example.helbelectro.product.*;
 import com.example.helbelectro.product.strategyProduct.*;
 
