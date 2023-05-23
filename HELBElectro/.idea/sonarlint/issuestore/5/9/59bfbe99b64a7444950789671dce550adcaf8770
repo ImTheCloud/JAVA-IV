@@ -15,6 +15,6 @@ java:S1602È",Remove useless curly braces around statement(›³…ä
 i
 java:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(šÿí
 M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Íâã÷ƒ1
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Üµò¯„1
 M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Îâã÷ƒ1
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Üµò¯„1

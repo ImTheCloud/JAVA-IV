@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.example.helbelectro.HELBElectroView.*;
 
-public class HELBElectroController implements ObserverOptimization {
+public class HELBElectroController implements Observer {
     private static HELBElectroController instance;
     private final Timeline timelineChoiceOpti = new Timeline();
     private final List<Label> listeLabelRow= new ArrayList<>();
@@ -165,29 +165,21 @@ public class HELBElectroController implements ObserverOptimization {
     }
     // trie par diverse
     public void getSortedProductListByDiverse() {
-        // map pour compter le nombre de chaque produit
-        Map<Product, Integer> productCountMap = new HashMap<>();
-
+        // compter le nombre de chaque type de produit
+        Map<String, Integer> frequencyMap = new HashMap<>();
         for (Object product : productObjectList) {
-            if (product instanceof Product) {
-             //  conversion  vers Product
-                Product p = (Product) product;
-                // ajouter le produit a la map et ajoute
-                // le compteur de 1 s'il existe déjà, sinon 0 +1
-                productCountMap.put(p, productCountMap.getOrDefault(p, 0) + 1);
-            }
+            String productType = product.getClass().getSimpleName(); // nom du produit dans la list productObjectList
+            frequencyMap.put(productType, frequencyMap.getOrDefault(productType, 0) + 1); // +1 pour ce produit
         }
-        // trier la liste des produits en fonction du nombre de chaque produit
-        productObjectListSorted.sort(Comparator.comparingInt(p -> productCountMap.getOrDefault((Product) p, 0)));
-        Collections.reverse(productObjectListSorted);
-        System.out.println(productObjectListSorted);
+        // trier la liste en fonction du nombres de chaque type de produit
+        productObjectListSorted.sort(Comparator.comparingInt(p -> frequencyMap.getOrDefault(p.getClass().getSimpleName(), 0)));
+        productObjectListSorted.forEach(System.out::println);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // logique metier
-     // design pattern observer
     private void onOptiClicked() {
         // suprimer l'opti existant pour eviter la duplication
         HELBElectroView.getInstance(null).removeOptiComboBoxObserver(this);

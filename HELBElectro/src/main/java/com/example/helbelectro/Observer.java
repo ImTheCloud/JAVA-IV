@@ -1,6 +1,6 @@
 package com.example.helbelectro;
 
-public interface ObserverOptimization {
+public interface Observer {
     void onOptiChoiceSelected(String selectedItem);
 }
 
