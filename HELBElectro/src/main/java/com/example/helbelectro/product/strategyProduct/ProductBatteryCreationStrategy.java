@@ -1,6 +1,6 @@
 package com.example.helbelectro.product.strategyProduct;
 
-import com.example.helbelectro.conponent.ComponentBattery;
+import com.example.helbelectro.component.ComponentBattery;
 import com.example.helbelectro.product.Product;
 import com.example.helbelectro.product.ProductBattery;
 
