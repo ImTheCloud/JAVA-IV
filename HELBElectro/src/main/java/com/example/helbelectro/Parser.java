@@ -8,9 +8,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Parser {
+    private static int timeDelay = 0;
     // methode qui va s'occuper  de parser les lignes des composant dans le helbelectro.data
     public static void parseSimulationFile() throws FileNotFoundException {
-        int timeDelay = 0;
         String fileName = "helbelectro.data"; // chemin absolu !
         File file = new File(fileName);
         Scanner scanner = new Scanner(file);
