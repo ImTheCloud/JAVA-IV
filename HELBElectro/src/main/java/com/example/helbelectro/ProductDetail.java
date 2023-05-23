@@ -1,8 +1,8 @@
 package com.example.helbelectro;
 
-import com.example.helbelectro.component.ComponentBattery;
-import com.example.helbelectro.component.ComponentElectricMotor;
-import com.example.helbelectro.component.ComponentMotionSensor;
+import com.example.helbelectro.conponent.ComponentBattery;
+import com.example.helbelectro.conponent.ComponentElectricMotor;
+import com.example.helbelectro.conponent.ComponentMotionSensor;
 import com.example.helbelectro.product.*;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -15,6 +15,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDetail {
     private static ProductDetail instance;

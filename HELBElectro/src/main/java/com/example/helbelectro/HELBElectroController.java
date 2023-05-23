@@ -1,6 +1,6 @@
 package com.example.helbelectro;
 
-import com.example.helbelectro.component.Component;
+import com.example.helbelectro.conponent.Component;
 import com.example.helbelectro.product.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
