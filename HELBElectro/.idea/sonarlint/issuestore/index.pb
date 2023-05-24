@@ -4,8 +4,6 @@
 N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
 @
-helbelectro.data,1\6\169f3e50925d40e2489a079162d03e9424851651
-@
 src/test/pom.xml,f\f\ff20ad8b6ecdd52bacaae18d6fabd5f44572a3d2
 ™
 isrc/main/java/com/example/helbelectro/product/strategyProduct/ProductMonitoringDroneCreationStrategy.java,9\f\9f8ff55a2f1ba8402b89b2be19dcabfc745d560d
