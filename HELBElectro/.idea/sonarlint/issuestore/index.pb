@@ -41,15 +41,13 @@ gsrc/main/java/com/example/helbelectro/product/strategyProduct/ProductElectricMo
 Zsrc/main/java/com/example/helbelectro/product/strategyProduct/ProductCreationStrategy.java,7\4\74adbc33f730e632c04ea66c6bf56c1bed1b5da9
 b
 2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
-`
-0src/test/src/test/java/com/example/UnitTest.java,f\f\ff19ce42793b0bb28ede420086d5b0a2786990ea
 a
 1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
 h
 8src/main/java/com/example/helbelectro/ProductDetail.java,5\9\59bfbe99b64a7444950789671dce550adcaf8770
 p
 @src/main/java/com/example/helbelectro/HELBElectroController.java,0\1\012aa139398249419f103557ff4eb3d4985f43b2
-_
-/src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
+I
+src/test/helbelectro.data,5\a\5a3c97b978bdacdc2206333dd18f9a62880fc231
 a
 1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
