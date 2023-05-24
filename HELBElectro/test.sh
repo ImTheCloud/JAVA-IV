@@ -1,2 +1,2 @@
 mvn clean 
-mvn test
+mvn test javafx:run
