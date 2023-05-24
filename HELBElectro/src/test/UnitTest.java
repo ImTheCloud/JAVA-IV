@@ -1,11 +1,11 @@
-package src.test.java.com.example;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UnitTest {
     Scanner scanner;

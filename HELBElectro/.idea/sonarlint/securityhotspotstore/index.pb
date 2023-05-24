@@ -7,8 +7,6 @@ N
 helbelectro.data,1\6\169f3e50925d40e2489a079162d03e9424851651
 @
 src/test/pom.xml,f\f\ff20ad8b6ecdd52bacaae18d6fabd5f44572a3d2
-`
-0src/test/src/test/java/com/example/UnitTest.java,f\f\ff19ce42793b0bb28ede420086d5b0a2786990ea
 ™
 isrc/main/java/com/example/helbelectro/product/strategyProduct/ProductMonitoringDroneCreationStrategy.java,9\f\9f8ff55a2f1ba8402b89b2be19dcabfc745d560d
 –
@@ -29,8 +27,6 @@ c
 3src/main/java/com/example/helbelectro/Observer.java,5\f\5f20a4a82863f0ca8715170818182af649d86a10
 b
 2src/main/java/com/example/helbelectro/Factory.java,8\4\849109eea36710095786555a641c9afaed886a27
-a
-1src/main/java/com/example/helbelectro/Ticket.java,b\8\b88f86a41db70400b894b3f88e03c1a362f74a10
 j
 :src/main/java/com/example/helbelectro/product/Product.java,e\0\e0f967148a6bb83ba917d4fb319b935ada2d1963
 j
@@ -39,8 +35,6 @@ q
 Asrc/main/java/com/example/helbelectro/product/ProductBattery.java,9\2\921d7cac10f0a463ec65b74ff707c50af27ee179
 _
 /src/main/java/com/example/helbelectro/Main.java,4\0\406d0d4f9c511fd7957df8b54a92d9a40c740465
-a
-1src/main/java/com/example/helbelectro/Parser.java,f\f\ff7b86b7a3c6a2982768167f516cb19006aac2c9
 n
 >src/main/java/com/example/helbelectro/component/Component.java,1\7\17ca397fe90002f0e6b90ef40cedffe253499125
 u
