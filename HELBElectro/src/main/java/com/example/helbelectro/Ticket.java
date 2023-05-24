@@ -12,22 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ticket {
-    private static Ticket instance;
-
-    // constructeur prive pour empecher l'instanciation directe
-    Ticket() {
-    }
-
-    // methode statique pour obtenir l'instance unique du singleton
-    public static Ticket getInstance() {
-        if (instance == null) {
-            instance = new Ticket();
-        }
-        return instance;
-    }
-
     // methode pour la generation de ticket
-    public void registerSale(Product typeProduct, int price, String ecoScore) {
+    public static void registerSale(Product typeProduct, int price, String ecoScore) {
         try {
             SimpleDateFormat sdfFileName = new SimpleDateFormat("HHmmss");
             SimpleDateFormat sdfFileContent = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -54,7 +40,7 @@ public class Ticket {
     // c'est pour ca que je verifie quel type de produit c'est afin de generer le ticket correctement
     // le drone aura par exemple les 3 methodes d'attribut car il a les 3 composants
     // le tout est ajouter dans le ticket
-    private  void getProductAttributes(Product product, FileWriter writer) throws IOException {
+    private static void getProductAttributes(Product product, FileWriter writer) throws IOException {
         if (product instanceof ProductMotionSensor) {
             addSensorAttributes(writer);
         } else if (product instanceof ProductBattery) {
@@ -77,19 +63,19 @@ public class Ticket {
         }
     }
 
-    private void addSensorAttributes(FileWriter writer) throws IOException {
+    private static void addSensorAttributes(FileWriter writer) throws IOException {
         String range = ComponentMotionSensor.getRange();
         String colorSensor = ComponentMotionSensor.getColorSensor();
         writer.write("Sensor Range: " + range + "\n");
         writer.write("Color Sensor: " + colorSensor + "\n");
     }
 
-    private void addBatteryAttributes(FileWriter writer) throws IOException {
+    private static void addBatteryAttributes(FileWriter writer) throws IOException {
         String load = ComponentBattery.getLoad();
         writer.write("Battery Load: " + load + "\n");
     }
 
-    private void addMotorAttributes(FileWriter writer) throws IOException {
+    private static void addMotorAttributes(FileWriter writer) throws IOException {
         String power = ComponentElectricMotor.getPower();
         writer.write("Motor Power: " + power + "\n");
     }

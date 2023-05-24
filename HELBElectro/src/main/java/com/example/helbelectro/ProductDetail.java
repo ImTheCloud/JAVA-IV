@@ -232,7 +232,7 @@ public class ProductDetail {
 
         sellButton.setOnAction(e -> {
             // apel la class ticket pour generer la logique du ticket
-            Ticket.getInstance().registerSale(product, product.getSellingPrice(), product.getEcoScore());
+            Ticket.registerSale(product, product.getSellingPrice(), product.getEcoScore());
             HELBElectroController.getInstance().productObjectList.remove(product);
 
             // nombre de vente pour les stats
