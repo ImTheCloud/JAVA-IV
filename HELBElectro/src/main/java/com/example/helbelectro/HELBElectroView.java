@@ -27,7 +27,6 @@ public class HELBElectroView {
     static Button btLetterNumber;
     private ObservableList<String> optiList;
     private List<Observer> optiComboBoxObservers = new ArrayList<>();
-    private final String labelStyle = "-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;";
 
     private HELBElectroView(Stage stage) {
         this.stage = stage;
@@ -59,14 +58,15 @@ public class HELBElectroView {
         screenCreate.setAlignment(Pos.CENTER);
         screenCreate.setPrefSize(widthScene, heightScene);
         screenCreate.setSpacing(setSpace);
-        screenCreate.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", 4));
+        int widthBorder = 4;
+        screenCreate.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "#282F76", "white", widthBorder));
         screenCreate.setPadding(new Insets(setPadding, setPadding, setPadding, setPadding));
 
         GridPane grid = initializeGridAraProduct();
         btLetterNumber = new Button("Lettres");
         int sizeButton =150;
         btLetterNumber.setPrefWidth(sizeButton);
-        btLetterNumber.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", 4));
+        btLetterNumber.setStyle(String.format("-fx-background-color: %s; -fx-border-color: %s; -fx-border-width: %dpx;", "white", "white", widthBorder));
         VBox vboxComponent = initializeVBoxAreaComponent();
 
         VBox vboxGrid = new VBox();

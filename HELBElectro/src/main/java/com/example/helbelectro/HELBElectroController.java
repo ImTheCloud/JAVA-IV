@@ -18,7 +18,6 @@ import javafx.util.Duration;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-
 import static com.example.helbelectro.HELBElectroView.*;
 
 public class HELBElectroController implements Observer {
@@ -38,7 +37,6 @@ public class HELBElectroController implements Observer {
     private List<Object> componentObjectList = new ArrayList<>();
     private AtomicBoolean isBusy = new AtomicBoolean(false);
     public List<Object> productObjectList = new ArrayList<>();
-
     private HELBElectroController() {
         initialize();
     }
@@ -136,7 +134,7 @@ public class HELBElectroController implements Observer {
 
 
     // methode pour juste ajouter les produits a la liste trier
-    // ensuite je vais trier les listess, j'ajoute avec de parametre vide car c'est pas important d'en ajouter
+    // ensuite je vais trier les listes, j'ajoute avec de parametre vide car c'est pas important d'en ajouter
     public  void addProductList() {
         productObjectListSorted.add(new ProductBattery(""));
         productObjectListSorted.add(new ProductMotionSensor("",""));
