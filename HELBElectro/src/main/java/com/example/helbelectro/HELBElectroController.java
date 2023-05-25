@@ -53,7 +53,7 @@ public class HELBElectroController implements Observer {
 
     // simple methode de creation des composants
     public void createComponent(String componentName, String[] values) {
-        // Vérifier si le nombre maximal de labels a été atteint
+        // verifier si le nombre maximal de labels a été atteint
         if (componentObjectList.size() < numberLBComponent) {
             Component component = Factory.getInstance().createComponent(componentName, values);
             componentObjectList.add(component);
@@ -289,10 +289,10 @@ public class HELBElectroController implements Observer {
         alert.show();
     }
     public void clearProductBt() {
-        for (Button button : productButtonList) {
-            button.setStyle("-fx-background-color: #FFFFFF;");
-            button.setText("");
-            button.setUserData(null);
+        for (Button btProduct : productButtonList) {
+            btProduct.setStyle("-fx-background-color: #FFFFFF;");
+            btProduct.setText("");
+            btProduct.setUserData(null);
         }
     }
 
@@ -310,18 +310,18 @@ public class HELBElectroController implements Observer {
 
         for (int i = 0; i < sizeRowGrid; i++) {
             for (int j = 0; j < sizeColGrid; j++) {
-                Button button = new Button();
+                Button btProduct = new Button();
                 int btProductWith = 138;
                 int btProductHeight = 73;
-                button.setPrefSize(btProductWith, btProductHeight);
-                button.setStyle("-fx-background-color: white;");
-                button.setOnAction(ProductDetail.getInstance()::onButtonProductClicked);
+                btProduct.setPrefSize(btProductWith, btProductHeight);
+                btProduct.setStyle("-fx-background-color: white;");
+                btProduct.setOnAction(ProductDetail.getInstance()::onButtonProductClicked);
                 if (i == sizeRowGrid -1 && j == sizeColGrid -1) {
                     // derniere case de la grid pas de bouton
                     // comme dans l'interface du prof
                     continue;
                 }
-                areaProduct.add(button, j+1, i+1);
+                areaProduct.add(btProduct, j+1, i+1);
             }
         }
     }
@@ -378,13 +378,13 @@ public class HELBElectroController implements Observer {
          int defaultLabelHeight = 42;
          String labelStyle = "-fx-background-color: white;";
         for (int i = 0; i < numberLBComponent; i++) {
-            Label label = new Label();
-            label.setPrefSize(defaultLabelWidth, defaultLabelHeight);
-            label.setId("component" + i);
-            label.setStyle(labelStyle);
-            label.setAlignment(Pos.CENTER);
-            componentLabelsList.add(label);
-            areaComponent.getChildren().add(label);
+            Label lb_component = new Label();
+            lb_component.setPrefSize(defaultLabelWidth, defaultLabelHeight);
+            lb_component.setId("component" + i);
+            lb_component.setStyle(labelStyle);
+            lb_component.setAlignment(Pos.CENTER);
+            componentLabelsList.add(lb_component);
+            areaComponent.getChildren().add(lb_component);
         }
         setLabelComponents();
     }
@@ -413,9 +413,9 @@ public class HELBElectroController implements Observer {
 
     // remetre le design par defaut du label
     private void clearComponentLabels() {
-        for (Label label : componentLabelsList) {
-            label.setStyle("-fx-background-color: #FFFFFF;");
-            label.setText("");
+        for (Label lb_component : componentLabelsList) {
+            lb_component.setStyle("-fx-background-color: #FFFFFF;");
+            lb_component.setText("");
         }
     }
 
