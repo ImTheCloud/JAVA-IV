@@ -8,9 +8,6 @@ public abstract class Component {
         this.name = name;
         this.color = color;
     }
-
-    public abstract String getAttribute();
-
     public String getName() {
         return name;
     }

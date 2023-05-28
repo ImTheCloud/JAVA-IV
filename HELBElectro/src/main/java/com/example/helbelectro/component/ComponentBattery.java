@@ -17,8 +17,4 @@ public class ComponentBattery extends Component {
         return load;
     }
 
-    @Override
-    public String getAttribute() {
-        return getLoad();
-    }
 }

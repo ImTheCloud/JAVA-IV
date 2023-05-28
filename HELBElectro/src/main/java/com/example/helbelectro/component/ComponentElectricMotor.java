@@ -15,9 +15,4 @@ public class ComponentElectricMotor extends Component {
     public static String getPower() {
         return power;
     }
-
-    @Override
-    public String getAttribute() {
-        return getPower();
-    }
 }

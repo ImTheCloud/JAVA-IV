@@ -21,11 +21,6 @@ public class ComponentMotionSensor extends Component {
     public static String getRange() {
         return range;
     }
-
-    @Override
-    public String getAttribute() {
-        return getRange() + ", " + getColorSensor();
-    }
 }
 
 
