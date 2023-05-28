@@ -23,6 +23,7 @@ import static com.example.helbelectro.HELBElectroView.*;
 public class HELBElectroController implements Observer {
     private static HELBElectroController instance;
     private final Timeline timelineChoiceOpti = new Timeline();
+    private final Timeline timleLineDiverse = new Timeline();
     private final List<Label> listeLabelRow= new ArrayList<>();
     private final List<Label> listeLabelCol= new ArrayList<>();
     private Label lbNumberCol;
@@ -163,6 +164,7 @@ public class HELBElectroController implements Observer {
     }
     // trie par diverse
     public void getSortedProductListByDiverse() {
+        addProductList();
         // compter le nombre de chaque type de produit
         Map<String, Integer> frequencyMap = new HashMap<>();
         for (Object product : productObjectList) {
@@ -171,7 +173,6 @@ public class HELBElectroController implements Observer {
         }
         // trier la liste en fonction du nombres de chaque type de produit
         productObjectListSorted.sort(Comparator.comparingInt(p -> frequencyMap.getOrDefault(p.getClass().getSimpleName(), 0)));
-        productObjectListSorted.forEach(System.out::println);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,11 +189,11 @@ public class HELBElectroController implements Observer {
     public void onOptiChoiceSelected(String selectedItem) {
         switch (selectedItem) {
             // trie les listes en fonction de l'optimisation
-            case "Time":
+            case "Temps":
                 getSortedProductListByTime();
                 startTimeline();
                 break;
-            case "Cost":
+            case "Prix":
                 getSortedProductListByPrice();
                 startTimeline();
                 break;
@@ -200,8 +201,14 @@ public class HELBElectroController implements Observer {
                 getSortedProductListByScore();
                 startTimeline();
                 break;
-            case "Diverse":
-                getSortedProductListByDiverse();
+            case "Diversifier":
+                timleLineDiverse.getKeyFrames().clear();
+                timleLineDiverse.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
+                    getSortedProductListByDiverse();
+                }));
+                timleLineDiverse.setCycleCount(Animation.INDEFINITE);
+                timleLineDiverse.play();
+
                 startTimeline();
                 break;
         }
