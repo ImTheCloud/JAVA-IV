@@ -11,7 +11,7 @@ public class ProductTrackingRobot extends Product {
     private String colorComponent;
     private String range;
     public ProductTrackingRobot(String power, String colorComponent, String range) {
-        super("B", "#BBAE2A", "P6",6,40,"Robot suiveur");
+        super("B", "#BBAE2A", "P6",6,40);
         this.colorComponent = colorComponent;
         this.range = range;
         this.power = power;

@@ -8,7 +8,7 @@ public class ProductBattery extends Product {
     // attribut pour la creation du produit avec les attribut de leur composant néccesaire a leur creation
     private String load;
     public ProductBattery(String load) {
-        super("C", "#00BCD4", "P1", 3, 5, "Batterie");
+        super("C", "#00BCD4", "P1", 3, 5);
         this.load = load;
     }
     //list de composant neccesaire avec les constructeur vide des composants

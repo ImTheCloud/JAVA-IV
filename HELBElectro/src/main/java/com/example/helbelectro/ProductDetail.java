@@ -88,7 +88,7 @@ public class ProductDetail {
         // petit label qui affiche le statut
         Label statut = new Label("Statut : occupé");
         // on va recuper les données de chaque produits
-        Label type = new Label("Type de produit: " + product.getnameForScene());
+        Label type = new Label("Type de produit: " + product.getClass().getSimpleName());
         Label price = new Label("Prix : " + product.getSellingPrice() + " euros");
         Label ecoScore = new Label("Eco-Score : " + product.getEcoScore());
         Button statsButton = statsPtoduct(product,modal);

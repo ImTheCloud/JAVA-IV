@@ -13,7 +13,7 @@ public class ProductMonitoringDrone extends Product {
     private String colorComponent;
     private String range;
     public ProductMonitoringDrone(String power, String colorComponent, String range, String load) {
-        super("E", "#767676", "P7",12,60,"Drone de surveillance");
+        super("E", "#767676", "P7",12,60);
         this.load = load;
         this.colorComponent = colorComponent;
         this.range = range;

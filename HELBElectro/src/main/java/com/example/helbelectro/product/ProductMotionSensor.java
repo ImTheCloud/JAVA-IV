@@ -9,7 +9,7 @@ import java.util.List;
         private String colorComponent;
         private String range;
         public ProductMotionSensor(String colorComponent, String range) {
-            super("B", "#4CAF50", "P2", 3, 10, "Capteur de mouvement");
+            super("B", "#4CAF50", "P2", 3, 10);
             this.colorComponent = colorComponent;
             this.range = range;
         }

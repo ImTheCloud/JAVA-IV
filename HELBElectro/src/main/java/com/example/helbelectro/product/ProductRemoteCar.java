@@ -10,7 +10,7 @@ public class ProductRemoteCar extends Product {
     private String load;
     private String power;
     public ProductRemoteCar(String power, String load) {
-        super("B", "#A7632D", "P5",5,30,"Voiture télécommandée");
+        super("B", "#A7632D", "P5",5,30);
         this.load = load;
         this.power = power;
     }

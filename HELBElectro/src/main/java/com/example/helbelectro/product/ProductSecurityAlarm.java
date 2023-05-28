@@ -12,7 +12,7 @@ public class ProductSecurityAlarm extends Product {
     private String range;
 
     public ProductSecurityAlarm(String load, String colorComponent, String range) {
-        super("C", "#A25846", "P4",4,20,"Alarme de sécurité");
+        super("C", "#A25846", "P4",4,20);
         this.load = load;
         this.colorComponent = colorComponent;
         this.range = range;
