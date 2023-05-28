@@ -98,7 +98,7 @@ public class ProductDetail {
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(space);
         vbox.setPadding(new Insets(padding));
-            //obliger de verifier quel type de produits c'est
+        //obliger de verifier quel type de produits c'est
         // car il faut savoir combien et quel label ajouter a la vbox de ma fenettre
         // par exemple pour le drone il va ajouter les labels pour tout les attribut des composant
         // car le drone est consitutuer des 3 composants
